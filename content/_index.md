@@ -62,11 +62,11 @@ sections:
      title: "Our Team"
      page_type: authors
      filters:
-       folders:
-         - authors
+     folders:
+ - authors
    design:
-     view: card
-     columns: 3
+   view: card
+   columns: 3
 
 
   # News & Events

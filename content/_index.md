@@ -1,6 +1,6 @@
 ---
 # Leave the homepage title empty to use the site title
-title: ''
+title: "iSTEP"
 date: 2022-10-24
 type: landing
 
@@ -9,6 +9,26 @@ design:
   spacing: '6rem'
 
 sections:
+  - block: markdown
+    content:
+      title: "About the iSTEP Study"
+      subtitle: ""
+      text: |-
+        **Participants** are randomized into *Music + Exercise* or *Exercise* group.  
+        Exercise routines are identical for both groups.  
+
+        🎵 **Music Group:** Receives personalized playlists based on their own music interests.  
+        💪 **Exercise Group:** Performs the same exercise sessions without music.  
+
+        By providing enjoyable, beat-enhanced music,  
+        we aim to improve participants’ relationship to exercise and motivation.  
+        We believe those in the music group will engage in greater physical activity compared to those who do not.  
+
+        As our study population consists of sedentary older adults,  
+        all exercises are accessible and scalable (using a band, chair, wall, etc.).  
+    design:
+      columns: "1"
+
   - block: resume-biography-3
     content:
       # Choose a user profile to display (a folder name within `content/authors/`)

@@ -42,7 +42,6 @@ sections:
     view: card
     columns: 3
 
-
   # Research(연구 소개 간단 블록 — 필요에 맞게 수정 가능)
   - block: markdown
     id: research

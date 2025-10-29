@@ -1,14 +1,15 @@
 ---
-# Leave the homepage title empty to use the site title
+# Homepage settings
 title: "iSTEP"
 date: 2022-10-24
 type: landing
 
 design:
-  # Default section spacing
-  spacing: '6rem'
+  spacing: '6rem'   # default section spacing
 
 sections:
+
+  # iSTEP 소개
   - block: markdown
     id: istep
     content:
@@ -16,129 +17,104 @@ sections:
       subtitle: ""
       text: |-
         **Participants** are randomized into *Music + Exercise* or *Exercise* group.  
-        Exercise routines are identical for both groups.  
+        Exercise routines are identical for both groups.
 
         🎵 **Music Group:** Receives personalized playlists based on their own music interests.  
-        💪 **Exercise Group:** Performs the same exercise sessions without music.  
+        💪 **Exercise Group:** Performs the same exercise sessions without music.
 
-        By providing enjoyable, beat-enhanced music,  
-        we aim to improve participants’ relationship to exercise and motivation.  
-        We believe those in the music group will engage in greater physical activity compared to those who do not.  
+        By providing enjoyable, beat-enhanced music, we aim to improve participants’ relationship to exercise and motivation.  
+        We believe those in the music group will engage in **greater physical activity** compared to those who do not.
 
-        As our study population consists of sedentary older adults,  
-        all exercises are accessible and scalable (using a band, chair, wall, etc.).  
+        As our study population consists of sedentary older adults, all exercises are **accessible and scalable** (using a band, chair, wall, etc.).
     design:
       columns: "1"
 
-  - block: resume-biography-3
+  # Our Team (사람 카드 자동 생성)
+  - block: people
+    id: team
     content:
-      # Choose a user profile to display (a folder name within `content/authors/`)
-      username: admin
-      text: ''
-      # Show a call-to-action button under your biography? (optional)
-      button:
-        text: Download CV
-        url: uploads/resume.pdf
-      headings:
-        about: ''
-        education: ''
-        interests: ''
+      title: "Our Team"
+      user_groups:
+        - Lab Director, Principal Investigator
+        - Postdoctoral Fellow
+        - Graduate Research Assistant
+        - Research Technician
+        - Undergraduate Research Assistant
     design:
-      # Apply a gradient background
-      css_class: hbx-bg-gradient
-      # Avatar customization
-      avatar:
-        size: medium # Options: small (150px), medium (200px, default), large (320px), xl (400px), xxl (500px)
-        shape: circle # Options: circle (default), square, rounded
+      show_social: false
+      columns: 3
+
+  # Research(연구 소개 간단 블록 — 필요에 맞게 수정 가능)
   - block: markdown
+    id: research
     content:
-      title: '📚 My Research'
-      subtitle: ''
+      title: "Research"
+      subtitle: ""
       text: |-
-        Use this area to speak to your mission. I'm a research scientist in the Moonshot team at DeepMind. I blog about machine learning, deep learning, and moonshots.
-
-        I apply a range of qualitative and quantitative methods to comprehensively investigate the role of science and technology in the economy.
-
-        Please reach out to collaborate 😃
+        We study how **music and rhythm** can motivate movement in older adults.  
+        Our work combines **exercise science**, **audio signal processing**, and **field interventions**.
     design:
-      columns: '1'
+      columns: "1"
+
+  # Publications(대표/최근)
   - block: collection
-    id: papers
+    id: publications
     content:
-      title: Featured Publications
-      filters:
-        folders:
-          - publications
-        featured_only: true
-    design:
-      view: article-grid
-      columns: 2
-  - block: collection
-    content:
-      title: Recent Publications
-      text: ''
+      title: "Publications"
+      text: ""
       filters:
         folders:
           - publications
         exclude_featured: false
     design:
       view: citation
-  - block: collection
-    id: talks
-    content:
-      title: Recent & Upcoming Talks
-      filters:
-        folders:
-          - events
-    design:
-      view: card
+
+  # News & Events
   - block: collection
     id: news
     content:
-      title: Recent News
-      subtitle: ''
-      text: ''
-      # Page type to display. E.g. post, talk, publication...
+      title: "News & Events"
       page_type: blog
-      # Choose how many pages you would like to display (0 = all pages)
       count: 5
-      # Filter on criteria
       filters:
-        author: ''
-        category: ''
-        tag: ''
+        author: ""
+        category: ""
+        tag: ""
         exclude_featured: false
         exclude_future: false
         exclude_past: false
-        publication_type: ''
-      # Choose how many pages you would like to offset by
-      offset: 0
-      # Page order: descending (desc) or ascending (asc) date.
+        publication_type: ""
       order: desc
     design:
-      # Choose a layout view
       view: card
-      # Reduce spacing
       spacing:
         padding: [0, 0, 0, 0]
-  - block: cta-card
-    demo: true # Only display this section in the Hugo Blox Builder demo site
+
+  # FAQs
+  - block: markdown
+    id: faqs
     content:
-      title: 👉 Build your own academic website like this
+      title: "FAQs"
       text: |-
-        This site is generated by Hugo Blox Builder - the FREE, Hugo-based open source website builder trusted by 250,000+ academics like you.
+        **Who can join?**  
+        Sedentary older adults who are able to perform light exercises.
 
-        <a class="github-button" href="https://github.com/HugoBlox/hugo-blox-builder" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star HugoBlox/hugo-blox-builder on GitHub">Star</a>
+        **What is the time commitment?**  
+        Identical exercise sessions for both groups; the Music group listens to personalized playlists.
 
-        Easily build anything with blocks - no-code required!
-
-        From landing pages, second brains, and courses to academic resumés, conferences, and tech blogs.
-      button:
-        text: Get Started
-        url: https://hugoblox.com/templates/
+        **Do I need special equipment?**  
+        No. Exercises are designed to be **accessible and scalable** (band, chair, wall, etc.).
     design:
-      card:
-        # Card background color (CSS class)
-        css_class: 'bg-primary-300 dark:bg-primary-700'
-        css_style: ''
+      columns: "1"
+
+  # Join Us
+  - block: markdown
+    id: join
+    content:
+      title: "Join Us"
+      text: |-
+        Interested in participating or collaborating?  
+        Email us at **you@example.com** or use the **Contact form** below.
+    design:
+      columns: "1"
 ---

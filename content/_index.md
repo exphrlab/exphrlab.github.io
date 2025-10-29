@@ -30,19 +30,18 @@ sections:
       columns: "1"
 
   # Our Team (사람 카드 자동 생성)
-  - block: people
-    id: team
-    content:
-      title: "Our Team"
-      user_groups:
-        - Lab Director, Principal Investigator
-        - Postdoctoral Fellow
-        - Graduate Research Assistant
-        - Research Technician
-        - Undergraduate Research Assistant
-    design:
-      show_social: false
-      columns: 3
+  - block: collection
+  id: team
+  content:
+    title: "Our Team"
+    page_type: authors
+    filters:
+      folders:
+        - authors
+  design:
+    view: card
+    columns: 3
+
 
   # Research(연구 소개 간단 블록 — 필요에 맞게 수정 가능)
   - block: markdown

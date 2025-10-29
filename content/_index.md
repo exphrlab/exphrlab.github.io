@@ -29,16 +29,18 @@ sections:
       columns: "1"
 
   # Our Team (people 블록 대신 collection 사용)
-  - block: collection
+  - block: people
     id: team
     content:
       title: "Our Team"
-      page_type: authors
-      filters:
-        folders:
-          - authors
+      user_groups:
+        - Lab Director, Principal Investigator
+        - Postdoctoral Fellow
+        - Graduate Research Assistant
+        - Research Technician
+        - Undergraduate Research Assistant
     design:
-      view: card
+      show_social: false
       columns: 3
 
   # Research

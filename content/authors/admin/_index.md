@@ -4,7 +4,7 @@ role: "Research Coordinator, EXPHR Lab @ Emory"   # 직함/소속
 bio: "Exercise & music-based intervention, audio signal processing, data science."
 
 # 프로필 사진 파일명 (다음 단계에서 업로드)
-avatar: "avatar.jpg"
+avatar: "shinpark.jpg"
 
 # 연락처/소셜
 email: "you@example.com"

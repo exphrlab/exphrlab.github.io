@@ -3,3 +3,5 @@ build:
 template:
   id: "academic-cv"
   name: "Academic CV"
+site:
+  baseURL: "https://exphrlab.github.io/"

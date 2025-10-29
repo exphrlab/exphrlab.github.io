@@ -1,0 +1,5 @@
+---
+title: "Jeongwoon (John) Kim, Ph.D."
+role: "Postdoctoral Fellow"
+avatar: "john.jpg"
+---

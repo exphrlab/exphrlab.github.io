@@ -56,17 +56,18 @@ sections:
       columns: "1"
 
   # Publications
-  - block: collection
-    id: publications
-    content:
-      title: "Publications"
-      text: ""
-      filters:
-        folders:
-          - publications
-        exclude_featured: false
-    design:
-      view: citation
+ - block: collection
+  id: team
+  content:
+    title: "Our Team"
+    page_type: authors
+    filters:
+      folders:
+        - authors
+  design:
+    view: card
+    columns: 3
+
 
   # News & Events
   - block: collection

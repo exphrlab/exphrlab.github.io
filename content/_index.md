@@ -8,7 +8,6 @@ design:
   spacing: '6rem'   # default section spacing
 
 sections:
-
   # iSTEP 소개
   - block: markdown
     id: istep
@@ -29,20 +28,20 @@ sections:
     design:
       columns: "1"
 
-  # Our Team (사람 카드 자동 생성)
+  # Our Team (people 블록 대신 collection 사용)
   - block: collection
-  id: team
-  content:
-    title: "Our Team"
-    page_type: authors
-    filters:
-      folders:
-        - authors
-  design:
-    view: card
-    columns: 3
+    id: team
+    content:
+      title: "Our Team"
+      page_type: authors
+      filters:
+        folders:
+          - authors
+    design:
+      view: card
+      columns: 3
 
-  # Research(연구 소개 간단 블록 — 필요에 맞게 수정 가능)
+  # Research
   - block: markdown
     id: research
     content:
@@ -54,7 +53,7 @@ sections:
     design:
       columns: "1"
 
-  # Publications(대표/최근)
+  # Publications
   - block: collection
     id: publications
     content:

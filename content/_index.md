@@ -57,16 +57,16 @@ sections:
 
   # Publications
  - block: collection
-  id: team
-  content:
-    title: "Our Team"
-    page_type: authors
-    filters:
-      folders:
-        - authors
-  design:
-    view: card
-    columns: 3
+   id: team
+   content:
+     title: "Our Team"
+     page_type: authors
+     filters:
+       folders:
+         - authors
+   design:
+     view: card
+     columns: 3
 
 
   # News & Events

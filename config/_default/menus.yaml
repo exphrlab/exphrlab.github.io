@@ -3,26 +3,30 @@ main:
     url: "/"
     weight: 10
 
-  - name: "Our Team"
-    url: "/#team"
+  - name: "Projects"
+    url: "/projects/"
     weight: 20
 
-  - name: "Research"
-    url: "/#research"
+  - name: "Publications"
+    url: "/publications/"
     weight: 30
 
-  - name: "Publications"
-    url: "/#publications"
+  - name: "Our Team"
+    url: "/people/"
     weight: 40
 
   - name: "News & Events"
     url: "/#news"
     weight: 50
 
-  - name: "FAQs"
-    url: "/#faqs"
-    weight: 60
-
-  - name: "Join Us"
-    url: "/#join"
-    weight: 70
+# Our Team 서브메뉴
+people:
+  - name: Members
+    url: /people/
+    weight: 1
+    parent: Our Team
+    
+  - name: Emotional Support Team
+    url: /pets/
+    weight: 2
+    parent: Our Team

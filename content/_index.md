@@ -28,17 +28,20 @@ sections:
       columns: "1"
 
   # 2️⃣ Our Team
-  - block: collection
-    id: team
-    content:
-      title: "Our Team"
-      page_type: authors
-      filters:
-        folders:
-          - authors
-    design:
-      view: card
-      columns: 3
+ - block: collection
+   id: team
+   content:
+     title: "Our Team"
+     filters:
+       folders:
+         - authors
+   design:
+     view: card
+     columns: 3
+     show_date: false
+     show_authors: false
+     show_read_more: false
+     link_to_detail: false
 
   # 3️⃣ Research
   - block: markdown

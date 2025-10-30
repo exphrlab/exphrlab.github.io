@@ -8,3 +8,6 @@ site:
 module:
   imports:
     - path: github.com/HugoBlox/hugo-blox-builder/modules/blox-people
+params:
+  custom_css:
+    - "css/custom.css"

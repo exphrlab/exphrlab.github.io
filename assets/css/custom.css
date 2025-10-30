@@ -1,33 +1,140 @@
-/* === Our Team 전용 컴팩트 스타일 === */
-.team-compact .article-meta,
-.team-compact .article-metadata,
-.team-compact .article-date,
-.team-compact .article-reading-time,
-.team-compact .article-time,
-.team-compact .article-footer { display: none !important; }
-
-/* 이미지: 더 작게 + 원형 + 가운데 크롭 */
-.team-compact .article-image img {
-  width: 160px;
-  height: 160px;
-  border-radius: 9999px;
-  object-fit: cover;
-  object-position: center;
+/* People Section */
+.people-container {
+  max-width: 1200px;
   margin: 0 auto;
-  display: block;
+  padding: 40px 20px;
 }
 
-/* 이름/요약 정렬 */
-.team-compact .article-title {
-  text-align: center;
-  margin-top: 0.75rem;
-  margin-bottom: 0.25rem;
+.section-title {
+  font-size: 2rem;
   font-weight: 700;
-}
-.team-compact .article-summary {
-  text-align: center;
-  margin-bottom: 0.25rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #2c3e50;
+  display: inline-block;
 }
 
-/* 카드 여백 살짝 줄이기 */
-.team-compact .article-card { padding-bottom: 0.5rem; }
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.person-card {
+  text-align: center;
+}
+
+.person-avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+  border: 3px solid #f0f0f0;
+}
+
+.person-avatar:hover {
+  transform: scale(1.05);
+  border-color: #3498db;
+}
+
+.person-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 10px 0 5px 0;
+}
+
+.person-role {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #555;
+  margin: 5px 0;
+}
+
+.person-interests {
+  font-size: 0.85rem;
+  color: #777;
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+.scholar-link {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: #4285f4;
+  text-decoration: none;
+  margin-top: 8px;
+}
+
+.scholar-link:hover {
+  text-decoration: underline;
+}
+
+/* Pets Section */
+.pets-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.pets-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.pet-card {
+  text-align: center;
+}
+
+.pet-avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+  border: 3px solid #f0f0f0;
+}
+
+.pet-avatar:hover {
+  transform: scale(1.05);
+  border-color: #e74c3c;
+}
+
+.pet-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 10px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .people-grid, .pets-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .people-grid, .pets-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  
+  .person-avatar, .pet-avatar {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .people-grid, .pets-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -2,7 +2,7 @@
 title: "Kyoung Shin Park, Ph.D."
 role: "Lab Director, Principal Investigator"
 interests: []
-image: "/images/people/Kyoungshin Park.jpg"
+image: "/images/people/kyoung-shin-park.jpg"
 scholar: ""
 email: ""
 weight: 1

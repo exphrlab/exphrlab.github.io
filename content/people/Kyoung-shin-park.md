@@ -1,20 +1,11 @@
 ---
 title: "Kyoung Shin Park, Ph.D."
 role: "Lab Director, Principal Investigator"
-interests: []
-image: "/images/people/kyoung-shin-park.jpg"
-scholar: ""
-email: ""
 weight: 1
+draft: false
+
+image:
+  filename: "images/people/kyoung-shin-park.jpg"
+  alt: "Kyoung Shin Park"
+  focal_point: "Center"
 ---
-```
-
-**Commit!**
-
----
-
-## 📄 2번: Postdoctoral Fellow
-
-파일 이름:
-```
-content/people/jeongwoon-kim.md

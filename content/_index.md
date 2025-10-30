@@ -34,7 +34,7 @@ sections:
       title: "Our Team"
       filters:
         folders:
-          - authors
+          - people
     design:
       view: card
       columns: 3

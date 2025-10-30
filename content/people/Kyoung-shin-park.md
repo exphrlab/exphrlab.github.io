@@ -3,6 +3,7 @@ title: "Kyoung Shin Park, Ph.D."
 role: "Lab Director, Principal Investigator"
 weight: 1
 draft: false
+featured: true 
 
 image:
   filename: "images/people/kyoung-shin-park.jpg"

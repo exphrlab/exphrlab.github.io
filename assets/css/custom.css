@@ -1,0 +1,33 @@
+/* === Our Team 전용 컴팩트 스타일 === */
+.team-compact .article-meta,
+.team-compact .article-metadata,
+.team-compact .article-date,
+.team-compact .article-reading-time,
+.team-compact .article-time,
+.team-compact .article-footer { display: none !important; }
+
+/* 이미지: 더 작게 + 원형 + 가운데 크롭 */
+.team-compact .article-image img {
+  width: 160px;
+  height: 160px;
+  border-radius: 9999px;
+  object-fit: cover;
+  object-position: center;
+  margin: 0 auto;
+  display: block;
+}
+
+/* 이름/요약 정렬 */
+.team-compact .article-title {
+  text-align: center;
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+  font-weight: 700;
+}
+.team-compact .article-summary {
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+
+/* 카드 여백 살짝 줄이기 */
+.team-compact .article-card { padding-bottom: 0.5rem; }

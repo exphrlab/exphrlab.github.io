@@ -27,7 +27,7 @@ sections:
     design:
       columns: "1"
 
-  # 2️⃣ Our Team
+  # 2️⃣ Our Team — PI (featured only)
   - block: collection
     id: team
     content:
@@ -35,14 +35,33 @@ sections:
       filters:
         folders:
           - people
+      featured_only: true
     design:
       view: card
-      columns: 3
+      columns: 1
       show_date: false
       show_authors: false
       show_read_more: false
       link_to_detail: false
-      css_class: team-compact
+      css_class: "team-compact team-hero"
+
+   # Our Team — Members (all except featured)
+   - block: collection
+    id: team-members
+    content:
+      title: ""
+      filters:
+        folders:
+          - people
+        exclude_featured: true    
+    design:
+      view: card
+      columns: 3                   
+      show_date: false
+      show_authors: false
+      show_read_more: false
+      link_to_detail: false
+      css_class: "team-compact"
 
   # 3️⃣ Research
   - block: markdown

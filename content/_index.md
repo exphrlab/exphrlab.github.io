@@ -42,6 +42,7 @@ sections:
       show_authors: false
       show_read_more: false
       link_to_detail: false
+      css_class: team-compact
 
   # 3️⃣ Research
   - block: markdown

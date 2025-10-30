@@ -1,140 +1,61 @@
-/* People Section */
-.people-container {
-  max-width: 1200px;
+/* ================================
+   Team cards — circle & clean
+   (적용 대상: collection 블록의 css_class가
+    "team-compact" 또는 "team-hero" 인 섹션)
+   ================================ */
+
+/* 모든 팀 카드: 동그랗게, 간결 */
+.team-compact .article-image img,
+.team-hero .article-image img {
+  width: 140px;
+  height: 140px;
+  border-radius: 9999px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
   margin: 0 auto;
-  padding: 40px 20px;
 }
 
-.section-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #2c3e50;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: 3px solid #2c3e50;
-  display: inline-block;
-}
-
-.people-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-  margin-top: 50px;
-}
-
-.person-card {
+/* 카드 여백/정렬 가볍게 정돈 */
+.team-compact .article,
+.team-hero .article {
   text-align: center;
 }
-
-.person-avatar {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 15px;
-  transition: transform 0.3s ease;
-  border: 3px solid #f0f0f0;
+.team-compact .article-title,
+.team-hero .article-title {
+  margin-top: .75rem;
+  margin-bottom: .25rem;
 }
 
-.person-avatar:hover {
-  transform: scale(1.05);
-  border-color: #3498db;
+/* 읽기시간/메타/푸터 숨김 */
+.team-compact .article-meta,
+.team-compact .article-reading-time,
+.team-compact .article-footer,
+.team-hero .article-meta,
+.team-hero .article-reading-time,
+.team-hero .article-footer {
+  display: none !important;
 }
 
-.person-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin: 10px 0 5px 0;
+/* PI 전용(맨 위 featured 섹션): 더 크게 + 살짝 강조 */
+.team-hero .article-image img {
+  width: 200px;
+  height: 200px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.08);
+}
+.team-hero .article-title{
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+}
+.team-hero .article-subtitle{
+  opacity: .85;
 }
 
-.person-role {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #555;
-  margin: 5px 0;
-}
-
-.person-interests {
-  font-size: 0.85rem;
-  color: #777;
-  line-height: 1.6;
-  margin: 10px 0;
-}
-
-.scholar-link {
-  display: inline-block;
-  font-size: 0.9rem;
-  color: #4285f4;
-  text-decoration: none;
-  margin-top: 8px;
-}
-
-.scholar-link:hover {
-  text-decoration: underline;
-}
-
-/* Pets Section */
-.pets-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
-.pets-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-  margin-top: 50px;
-}
-
-.pet-card {
-  text-align: center;
-}
-
-.pet-avatar {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 15px;
-  transition: transform 0.3s ease;
-  border: 3px solid #f0f0f0;
-}
-
-.pet-avatar:hover {
-  transform: scale(1.05);
-  border-color: #e74c3c;
-}
-
-.pet-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin: 10px 0;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .people-grid, .pets-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
+/* 반응형: 화면 줄면 아바타도 살짝 축소 */
 @media (max-width: 768px) {
-  .people-grid, .pets-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-  }
-  
-  .person-avatar, .pet-avatar {
-    width: 150px;
-    height: 150px;
-  }
+  .team-compact .article-image img { width: 120px; height: 120px; }
+  .team-hero .article-image img   { width: 160px; height: 160px; }
 }
-
 @media (max-width: 480px) {
-  .people-grid, .pets-grid {
-    grid-template-columns: 1fr;
-  }
+  .team-compact .article-image img { width: 110px; height: 110px; }
+  .team-hero .article-image img   { width: 140px; height: 140px; }
 }

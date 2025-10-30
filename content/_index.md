@@ -29,13 +29,13 @@ sections:
 
   # 2️⃣ Our Team — PI (featured only)
   - block: collection
-    id: team
+    id: team-pi
     content:
       title: "Our Team"
       filters:
         folders:
           - people
-      featured_only: true
+        featured_only: true
     design:
       view: card
       columns: 1
@@ -45,25 +45,25 @@ sections:
       link_to_detail: false
       css_class: "team-compact team-hero"
 
-   # Our Team — Members (all except featured)
-   - block: collection
+  # 3️⃣ Our Team — Members (all except featured)
+  - block: collection
     id: team-members
     content:
       title: ""
       filters:
         folders:
           - people
-        exclude_featured: true    
+        exclude_featured: true
     design:
       view: card
-      columns: 3                   
+      columns: 3
       show_date: false
       show_authors: false
       show_read_more: false
       link_to_detail: false
       css_class: "team-compact"
 
-  # 3️⃣ Research
+  # 4️⃣ Research
   - block: markdown
     id: research
     content:
@@ -74,7 +74,7 @@ sections:
     design:
       columns: "1"
 
-  # 4️⃣ Publications
+  # 5️⃣ Publications
   - block: collection
     id: publications
     content:
@@ -85,7 +85,7 @@ sections:
     design:
       view: citation
 
-  # 5️⃣ News & Events
+  # 6️⃣ News & Events
   - block: collection
     id: news
     content:
@@ -102,7 +102,7 @@ sections:
       spacing:
         padding: [0, 0, 0, 0]
 
-  # 6️⃣ FAQs
+  # 7️⃣ FAQs
   - block: markdown
     id: faqs
     content:
@@ -119,7 +119,7 @@ sections:
     design:
       columns: "1"
 
-  # 7️⃣ Join Us
+  # 8️⃣ Join Us
   - block: markdown
     id: join
     content:

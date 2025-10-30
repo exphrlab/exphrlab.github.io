@@ -1,0 +1,36 @@
+/* === Our Team 전용 컴팩트 스타일 === */
+.team-compact {
+  /* 카드의 메타(날짜/읽는시간/푸터) 숨기기 */
+  .article-meta,
+  .article-metadata,
+  .article-date,
+  .article-reading-time,
+  .article-time,
+  .article-footer { display: none !important; }
+
+  /* 이미지: 더 작게 + 원형 + 잘림 정리 */
+  .article-image img {
+    width: 160px;
+    height: 160px;
+    border-radius: 9999px;   /* 원형 */
+    object-fit: cover;
+    object-position: center;
+    margin: 0 auto;          /* 가운데 정렬 */
+    display: block;
+  }
+
+  /* 이름(제목)과 요약(직책) 정렬/간격 */
+  .article-title { 
+    text-align: center;
+    margin-top: 0.75rem;
+    margin-bottom: 0.25rem;
+    font-weight: 700;
+  }
+  .article-summary {
+    text-align: center;
+    margin-bottom: 0.25rem;
+  }
+
+  /* 카드 전체 여백 살짝 줄이기 */
+  .article-card { padding-bottom: 0.5rem; }
+}

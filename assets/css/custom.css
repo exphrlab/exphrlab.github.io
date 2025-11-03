@@ -37,6 +37,18 @@
   display: none !important;
 }
 
+/* 🔧 보강: 어떤 테마에선 메타가 .article-metadata 로 올 수도 있어서 같이 숨김 */
+.team-compact .article-metadata,
+.team-hero .article-metadata {
+  display: none !important;
+}
+
+/* 🔧 보강: 카드 본문 요약(발췌)도 안보이게 하고 싶다면 */
+.team-compact .article-excerpt,
+.team-hero .article-excerpt {
+  display: none !important;
+}
+
 /* PI 전용(맨 위 featured 섹션): 더 크게 + 살짝 강조 */
 .team-hero .article-image img {
   width: 200px;

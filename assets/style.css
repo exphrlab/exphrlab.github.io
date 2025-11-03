@@ -322,3 +322,40 @@ header {
   .nav-logo { height: 60px !important; }   /* 모바일에서는 살짝 줄이기 */
 }
 
+/* ============================================
+   🚀 Super Large Header Logo (3x bigger)
+   ============================================ */
+
+header {
+  min-height: 150px !important;       /* 헤더 자체 높이 크게 확보 */
+  display: flex;
+  align-items: center;
+}
+
+.navbar {
+  align-items: center !important;
+  gap: 24px;
+  padding: 18px 0;                   /* 여백 조금 넓혀줌 */
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo {
+  height: 150px !important;          /* 🔹 지금보다 약 3배 */
+  width: auto !important;
+  display: block;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  margin: 4px 0;
+  transform: scale(1.05);            /* 살짝 확대 */
+}
+
+@media (max-width: 600px) {
+  .nav-logo {
+    height: 80px !important;         /* 모바일용 크기 */
+  }
+}
+

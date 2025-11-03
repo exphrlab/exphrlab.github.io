@@ -200,3 +200,35 @@ footer {
   border-radius: 12px; 
   padding: 12px 16px; 
 }
+
+/* ===== Navigation: Replace text brand with logo ===== */
+.nav-logo {
+  height: 36px;             /* 로고 높이 조절 (40~60px 사이 적당) */
+  width: auto;
+  display: block;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  margin-right: auto;       /* 메뉴 오른쪽으로 밀기 */
+}
+
+.navbar {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 10px 0;
+  flex-wrap: wrap;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #111;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+}
+
+.navbar a:hover {
+  text-decoration: underline dotted;
+}

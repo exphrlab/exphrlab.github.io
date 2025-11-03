@@ -37,3 +37,48 @@ figure img { width:100%; display:block; border-radius:12px; border:1px solid #ee
   object-fit: cover;         /* 가운데 채우기 */
   display: block;
 }
+
+/* ===== People layout (CAV 스타일) ===== */
+
+/* 그리드: 사람 카드들을 균등 격자로 */
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* 화면폭에 맞게 2~4열 */
+  gap: 28px;
+  justify-items: center;    /* 카드 자체를 가운데 정렬 */
+  align-items: start;
+}
+
+/* 사람 카드: 폭 제한 + 가운데 정렬 + 카드 테두리는 최소화 */
+.card.person {
+  width: 100%;
+  max-width: 260px;          /* 카드 폭 고정 느낌 */
+  text-align: center;        /* 안의 텍스트/이미지 모두 가운데 */
+  border: 0;                 /* 네모 테두리 제거(원하면 살짝 남겨도 ok) */
+  box-shadow: none;          /* 그림자 제거 */
+  padding: 0;                /* 카드 안쪽 여백 최소화 */
+}
+
+/* 동그란 프로필 (이미 추가했으면 중복 OK) */
+.avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 12px;       /* 중앙 + 아래 여백 */
+  border: 2px solid #e9eef6;
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 이름/직함 간격 조금 정돈 */
+.card.person h3 {
+  margin: 6px 0 6px;
+  font-size: 18px;
+}
+.card.person .badge {
+  display: inline-bloc

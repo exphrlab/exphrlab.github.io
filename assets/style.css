@@ -59,7 +59,7 @@ header {
 
 .navbar { 
   display: flex; 
-  gap: 16px; 
+  gap: 20px; 
   align-items: center; 
   padding: 14px 0; 
   flex-wrap: wrap; 
@@ -203,7 +203,7 @@ footer {
 
 /* ===== Navigation: Replace text brand with logo ===== */
 .nav-logo {
-  height: 36px;             /* 로고 높이 조절 (40~60px 사이 적당) */
+  height: 52px;             /* 로고 높이 조절 (40~60px 사이 적당) */
   width: auto;
   display: block;
 }
@@ -259,5 +259,5 @@ footer {
 
 /* 작은 화면에서는 조금 줄이기 */
 @media (max-width: 600px) {
-  .nav-logo { height: 36px !important; }
+  .nav-logo { height: 42px !important; }
 }

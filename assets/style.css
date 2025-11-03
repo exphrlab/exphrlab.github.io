@@ -232,3 +232,32 @@ footer {
 .navbar a:hover {
   text-decoration: underline dotted;
 }
+
+/* --- Header logo sizing & alignment --- */
+.navbar { 
+  display: flex;
+  align-items: center;          /* 수직 가운데 */
+  gap: 16px;
+  padding: 14px 0;
+}
+
+/* 로고 이미지를 확실하게 키우기 */
+.nav-logo {
+  height: 44px !important;      /* 38~48px 사이에서 취향대로 조절 */
+  width: auto !important;
+  display: block;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* 로고와 메뉴 간 간격 조금 */
+.brand-logo { 
+  display: flex; 
+  align-items: center; 
+  margin-right: 16px; 
+}
+
+/* 작은 화면에서는 조금 줄이기 */
+@media (max-width: 600px) {
+  .nav-logo { height: 36px !important; }
+}

@@ -261,3 +261,34 @@ footer {
 @media (max-width: 600px) {
   .nav-logo { height: 42px !important; }
 }
+
+/* ============================================
+   🔥 Make Header Logo Larger (확실히 키우기)
+   ============================================ */
+
+/* 네비게이션 높이 확장 */
+header {
+  min-height: 80px !important;
+}
+
+/* 로고 크기 키우기 (정말 크게) */
+.nav-logo {
+  height: 68px !important;   /* 🔹 60~75px 범위로 마음에 드는 크기로 조절 가능 */
+  width: auto !important;
+  display: block;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  margin-top: 4px;
+}
+
+/* 로고 옆 메뉴 간격 살짝 벌리기 */
+.navbar a {
+  margin-left: 10px;
+}
+
+/* 반응형 (모바일일 때 살짝 줄이기) */
+@media (max-width: 600px) {
+  .nav-logo {
+    height: 52px !important;
+  }
+}

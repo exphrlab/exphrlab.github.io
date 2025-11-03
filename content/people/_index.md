@@ -1,6 +1,7 @@
 ---
 title: "Our Team"
 type: landing
+aliases: ["/our-team/"] 
 
 design:
   spacing: "4rem"

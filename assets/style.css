@@ -15,10 +15,11 @@ h1, h2, h3 {
 }
 
 .section-title {
-  border-left: 4px solid #304ffe;
   padding-left: 10px;
   font-weight: 600;
   color: #111;
+  font-family: 'Inter', sans-serif;
+  margin-top: 40px;
 }
 
 .card.person h3 {

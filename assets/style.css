@@ -1,10 +1,13 @@
 /* ============================================
-   🌐 Base & Typography (CAV-style refined)
+   🌐 Base & Typography (CAV-style refined + Lora names)
    ============================================ */
 
-/* Import Inter + Merriweather fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap');
+/* Import Fonts (순서 중요!) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&family=Lora:wght@600&display=swap');
 
+/* --------------------------------------------
+   ✨ Global Text Defaults
+-------------------------------------------- */
 html, body {
   margin: 0;
   padding: 0;
@@ -14,7 +17,7 @@ html, body {
   color: #222;
 }
 
-/* Headings use Merriweather (like CAV Lab) */
+/* Headings = Merriweather */
 h1, h2, h3 {
   font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
   font-weight: 700;
@@ -22,7 +25,7 @@ h1, h2, h3 {
   color: #111;
 }
 
-/* Underlined dotted links (CAV style) */
+/* Dotted links (CAV style) */
 a {
   color: inherit;
   text-decoration: underline;
@@ -31,15 +34,15 @@ a {
   text-decoration-thickness: 1.3px;
 }
 
-/* Navbar, brand = Inter */
+/* Navbar & brand */
 .navbar, .navbar a, .brand {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
   font-weight: 500;
 }
 
-/* ============================================
-   📐 Layout & Containers
-   ============================================ */
+/* --------------------------------------------
+   📐 Layout & Structure
+-------------------------------------------- */
 * { box-sizing: border-box; }
 
 .container { 
@@ -70,14 +73,14 @@ header {
   margin-right: auto; 
 }
 
-/* ============================================
-   🧭 Section Titles (CAV-like headings)
-   ============================================ */
+/* --------------------------------------------
+   🧭 Section Titles (CAV-like)
+-------------------------------------------- */
 h1 {
   font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
   font-weight: 700;
   color: #2e3642;
-  border-bottom: 3px solid #162a5b;   /* navy underline like CAV Lab */
+  border-bottom: 3px solid #162a5b;  /* navy underline */
   display: inline-block;
   padding-bottom: 4px;
   margin-bottom: 24px;
@@ -85,16 +88,16 @@ h1 {
 
 .section-title {
   text-align: center !important;
-  margin: 40px 0 20px;
+  margin: 60px 0 28px !important;
   font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
   font-weight: 700;
   color: #2e3642;
   letter-spacing: -0.3px;
 }
 
-/* ============================================
+/* --------------------------------------------
    🧩 Generic Elements
-   ============================================ */
+-------------------------------------------- */
 .grid { 
   display: grid; 
   grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); 
@@ -114,15 +117,16 @@ footer {
   color: #555; 
 }
 
-/* ============================================
-   👥 People Page (CAV-style cards)
-   ============================================ */
+/* --------------------------------------------
+   👥 People Page (CAV-style refined)
+-------------------------------------------- */
 .people-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 28px;
   justify-items: center;
   align-items: start;
+  margin-bottom: 40px;
 }
 
 .card.person {
@@ -151,24 +155,28 @@ footer {
   display: block;
 }
 
+/* ✨ 이름 (Lora: softer & friendly) */
 .card.person h3 {
-  font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
-  font-weight: 700;
+  font-family: 'Lora', serif !important;
+  font-weight: 600 !important;
   font-size: 18px;
-  margin: 6px 0 4px;
+  color: #222;
   text-align: center;
-  color: #111;
+  margin: 8px 0 0;
+  letter-spacing: -0.2px;
 }
 
+/* 역할 (Inter) */
 .card.person .role {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
   font-weight: 500;
   color: #555;
   text-align: center;
   margin: 2px 0 0;
+  white-space: nowrap;  /* 줄바꿈 방지 */
 }
 
-/* Small reusable styles (badges, tables) */
+/* Small Reusable Elements */
 .badge { 
   display: inline-block; 
   padding: 4px 10px; 
@@ -188,31 +196,3 @@ footer {
   border-radius: 12px; 
   padding: 12px 16px; 
 }
-
-.card.person .role {
-  white-space: nowrap;  /* 줄바꿈 방지 */
-}
-
-/* --- Section spacing adjustments --- */
-.section-title {
-  margin-top: 60px !important;   /* 위쪽 여백을 늘림 */
-  margin-bottom: 28px !important; /* 아래쪽 여백도 살짝 */
-}
-
-.people-grid {
-  margin-bottom: 40px;  /* 다음 섹션과 여백 추가 */
-}
-
-/* --- Person Name Font: Softer and friendly (Lora) --- */
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@600&display=swap');
-
-.card.person h3 {
-  font-family: 'Lora', serif !important;
-  font-weight: 600;
-  font-size: 18px;
-  color: #222;
-  text-align: center;
-  margin: 8px 0 0;
-  letter-spacing: -0.2px;
-}
-

@@ -1,9 +1,10 @@
+/* Import Fonts (순서 중요!) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&family=Lora:wght@600&display=swap');
+
 /* ============================================
    🌐 Base & Typography (CAV-style refined + Lora names)
    ============================================ */
 
-/* Import Fonts (순서 중요!) */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&family=Lora:wght@600&display=swap');
 
 /* --------------------------------------------
    ✨ Global Text Defaults

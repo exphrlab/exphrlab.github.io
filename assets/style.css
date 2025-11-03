@@ -161,3 +161,19 @@ footer {
   margin-top: 40px;
   margin-bottom: 20px;
 }
+
+/* --- Section Headings: same style as CAV Lab 'People' --- */
+h1, h2.section-title {
+  font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
+  font-weight: 700;
+  color: #2e3642;                /* CAV lab 같은 짙은 네이비-그레이 색감 */
+  letter-spacing: -0.3px;
+}
+
+/* Add thin underline accent for top-level headings (optional, like CAV lab) */
+h1 {
+  border-bottom: 3px solid #162a5b;  /* 진한 남색 밑줄 */
+  display: inline-block;
+  padding-bottom: 4px;
+  margin-bottom: 24px;
+}

@@ -292,3 +292,33 @@ header {
     height: 52px !important;
   }
 }
+
+/* ===== Bigger Header Logo ===== */
+header {
+  min-height: 96px !important;         /* 헤더 높이 더 확보 */
+  display: block;
+}
+
+.navbar {
+  align-items: center !important;       /* 로고 수직 가운데 정렬 */
+  gap: 18px;
+}
+
+.brand-logo {                           /* 로고 앵커 자체도 가운데 정렬 */
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo {
+  height: 88px !important;              /* ← 원하는 크기(예: 88~100px로 조절) */
+  width: auto !important;
+  display: block;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  margin: 4px 0 2px;
+}
+
+@media (max-width: 600px) {
+  .nav-logo { height: 60px !important; }   /* 모바일에서는 살짝 줄이기 */
+}
+

@@ -15,7 +15,6 @@ html, body {
   color: #222;
 }
 
-/* Headings = Merriweather (CAV 느낌) */
 h1, h2, h3 {
   font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
   font-weight: 700;
@@ -23,7 +22,6 @@ h1, h2, h3 {
   color: #111;
 }
 
-/* CAV 스타일 점선 링크 */
 a {
   color: inherit;
   text-decoration: underline;
@@ -32,44 +30,55 @@ a {
   text-decoration-thickness: 1.3px;
 }
 
-/* Navbar & brand = Inter */
-.navbar, .navbar a, .brand {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
-  font-weight: 500;
-}
-
 /* =======================================================
    Layout
    ======================================================= */
 * { box-sizing: border-box; }
 
-.container { 
-  max-width: 980px; 
-  margin: 0 auto; 
-  padding: 24px; 
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px;
 }
 
-header { 
-  border-bottom: 1px solid #eee; 
-  background: #fff; 
-  position: sticky; 
-  top: 0; 
-  z-index: 10; 
+/* ---------- Header / Navbar ---------- */
+header {
+  border-bottom: 1px solid #eee;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-.navbar { 
-  display: flex; 
-  gap: 20px; 
-  align-items: center; 
-  padding: 14px 0; 
-  flex-wrap: wrap; 
+.navbar {
+  display: flex;
+  justify-content: space-between;   /* 왼쪽: 브랜드 / 오른쪽: 메뉴 */
+  align-items: center;
+  gap: 20px;
+  padding: 10px 0;                  /* 컴팩트한 세로 간격 */
+  flex-wrap: wrap;
 }
 
-.navbar .brand { 
-  font-weight: 700; 
-  font-size: 1.15rem; 
-  margin-right: auto; 
+/* 왼쪽 상단 브랜드(텍스트) — 항상 왼쪽 끝 */
+.brand {
+  font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #1a1a1a;
+  text-decoration: none;
+  margin-right: auto;               /* 메뉴를 오른쪽으로 밀기 */
 }
+
+/* 메뉴 링크 */
+.navbar a {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 500;
+  color: #111;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.navbar a:hover { color: #003366; }
 
 /* =======================================================
    Section titles (CAV-like)
@@ -78,7 +87,7 @@ h1 {
   font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
   font-weight: 700;
   color: #2e3642;
-  border-bottom: 3px solid #162a5b;  /* navy underline */
+  border-bottom: 3px solid #162a5b; /* navy underline */
   display: inline-block;
   padding-bottom: 4px;
   margin-bottom: 24px;
@@ -96,27 +105,27 @@ h1 {
 /* =======================================================
    Generic elements
    ======================================================= */
-.grid { 
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); 
-  gap: 16px; 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+  gap: 16px;
 }
 
-.card { 
-  border: 1px solid #eee; 
-  border-radius: 12px; 
-  padding: 16px; 
-  background: #fff; 
+.card {
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 16px;
+  background: #fff;
 }
 
-footer { 
-  border-top: 1px solid #eee; 
-  padding: 24px 0; 
-  color: #555; 
+footer {
+  border-top: 1px solid #eee;
+  padding: 24px 0;
+  color: #555;
 }
 
 /* =======================================================
-   People page
+   People page (clean circle cards)
    ======================================================= */
 .people-grid {
   display: grid;
@@ -124,13 +133,13 @@ footer {
   gap: 28px;
   justify-items: center;
   align-items: start;
-  margin-bottom: 40px; /* 섹션 사이 간격 */
+  margin-bottom: 40px;  /* 섹션 사이 간격 */
 }
 
 .card.person {
   max-width: 260px;
   text-align: center;
-  border: none;          /* 네모 테두리 제거 */
+  border: none;
   box-shadow: none;
   background: none;
   padding: 0;
@@ -145,7 +154,6 @@ footer {
   margin: 0 auto 12px;
   border: 2px solid #e9eef6;
 }
-
 .avatar img {
   width: 100%;
   height: 100%;
@@ -153,7 +161,7 @@ footer {
   display: block;
 }
 
-/* ✅ 이름 = Inter (네비와 동일, 부드럽고 산뜻) */
+/* 이름 = Inter(부드럽고 산뜻) */
 .card.person h3 {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
   font-weight: 600 !important;
@@ -165,246 +173,29 @@ footer {
   text-decoration: none;
 }
 
-/* 역할(직함) = Inter */
+/* 역할(직함) */
 .card.person .role {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
   font-weight: 500;
   color: #555;
   text-align: center;
   margin: 2px 0 0;
-  white-space: nowrap;  /* 한 줄 유지 */
+  white-space: nowrap;
 }
-
-/* 작은 화면에서 역할 줄바꿈 허용(넘침 방지) */
 @media (max-width: 380px) {
   .card.person .role { white-space: normal; }
 }
 
-/* 재사용 소소 요소 */
-.badge { 
-  display: inline-block; 
-  padding: 4px 10px; 
-  border: 1px solid #e2e8f0; 
-  border-radius: 999px; 
-  font-size: 12px; 
-  color: #475569; 
-  background: #f8fafc; 
-}
+/* 소소 요소 */
+.badge { display:inline-block; padding:4px 10px; border:1px solid #e2e8f0; border-radius:999px; font-size:12px; color:#475569; background:#f8fafc; }
+.table { width:100%; border-collapse: collapse; }
+.table th, .table td { border-bottom:1px solid #eee; padding:8px; text-align:left; }
+.notice { background:#f7faff; border:1px solid #e0ecff; border-radius:12px; padding:12px 16px; }
 
-.table { width: 100%; border-collapse: collapse; }
-.table th, .table td { border-bottom: 1px solid #eee; padding: 8px; text-align: left; }
-
-.notice { 
-  background: #f7faff; 
-  border: 1px solid #e0ecff; 
-  border-radius: 12px; 
-  padding: 12px 16px; 
-}
-
-/* ===== Navigation: Replace text brand with logo ===== */
-.nav-logo {
-  height: 52px;             /* 로고 높이 조절 (40~60px 사이 적당) */
-  width: auto;
-  display: block;
-}
-
-.brand-logo {
-  display: flex;
-  align-items: center;
-  margin-right: auto;       /* 메뉴 오른쪽으로 밀기 */
-}
-
-.navbar {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  padding: 10px 0;
-  flex-wrap: wrap;
-}
-
-.navbar a {
-  text-decoration: none;
-  color: #111;
-  font-weight: 500;
-  font-family: 'Inter', sans-serif;
-}
-
-.navbar a:hover {
-  text-decoration: underline dotted;
-}
-
-/* --- Header logo sizing & alignment --- */
-.navbar { 
-  display: flex;
-  align-items: center;          /* 수직 가운데 */
-  gap: 16px;
-  padding: 14px 0;
-}
-
-/* 로고 이미지를 확실하게 키우기 */
-.nav-logo {
-  height: 44px !important;      /* 38~48px 사이에서 취향대로 조절 */
-  width: auto !important;
-  display: block;
-  object-fit: contain;
-  image-rendering: -webkit-optimize-contrast;
-}
-
-/* 로고와 메뉴 간 간격 조금 */
-.brand-logo { 
-  display: flex; 
-  align-items: center; 
-  margin-right: 16px; 
-}
-
-/* 작은 화면에서는 조금 줄이기 */
-@media (max-width: 600px) {
-  .nav-logo { height: 42px !important; }
-}
-
-/* ============================================
-   🔥 Make Header Logo Larger (확실히 키우기)
-   ============================================ */
-
-/* 네비게이션 높이 확장 */
-header {
-  min-height: 80px !important;
-}
-
-/* 로고 크기 키우기 (정말 크게) */
-.nav-logo {
-  height: 68px !important;   /* 🔹 60~75px 범위로 마음에 드는 크기로 조절 가능 */
-  width: auto !important;
-  display: block;
-  object-fit: contain;
-  image-rendering: -webkit-optimize-contrast;
-  margin-top: 4px;
-}
-
-/* 로고 옆 메뉴 간격 살짝 벌리기 */
-.navbar a {
-  margin-left: 10px;
-}
-
-/* 반응형 (모바일일 때 살짝 줄이기) */
-@media (max-width: 600px) {
-  .nav-logo {
-    height: 52px !important;
-  }
-}
-
-/* ===== Bigger Header Logo ===== */
-header {
-  min-height: 96px !important;         /* 헤더 높이 더 확보 */
-  display: block;
-}
-
-.navbar {
-  align-items: center !important;       /* 로고 수직 가운데 정렬 */
-  gap: 18px;
-}
-
-.brand-logo {                           /* 로고 앵커 자체도 가운데 정렬 */
-  display: flex;
-  align-items: center;
-}
-
-.nav-logo {
-  height: 88px !important;              /* ← 원하는 크기(예: 88~100px로 조절) */
-  width: auto !important;
-  display: block;
-  object-fit: contain;
-  image-rendering: -webkit-optimize-contrast;
-  margin: 4px 0 2px;
-}
-
-@media (max-width: 600px) {
-  .nav-logo { height: 60px !important; }   /* 모바일에서는 살짝 줄이기 */
-}
-
-/* ============================================
-   🚀 Super Large Header Logo (3x bigger)
-   ============================================ */
-
-header {
-  min-height: 150px !important;       /* 헤더 자체 높이 크게 확보 */
-  display: flex;
-  align-items: center;
-}
-
-.navbar {
-  align-items: center !important;
-  gap: 24px;
-  padding: 18px 0;                   /* 여백 조금 넓혀줌 */
-}
-
-.brand-logo {
-  display: flex;
-  align-items: center;
-}
-
-.nav-logo {
-  height: 150px !important;          /* 🔹 지금보다 약 3배 */
-  width: auto !important;
-  display: block;
-  object-fit: contain;
-  image-rendering: -webkit-optimize-contrast;
-  margin: 4px 0;
-  transform: scale(1.05);            /* 살짝 확대 */
-}
-
-@media (max-width: 600px) {
-  .nav-logo {
-    height: 80px !important;         /* 모바일용 크기 */
-  }
-}
-
-/* ============================================
-   🎯 Enlarge Logo Only (keep navbar compact)
-   ============================================ */
-
-header {
-  min-height: 80px !important;       /* 원래 높이 유지 */
-  display: flex;
-  align-items: center;
-}
-
-.navbar {
-  align-items: center !important;
-  gap: 16px;
-  padding: 10px 0;                  /* 메뉴 세로 간격 다시 줄이기 */
-}
-
-.brand-logo {
-  display: flex;
-  align-items: center;
-}
-
-/* 🧠 로고만 크게 (1.5배) */
-.nav-logo {
-  height: 120px !important;          /* 🔹 이전보다 약 1.5배 확대 */
-  width: auto !important;
-  display: block;
-  object-fit: contain;
-  image-rendering: -webkit-optimize-contrast;
-  margin-top: -8px;                  /* 로고만 살짝 위로 끌어올려 균형 맞춤 */
-}
-
-/* 반응형 - 모바일에서는 살짝 줄이기 */
-@media (max-width: 600px) {
-  .nav-logo {
-    height: 80px !important;
-    margin-top: -4px;
-  }
-}
-
-/* ============================================
-   🧠 About Section Layout (CAV-style)
-   ============================================ */
-
-.about {
-  margin-top: 48px;
-}
+/* =======================================================
+   About Section (텍스트 + 우측 로고)
+   ======================================================= */
+.about { margin-top: 48px; }
 
 .about-title {
   font-family: 'Merriweather', Georgia, serif !important;
@@ -416,7 +207,7 @@ header {
 
 .about-grid {
   display: grid;
-  grid-template-columns: 2fr 1.1fr;   /* 왼쪽 텍스트 2 : 오른쪽 로고 1 비율 */
+  grid-template-columns: 2fr 1.1fr;  /* 왼쪽 텍스트 : 오른쪽 로고 */
   gap: 40px;
   align-items: center;
 }
@@ -430,7 +221,7 @@ header {
 
 .about-logo img {
   width: 100%;
-  max-width: 360px;       /* 로고 크기 적당히 */
+  max-width: 360px;
   height: auto;
   display: block;
   margin: 0 auto;
@@ -438,13 +229,6 @@ header {
 }
 
 @media (max-width: 800px) {
-  .about-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .about-logo img {
-    margin-top: 24px;
-    max-width: 280px;
-  }
+  .about-grid { grid-template-columns: 1fr; text-align: center; }
+  .about-logo img { margin-top: 24px; max-width: 280px; }
 }

@@ -1,14 +1,13 @@
 ---
 title: "Kyoung Shin Park, Ph.D."
+role: "Lab Director, Principal Investigator"
 featured: true
+weight: 1
 
-# 이미지 설정 (같은 폴더에 있는 jpg 파일 사용)
+authors:
+  - kyoung-shin-park
+
 image:
   filename: kyoung-shin-park.jpg
-
-# 역할/소속 (선택사항)
-role: "Lab Director, Principal Investigator"
-organizations:
-  - name: "Emory University"
-    url: ""
+  focal_point: Smart
 ---

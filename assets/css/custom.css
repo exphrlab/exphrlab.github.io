@@ -1,94 +1,166 @@
----
-title: "iSTEP"
-date: 2022-10-24
-type: landing
-design:
-  spacing: "6rem"
-sections:
-  # 1) iSTEP 소개
-  - block: markdown
-    id: istep
-    content:
-      title: "About the iSTEP Study"
-      subtitle: ""
-      text: |-
-        **Participants** are randomized into *Music + Exercise* or *Exercise* group.  
-        Exercise routines are identical for both groups.
-        
-        🎵 **Music Group:** Receives personalized playlists based on their own music interests.  
-        💪 **Exercise Group:** Performs the same exercise sessions without music.
-        
-        By providing enjoyable, beat-enhanced music, we aim to improve participants' relationship to exercise and motivation.  
-        We believe those in the music group will engage in **greater physical activity** compared to those who do not.
-        
-        As our study population consists of sedentary older adults, all exercises are **accessible and scalable** (using a band, chair, wall, etc.).
-    design:
-      columns: "1"
-      
-  # 2) Research
-  - block: markdown
-    id: research
-    content:
-      title: "Research"
-      text: |-
-        We study how **music and rhythm** can motivate movement in older adults.  
-        Our work combines **exercise science**, **audio signal processing**, and **field interventions**.
-    design:
-      columns: "1"
-      
-  # 3) Publications
-  - block: collection
-    id: publications
-    content:
-      title: "Publications"
-      filters:
-        folders:
-          - publications
-    design:
-      view: citation
-      
-  # 4) News & Events
-  - block: collection
-    id: news
-    content:
-      title: "News & Events"
-      page_type: blog
-      count: 5
-      filters:
-        exclude_featured: false
-        exclude_future: false
-        exclude_past: false
-      order: desc
-    design:
-      view: card
-      spacing:
-        padding: [0, 0, 0, 0]
-        
-  # 5) FAQs
-  - block: markdown
-    id: faqs
-    content:
-      title: "FAQs"
-      text: |-
-        **Who can join?**  
-        Sedentary older adults who are able to perform light exercises.
-        
-        **What is the time commitment?**  
-        Identical exercise sessions for both groups; the Music group listens to personalized playlists.
-        
-        **Do I need special equipment?**  
-        No. Exercises are designed to be **accessible and scalable** (band, chair, wall, etc.).
-    design:
-      columns: "1"
-      
-  # 6) Join Us
-  - block: markdown
-    id: join
-    content:
-      title: "Join Us"
-      text: |-
-        Interested in participating or collaborating?  
-        Email us at **you@example.com** or use the **Contact form** below.
-    design:
-      columns: "1"
----
+/* ================================
+   Team cards — circle & clean
+   ================================ */
+
+/* 모든 people 관련 이미지를 동그랗고 작게 */
+.section[id*="team"] img,
+#team-pi img,
+#team-members img,
+.team-section img,
+section[id*="team"] .card-img-top,
+section[id*="team"] .article-image img,
+section[id*="team"] img {
+  width: 140px !important;
+  height: 140px !important;
+  min-width: 140px !important;
+  min-height: 140px !important;
+  max-width: 140px !important;
+  max-height: 140px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+  margin: 0 auto 1rem auto !important;
+}
+
+/* PI 섹션만 더 크게 */
+#team-pi img {
+  width: 200px !important;
+  height: 200px !important;
+  min-width: 200px !important;
+  min-height: 200px !important;
+  max-width: 200px !important;
+  max-height: 200px !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,.08) !important;
+}
+
+/* 카드 전체 중앙 정렬 */
+#team-pi .card,
+#team-members .card,
+section[id*="team"] .card,
+#team-pi .article,
+#team-members .article,
+section[id*="team"] .article {
+  text-align: center !important;
+  border: none !important;
+}
+
+/* 카드 본문 영역 */
+#team-pi .card-body,
+#team-members .card-body,
+section[id*="team"] .card-body {
+  padding: 0.5rem !important;
+}
+
+/* 제목만 보이게 */
+#team-pi .card-title,
+#team-members .card-title,
+#team-pi .article-title,
+#team-members .article-title,
+section[id*="team"] .card-title,
+section[id*="team"] .article-title {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.25rem !important;
+  font-size: 1.1rem !important;
+  font-weight: 500 !important;
+}
+
+#team-pi .card-title,
+#team-pi .article-title {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+}
+
+/* 부제목 (role 등) */
+#team-pi .card-subtitle,
+#team-members .card-subtitle,
+section[id*="team"] .card-subtitle {
+  font-size: 0.9rem !important;
+  opacity: 0.7 !important;
+  margin-bottom: 0 !important;
+}
+
+/* 모든 불필요한 요소 완전 제거 */
+#team-pi .article-metadata,
+#team-pi .article-meta,
+#team-pi .article-reading-time,
+#team-pi .article-footer,
+#team-pi .article-excerpt,
+#team-pi .card-text,
+#team-pi .card-footer,
+#team-pi .read-more,
+#team-pi a.btn,
+#team-members .article-metadata,
+#team-members .article-meta,
+#team-members .article-reading-time,
+#team-members .article-footer,
+#team-members .article-excerpt,
+#team-members .card-text,
+#team-members .card-footer,
+#team-members .read-more,
+#team-members a.btn,
+section[id*="team"] .article-metadata,
+section[id*="team"] .article-meta,
+section[id*="team"] .article-reading-time,
+section[id*="team"] .article-footer,
+section[id*="team"] .article-excerpt,
+section[id*="team"] .card-text,
+section[id*="team"] .card-footer,
+section[id*="team"] .read-more,
+section[id*="team"] a.btn,
+section[id*="team"] p:not(.card-title):not(.card-subtitle) {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 카드 링크 비활성화 (클릭 방지) */
+#team-pi .card-link,
+#team-members .card-link,
+section[id*="team"] .card-link {
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  #team-members img,
+  section[id*="team"]:not(#team-pi) img { 
+    width: 120px !important; 
+    height: 120px !important;
+    min-width: 120px !important;
+    min-height: 120px !important;
+    max-width: 120px !important;
+    max-height: 120px !important;
+  }
+  #team-pi img { 
+    width: 160px !important; 
+    height: 160px !important;
+    min-width: 160px !important;
+    min-height: 160px !important;
+    max-width: 160px !important;
+    max-height: 160px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #team-members img,
+  section[id*="team"]:not(#team-pi) img { 
+    width: 110px !important; 
+    height: 110px !important;
+    min-width: 110px !important;
+    min-height: 110px !important;
+    max-width: 110px !important;
+    max-height: 110px !important;
+  }
+  #team-pi img { 
+    width: 140px !important; 
+    height: 140px !important;
+    min-width: 140px !important;
+    min-height: 140px !important;
+    max-width: 140px !important;
+    max-height: 140px !important;
+  }
+}

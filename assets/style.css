@@ -1,125 +1,96 @@
+/* ============ Base & Typography (CAV-style) ============ */
 html, body {
+  margin: 0;
+  padding: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
-  color: #222;
+  font-weight: 400;
   line-height: 1.6;
-}
-
-/* ===== Font Import: Match CAV-Lab style ===== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-html, body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   color: #222;
-  line-height: 1.6;
 }
 
 h1, h2, h3 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
+  font-weight: 700;
   letter-spacing: -0.2px;
   color: #111;
 }
 
-.section-title {
-  padding-left: 10px;
-  font-weight: 600;
-  color: #111;
-  font-family: 'Inter', sans-serif;
-  margin-top: 40px;
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1.3px;
 }
 
-.card.person h3 {
-  font-weight: 600;
-  font-size: 18px;
-  margin: 6px 0 2px;
+/* Nav & brand = Inter */
+.navbar, .navbar a, .brand {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+  font-weight: 500;
 }
 
-/* Minimal clean lab site */
+/* ============ Layout ============ */
 * { box-sizing: border-box; }
-html, body { margin:0; padding:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial; line-height:1.6; color:#111; }
-a { color: inherit; text-decoration: none; }
-a:hover { text-decoration: underline; }
-.container { max-width: 980px; margin: 0 auto; padding: 24px; }
-header { border-bottom:1px solid #eee; background:#fff; position: sticky; top:0; z-index: 10; }
-.navbar { display:flex; gap:16px; align-items:center; padding: 14px 0; flex-wrap:wrap; }
-.navbar .brand { font-weight:700; font-size:1.15rem; margin-right:auto; }
-.hero { padding: 56px 0 16px; }
-.hero h1 { margin:0 0 8px; font-size: 2rem; }
-.hero p { margin:0; color:#444; }
-.grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:16px; }
-.card { border:1px solid #eee; border-radius:12px; padding:16px; background:#fff; }
-.section-title { margin: 28px 0 10px; }
-.badge { display:inline-block; padding:2px 8px; border:1px solid #ddd; border-radius:999px; font-size:12px; color:#333; }
-.table { width:100%; border-collapse: collapse; }
-.table th, .table td { border-bottom:1px solid #eee; padding:8px; text-align:left; }
-.notice { background:#f7faff; border:1px solid #e0ecff; border-radius:12px; padding:12px 16px; }
-footer { border-top:1px solid #eee; padding: 24px 0; color:#555; }
-figure { margin:0; }
-figure img { width:100%; display:block; border-radius:12px; border:1px solid #eee; }
-/* 원형 아바타 컨테이너 */
-.avatar {
-  width: 160px;              /* 필요시 140~200px로 조절 */
-  height: 160px;
-  border-radius: 50%;
-  overflow: hidden;          /* 원 밖은 잘라냄 */
-  margin: 0 0 12px 0;
-  border: 2px solid #e9eef6; /* 얇은 외곽선 */
+
+.container { 
+  max-width: 980px; 
+  margin: 0 auto; 
+  padding: 24px; 
 }
 
-/* 아바타 안의 실제 이미지 */
-.avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;         /* 가운데 채우기 */
-  display: block;
+header { 
+  border-bottom: 1px solid #eee; 
+  background: #fff; 
+  position: sticky; 
+  top: 0; 
+  z-index: 10; 
 }
 
-/* ===== People layout (CAV 스타일) ===== */
-
-/* 그리드: 사람 카드들을 균등 격자로 */
-.people-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* 화면폭에 맞게 2~4열 */
-  gap: 28px;
-  justify-items: center;    /* 카드 자체를 가운데 정렬 */
-  align-items: start;
+.navbar { 
+  display: flex; 
+  gap: 16px; 
+  align-items: center; 
+  padding: 14px 0; 
+  flex-wrap: wrap; 
 }
 
-/* 사람 카드: 폭 제한 + 가운데 정렬 + 카드 테두리는 최소화 */
-.card.person {
-  width: 100%;
-  max-width: 260px;          /* 카드 폭 고정 느낌 */
-  text-align: center;        /* 안의 텍스트/이미지 모두 가운데 */
-  border: 0;                 /* 네모 테두리 제거(원하면 살짝 남겨도 ok) */
-  box-shadow: none;          /* 그림자 제거 */
-  padding: 0;                /* 카드 안쪽 여백 최소화 */
+.navbar .brand { 
+  font-weight: 700; 
+  font-size: 1.15rem; 
+  margin-right: auto; 
 }
 
-/* 동그란 프로필 (이미 추가했으면 중복 OK) */
-.avatar {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 0 auto 12px;       /* 중앙 + 아래 여백 */
-  border: 2px solid #e9eef6;
-}
-.avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+/* Section title: no blue bar, serif heading */
+.section-title {
+  padding-left: 0;
+  margin: 40px 0 16px;
+  font-weight: 700;
+  color: #111;
+  font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
 }
 
-/* 이름/직함 간격 조금 정돈 */
-.card.person h3 {
-  margin: 6px 0 6px;
-  font-size: 18px;
+/* Generic grid/card (minimal) */
+.grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); 
+  gap: 16px; 
 }
-.card.person .badge {
-  display: inline-bloc
 
-/* --- Refined People Card Style (no borders + centered) --- */
+.card { 
+  border: 1px solid #eee; 
+  border-radius: 12px; 
+  padding: 16px; 
+  background: #fff; 
+}
+
+/* Footer */
+footer { 
+  border-top: 1px solid #eee; 
+  padding: 24px 0; 
+  color: #555; 
+}
+
+/* ============ People Page (circle avatars, clean cards) ============ */
 .people-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -130,10 +101,10 @@ figure img { width:100%; display:block; border-radius:12px; border:1px solid #ee
 
 .card.person {
   max-width: 260px;
-  text-align: center;           /* 이름, 직함 모두 가운데 정렬 */
-  border: none;                 /* 카드 네모선 제거 */
-  box-shadow: none;             /* 그림자 제거 */
-  background: none;             /* 배경 흰색 고정 방지 */
+  text-align: center;
+  border: none;          /* 카드 네모선 제거 */
+  box-shadow: none;
+  background: none;
   padding: 0;
   margin: 0;
 }
@@ -154,22 +125,32 @@ figure img { width:100%; display:block; border-radius:12px; border:1px solid #ee
   display: block;
 }
 
-/* 이름과 배지 위치 보정 */
 .card.person h3 {
+  font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
+  font-weight: 700;
   font-size: 18px;
-  font-weight: 600;
+  margin: 6px 0 4px;
   text-align: center;
-  margin: 6px 0;
 }
 
-.card.person .badge {
-  display: inline-block;
-  margin: 4px auto 0;
-  padding: 4px 10px;
-  border-radius: 999px;
-  border: 1px solid #e2e8f0;
-  background: #f8fafc;
-  font-size: 12px;
-  color: #475569;
+.card.person .role {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+  font-weight: 500;
+  color: #555;
   text-align: center;
+  margin: 2px 0 0;
 }
+
+/* (선택) 표/배지 등 공용 소소 요소 */
+.badge { 
+  display: inline-block; 
+  padding: 4px 10px; 
+  border: 1px solid #e2e8f0; 
+  border-radius: 999px; 
+  font-size: 12px; 
+  color: #475569; 
+  background: #f8fafc; 
+}
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td { border-bottom: 1px solid #eee; padding: 8px; text-align: left; }
+.notice { background: #f7faff; border: 1px solid #e0ecff; border-radius: 12px; padding: 12px 16px; }

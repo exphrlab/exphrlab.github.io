@@ -82,3 +82,58 @@ figure img { width:100%; display:block; border-radius:12px; border:1px solid #ee
 }
 .card.person .badge {
   display: inline-bloc
+
+/* --- Refined People Card Style (no borders + centered) --- */
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
+  justify-items: center;
+  align-items: start;
+}
+
+.card.person {
+  max-width: 260px;
+  text-align: center;           /* 이름, 직함 모두 가운데 정렬 */
+  border: none;                 /* 카드 네모선 제거 */
+  box-shadow: none;             /* 그림자 제거 */
+  background: none;             /* 배경 흰색 고정 방지 */
+  padding: 0;
+  margin: 0;
+}
+
+.avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 12px;
+  border: 2px solid #e9eef6;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 이름과 배지 위치 보정 */
+.card.person h3 {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  margin: 6px 0;
+}
+
+.card.person .badge {
+  display: inline-block;
+  margin: 4px auto 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  font-size: 12px;
+  color: #475569;
+  text-align: center;
+}

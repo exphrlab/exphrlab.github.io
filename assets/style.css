@@ -359,3 +359,42 @@ header {
   }
 }
 
+/* ============================================
+   🎯 Enlarge Logo Only (keep navbar compact)
+   ============================================ */
+
+header {
+  min-height: 80px !important;       /* 원래 높이 유지 */
+  display: flex;
+  align-items: center;
+}
+
+.navbar {
+  align-items: center !important;
+  gap: 16px;
+  padding: 10px 0;                  /* 메뉴 세로 간격 다시 줄이기 */
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+}
+
+/* 🧠 로고만 크게 (1.5배) */
+.nav-logo {
+  height: 120px !important;          /* 🔹 이전보다 약 1.5배 확대 */
+  width: auto !important;
+  display: block;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  margin-top: -8px;                  /* 로고만 살짝 위로 끌어올려 균형 맞춤 */
+}
+
+/* 반응형 - 모바일에서는 살짝 줄이기 */
+@media (max-width: 600px) {
+  .nav-logo {
+    height: 80px !important;
+    margin-top: -4px;
+  }
+}
+

@@ -2,7 +2,7 @@
 title: "Rubi Gomez"
 role: "Graduate Research Assistant"
 featured: false 
-weight: 21      
+weight: 23      
 authors:
   - rubi-gomez
 image:

@@ -7,7 +7,7 @@ design:
   spacing: "6rem"
 
 sections:
-  # 1️⃣ iSTEP 소개
+  # 1) iSTEP 소개
   - block: markdown
     id: istep
     content:
@@ -27,43 +27,7 @@ sections:
     design:
       columns: "1"
 
-  # 2️⃣ Our Team — PI (featured only)
-  - block: collection
-    id: team-pi
-    content:
-      title: "Our Team"
-      filters:
-        folders:
-          - people
-        featured_only: true
-    design:
-      view: card
-      columns: 1
-      show_date: false
-      show_authors: false
-      show_read_more: false
-      link_to_detail: false
-      css_class: "team-compact team-hero"
-
-  # 3️⃣ Our Team — Members (all except featured)
-  - block: collection
-    id: team-members
-    content:
-      title: ""
-      filters:
-        folders:
-          - people
-        exclude_featured: true
-    design:
-      view: card
-      columns: 3
-      show_date: false
-      show_authors: false
-      show_read_more: false
-      link_to_detail: false
-      css_class: "team-compact"
-
-  # 4️⃣ Research
+  # 2) Research
   - block: markdown
     id: research
     content:
@@ -74,7 +38,7 @@ sections:
     design:
       columns: "1"
 
-  # 5️⃣ Publications
+  # 3) Publications
   - block: collection
     id: publications
     content:
@@ -85,7 +49,7 @@ sections:
     design:
       view: citation
 
-  # 6️⃣ News & Events
+  # 4) News & Events
   - block: collection
     id: news
     content:
@@ -102,7 +66,7 @@ sections:
       spacing:
         padding: [0, 0, 0, 0]
 
-  # 7️⃣ FAQs
+  # 5) FAQs
   - block: markdown
     id: faqs
     content:
@@ -119,7 +83,7 @@ sections:
     design:
       columns: "1"
 
-  # 8️⃣ Join Us
+  # 6) Join Us
   - block: markdown
     id: join
     content:
@@ -130,6 +94,3 @@ sections:
     design:
       columns: "1"
 ---
-
-  # rebuild
-

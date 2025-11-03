@@ -192,3 +192,13 @@ footer {
 .card.person .role {
   white-space: nowrap;  /* 줄바꿈 방지 */
 }
+
+/* --- Section spacing adjustments --- */
+.section-title {
+  margin-top: 60px !important;   /* 위쪽 여백을 늘림 */
+  margin-bottom: 28px !important; /* 아래쪽 여백도 살짝 */
+}
+
+.people-grid {
+  margin-bottom: 40px;  /* 다음 섹션과 여백 추가 */
+}

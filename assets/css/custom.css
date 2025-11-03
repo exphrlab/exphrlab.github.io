@@ -5,6 +5,9 @@
 /* 모든 people 관련 이미지를 동그랗고 작게 */
 .section[id*="team"] img,
 #team-pi img,
+#team-postdoc img,
+#team-grad img,
+#team-staff img,
 #team-members img,
 .team-section img,
 section[id*="team"] .card-img-top,

@@ -202,3 +202,16 @@ footer {
 .people-grid {
   margin-bottom: 40px;  /* 다음 섹션과 여백 추가 */
 }
+
+/* --- Person name font refinement --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500&display=swap');
+
+.card.person h3 {
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 600;
+  font-size: 18px;
+  color: #111;
+  margin: 8px 0 0;
+  text-align: center;
+  letter-spacing: -0.3px;
+}

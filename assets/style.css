@@ -398,3 +398,53 @@ header {
   }
 }
 
+/* ============================================
+   🧠 About Section Layout (CAV-style)
+   ============================================ */
+
+.about {
+  margin-top: 48px;
+}
+
+.about-title {
+  font-family: 'Merriweather', Georgia, serif !important;
+  font-weight: 700;
+  font-size: 22px;
+  color: #111;
+  margin-bottom: 24px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.1fr;   /* 왼쪽 텍스트 2 : 오른쪽 로고 1 비율 */
+  gap: 40px;
+  align-items: center;
+}
+
+.about-text {
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  line-height: 1.65;
+  font-size: 16px;
+}
+
+.about-logo img {
+  width: 100%;
+  max-width: 360px;       /* 로고 크기 적당히 */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+@media (max-width: 800px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .about-logo img {
+    margin-top: 24px;
+    max-width: 280px;
+  }
+}

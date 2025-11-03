@@ -12,7 +12,7 @@ main:
     weight: 30
 
   - name: "Our Team"
-    url: "/our-team/"
+    url: "/people/"
     weight: 40
 
   - name: "News & Events"

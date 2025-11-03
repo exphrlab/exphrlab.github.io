@@ -1,8 +1,8 @@
 ---
 title: "Kate Arne"
 role: "Undergraduate Research Assistant"
-featured: false # 
-weight: 34      # 
+featured: false 
+weight: 34      
 authors:
   - kate-arne
 image:

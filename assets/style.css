@@ -203,15 +203,16 @@ footer {
   margin-bottom: 40px;  /* 다음 섹션과 여백 추가 */
 }
 
-/* --- Person name font refinement --- */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500&display=swap');
+/* --- Person Name Font: Softer and friendly (Lora) --- */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@600&display=swap');
 
 .card.person h3 {
-  font-family: 'Playfair Display', serif !important;
+  font-family: 'Lora', serif !important;
   font-weight: 600;
   font-size: 18px;
-  color: #111;
-  margin: 8px 0 0;
+  color: #222;
   text-align: center;
-  letter-spacing: -0.3px;
+  margin: 8px 0 0;
+  letter-spacing: -0.2px;
 }
+

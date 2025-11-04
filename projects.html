@@ -8,17 +8,30 @@
 </head>
 <body>
   <!-- Header -->
-  <header><div class="container">
-    <nav class="navbar">
-      <a class="brand" href="/index.html">EXPHR Lab</a>
-      <a href="/index.html">Home</a>
-      <a href="/people.html">Our Team</a>
-      <a href="/projects.html">Projects</a>
-      <a href="/publications.html">Publications</a>
-      <a href="/news.html">News & Events</a>
-      <a href="/contact.html">Contact</a>
-    </nav>
-  </div></header>
+  <header class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+    <div class="max-w-5xl mx-auto px-4">
+      <nav class="flex h-16 items-center justify-between" aria-label="Primary">
+        <a href="/index.html" class="font-bold text-lg tracking-tight text-slate-900 hover:text-blue-700 transition-colors">
+          EXPHR Lab
+        </a>
+        <div class="hidden md:flex items-center gap-8 text-sm">
+          <a href="/index.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Home</a>
+          <a href="/people.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Our Team</a>
+          <a href="/projects.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-700">Projects</a>
+          <a href="/publications.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Publications</a>
+          <div class="relative group" onmouseleave="setTimeout(() => {document.getElementById('news-dropdown').classList.add('hidden')}, 200)">
+            <a href="/highlights.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full focus-within:after:w-full" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('news-dropdown').classList.remove('hidden')" onfocus="document.getElementById('news-dropdown').classList.remove('hidden')">News &amp; Highlights</a>
+            <div id="news-dropdown" class="hidden absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-200 z-50 py-2" role="menu" onmouseenter="document.getElementById('news-dropdown').classList.remove('hidden')" onmouseleave="setTimeout(() => {document.getElementById('news-dropdown').classList.add('hidden')}, 200)">
+              <a href="/announcements.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Announcements</a>
+              <div class="border-t border-slate-100 my-1"></div>
+              <a href="/gallery.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Gallery</a>
+            </div>
+          </div>
+          <a href="/contact.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
 
   <main>
     <div class="max-w-5xl mx-auto px-4 py-10">
@@ -75,9 +88,18 @@
   </main>
 
   <!-- Footer -->
-  <footer><div class="container">
-    <div>© 2025 EXPHR Lab · Emory University</div>
-    <div style="font-size:13px;color:#666;">HTML/CSS · Hosted on GitHub Pages</div>
-  </div></footer>
+  <footer class="border-t mt-12">
+    <div class="max-w-5xl mx-auto px-4 py-8 text-sm text-slate-600">
+      © 2025 EXPHR Lab · Emory University
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.getElementById('news-dropdown')?.classList.add('hidden');
+      }
+    });
+  </script>
 </body>
 </html>

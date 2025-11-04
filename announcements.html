@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Announcements · EXPHR Lab</title>
+  <link rel="stylesheet" href="/assets/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="text-slate-800 antialiased">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+    <div class="max-w-5xl mx-auto px-4">
+      <nav class="flex h-16 items-center justify-between" aria-label="Primary">
+        <a href="/index.html" class="font-bold text-lg tracking-tight text-slate-900 hover:text-blue-700 transition-colors">
+          EXPHR Lab
+        </a>
+        <div class="hidden md:flex items-center gap-8 text-sm">
+          <a href="/index.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Home</a>
+          <a href="/people.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Our Team</a>
+          <a href="/projects.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Projects</a>
+          <a href="/publications.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Publications</a>
+          <div class="relative group" onmouseleave="setTimeout(() => {document.getElementById('news-dropdown').classList.add('hidden')}, 200)">
+            <a href="/highlights.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full focus-within:after:w-full" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('news-dropdown').classList.remove('hidden')" onfocus="document.getElementById('news-dropdown').classList.remove('hidden')">News &amp; Highlights</a>
+            <div id="news-dropdown" class="hidden absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-200 z-50 py-2" role="menu" onmouseenter="document.getElementById('news-dropdown').classList.remove('hidden')" onmouseleave="setTimeout(() => {document.getElementById('news-dropdown').classList.add('hidden')}, 200)">
+              <a href="/announcements.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors bg-slate-50" role="menuitem">Announcements</a>
+              <div class="border-t border-slate-100 my-1"></div>
+              <a href="/gallery.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Gallery</a>
+            </div>
+          </div>
+          <a href="/contact.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="bg-white">
+    <div class="max-w-5xl mx-auto px-4 py-12">
+      <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-8">Announcements</h1>
+      <p class="text-slate-600">Content coming soon.</p>
+    </div>
+  </main>
+
+  <footer class="border-t mt-12">
+    <div class="max-w-5xl mx-auto px-4 py-8 text-sm text-slate-600">
+      © 2025 EXPHR Lab · Emory University
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.getElementById('news-dropdown')?.classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+</html>
+

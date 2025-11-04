@@ -4,30 +4,74 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>News & Events · EXPHR Lab</title>
   <link rel="stylesheet" href="/assets/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="text-slate-800 antialiased">
   <!-- Header -->
-  <header><div class="container">
-    <nav class="navbar">
-      <a class="brand" href="/index.html">EXPHR Lab</a>
-      <a href="/index.html">Home</a>
-      <a href="/people.html">Our Team</a>
-      <a href="/projects.html">Projects</a>
-      <a href="/publications.html">Publications</a>
-      <a href="/news.html">News & Events</a>
-      <a href="/contact.html">Contact</a>
-    </nav>
-  </div></header>
+    <header class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+      <div class="max-w-5xl mx-auto px-4">
+        <nav class="flex h-16 items-center justify-between" aria-label="Primary">
+          <a href="/index.html" class="font-bold text-lg tracking-tight text-slate-900 hover:text-blue-700 transition-colors">
+            EXPHR Lab
+          </a>
+          <div class="hidden md:flex items-center gap-8 text-sm">
+            <a href="/index.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Home</a>
+            <a href="/people.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Our Team</a>
+            <a href="/projects.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Projects</a>
+            <a href="/publications.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Publications</a>
+            <div class="relative group" onmouseleave="setTimeout(() => {document.getElementById('news-dropdown').classList.add('hidden')}, 200)">
+              <a href="/highlights.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-700" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('news-dropdown').classList.remove('hidden')" onfocus="document.getElementById('news-dropdown').classList.remove('hidden')">News &amp; Highlights</a>
+              <div id="news-dropdown" class="hidden absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-200 z-50 py-2" role="menu" onmouseenter="document.getElementById('news-dropdown').classList.remove('hidden')" onmouseleave="setTimeout(() => {document.getElementById('news-dropdown').classList.add('hidden')}, 200)">
+                <a href="/announcements.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Announcements</a>
+                <div class="border-t border-slate-100 my-1"></div>
+                <a href="/gallery.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Gallery</a>
+              </div>
+            </div>
+            <a href="/contact.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
 
-  <main><div class="container">
-    <h1>News & Events</h1>
-    <div class="card"><strong>2025-11-03</strong> — iSTEP recruitment ongoing for adults 65+ in Atlanta.</div>
-  </div></main>
+  <main>
+    <div class="h-3 bg-gradient-to-r from-blue-600/20 to-cyan-500/20"></div>
+    <div class="max-w-5xl mx-auto px-4 py-12">
+      <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-8">News &amp; Events</h1>
+
+      <!-- Announcements -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">Announcements</h2>
+        <div class="space-y-4">
+          <div class="border rounded-xl p-6 bg-white shadow-sm">
+            <div class="text-sm text-slate-500 mb-2"><strong>2025-11-03</strong></div>
+            <p class="text-slate-700">iSTEP recruitment ongoing for adults 65+ in Atlanta.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery -->
+      <section>
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">Gallery</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <p class="text-slate-600">Gallery content coming soon.</p>
+        </div>
+      </section>
+    </div>
+  </main>
 
   <!-- Footer -->
-  <footer><div class="container">
-    <div>© 2025 EXPHR Lab · Emory University</div>
-    <div style="font-size:13px;color:#666;">HTML/CSS · Hosted on GitHub Pages</div>
-  </div></footer>
+  <footer class="border-t">
+    <div class="max-w-5xl mx-auto px-4 py-8 text-sm text-slate-600">
+      © 2025 EXPHR Lab · Emory University
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.getElementById('news-dropdown')?.classList.add('hidden');
+      }
+    });
+  </script>
 </body>
 </html>

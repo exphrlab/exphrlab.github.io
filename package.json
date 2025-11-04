@@ -1,0 +1,23 @@
+{
+  "name": "exphrlab.github.io",
+  "version": "1.0.0",
+  "description": "[![Screenshot](.github/preview.webp)](https://hugoblox.com/templates/academic-cv/start/?utm_source=github&utm_medium=readme)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exphrlab/exphrlab.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/exphrlab/exphrlab.github.io/issues"
+  },
+  "homepage": "https://github.com/exphrlab/exphrlab.github.io#readme",
+  "devDependencies": {
+    "tailwindcss": "^4.1.16"
+  }
+}

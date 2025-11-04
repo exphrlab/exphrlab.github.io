@@ -4,6 +4,7 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Projects · EXPHR Lab</title>
   <link rel="stylesheet" href="/assets/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
   <!-- Header -->
@@ -19,19 +20,59 @@
     </nav>
   </div></header>
 
-  <main><div class="container">
-    <h1>Projects</h1>
-    <div class="grid">
-      <div class="card">
-        <h3>Beat-Enhanced Music Analysis</h3>
-        <p>Pipeline for rhythmic features (onset rate, regularity, bass energy ratio, etc.).</p>
-      </div>
-      <div class="card">
-        <h3>iSTEP Exercise Program</h3>
-        <p>Hybrid exercise + music intervention for older adults.</p>
-      </div>
+  <main>
+    <div class="max-w-5xl mx-auto px-4 py-10">
+      <h1>Projects</h1>
+
+      <!-- ISTEP -->
+      <section class="py-6">
+        <div class="grid grid-cols-1 md:grid-cols-[280px,1fr] gap-6 md:gap-10 items-start">
+          <div class="border rounded-xl overflow-hidden bg-white shadow-sm flex items-center justify-center p-4">
+            <img src="assets/media/istep.png" alt="ISTEP logo" class="w-full h-auto object-contain max-h-56">
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 mb-3">ISTEP</h2>
+            <p class="text-slate-700 leading-relaxed">Inspiring Seniors Toward Exercise Promotion (ISTEP) is a music-supported, habit-building physical activity program for midlife and older adults. We combine rhythmic auditory stimulation with progressive, enjoyable exercise to improve brain and heart health while building sustainable daily movement.</p>
+            <ul class="mt-3 text-slate-700 list-disc pl-5 space-y-1">
+              <li>Population: midlife to older adults with/without chronic conditions</li>
+              <li>Approach: music-cued walking and strength, goal-setting, coaching</li>
+              <li>Outcomes: adherence, fitness, cognition, and quality of life</li>
+            </ul>
+            <div class="mt-4 flex flex-wrap gap-2 text-sm">
+              <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">ongoing</span>
+              <span class="px-2.5 py-1 rounded-full bg-blue-100 text-blue-700">exercise</span>
+              <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700">aging</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="my-6 border-slate-200">
+
+      <!-- TRAC -->
+      <section class="py-6">
+        <div class="grid grid-cols-1 md:grid-cols-[280px,1fr] gap-6 md:gap-10 items-start">
+          <div class="border rounded-xl overflow-hidden bg-white shadow-sm flex items-center justify-center p-4">
+            <img src="assets/media/trac.png" alt="TRAC logo" class="w-full h-auto object-contain max-h-56">
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 mb-3">TRAC</h2>
+            <p class="text-slate-700 leading-relaxed">TRAC investigates how exercise and daily behaviors support brain–cardio resilience. We track cognitive and affective changes alongside physiological markers to understand mechanisms linking movement, mood, and long-term health.</p>
+            <ul class="mt-3 text-slate-700 list-disc pl-5 space-y-1">
+              <li>Focus: neural and psychological mechanisms of behavior change</li>
+              <li>Measures: cognition, mood, activity, and cardiorespiratory indices</li>
+              <li>Goal: personalized, enjoyable strategies for sustained activity</li>
+            </ul>
+            <div class="mt-4 flex flex-wrap gap-2 text-sm">
+              <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">ongoing</span>
+              <span class="px-2.5 py-1 rounded-full bg-purple-100 text-purple-700">neuroscience</span>
+              <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-700">behavior</span>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-  </div></main>
+  </main>
 
   <!-- Footer -->
   <footer><div class="container">

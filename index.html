@@ -1,39 +1,53 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Home · EXPHR Lab</title>
-    <link rel="stylesheet" href="/assets/style.css?v=17">
+
+    <!-- 기존 스타일 (필요시 유지). 충돌 나면 이 줄을 잠시 주석 처리해 테스트하세요. -->
+    <link rel="stylesheet" href="assets/style.css?v=17">
+
+    <!-- Tailwind (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
-  <body>
+  <body class="text-slate-800 antialiased">
     <!-- ===== Header ===== -->
-    <header>
-      <div class="container">
-        <nav class="navbar">
-          <a href="/index.html" class="brand">EXPHR Lab</a>
-          <a href="/index.html">Home</a>
-          <a href="/people.html">Our Team</a>
-          <a href="/projects.html">Projects</a>
-          <a href="/publications.html">Publications</a>
-          <a href="/news.html">News & Events</a>
-          <a href="/contact.html">Contact</a>
+    <header class="sticky top-0 z-50 border-b bg-white/80 backdrop-blur">
+      <div class="max-w-5xl mx-auto px-4">
+        <nav class="flex h-14 items-center justify-between" aria-label="Primary">
+          <a href="/index.html" class="font-semibold tracking-tight text-slate-900">
+            EXPHR Lab
+          </a>
+          <div class="hidden md:flex items-center gap-5 text-sm">
+            <a href="/index.html" class="hover:text-blue-700">Home</a>
+            <a href="/people.html" class="hover:text-blue-700">Our Team</a>
+            <a href="/projects.html" class="hover:text-blue-700">Projects</a>
+            <a href="/publications.html" class="hover:text-blue-700">Publications</a>
+            <a href="/news.html" class="hover:text-blue-700">News &amp; Events</a>
+            <a href="/contact.html" class="hover:text-blue-700">Contact</a>
+          </div>
+          <!-- 모바일 메뉴는 필요해지면 나중에 추가해요 -->
         </nav>
       </div>
     </header>
 
     <!-- ===== Main ===== -->
     <main>
-      <div class="container">
-        <div class="page-bar"></div>
+      <!-- 페이지 상단 여백/바 -->
+      <div class="h-3 bg-gradient-to-r from-blue-600/20 to-cyan-500/20"></div>
 
-        <section class="about">
-          <h2 class="about-title">About EXPHR Lab</h2>
+      <!-- About 섹션 -->
+      <section class="py-12 md:py-16">
+        <div class="max-w-5xl mx-auto px-4">
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-8">
+            About EXPHR Lab
+          </h2>
 
-          <div class="about-grid">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <!-- 왼쪽 텍스트 -->
-            <div class="about-text">
+            <div class="prose prose-slate max-w-none">
               <p>
                 At ExPHR, we are dedicated to supporting healthy aging through
                 evidence-based lifestyle change. Our mission is to help midlife
@@ -53,26 +67,30 @@
                 physical activity strategies that empower older adults to maintain
                 independence, enhance quality of life, and promote optimal aging.
               </p>
-              <p style="margin-top:16px">
+
+              <p class="mt-6">
                 If you are interested in working with our lab, please
-                <a href="/contact.html">contact us</a>.
+                <a href="/contact.html" class="text-blue-700 hover:underline">contact us</a>.
               </p>
             </div>
 
             <!-- 오른쪽 로고 -->
-            <div class="about-logo">
-              <img src="/assets/media/Lab-Logo-Wide-Transparent-Final.png"
-                   alt="EXPHR Lab Logo"
-                   loading="lazy">
+            <div class="justify-self-center md:justify-self-end">
+              <img
+                src="assets/media/Lab-Logo-Wide-Transparent-Final.png"
+                alt="EXPHR Lab Logo"
+                class="max-w-full w-[420px] drop-shadow-md"
+                loading="lazy"
+              />
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </main>
 
     <!-- ===== Footer ===== -->
-    <footer>
-      <div class="container">
+    <footer class="border-t">
+      <div class="max-w-5xl mx-auto px-4 py-8 text-sm text-slate-600">
         © 2025 EXPHR Lab · Emory University
       </div>
     </footer>

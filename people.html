@@ -28,7 +28,16 @@
                 <a href="/gallery.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Gallery</a>
               </div>
             </div>
-            <a href="/contact.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Contact</a>
+            <div class="relative group" onmouseleave="setTimeout(() => {document.getElementById('contact-dropdown').classList.add('hidden')}, 200)">
+              <a href="/contact.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full focus-within:after:w-full" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('contact-dropdown').classList.remove('hidden')" onfocus="document.getElementById('contact-dropdown').classList.remove('hidden')">Contact</a>
+              <div id="contact-dropdown" class="hidden absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-200 z-50 py-2 transition-all duration-200" role="menu" onmouseenter="document.getElementById('contact-dropdown').classList.remove('hidden')" onmouseleave="setTimeout(() => {document.getElementById('contact-dropdown').classList.add('hidden')}, 200)">
+                <a href="/join-our-study.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Join Our Study</a>
+                <div class="border-t border-slate-100 my-1"></div>
+                <a href="/contact.html#opportunities" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Opportunities</a>
+                <div class="border-t border-slate-100 my-1"></div>
+                <a href="/contact.html#get-in-touch" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Get In Touch</a>
+              </div>
+            </div>
           </div>
         </nav>
       </div>
@@ -141,6 +150,7 @@
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
           document.getElementById('news-dropdown')?.classList.add('hidden');
+          document.getElementById('contact-dropdown')?.classList.add('hidden');
         }
       });
     </script>

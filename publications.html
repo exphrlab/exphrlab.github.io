@@ -43,7 +43,16 @@
               <a href="/gallery.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Gallery</a>
             </div>
           </div>
-          <a href="/contact.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Contact</a>
+          <div class="relative group" onmouseleave="setTimeout(() => {document.getElementById('contact-dropdown').classList.add('hidden')}, 200)">
+            <a href="/contact.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full focus-within:after:w-full" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('contact-dropdown').classList.remove('hidden')" onfocus="document.getElementById('contact-dropdown').classList.remove('hidden')">Contact</a>
+            <div id="contact-dropdown" class="hidden absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-200 z-50 py-2 transition-all duration-200" role="menu" onmouseenter="document.getElementById('contact-dropdown').classList.remove('hidden')" onmouseleave="setTimeout(() => {document.getElementById('contact-dropdown').classList.add('hidden')}, 200)">
+              <a href="/join-our-study.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Join Our Study</a>
+              <div class="border-t border-slate-100 my-1"></div>
+              <a href="/contact.html#opportunities" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Opportunities</a>
+              <div class="border-t border-slate-100 my-1"></div>
+              <a href="/contact.html#get-in-touch" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Get In Touch</a>
+            </div>
+          </div>
         </div>
       </nav>
     </div>
@@ -52,20 +61,20 @@
   <main class="bg-white">
     <div class="max-w-5xl mx-auto px-4 py-12">
       <!-- Page Title -->
-      <h1 class="text-3xl md:text-4xl font-bold font-serif tracking-tight text-slate-800 mt-10 mb-12 leading-tight">
+      <h1 class="text-2xl md:text-3xl font-bold font-serif tracking-tight text-slate-800 mt-10 mb-12 leading-tight">
         Publications
       </h1>
 
       <!-- Journal Articles Section -->
       <section class="mb-16">
-        <h2 class="text-2xl md:text-3xl font-bold font-serif text-slate-900 mb-8 pb-3 border-b border-slate-200 leading-tight">
+        <h2 class="text-xl md:text-2xl font-bold font-serif text-slate-900 mb-8 pb-3 border-b border-slate-200 leading-tight">
           Journal Articles
         </h2>
         <div class="space-y-6 lg:space-y-8">
           <!-- Publication 1 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Park KS, Buseth L*, Hong J, and <em>Etnier JL</em>. <strong class="font-serif text-lg md:text-xl">Music-based multicomponent exercise training for community-dwelling older adults with mild-to-moderate cognitive decline: A feasibility study.</strong> <em class="text-slate-500">Front Medicine.</em> 2023 Aug 21;10:1224728.
+              Park KS, Buseth L*, Hong J, and <em>Etnier JL</em>. <strong class="font-serif text-base md:text-lg">Music-based multicomponent exercise training for community-dwelling older adults with mild-to-moderate cognitive decline: A feasibility study.</strong> <em class="text-slate-500">Front Medicine.</em> 2023 Aug 21;10:1224728.
             </p>
             <div class="flex flex-wrap items-center gap-2 mt-3">
               <a href="https://doi.org/10.3389/fmed.2023.1224728" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-all duration-200 font-medium">
@@ -78,7 +87,7 @@
           <!-- Publication 2 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Park KS, Williams DM, and <em>Etnier JL</em>. <strong class="font-serif text-lg md:text-xl">Exploring the use of music to promote physical activity: From the viewpoint of psychological hedonism.</strong> <em class="text-slate-500">Front Psychol.</em> 2023 Jan 25;14:1021825.
+              Park KS, Williams DM, and <em>Etnier JL</em>. <strong class="font-serif text-base md:text-lg">Exploring the use of music to promote physical activity: From the viewpoint of psychological hedonism.</strong> <em class="text-slate-500">Front Psychol.</em> 2023 Jan 25;14:1021825.
             </p>
             <div class="flex flex-wrap items-center gap-2 mt-3">
               <a href="https://doi.org/10.3389/fpsyg.2023.1021825" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-all duration-200 font-medium">
@@ -91,7 +100,7 @@
           <!-- Publication 3 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              <em>Park KS</em>. <strong class="font-serif text-lg md:text-xl">Decomposing the effects of familiarity with music cues on stride length and variability in persons with Parkinson's disease: On the Role of Covariates.</strong> <em class="text-slate-500">Int J Environ Res Public Health.</em> 2022 Aug 30;19(17):10793.
+              <em>Park KS</em>. <strong class="font-serif text-base md:text-lg">Decomposing the effects of familiarity with music cues on stride length and variability in persons with Parkinson's disease: On the Role of Covariates.</strong> <em class="text-slate-500">Int J Environ Res Public Health.</em> 2022 Aug 30;19(17):10793.
             </p>
             <div class="flex flex-wrap items-center gap-2 mt-3">
               <a href="https://doi.org/10.3390/ijerph191710793" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-all duration-200 font-medium">
@@ -104,7 +113,7 @@
           <!-- Publication 4 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Park KS, Hackney ME, Hugenschmidt CE, Soriano CT, and <em>Etnier JL</em>. <strong class="font-serif text-lg md:text-xl">Why do humans—and some animals—love to dance?</strong> <em class="text-slate-500">Frontiers for Young Minds.</em> 2022 Jun; 10:806631.
+              Park KS, Hackney ME, Hugenschmidt CE, Soriano CT, and <em>Etnier JL</em>. <strong class="font-serif text-base md:text-lg">Why do humans—and some animals—love to dance?</strong> <em class="text-slate-500">Frontiers for Young Minds.</em> 2022 Jun; 10:806631.
             </p>
             <div class="flex flex-wrap items-center gap-2 mt-3">
               <a href="https://doi.org/10.3389/frym.2022.806631" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-all duration-200 font-medium">
@@ -116,7 +125,7 @@
           <!-- Publication 5 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Park KS and <em>Etnier JL</em>. <strong class="font-serif text-lg md:text-xl">An innovative protocol for the artificial speech-directed, contactless administration of laboratory-based comprehensive cognitive assessments: PAAD-2 trial management during the COVID-19 pandemic.</strong> <em class="text-slate-500">Contemp Clin Trials.</em> 2021 Aug;107:106500.
+              Park KS and <em>Etnier JL</em>. <strong class="font-serif text-base md:text-lg">An innovative protocol for the artificial speech-directed, contactless administration of laboratory-based comprehensive cognitive assessments: PAAD-2 trial management during the COVID-19 pandemic.</strong> <em class="text-slate-500">Contemp Clin Trials.</em> 2021 Aug;107:106500.
             </p>
             <div class="flex flex-wrap items-center gap-2 mt-3">
               <a href="https://doi.org/10.1016/j.cct.2021.106500" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-all duration-200 font-medium">
@@ -129,7 +138,7 @@
           <!-- Publication 6 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Park KS, Hass CJ, and <em>Janelle CM</em>. <strong class="font-serif text-lg md:text-xl">Familiarity with music influences stride amplitude and variability during rhythmically-cued walking in individuals with Parkinson's disease.</strong> <em class="text-slate-500">Gait Posture.</em> 2021 Jun;87:101-109.
+              Park KS, Hass CJ, and <em>Janelle CM</em>. <strong class="font-serif text-base md:text-lg">Familiarity with music influences stride amplitude and variability during rhythmically-cued walking in individuals with Parkinson's disease.</strong> <em class="text-slate-500">Gait Posture.</em> 2021 Jun;87:101-109.
             </p>
             <div class="flex flex-wrap items-center gap-2 mt-3">
               <a href="https://doi.org/10.1016/j.gaitpost.2021.04.028" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-all duration-200 font-medium">
@@ -142,7 +151,7 @@
           <!-- Publication 7 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Park KS, Hass CJ, Patel B, and <em>Janelle CM</em>. <strong class="font-serif text-lg md:text-xl">Musical pleasure beneficially alters stride and arm swing amplitude during rhythmically-cued walking in people with Parkinson's disease.</strong> <em class="text-slate-500">Hum Mov Sci.</em> 2020 Dec;74:102718.
+              Park KS, Hass CJ, Patel B, and <em>Janelle CM</em>. <strong class="font-serif text-base md:text-lg">Musical pleasure beneficially alters stride and arm swing amplitude during rhythmically-cued walking in people with Parkinson's disease.</strong> <em class="text-slate-500">Hum Mov Sci.</em> 2020 Dec;74:102718.
             </p>
             <div class="flex flex-wrap items-center gap-2 mt-3">
               <a href="https://doi.org/10.1016/j.humov.2020.102718" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-all duration-200 font-medium">
@@ -155,7 +164,7 @@
           <!-- Publication 8 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Park KS, Ganesh AB, Berry NT, Mobley YP, Karper WB, Labban JD, Wahlheim CN, Williams TM, Wideman L, and <em>Etnier JL</em>. <strong class="font-serif text-lg md:text-xl">The effect of physical activity on cognition relative to APOE genotype (PAAD-2): study protocol for a phase II randomized control trial.</strong> <em class="text-slate-500">BMC Neurol.</em> 2020 Jun 6;20(1):231.
+              Park KS, Ganesh AB, Berry NT, Mobley YP, Karper WB, Labban JD, Wahlheim CN, Williams TM, Wideman L, and <em>Etnier JL</em>. <strong class="font-serif text-base md:text-lg">The effect of physical activity on cognition relative to APOE genotype (PAAD-2): study protocol for a phase II randomized control trial.</strong> <em class="text-slate-500">BMC Neurol.</em> 2020 Jun 6;20(1):231.
             </p>
             <div class="flex flex-wrap items-center gap-2 mt-3">
               <a href="https://doi.org/10.1186/s12883-020-01732-1" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-all duration-200 font-medium">
@@ -168,7 +177,7 @@
           <!-- Publication 9 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Park KS, Hass CJ, Fawver B, Lee H, and <em>Janelle CM</em>. <strong class="font-serif text-lg md:text-xl">Emotional states influence forward gait during music listening based on familiarity with music selections.</strong> <em class="text-slate-500">Hum Mov Sci.</em> 2019 Aug;66:53-62.
+              Park KS, Hass CJ, Fawver B, Lee H, and <em>Janelle CM</em>. <strong class="font-serif text-base md:text-lg">Emotional states influence forward gait during music listening based on familiarity with music selections.</strong> <em class="text-slate-500">Hum Mov Sci.</em> 2019 Aug;66:53-62.
             </p>
             <div class="flex flex-wrap items-center gap-2 mt-3">
               <a href="https://doi.org/10.1016/j.humov.2019.03.004" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-all duration-200 font-medium">
@@ -181,7 +190,7 @@
           <!-- Publication 10 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Fawver B, Hass CJ, Park KS, and <em>Janelle CM</em>. <strong class="font-serif text-lg md:text-xl">Autobiographically recalled emotional states impact forward gait initiation as a function of motivational direction.</strong> <em class="text-slate-500">Emotion.</em> 2014 Dec;14(6):1125-36.
+              Fawver B, Hass CJ, Park KS, and <em>Janelle CM</em>. <strong class="font-serif text-base md:text-lg">Autobiographically recalled emotional states impact forward gait initiation as a function of motivational direction.</strong> <em class="text-slate-500">Emotion.</em> 2014 Dec;14(6):1125-36.
             </p>
             <div class="flex flex-wrap items-center gap-2 mt-3">
               <a href="https://doi.org/10.1037/a0037597" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-all duration-200 font-medium">
@@ -195,14 +204,14 @@
 
       <!-- Published Abstracts and Conference Proceedings Section -->
       <section>
-        <h2 class="text-2xl md:text-3xl font-bold font-serif text-slate-900 mb-8 pb-3 border-b border-slate-200 leading-tight">
+        <h2 class="text-xl md:text-2xl font-bold font-serif text-slate-900 mb-8 pb-3 border-b border-slate-200 leading-tight">
           Published Abstracts and Conference Proceedings
         </h2>
         <div class="space-y-6 lg:space-y-8">
           <!-- Abstract 1 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Bechke E, Park KS, Wideman L, Anderson T, Goldenstein SJ, Slutsky-Ganesh AB, Armstrong BD, and <em>Etnier JL</em>. <strong class="font-serif text-lg md:text-xl">Effects of APOE ε4 on novel blood biomarkers of amyloid-β pathology and inflammation in midlife adults at risk of Alzheimer's disease.</strong> <em class="text-slate-500">Alzheimer's Dement.</em> 2024, 20: e095617.
+              Bechke E, Park KS, Wideman L, Anderson T, Goldenstein SJ, Slutsky-Ganesh AB, Armstrong BD, and <em>Etnier JL</em>. <strong class="font-serif text-base md:text-lg">Effects of APOE ε4 on novel blood biomarkers of amyloid-β pathology and inflammation in midlife adults at risk of Alzheimer's disease.</strong> <em class="text-slate-500">Alzheimer's Dement.</em> 2024, 20: e095617.
             </p>
             <div class="flex flex-wrap items-center gap-2 mt-3">
               <a href="https://doi.org/10.1002/alz.095617" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-all duration-200 font-medium">
@@ -214,7 +223,7 @@
           <!-- Abstract 2 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Slutsky-Ganesh AB, Etnier JL, DuBois SL, Vance JC, Park KS, Bechke E, Som-Pimpong H, O'Brokta MM, Thibodeau D, Ueno A, Karper WB, Armstrong BD, Labban JD, Hugenschmidt CE, and <em>Wideman L</em>. <strong class="font-serif text-lg md:text-xl">The effect of exercise and ApolipoproteinE ε4 on hippocampal volume in middle-aged sedentary adults with heightened risk for Alzheimer's disease.</strong> <em class="text-slate-500">Alzheimer's Dement.</em> 2024, 20: e095534.
+              Slutsky-Ganesh AB, Etnier JL, DuBois SL, Vance JC, Park KS, Bechke E, Som-Pimpong H, O'Brokta MM, Thibodeau D, Ueno A, Karper WB, Armstrong BD, Labban JD, Hugenschmidt CE, and <em>Wideman L</em>. <strong class="font-serif text-base md:text-lg">The effect of exercise and ApolipoproteinE ε4 on hippocampal volume in middle-aged sedentary adults with heightened risk for Alzheimer's disease.</strong> <em class="text-slate-500">Alzheimer's Dement.</em> 2024, 20: e095534.
             </p>
             <div class="flex flex-wrap items-center gap-2 mt-3">
               <a href="https://doi.org/10.1002/alz.095534" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-all duration-200 font-medium">
@@ -226,7 +235,7 @@
           <!-- Abstract 3 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Wessinger CM, Park KS, DuBois SL, Kibildis S, Som-Pimpong H, Vance JC, Armstrong BD, Wideman L, and <em>Etnier JL</em>. <strong class="font-serif text-lg md:text-xl">Diet, APOE-e4, and cognition in middle-aged women at increased risk of Alzheimer's disease.</strong> <em class="text-slate-500">Alzheimer's Dement.</em> 2024, 20: e094755.
+              Wessinger CM, Park KS, DuBois SL, Kibildis S, Som-Pimpong H, Vance JC, Armstrong BD, Wideman L, and <em>Etnier JL</em>. <strong class="font-serif text-base md:text-lg">Diet, APOE-e4, and cognition in middle-aged women at increased risk of Alzheimer's disease.</strong> <em class="text-slate-500">Alzheimer's Dement.</em> 2024, 20: e094755.
             </p>
             <div class="flex flex-wrap items-center gap-2 mt-3">
               <a href="https://doi.org/10.1002/alz.094755" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-all duration-200 font-medium">
@@ -238,7 +247,7 @@
           <!-- Abstract 4 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Park KS, Etnier J, DuBois S, Kibildis S, Som-Pimpong H, Vance J, and <em>Wahlheim CN</em>. <strong class="font-serif text-lg md:text-xl">The association between apoe ε4 and episodic memory in midlife: Testing the cognitive phenotype hypothesis.</strong> <em class="text-slate-500">Innov Aging</em>, 2023, 7(Suppl 1), 1129.
+              Park KS, Etnier J, DuBois S, Kibildis S, Som-Pimpong H, Vance J, and <em>Wahlheim CN</em>. <strong class="font-serif text-base md:text-lg">The association between apoe ε4 and episodic memory in midlife: Testing the cognitive phenotype hypothesis.</strong> <em class="text-slate-500">Innov Aging</em>, 2023, 7(Suppl 1), 1129.
             </p>
             <div class="flex flex-wrap items-center gap-2 mt-3">
               <a href="https://doi.org/10.1093/geroni/igad104.3626" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-all duration-200 font-medium">
@@ -250,7 +259,7 @@
           <!-- Abstract 5 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Park KS, Etnier J, DuBois S, Kibildis S, Som-Pimpong H, Vance J, and <em>Wahlheim CN</em>. <strong class="font-serif text-lg md:text-xl">Subjective cognitive decline moderates the association between age and memory decline in midlife.</strong> <em class="text-slate-500">Innov Aging</em>, 2023, 7(Suppl 1), 1123.
+              Park KS, Etnier J, DuBois S, Kibildis S, Som-Pimpong H, Vance J, and <em>Wahlheim CN</em>. <strong class="font-serif text-base md:text-lg">Subjective cognitive decline moderates the association between age and memory decline in midlife.</strong> <em class="text-slate-500">Innov Aging</em>, 2023, 7(Suppl 1), 1123.
             </p>
             <div class="flex flex-wrap items-center gap-2 mt-3">
               <a href="https://doi.org/10.1093/geroni/igad104.3605" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-all duration-200 font-medium">
@@ -262,14 +271,14 @@
           <!-- Abstract 6 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              DuBois S, Park KS, Wahlheim CN, Vance J, Kibildis S, Holder H, Bechke E, O'Brokta M, Higgins A, Labban J, Slutsky-Ganesh A, and <em>Etnier JL</em>. <strong class="font-serif text-lg md:text-xl">The influence of Apolipoprotein E 4 carrier status on the association between aerobic fitness and mnemonic discrimination in middle-aged adults.</strong> <em class="text-slate-500">J Sport Exerc Psychol</em>, 2023, Vol. 45, pp. S74.
+              DuBois S, Park KS, Wahlheim CN, Vance J, Kibildis S, Holder H, Bechke E, O'Brokta M, Higgins A, Labban J, Slutsky-Ganesh A, and <em>Etnier JL</em>. <strong class="font-serif text-base md:text-lg">The influence of Apolipoprotein E 4 carrier status on the association between aerobic fitness and mnemonic discrimination in middle-aged adults.</strong> <em class="text-slate-500">J Sport Exerc Psychol</em>, 2023, Vol. 45, pp. S74.
             </p>
           </div>
 
           <!-- Abstract 7 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Anderson T, Slutsky-Ganesh AB, Wideman L, Park KS, Labban JD, Kibildis S, Vance JC, DuBois SL, Holder H, and <em>Etnier JL</em>. <strong class="font-serif text-lg md:text-xl">A comparison of heart rate variability metrics between apolipoprotein e ε4 carriers and non-carriers in cognitively normal middle-aged adults.</strong> <em class="text-slate-500">Alzheimer's Dement.</em>, 2022, 18: e069215.
+              Anderson T, Slutsky-Ganesh AB, Wideman L, Park KS, Labban JD, Kibildis S, Vance JC, DuBois SL, Holder H, and <em>Etnier JL</em>. <strong class="font-serif text-base md:text-lg">A comparison of heart rate variability metrics between apolipoprotein e ε4 carriers and non-carriers in cognitively normal middle-aged adults.</strong> <em class="text-slate-500">Alzheimer's Dement.</em>, 2022, 18: e069215.
             </p>
             <div class="flex flex-wrap items-center gap-2 mt-3">
               <a href="https://doi.org/10.1002/alz.069215" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-all duration-200 font-medium">
@@ -281,7 +290,7 @@
           <!-- Abstract 8 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Park KS, Hong J, and <em>Etnier JL</em>. <strong class="font-serif text-lg md:text-xl">Affective and ergogenic effects of beat-accented synchronous music on acute exercise training in older adults with mild cognitive impairment or mild dementia.</strong> <em class="text-slate-500">Alzheimer's Dement.</em>, 2022, 18: e069303.
+              Park KS, Hong J, and <em>Etnier JL</em>. <strong class="font-serif text-base md:text-lg">Affective and ergogenic effects of beat-accented synchronous music on acute exercise training in older adults with mild cognitive impairment or mild dementia.</strong> <em class="text-slate-500">Alzheimer's Dement.</em>, 2022, 18: e069303.
             </p>
             <div class="flex flex-wrap items-center gap-2 mt-3">
               <a href="https://doi.org/10.1002/alz.069303" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-all duration-200 font-medium">
@@ -293,7 +302,7 @@
           <!-- Abstract 9 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Park KS, Slutsky-Ganesh AB, Anderson T, Holder H, Vance JC, DuBois SL, Kibildis S, Labban JD, Wahlheim CN, Wideman L, and <em>Etnier JL</em>. <strong class="font-serif text-lg md:text-xl">The cross-sectional association between APOE ε4 and cognition in midlife: Baseline data analysis of the Physical Activity and Alzheimer's Disease study - II.</strong> <em class="text-slate-500">Alzheimer's Dement.</em>, 2022, 18: e069364.
+              Park KS, Slutsky-Ganesh AB, Anderson T, Holder H, Vance JC, DuBois SL, Kibildis S, Labban JD, Wahlheim CN, Wideman L, and <em>Etnier JL</em>. <strong class="font-serif text-base md:text-lg">The cross-sectional association between APOE ε4 and cognition in midlife: Baseline data analysis of the Physical Activity and Alzheimer's Disease study - II.</strong> <em class="text-slate-500">Alzheimer's Dement.</em>, 2022, 18: e069364.
             </p>
             <div class="flex flex-wrap items-center gap-2 mt-3">
               <a href="https://doi.org/10.1002/alz.069364" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-all duration-200 font-medium">
@@ -305,7 +314,7 @@
           <!-- Abstract 10 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Slutsky-Ganesh AB, Park KS, Anderson T, Hugenschmidt CE, DuBois SL, Vance JC, Ueno A, O'Brokta MM, Kibildis S, Holder H, Labban JD, Wideman L, and <em>Etnier JL</em>. <strong class="font-serif text-lg md:text-xl">The influence of Apolipoprotein E ε4 carrier status on posterior cingulate cortex thickness and learning.</strong> <em class="text-slate-500">Alzheimer's Dement.</em>, 2022, 18: e069347.
+              Slutsky-Ganesh AB, Park KS, Anderson T, Hugenschmidt CE, DuBois SL, Vance JC, Ueno A, O'Brokta MM, Kibildis S, Holder H, Labban JD, Wideman L, and <em>Etnier JL</em>. <strong class="font-serif text-base md:text-lg">The influence of Apolipoprotein E ε4 carrier status on posterior cingulate cortex thickness and learning.</strong> <em class="text-slate-500">Alzheimer's Dement.</em>, 2022, 18: e069347.
             </p>
             <div class="flex flex-wrap items-center gap-2 mt-3">
               <a href="https://doi.org/10.1002/alz.069347" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-all duration-200 font-medium">
@@ -317,7 +326,7 @@
           <!-- Abstract 11 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Park KS, Zaplatosch ME, Wahlheim CN, Etnier JL, Wideman L, and <em>Adams WM</em>. <strong class="font-serif text-lg md:text-xl">Effect of mild dehydration on episodic memory and inhibitory control in college-aged young adults.</strong> <em class="text-slate-500">Med Sci Sports Exerc</em>, 2021, 53(8S), p.312.
+              Park KS, Zaplatosch ME, Wahlheim CN, Etnier JL, Wideman L, and <em>Adams WM</em>. <strong class="font-serif text-base md:text-lg">Effect of mild dehydration on episodic memory and inhibitory control in college-aged young adults.</strong> <em class="text-slate-500">Med Sci Sports Exerc</em>, 2021, 53(8S), p.312.
             </p>
             <div class="flex flex-wrap items-center gap-2 mt-3">
               <a href="https://doi.org/10.1249/01.mss.0000762780.54834.dc" target="_blank" rel="noopener noreferrer" class="text-xs px-2.5 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-all duration-200 font-medium">
@@ -329,49 +338,49 @@
           <!-- Abstract 12 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Park KS, Etnier JL, DuBois S, Vance J, Alam MT, and <em>Holder H</em>. <strong class="font-serif text-lg md:text-xl">Normative comparison of cognitive performance in middle-aged persons with a family history of Alzheimer's disease: Preliminary results of PAAD-2 study.</strong> <em class="text-slate-500">J Sport Exerc Psychol</em>, 2021, Vol. 43, pp. S84.
+              Park KS, Etnier JL, DuBois S, Vance J, Alam MT, and <em>Holder H</em>. <strong class="font-serif text-base md:text-lg">Normative comparison of cognitive performance in middle-aged persons with a family history of Alzheimer's disease: Preliminary results of PAAD-2 study.</strong> <em class="text-slate-500">J Sport Exerc Psychol</em>, 2021, Vol. 43, pp. S84.
             </p>
           </div>
 
           <!-- Abstract 13 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Park KS, Etnier JL, Wahlheim CN, DuBois S, Vance J, Alam MT, and <em>Holder H</em>. <strong class="font-serif text-lg md:text-xl">Leisure-time physical activity and cognition at midlife in persons with family history of Alzheimer's disease: Cross-sectional results of PAAD-2 study.</strong> <em class="text-slate-500">J Sport Exerc Psychol</em>, 2021, Vol. 43, pp. S83-S84.
+              Park KS, Etnier JL, Wahlheim CN, DuBois S, Vance J, Alam MT, and <em>Holder H</em>. <strong class="font-serif text-base md:text-lg">Leisure-time physical activity and cognition at midlife in persons with family history of Alzheimer's disease: Cross-sectional results of PAAD-2 study.</strong> <em class="text-slate-500">J Sport Exerc Psychol</em>, 2021, Vol. 43, pp. S83-S84.
             </p>
           </div>
 
           <!-- Abstract 14 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Park KS, Hass C, and <em>Janelle CM</em>. <strong class="font-serif text-lg md:text-xl">Emotional Responses to Rhythmic Music Cues Modulate Forward Gait Amplitude in People with Parkinson's Disease.</strong> <em class="text-slate-500">J Sport Exerc Psychol</em>, 2019, Vol. 41, pp. S44.
+              Park KS, Hass C, and <em>Janelle CM</em>. <strong class="font-serif text-base md:text-lg">Emotional Responses to Rhythmic Music Cues Modulate Forward Gait Amplitude in People with Parkinson's Disease.</strong> <em class="text-slate-500">J Sport Exerc Psychol</em>, 2019, Vol. 41, pp. S44.
             </p>
           </div>
 
           <!-- Abstract 15 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Park KS, Hass C, and <em>Janelle CM</em>. <strong class="font-serif text-lg md:text-xl">Musical familiarity and emotion impact cycle pedaling in persons with Parkinson's disease: A preliminary study.</strong> <em class="text-slate-500">Arch Phys Med Rehabil</em>, 2017, Vol 98, Issue 12, e159.
+              Park KS, Hass C, and <em>Janelle CM</em>. <strong class="font-serif text-base md:text-lg">Musical familiarity and emotion impact cycle pedaling in persons with Parkinson's disease: A preliminary study.</strong> <em class="text-slate-500">Arch Phys Med Rehabil</em>, 2017, Vol 98, Issue 12, e159.
             </p>
           </div>
 
           <!-- Abstract 16 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Park KS, Lee H, Fawver B, Hass CJ, and <em>Janelle CM</em>. <strong class="font-serif text-lg md:text-xl">Alteration of gait characteristics during music listening: The role of emotion and rhythm.</strong> <em class="text-slate-500">J Sport Exerc Psychol</em>, 2017, Vol. 39, pp. S165.
+              Park KS, Lee H, Fawver B, Hass CJ, and <em>Janelle CM</em>. <strong class="font-serif text-base md:text-lg">Alteration of gait characteristics during music listening: The role of emotion and rhythm.</strong> <em class="text-slate-500">J Sport Exerc Psychol</em>, 2017, Vol. 39, pp. S165.
             </p>
           </div>
 
           <!-- Abstract 17 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Park KS, Lee H, Fawver B, Hass CJ, and <em>Janelle CM</em>. <strong class="font-serif text-lg md:text-xl">Biological predispositions alter affectively modulated motor action in the absence of distance regulation.</strong> <em class="text-slate-500">J Sport Exerc Psychol</em>, 2015, Vol. 37, pp. S57.
+              Park KS, Lee H, Fawver B, Hass CJ, and <em>Janelle CM</em>. <strong class="font-serif text-base md:text-lg">Biological predispositions alter affectively modulated motor action in the absence of distance regulation.</strong> <em class="text-slate-500">J Sport Exerc Psychol</em>, 2015, Vol. 37, pp. S57.
             </p>
           </div>
 
           <!-- Abstract 18 -->
           <div class="pb-6 border-b border-slate-100 last:border-b-0">
             <p class="mb-3 leading-7">
-              Fawver B, Beatty GF, Hass CJ, Park KS, and <em>Janelle CM</em>. <strong class="font-serif text-lg md:text-xl">Explicit response codes modulate the influence of emotional stimuli on approach-avoidance behavior and selectively impact subjective emotional experience.</strong> <em class="text-slate-500">J Sport Exerc Psychol</em>, 2015, Vol. 37, pp. S38.
+              Fawver B, Beatty GF, Hass CJ, Park KS, and <em>Janelle CM</em>. <strong class="font-serif text-base md:text-lg">Explicit response codes modulate the influence of emotional stimuli on approach-avoidance behavior and selectively impact subjective emotional experience.</strong> <em class="text-slate-500">J Sport Exerc Psychol</em>, 2015, Vol. 37, pp. S38.
             </p>
           </div>
         </div>
@@ -387,10 +396,11 @@
   </footer>
 
   <script>
-    // Handle ESC key to close dropdown
+    // Handle ESC key to close dropdowns
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         document.getElementById('news-dropdown')?.classList.add('hidden');
+        document.getElementById('contact-dropdown')?.classList.add('hidden');
       }
     });
   </script>

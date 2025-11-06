@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Publications · EXPHR Lab</title>
-  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="./assets/style.css?v=17">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -24,19 +24,23 @@
 </head>
 <body class="text-slate-800 antialiased font-sans">
   <!-- Header -->
-  <header class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
-    <div class="max-w-5xl mx-auto px-4">
-      <nav class="flex h-16 items-center justify-between" aria-label="Primary">
-        <a href="/index.html" class="font-bold text-lg tracking-tight text-slate-900 hover:text-blue-700 transition-colors">
-          EXPHR Lab
+  <header role="banner" class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16">
+      <nav aria-label="Primary" class="flex items-center justify-between h-full">
+        <!-- Left: Brand + Tagline -->
+        <a href="/index.html" class="flex items-center gap-3 min-w-0 hover:opacity-80 transition-opacity">
+          <span class="font-semibold tracking-tight whitespace-nowrap text-slate-900">EXPHR Lab</span>
+          <span class="text-slate-500 text-xs sm:text-sm whitespace-nowrap truncate max-w-[40vw] md:max-w-none">Exercise for Precision Health and Rehabilitation</span>
         </a>
-        <div class="hidden md:flex items-center gap-8 text-sm">
-          <a href="/index.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Home</a>
-          <a href="/people.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Our Team</a>
-          <a href="/projects.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Projects</a>
-          <a href="/publications.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Publications</a>
+
+        <!-- Right: Menu Links -->
+        <div class="flex flex-nowrap items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 whitespace-nowrap overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-2 md:py-0">
+          <a href="/index.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Home</a>
+          <a href="/people.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Our Team</a>
+          <a href="/projects.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Projects</a>
+          <a href="/publications.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Publications</a>
           <div class="relative group" onmouseleave="setTimeout(() => {document.getElementById('news-dropdown').classList.add('hidden')}, 200)">
-            <a href="/highlights.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full focus-within:after:w-full" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('news-dropdown').classList.remove('hidden')" onfocus="document.getElementById('news-dropdown').classList.remove('hidden')">News &amp; Highlights</a>
+            <a href="/highlights.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('news-dropdown').classList.remove('hidden')" onfocus="document.getElementById('news-dropdown').classList.remove('hidden')">News &amp; Highlights</a>
             <div id="news-dropdown" class="hidden absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-200 z-50 py-2" role="menu" onmouseenter="document.getElementById('news-dropdown').classList.remove('hidden')" onmouseleave="setTimeout(() => {document.getElementById('news-dropdown').classList.add('hidden')}, 200)">
               <a href="/announcements.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Announcements</a>
               <div class="border-t border-slate-100 my-1"></div>
@@ -44,7 +48,7 @@
             </div>
           </div>
           <div class="relative group" onmouseleave="setTimeout(() => {document.getElementById('contact-dropdown').classList.add('hidden')}, 200)">
-            <a href="/contact.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full focus-within:after:w-full" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('contact-dropdown').classList.remove('hidden')" onfocus="document.getElementById('contact-dropdown').classList.remove('hidden')">Contact</a>
+            <a href="/contact.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('contact-dropdown').classList.remove('hidden')" onfocus="document.getElementById('contact-dropdown').classList.remove('hidden')">Contact</a>
             <div id="contact-dropdown" class="hidden absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-200 z-50 py-2 transition-all duration-200" role="menu" onmouseenter="document.getElementById('contact-dropdown').classList.remove('hidden')" onmouseleave="setTimeout(() => {document.getElementById('contact-dropdown').classList.add('hidden')}, 200)">
               <a href="/join-our-study.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Join Our Study</a>
               <div class="border-t border-slate-100 my-1"></div>
@@ -59,12 +63,11 @@
   </header>
 
   <main class="bg-white">
-    <div class="max-w-5xl mx-auto px-4 py-12">
-      <!-- Page Title -->
-      <h1 class="text-2xl md:text-3xl font-bold font-serif tracking-tight text-slate-800 mt-10 mb-12 leading-tight">
-        Publications
-      </h1>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">Publications</h1>
+      <div class="h-[3px] w-40 bg-gradient-to-r from-sky-300 to-emerald-200 rounded-full mt-2"></div>
 
+      <div class="mt-8">
       <!-- Journal Articles Section -->
       <section class="mb-16">
         <h2 class="text-xl md:text-2xl font-bold font-serif text-slate-900 mb-8 pb-3 border-b border-slate-200 leading-tight">
@@ -385,22 +388,53 @@
           </div>
         </div>
       </section>
+      </div>
     </div>
   </main>
 
   <!-- Footer -->
   <footer class="border-t mt-12">
-    <div class="max-w-5xl mx-auto px-4 py-8 text-sm text-slate-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-sm text-slate-600">
       © 2025 EXPHR Lab · Emory University
     </div>
   </footer>
 
   <script>
-    // Handle ESC key to close dropdowns
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
+      const menu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
+      const closeIcon = document.getElementById('close-icon');
+      const isHidden = menu.classList.contains('hidden');
+      
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        menuIcon?.classList.add('hidden');
+        closeIcon?.classList.remove('hidden');
+        this.setAttribute('aria-expanded', 'true');
+      } else {
+        menu.classList.add('hidden');
+        menuIcon?.classList.remove('hidden');
+        closeIcon?.classList.add('hidden');
+        this.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // ESC key to close dropdowns
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         document.getElementById('news-dropdown')?.classList.add('hidden');
         document.getElementById('contact-dropdown')?.classList.add('hidden');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+          const menuButton = document.getElementById('mobile-menu-button');
+          const menuIcon = document.getElementById('menu-icon');
+          const closeIcon = document.getElementById('close-icon');
+          menuIcon?.classList.remove('hidden');
+          closeIcon?.classList.add('hidden');
+          menuButton?.setAttribute('aria-expanded', 'false');
+        }
       }
     });
   </script>

@@ -2,26 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Join Our Study · EXPHR Lab</title>
-  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="./assets/style.css?v=17">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="text-slate-800 antialiased">
   <!-- Header -->
-  <header class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
-    <div class="max-w-5xl mx-auto px-4">
-      <nav class="flex h-16 items-center justify-between" aria-label="Primary">
-        <a href="/index.html" class="font-bold text-lg tracking-tight text-slate-900 hover:text-blue-700 transition-colors">
-          EXPHR Lab
+  <header role="banner" class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16">
+      <nav aria-label="Primary" class="flex items-center justify-between h-full">
+        <!-- Left: Brand + Tagline -->
+        <a href="/index.html" class="flex items-center gap-3 min-w-0 hover:opacity-80 transition-opacity">
+          <span class="font-semibold tracking-tight whitespace-nowrap text-slate-900">EXPHR Lab</span>
+          <span class="text-slate-500 text-xs sm:text-sm whitespace-nowrap truncate max-w-[40vw] md:max-w-none">Exercise for Precision Health and Rehabilitation</span>
         </a>
-        <div class="hidden md:flex items-center gap-8 text-sm">
-          <a href="/index.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Home</a>
-          <a href="/people.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Our Team</a>
-          <a href="/projects.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Projects</a>
-          <a href="/publications.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Publications</a>
+
+        <!-- Right: Menu Links -->
+        <div class="flex flex-nowrap items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 whitespace-nowrap overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-2 md:py-0">
+          <a href="/index.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Home</a>
+          <a href="/people.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Our Team</a>
+          <a href="/projects.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Projects</a>
+          <a href="/publications.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Publications</a>
           <div class="relative group" onmouseleave="setTimeout(() => {document.getElementById('news-dropdown').classList.add('hidden')}, 200)">
-            <a href="/highlights.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full focus-within:after:w-full" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('news-dropdown').classList.remove('hidden')" onfocus="document.getElementById('news-dropdown').classList.remove('hidden')">News &amp; Highlights</a>
+            <a href="/highlights.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('news-dropdown').classList.remove('hidden')" onfocus="document.getElementById('news-dropdown').classList.remove('hidden')">News &amp; Highlights</a>
             <div id="news-dropdown" class="hidden absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-200 z-50 py-2" role="menu" onmouseenter="document.getElementById('news-dropdown').classList.remove('hidden')" onmouseleave="setTimeout(() => {document.getElementById('news-dropdown').classList.add('hidden')}, 200)">
               <a href="/announcements.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Announcements</a>
               <div class="border-t border-slate-100 my-1"></div>
@@ -29,9 +33,9 @@
             </div>
           </div>
           <div class="relative group" onmouseleave="setTimeout(() => {document.getElementById('contact-dropdown').classList.add('hidden')}, 200)">
-            <a href="/contact.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full focus-within:after:w-full" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('contact-dropdown').classList.remove('hidden')" onfocus="document.getElementById('contact-dropdown').classList.remove('hidden')">Contact</a>
+            <a href="/contact.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('contact-dropdown').classList.remove('hidden')" onfocus="document.getElementById('contact-dropdown').classList.remove('hidden')">Contact</a>
             <div id="contact-dropdown" class="hidden absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-200 z-50 py-2 transition-all duration-200" role="menu" onmouseenter="document.getElementById('contact-dropdown').classList.remove('hidden')" onmouseleave="setTimeout(() => {document.getElementById('contact-dropdown').classList.add('hidden')}, 200)">
-              <a href="/join-our-study.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors bg-slate-50" role="menuitem">Join Our Study</a>
+              <a href="/join-our-study.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Join Our Study</a>
               <div class="border-t border-slate-100 my-1"></div>
               <a href="/contact.html#opportunities" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Opportunities</a>
               <div class="border-t border-slate-100 my-1"></div>
@@ -39,18 +43,12 @@
             </div>
           </div>
         </div>
-        <!-- Mobile menu button (optional for future) -->
-        <button class="md:hidden text-slate-700" aria-label="Menu">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
       </nav>
     </div>
   </header>
 
   <main class="bg-white">
-    <div class="max-w-5xl mx-auto px-4 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <!-- Header Section -->
       <div class="text-center mb-12">
         <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-4">
@@ -190,7 +188,7 @@
 
   <!-- Footer -->
   <footer class="border-t mt-12">
-    <div class="max-w-5xl mx-auto px-4 py-8 text-sm text-slate-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-sm text-slate-600">
       © 2025 EXPHR Lab · Emory University
     </div>
   </footer>

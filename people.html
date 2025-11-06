@@ -1,158 +1,264 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Our Team · EXPHR Lab</title>
-    <link rel="stylesheet" href="/assets/style.css?v=11" />
-  </head>
-
-  <body>
-    <!-- Header -->
-    <header class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
-      <div class="max-w-5xl mx-auto px-4">
-        <nav class="flex h-16 items-center justify-between" aria-label="Primary">
-          <a href="/index.html" class="font-bold text-lg tracking-tight text-slate-900 hover:text-blue-700 transition-colors">
-            EXPHR Lab
-          </a>
-          <div class="hidden md:flex items-center gap-8 text-sm">
-            <a href="/index.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Home</a>
-            <a href="/people.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-700">Our Team</a>
-            <a href="/projects.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Projects</a>
-            <a href="/publications.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full">Publications</a>
-            <div class="relative group" onmouseleave="setTimeout(() => {document.getElementById('news-dropdown').classList.add('hidden')}, 200)">
-              <a href="/highlights.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full focus-within:after:w-full" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('news-dropdown').classList.remove('hidden')" onfocus="document.getElementById('news-dropdown').classList.remove('hidden')">News &amp; Highlights</a>
-              <div id="news-dropdown" class="hidden absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-200 z-50 py-2" role="menu" onmouseenter="document.getElementById('news-dropdown').classList.remove('hidden')" onmouseleave="setTimeout(() => {document.getElementById('news-dropdown').classList.add('hidden')}, 200)">
-                <a href="/announcements.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Announcements</a>
-                <div class="border-t border-slate-100 my-1"></div>
-                <a href="/gallery.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Gallery</a>
-              </div>
-            </div>
-            <div class="relative group" onmouseleave="setTimeout(() => {document.getElementById('contact-dropdown').classList.add('hidden')}, 200)">
-              <a href="/contact.html" class="relative text-slate-700 hover:text-blue-700 transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-700 after:transition-all hover:after:w-full focus-within:after:w-full" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('contact-dropdown').classList.remove('hidden')" onfocus="document.getElementById('contact-dropdown').classList.remove('hidden')">Contact</a>
-              <div id="contact-dropdown" class="hidden absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-200 z-50 py-2 transition-all duration-200" role="menu" onmouseenter="document.getElementById('contact-dropdown').classList.remove('hidden')" onmouseleave="setTimeout(() => {document.getElementById('contact-dropdown').classList.add('hidden')}, 200)">
-                <a href="/join-our-study.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Join Our Study</a>
-                <div class="border-t border-slate-100 my-1"></div>
-                <a href="/contact.html#opportunities" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Opportunities</a>
-                <div class="border-t border-slate-100 my-1"></div>
-                <a href="/contact.html#get-in-touch" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Get In Touch</a>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </header>
-
-    <main>
-      <div class="container">
-        <h1>Our Team</h1>
-
-        <!-- Principal Investigator -->
-        <h2 class="section-title">Principal Investigator</h2>
-        <div class="grid people-grid">
-          <div class="card person">
-            <div class="avatar">
-              <img src="/assets/media/Park.jpg" alt="Kyoung Shin Park, Ph.D." loading="lazy">
-            </div>
-            <h3>Kyoung Shin Park, Ph.D.</h3>
-          </div>
-        </div>
-
-        <!-- Postdoctoral Researchers -->
-        <h2 class="section-title">Postdoctoral Researchers</h2>
-        <div class="grid people-grid">
-          <div class="card person">
-            <div class="avatar">
-              <img src="/assets/media/John.png" alt="Jeongwoon (John) Kim, Ph.D." loading="lazy">
-            </div>
-            <h3>Jeongwoon (John) Kim, Ph.D.</h3>
-          </div>
-        </div>
-
-        <!-- Graduate Research Assistants -->
-        <h2 class="section-title">Graduate Research Assistants</h2>
-        <div class="grid people-grid">
-          <div class="card person">
-            <div class="avatar">
-              <img src="/assets/media/Kaetlin.png" alt="Kaetlin Marsh" loading="lazy">
-            </div>
-            <h3>Kaetlin Marsh</h3>
-          </div>
-
-          <div class="card person">
-            <div class="avatar">
-              <img src="/assets/media/Aisha.jpg" alt="Aisha Jalal" loading="lazy">
-            </div>
-            <h3>Aisha Jalal</h3>
-          </div>
-
-          <div class="card person">
-            <div class="avatar">
-              <img src="/assets/media/Rubi.jpg" alt="Rubi Gomez" loading="lazy">
-            </div>
-            <h3>Rubi Gomez</h3>
-          </div>
-        </div>
-
-        <!-- Research Staff -->
-        <h2 class="section-title">Research Staff</h2>
-        <div class="grid people-grid">
-          <div class="card person">
-            <div class="avatar">
-              <img src="/assets/media/Joy.jpg" alt="Jiyeong (Joy) Hong, MMEd" loading="lazy">
-            </div>
-            <h3>Jiyeong (Joy) Hong, MMEd</h3>
-          </div>
-        </div>
-
-        <!-- Undergraduate Research Assistants -->
-        <h2 class="section-title">Undergraduate Research Assistants</h2>
-        <div class="grid people-grid">
-          <div class="card person">
-            <div class="avatar">
-              <img src="/assets/media/Angela.jpg" alt="Angela Qian" loading="lazy">
-            </div>
-            <h3>Angela Qian</h3>
-          </div>
-
-          <div class="card person">
-            <div class="avatar">
-              <img src="/assets/media/Ioanna.jpg" alt="Ioanna Copulos" loading="lazy">
-            </div>
-            <h3>Ioanna Copulos</h3>
-          </div>
-
-          <div class="card person">
-            <div class="avatar">
-              <img src="/assets/media/Kate.webp" alt="Kate Arne" loading="lazy">
-            </div>
-            <h3>Kate Arne</h3>
-          </div>
-
-          <div class="card person">
-            <div class="avatar">
-              <img src="/assets/media/Audrey.jpg" alt="Audrey Chun" loading="lazy">
-            </div>
-            <h3>Audrey Chun</h3>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="border-t mt-12">
-      <div class="max-w-5xl mx-auto px-4 py-8 text-sm text-slate-600">
-        © 2025 EXPHR Lab · Emory University
-      </div>
-    </footer>
-
-    <script>
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          document.getElementById('news-dropdown')?.classList.add('hidden');
-          document.getElementById('contact-dropdown')?.classList.add('hidden');
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Team · EXPHR Lab</title>
+  <link rel="stylesheet" href="./assets/style.css?v=17">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Merriweather', 'Georgia', 'Cambria', 'serif'],
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+          }
         }
-      });
-    </script>
-  </body>
+      }
+    }
+  </script>
+</head>
+<body class="text-slate-800 antialiased font-sans">
+  <!-- Header -->
+  <header role="banner" class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16">
+      <nav aria-label="Primary" class="flex items-center justify-between h-full">
+        <!-- Left: Brand + Tagline -->
+        <a href="/index.html" class="flex items-center gap-3 min-w-0 hover:opacity-80 transition-opacity">
+          <span class="font-semibold tracking-tight whitespace-nowrap text-slate-900">EXPHR Lab</span>
+          <span class="text-slate-500 text-xs sm:text-sm whitespace-nowrap truncate max-w-[40vw] md:max-w-none">Exercise for Precision Health and Rehabilitation</span>
+        </a>
+
+        <!-- Right: Menu Links -->
+        <div class="flex flex-nowrap items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 whitespace-nowrap overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-2 md:py-0">
+          <a href="/index.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Home</a>
+          <a href="/people.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Our Team</a>
+          <a href="/projects.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Projects</a>
+          <a href="/publications.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Publications</a>
+          <div class="relative group" onmouseleave="setTimeout(() => {document.getElementById('news-dropdown').classList.add('hidden')}, 200)">
+            <a href="/highlights.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('news-dropdown').classList.remove('hidden')" onfocus="document.getElementById('news-dropdown').classList.remove('hidden')">News &amp; Highlights</a>
+            <div id="news-dropdown" class="hidden absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-200 z-50 py-2" role="menu" onmouseenter="document.getElementById('news-dropdown').classList.remove('hidden')" onmouseleave="setTimeout(() => {document.getElementById('news-dropdown').classList.add('hidden')}, 200)">
+              <a href="/announcements.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Announcements</a>
+              <div class="border-t border-slate-100 my-1"></div>
+              <a href="/gallery.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Gallery</a>
+            </div>
+          </div>
+          <div class="relative group" onmouseleave="setTimeout(() => {document.getElementById('contact-dropdown').classList.add('hidden')}, 200)">
+            <a href="/contact.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('contact-dropdown').classList.remove('hidden')" onfocus="document.getElementById('contact-dropdown').classList.remove('hidden')">Contact</a>
+            <div id="contact-dropdown" class="hidden absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-200 z-50 py-2 transition-all duration-200" role="menu" onmouseenter="document.getElementById('contact-dropdown').classList.remove('hidden')" onmouseleave="setTimeout(() => {document.getElementById('contact-dropdown').classList.add('hidden')}, 200)">
+              <a href="/join-our-study.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Join Our Study</a>
+              <div class="border-t border-slate-100 my-1"></div>
+              <a href="/contact.html#opportunities" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Opportunities</a>
+              <div class="border-t border-slate-100 my-1"></div>
+              <a href="/contact.html#get-in-touch" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Get In Touch</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900">Our Team</h1>
+      <div class="h-[3px] w-40 bg-gradient-to-r from-sky-300 to-emerald-200 rounded-full mt-2"></div>
+
+      <!-- Principal Investigator Section -->
+      <section class="py-12">
+        <div class="flex flex-col items-center text-center">
+          <img 
+            src="./assets/media/Park.jpg" 
+            alt="Kyoung Shin Park, Ph.D." 
+            loading="lazy" 
+            class="w-48 h-48 md:w-52 md:h-52 rounded-full object-cover shadow-lg mb-6"
+          >
+          <h2 class="text-2xl font-bold text-slate-900 mb-2">Kyoung Shin Park, Ph.D.</h2>
+          <p class="text-gray-500 text-sm">Principal Investigator · Director</p>
+        </div>
+      </section>
+
+      <!-- Team Section -->
+      <section class="py-12">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+          <!-- Jeongwoon (John) Kim, Ph.D. -->
+          <a href="/people/jeongwoon-kim.html" class="flex flex-col items-center text-center group cursor-pointer transition-transform duration-200 hover:-translate-y-0.5">
+            <div class="w-[152px] h-[152px] sm:w-[168px] sm:h-[168px] md:w-[184px] md:h-[184px] rounded-full overflow-hidden shadow-sm ring-1 ring-slate-200/70 mb-4">
+              <img 
+                src="./assets/media/John.png" 
+                alt="Jeongwoon (John) Kim, Ph.D." 
+                loading="lazy" 
+                class="w-full h-full object-cover object-center object-[50%_40%] select-none"
+              >
+            </div>
+            <h3 class="font-serif font-semibold tracking-tight text-[16px] sm:text-[17px] md:text-[18px] text-slate-900 mb-1 whitespace-normal md:whitespace-nowrap hover:underline underline-offset-8 decoration-2">Jeongwoon (John) Kim, Ph.D.</h3>
+            <p class="text-slate-600 text-sm md:text-[15px] leading-6">Postdoctoral Fellow</p>
+          </a>
+
+          <!-- Jiyeong (Joy) Hong -->
+          <a href="/people/jiyeong-hong.html" class="flex flex-col items-center text-center group cursor-pointer transition-transform duration-200 hover:-translate-y-0.5">
+            <div class="w-[152px] h-[152px] sm:w-[168px] sm:h-[168px] md:w-[184px] md:h-[184px] rounded-full overflow-hidden shadow-sm ring-1 ring-slate-200/70 mb-4">
+              <img 
+                src="./assets/media/Joy.jpg" 
+                alt="Jiyeong (Joy) Hong" 
+                loading="lazy" 
+                class="w-full h-full object-cover object-center select-none"
+              >
+            </div>
+            <h3 class="font-serif font-semibold tracking-tight text-[16px] sm:text-[17px] md:text-[18px] text-slate-900 mb-1 whitespace-normal md:whitespace-nowrap hover:underline underline-offset-8 decoration-2">Jiyeong (Joy) Hong, MMEd</h3>
+            <p class="text-slate-600 text-sm md:text-[15px] leading-6">Research Technician</p>
+          </a>
+
+          <!-- Aisha Jalal -->
+          <a href="/people/aisha-jalal.html" class="flex flex-col items-center text-center group cursor-pointer transition-transform duration-200 hover:-translate-y-0.5">
+            <div class="w-[152px] h-[152px] sm:w-[168px] sm:h-[168px] md:w-[184px] md:h-[184px] rounded-full overflow-hidden shadow-sm ring-1 ring-slate-200/70 mb-4">
+              <img 
+                src="./assets/media/Aisha.jpg" 
+                alt="Aisha Jalal" 
+                loading="lazy" 
+                class="w-full h-full object-cover object-center object-[50%_38%] select-none"
+              >
+            </div>
+            <h3 class="font-serif font-semibold tracking-tight text-[16px] sm:text-[17px] md:text-[18px] text-slate-900 mb-1 whitespace-normal md:whitespace-nowrap hover:underline underline-offset-8 decoration-2">Aisha Jalal</h3>
+            <p class="text-slate-600 text-sm md:text-[15px] leading-6">Graduate Research Assistant</p>
+          </a>
+
+          <!-- Kaetlin Marsh -->
+          <a href="/people/kaetlin-marsh.html" class="flex flex-col items-center text-center group cursor-pointer transition-transform duration-200 hover:-translate-y-0.5">
+            <div class="w-[152px] h-[152px] sm:w-[168px] sm:h-[168px] md:w-[184px] md:h-[184px] rounded-full overflow-hidden shadow-sm ring-1 ring-slate-200/70 mb-4">
+              <img 
+                src="./assets/media/Kaetlin.png" 
+                alt="Kaetlin Marsh" 
+                loading="lazy" 
+                class="w-full h-full object-cover object-center select-none"
+              >
+            </div>
+            <h3 class="font-serif font-semibold tracking-tight text-[16px] sm:text-[17px] md:text-[18px] text-slate-900 mb-1 whitespace-normal md:whitespace-nowrap hover:underline underline-offset-8 decoration-2">Kaetlin Marsh</h3>
+            <p class="text-slate-600 text-sm md:text-[15px] leading-6">Graduate Research Assistant</p>
+          </a>
+
+          <!-- Rubi Gomez -->
+          <a href="/people/rubi-gomez.html" class="flex flex-col items-center text-center group cursor-pointer transition-transform duration-200 hover:-translate-y-0.5">
+            <div class="w-[152px] h-[152px] sm:w-[168px] sm:h-[168px] md:w-[184px] md:h-[184px] rounded-full overflow-hidden shadow-sm ring-1 ring-slate-200/70 mb-4">
+              <img 
+                src="./assets/media/Rubi.jpg" 
+                alt="Rubi Gomez" 
+                loading="lazy" 
+                class="w-full h-full object-cover object-center select-none"
+              >
+            </div>
+            <h3 class="font-serif font-semibold tracking-tight text-[16px] sm:text-[17px] md:text-[18px] text-slate-900 mb-1 whitespace-normal md:whitespace-nowrap hover:underline underline-offset-8 decoration-2">Rubi Gomez</h3>
+            <p class="text-slate-600 text-sm md:text-[15px] leading-6">Graduate Research Assistant</p>
+          </a>
+
+          <!-- Angela Qian -->
+          <a href="/people/angela-qian.html" class="flex flex-col items-center text-center group cursor-pointer transition-transform duration-200 hover:-translate-y-0.5">
+            <div class="w-[152px] h-[152px] sm:w-[168px] sm:h-[168px] md:w-[184px] md:h-[184px] rounded-full overflow-hidden shadow-sm ring-1 ring-slate-200/70 mb-4">
+              <img 
+                src="./assets/media/Angela.jpg" 
+                alt="Angela Qian" 
+                loading="lazy" 
+                class="w-full h-full object-cover object-center object-[50%_42%] select-none"
+              >
+            </div>
+            <h3 class="font-serif font-semibold tracking-tight text-[16px] sm:text-[17px] md:text-[18px] text-slate-900 mb-1 whitespace-normal md:whitespace-nowrap hover:underline underline-offset-8 decoration-2">Angela Qian</h3>
+            <p class="text-slate-600 text-sm md:text-[15px] leading-6">Undergraduate Research Assistant</p>
+          </a>
+
+          <!-- Audrey Chun -->
+          <a href="/people/audrey-chun.html" class="flex flex-col items-center text-center group cursor-pointer transition-transform duration-200 hover:-translate-y-0.5">
+            <div class="w-[152px] h-[152px] sm:w-[168px] sm:h-[168px] md:w-[184px] md:h-[184px] rounded-full overflow-hidden shadow-sm ring-1 ring-slate-200/70 mb-4">
+              <img 
+                src="./assets/media/Audrey.jpg" 
+                alt="Audrey Chun" 
+                loading="lazy" 
+                class="w-full h-full object-cover object-center select-none"
+              >
+            </div>
+            <h3 class="font-serif font-semibold tracking-tight text-[16px] sm:text-[17px] md:text-[18px] text-slate-900 mb-1 whitespace-normal md:whitespace-nowrap hover:underline underline-offset-8 decoration-2">Audrey Chun</h3>
+            <p class="text-slate-600 text-sm md:text-[15px] leading-6">Undergraduate Research Assistant</p>
+          </a>
+
+          <!-- Ioanna Copulos -->
+          <a href="/people/ioanna-copulos.html" class="flex flex-col items-center text-center group cursor-pointer transition-transform duration-200 hover:-translate-y-0.5">
+            <div class="w-[152px] h-[152px] sm:w-[168px] sm:h-[168px] md:w-[184px] md:h-[184px] rounded-full overflow-hidden shadow-sm ring-1 ring-slate-200/70 mb-4">
+              <img 
+                src="./assets/media/Ioanna.jpg" 
+                alt="Ioanna Copulos" 
+                loading="lazy" 
+                class="w-full h-full object-cover object-center select-none"
+              >
+            </div>
+            <h3 class="font-serif font-semibold tracking-tight text-[16px] sm:text-[17px] md:text-[18px] text-slate-900 mb-1 whitespace-normal md:whitespace-nowrap hover:underline underline-offset-8 decoration-2">Ioanna Copulos</h3>
+            <p class="text-slate-600 text-sm md:text-[15px] leading-6">Undergraduate Research Assistant</p>
+          </a>
+
+          <!-- Kate Arne -->
+          <a href="/people/kate-arne.html" class="flex flex-col items-center text-center group cursor-pointer transition-transform duration-200 hover:-translate-y-0.5">
+            <div class="w-[152px] h-[152px] sm:w-[168px] sm:h-[168px] md:w-[184px] md:h-[184px] rounded-full overflow-hidden shadow-sm ring-1 ring-slate-200/70 mb-4">
+              <img 
+                src="./assets/media/Kate.jpeg" 
+                alt="Kate Arne" 
+                loading="lazy" 
+                class="w-full h-full object-cover object-center select-none"
+              >
+            </div>
+            <h3 class="font-serif font-semibold tracking-tight text-[16px] sm:text-[17px] md:text-[18px] text-slate-900 mb-1 whitespace-normal md:whitespace-nowrap hover:underline underline-offset-8 decoration-2">Kate Arne</h3>
+            <p class="text-slate-600 text-sm md:text-[15px] leading-6">Undergraduate Research Assistant</p>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-sm text-slate-600">
+      © 2025 EXPHR Lab · Emory University
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
+      const menu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
+      const closeIcon = document.getElementById('close-icon');
+      const isHidden = menu.classList.contains('hidden');
+      
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        menuIcon?.classList.add('hidden');
+        closeIcon?.classList.remove('hidden');
+        this.setAttribute('aria-expanded', 'true');
+      } else {
+        menu.classList.add('hidden');
+        menuIcon?.classList.remove('hidden');
+        closeIcon?.classList.add('hidden');
+        this.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // ESC key to close dropdowns
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.getElementById('news-dropdown')?.classList.add('hidden');
+        document.getElementById('contact-dropdown')?.classList.add('hidden');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+          const menuButton = document.getElementById('mobile-menu-button');
+          const menuIcon = document.getElementById('menu-icon');
+          const closeIcon = document.getElementById('close-icon');
+          menuIcon?.classList.remove('hidden');
+          closeIcon?.classList.add('hidden');
+          menuButton?.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+  </script>
+</body>
 </html>

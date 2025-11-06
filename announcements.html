@@ -25,21 +25,28 @@
           <a href="/projects.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Projects</a>
           <a href="/publications.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Publications</a>
           <!-- News & Highlights Dropdown -->
-            <div class="relative" id="news-dropdown-wrapper" style="z-index: 50;">
-            <button 
-              type="button"
-              id="news-dropdown-button"
-              class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition relative flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded px-1"
-              aria-haspopup="menu"
-              aria-expanded="false"
-            >
-              <span>News &amp; Highlights</span>
-              <svg id="news-chevron" class="w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
+          <div class="relative" id="news-dropdown-wrapper" style="z-index: 50;">
+            <div class="flex items-center gap-1">
+              <a 
+                href="/news-highlights.html"
+                class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition relative focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded px-1"
+              >
+                <span>News &amp; Highlights</span>
+              </a>
+              <button 
+                type="button"
+                id="news-dropdown-button"
+                class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition relative flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded px-1"
+                aria-haspopup="menu"
+                aria-expanded="false"
+              >
+                <svg id="news-chevron" class="w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
             <div 
-              id="news-dropdown" class="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2 opacity-0 invisible pointer-events-none transform translate-y-[-8px] transition-all duration-200 ease-out z-50 top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2""
+              id="news-dropdown" class="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2 opacity-0 invisible pointer-events-none -translate-y-2 transition-all duration-200 ease-out z-50 top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2""
               role="menu"
             >
               <a href="/announcements.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors" role="menuitem">Announcements</a>
@@ -63,14 +70,14 @@
               </svg>
             </button>
             <div 
-              id="contact-dropdown" class="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2 opacity-0 invisible pointer-events-none transform translate-y-[-8px] transition-all duration-200 ease-out z-50 top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2""
+              id="contact-dropdown" class="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2 opacity-0 invisible pointer-events-none -translate-y-2 transition-all duration-200 ease-out z-50 top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2""
               role="menu"
             >
               <a href="/join-our-study.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors" role="menuitem">Join Our Study</a>
               <div class="border-t border-slate-100 my-1"></div>
-              <a href="/contact.html#opportunities" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors" role="menuitem">Opportunities</a>
+              <a href="/opportunities.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors" role="menuitem">Opportunities</a>
               <div class="border-t border-slate-100 my-1"></div>
-              <a href="/contact.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors" role="menuitem">Get In Touch</a>
+              <a href="/get-in-touch.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors" role="menuitem">Get In Touch</a>
             </div>
           </div>
         </div>
@@ -123,9 +130,9 @@
         function openDropdown() {
           if (isOpen) return;
           clearTimeout(closeTimeout);
-          dropdown.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
+          dropdown.classList.remove('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
             dropdown.classList.add('opacity-100', 'visible', 'pointer-events-auto');
-            dropdown.classList.remove('translate-y-[-8px]');
+            dropdown.classList.remove('-translate-y-2');
             dropdown.classList.add('translate-y-0');
           button.setAttribute('aria-expanded', 'true');
           if (chevron) chevron.classList.add('rotate-180');
@@ -143,7 +150,7 @@
           clearTimeout(closeTimeout);
           closeTimeout = setTimeout(() => {
             dropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
-              dropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', 'translate-y-[-8px]');
+              dropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
             button.setAttribute('aria-expanded', 'false');
             if (chevron) chevron.classList.remove('rotate-180');
             isOpen = false;
@@ -153,7 +160,7 @@
         function closeDropdownImmediate() {
           clearTimeout(closeTimeout);
           dropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
-              dropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', 'translate-y-[-8px]');
+              dropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
           button.setAttribute('aria-expanded', 'false');
           if (chevron) chevron.classList.remove('rotate-180');
           isOpen = false;

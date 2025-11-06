@@ -185,7 +185,7 @@
             button.setAttribute('aria-expanded', 'false');
             if (chevron) chevron.classList.remove('rotate-180');
             isOpen = false;
-          }, 100);
+          }, 200);
         }
 
         function closeDropdownImmediate() {
@@ -198,20 +198,40 @@
         }
 
         // Desktop: hover behavior (immediate show on hover)
-        if (!isMobile) {
-          wrapper.addEventListener('mouseenter', () => {
-            clearTimeout(closeTimeout);
-            openDropdown();
-          });
+            if (!isMobile) {
+              // Add hover to wrapper
+              wrapper.addEventListener('mouseenter', () => {
+                clearTimeout(closeTimeout);
+                openDropdown();
+              });
 
-          wrapper.addEventListener('mouseleave', closeDropdown);
+              wrapper.addEventListener('mouseleave', closeDropdown);
 
-          dropdown.addEventListener('mouseenter', () => {
-            clearTimeout(closeTimeout);
-          });
+              // Add hover to button
+              button.addEventListener('mouseenter', () => {
+                clearTimeout(closeTimeout);
+                openDropdown();
+              });
 
-          dropdown.addEventListener('mouseleave', closeDropdown);
-        }
+              // Add hover to link (for News & Highlights)
+              const link = wrapper.querySelector('a[href="/news-highlights.html"]');
+              if (link) {
+                link.addEventListener('mouseenter', () => {
+                  clearTimeout(closeTimeout);
+                  openDropdown();
+                });
+              }
+
+              // Keep dropdown open when hovering over it
+              dropdown.addEventListener('mouseenter', () => {
+                              clearTimeout(closeTimeout);
+                              // Ensure dropdown stays open
+                              if (!isOpen) {
+                                openDropdown();
+                              };
+
+              dropdown.addEventListener('mouseleave', closeDropdown);
+            }
 
         // Click to toggle (works on both desktop and mobile)
             button.addEventListener('click', (e) => {

@@ -370,13 +370,14 @@
             function closeDropdown() {
               if (!isOpen) return;
               clearTimeout(closeTimeout);
+              // Use a small delay to allow moving from button to dropdown
               closeTimeout = setTimeout(() => {
                 dropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
                 dropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
                 button.setAttribute('aria-expanded', 'false');
                 if (chevron) chevron.classList.remove('rotate-180');
                 isOpen = false;
-              }, 100);
+              }, 200); // Increased delay to 200ms for smoother transition
             }
 
             function closeDropdownImmediate() {
@@ -388,8 +389,9 @@
               isOpen = false;
             }
 
-            // Desktop: hover behavior (immediate show on hover) (immediate show on hover)
+            // Desktop: hover behavior (immediate show on hover)
             if (!isMobile) {
+              // Add hover to wrapper
               wrapper.addEventListener('mouseenter', () => {
                 clearTimeout(closeTimeout);
                 openDropdown();
@@ -397,9 +399,28 @@
 
               wrapper.addEventListener('mouseleave', closeDropdown);
 
-              dropdown.addEventListener('mouseenter', () => {
+              // Add hover to button
+              button.addEventListener('mouseenter', () => {
                 clearTimeout(closeTimeout);
+                openDropdown();
               });
+
+              // Add hover to link (for News & Highlights)
+              const link = wrapper.querySelector('a[href="/news-highlights.html"]');
+              if (link) {
+                link.addEventListener('mouseenter', () => {
+                  clearTimeout(closeTimeout);
+                  openDropdown();
+                });
+              }
+
+              // Keep dropdown open when hovering over it
+              dropdown.addEventListener('mouseenter', () => {
+                              clearTimeout(closeTimeout);
+                              // Ensure dropdown stays open
+                              if (!isOpen) {
+                                openDropdown();
+                              };
 
               dropdown.addEventListener('mouseleave', closeDropdown);
             }

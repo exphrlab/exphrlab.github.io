@@ -113,7 +113,7 @@
         }
 
         function initDropdowns() {
-          const isMobile = window.matchMedia('(max-width: 768px)').matches;
+          const isMobile = window.matchMedia('(max-width: 768px)').matches && 'ontouchstart' in window && !window.matchMedia('(hover: hover)').matches;
       let hoverTimeout = null;
       const HOVER_DELAY = 150;
 
@@ -171,16 +171,17 @@
         }
 
         // Desktop: hover behavior (immediate show on hover)
-            if (!isMobile) {
-              // Add hover to wrapper
-              wrapper.addEventListener('mouseenter', () => {
+            // Always enable hover on desktop, only disable on true mobile devices
+            if (!isMobile || window.matchMedia('(hover: hover)').matches) {
+              // Add hover to wrapper - this is the main trigger
+              const handleWrapperEnter = () => {
                 clearTimeout(closeTimeout);
                 openDropdown();
-              });
-
+              };
+              wrapper.addEventListener('mouseenter', handleWrapperEnter);
               wrapper.addEventListener('mouseleave', closeDropdown);
 
-              // Add hover to button
+              // Add hover to button as backup
               button.addEventListener('mouseenter', () => {
                 clearTimeout(closeTimeout);
                 openDropdown();
@@ -197,11 +198,12 @@
 
               // Keep dropdown open when hovering over it
               dropdown.addEventListener('mouseenter', () => {
-                              clearTimeout(closeTimeout);
-                              // Ensure dropdown stays open
-                              if (!isOpen) {
-                                openDropdown();
-                              };
+                clearTimeout(closeTimeout);
+                // Ensure dropdown stays open
+                if (!isOpen) {
+                  openDropdown();
+                }
+              });
 
               dropdown.addEventListener('mouseleave', closeDropdown);
             }

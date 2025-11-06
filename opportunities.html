@@ -159,7 +159,7 @@
       }
 
       function initDropdowns() {
-        const isMobile = window.matchMedia('(max-width: 768px)').matches;
+        const isMobile = window.matchMedia('(max-width: 768px)').matches && 'ontouchstart' in window && !window.matchMedia('(hover: hover)').matches;
 
         function setupDropdown(dropdownId, buttonId, wrapperId) {
           const dropdown = document.getElementById(dropdownId);

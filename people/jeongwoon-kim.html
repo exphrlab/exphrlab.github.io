@@ -24,9 +24,9 @@
 </head>
 <body class="text-slate-800 antialiased font-sans">
   <!-- Header -->
-  <header role="banner" class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16">
-      <nav aria-label="Primary" class="flex items-center justify-between h-full">
+  <header role="banner" class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200" overflow-visible>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16" overflow-visible>
+      <nav aria-label="Primary" class="flex items-center justify-between h-full" overflow-visible>
         <!-- Left: Brand + Tagline -->
         <a href="/index.html" class="flex items-center gap-3 min-w-0 hover:opacity-80 transition-opacity">
           <span class="font-semibold tracking-tight whitespace-nowrap text-slate-900 text-base sm:text-lg">EXPHR Lab</span>
@@ -54,8 +54,7 @@
               </svg>
             </button>
             <div 
-              id="news-dropdown" 
-              class="hidden absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2" style="z-index: 1000;""
+              id="news-dropdown" class="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2 opacity-0 invisible pointer-events-none transform translate-y-[-8px] transition-all duration-200 ease-out z-50 top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2""
               role="menu"
             >
               <a href="/announcements.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors" role="menuitem">Announcements</a>
@@ -79,8 +78,7 @@
               </svg>
             </button>
             <div 
-              id="contact-dropdown" 
-              class="hidden absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2" style="z-index: 1000;""
+              id="contact-dropdown" class="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2 opacity-0 invisible pointer-events-none transform translate-y-[-8px] transition-all duration-200 ease-out z-50 top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2""
               role="menu"
             >
               <a href="/join-our-study.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors" role="menuitem">Join Our Study</a>
@@ -173,7 +171,10 @@
         function openDropdown() {
           if (isOpen) return;
           clearTimeout(closeTimeout);
-          dropdown.classList.remove('hidden');
+          dropdown.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
+            dropdown.classList.add('opacity-100', 'visible', 'pointer-events-auto');
+            dropdown.classList.remove('translate-y-[-8px]');
+            dropdown.classList.add('translate-y-0');
           button.setAttribute('aria-expanded', 'true');
           if (chevron) chevron.classList.add('rotate-180');
           isOpen = true;
@@ -189,26 +190,28 @@
           if (!isOpen) return;
           clearTimeout(closeTimeout);
           closeTimeout = setTimeout(() => {
-            dropdown.classList.add('hidden');
+            dropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
+              dropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', 'translate-y-[-8px]');
             button.setAttribute('aria-expanded', 'false');
             if (chevron) chevron.classList.remove('rotate-180');
             isOpen = false;
-          }, HOVER_DELAY);
+          }, 100);
         }
 
         function closeDropdownImmediate() {
           clearTimeout(closeTimeout);
-          dropdown.classList.add('hidden');
+          dropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
+              dropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', 'translate-y-[-8px]');
           button.setAttribute('aria-expanded', 'false');
           if (chevron) chevron.classList.remove('rotate-180');
           isOpen = false;
         }
 
-        // Desktop: hover behavior
+        // Desktop: hover behavior (immediate show on hover)
         if (!isMobile) {
           wrapper.addEventListener('mouseenter', () => {
             clearTimeout(closeTimeout);
-            hoverTimeout = setTimeout(openDropdown, HOVER_DELAY);
+            openDropdown();
           });
 
           wrapper.addEventListener('mouseleave', closeDropdown);
@@ -220,19 +223,29 @@
           dropdown.addEventListener('mouseleave', closeDropdown);
         }
 
-        // Mobile: tap to expand/collapse
-        if (isMobile) {
-          button.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (isOpen) {
-              closeDropdownImmediate();
-            } else {
-              // Close other dropdowns
-              document.querySelectorAll('[role="menu"]').forEach(menu => {
-                if (menu !== dropdown && !menu.classList.contains('hidden')) {
-                  menu.classList.add('hidden');
-                  const otherButton = document.querySelector(`[aria-controls="${menu.id}"]`) || 
+        // Click to toggle (works on both desktop and mobile)
+            button.addEventListener('click', (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              if (isOpen) {
+                closeDropdownImmediate();
+              } else {
+                // Close other dropdowns
+                document.querySelectorAll('[role="menu"]').forEach(menu => {
+                  if (menu !== dropdown && !menu.classList.contains('hidden')) {
+                    menu.classList.add('hidden');
+                    const otherButton = document.querySelector(`[aria-controls="${menu.id}"]`) || 
+                                      document.querySelector(`button[aria-expanded="true"]`);
+                    if (otherButton) {
+                      otherButton.setAttribute('aria-expanded', 'false');
+                      const otherChevron = otherButton.querySelector('svg');
+                      if (otherChevron) otherChevron.classList.remove('rotate-180');
+                    }
+                  }
+                });
+                openDropdown();
+              }
+            });"]`) || 
                                     document.querySelector(`button[aria-expanded="true"]`);
                   if (otherButton) {
                     otherButton.setAttribute('aria-expanded', 'false');
@@ -284,7 +297,7 @@
         // Focus management
         button.addEventListener('focus', () => {
           if (!isMobile) {
-            hoverTimeout = setTimeout(openDropdown, HOVER_DELAY);
+            openDropdown();
           }
         });
 

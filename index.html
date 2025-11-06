@@ -43,9 +43,9 @@
 
   <body class="text-slate-800 antialiased font-sans bg-white">
     <!-- ===== Header ===== -->
-    <header role="banner" class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16">
-        <nav aria-label="Primary" class="flex items-center justify-between h-full">
+    <header role="banner" class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm overflow-visible">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16 overflow-visible">
+        <nav aria-label="Primary" class="flex items-center justify-between h-full overflow-visible">
           <!-- Left: Brand + Tagline -->
           <a href="/index.html" class="flex items-center gap-3 min-w-0 hover:opacity-80 transition-opacity">
             <span class="font-semibold tracking-tight whitespace-nowrap text-slate-900 text-base sm:text-lg">EXPHR Lab</span>
@@ -86,9 +86,8 @@
               </button>
               <div 
                 id="news-dropdown" 
-                class="hidden absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2"
+                class="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2 opacity-0 invisible pointer-events-none transform translate-y-[-8px] transition-all duration-200 ease-out z-50"
                 role="menu"
-                style="z-index: 1000;"
               >
                 <a href="/announcements.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors" role="menuitem">Announcements</a>
                 <div class="border-t border-slate-100 my-1"></div>
@@ -112,9 +111,8 @@
               </button>
               <div 
                 id="contact-dropdown" 
-                class="hidden absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2"
+                class="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2 opacity-0 invisible pointer-events-none transform translate-y-[-8px] transition-all duration-200 ease-out z-50"
                 role="menu"
-                style="z-index: 1000;"
               >
                 <a href="/join-our-study.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors" role="menuitem">Join Our Study</a>
                 <div class="border-t border-slate-100 my-1"></div>
@@ -349,7 +347,10 @@
             function openDropdown() {
               if (isOpen) return;
               clearTimeout(closeTimeout);
-              dropdown.classList.remove('hidden');
+              dropdown.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
+              dropdown.classList.add('opacity-100', 'visible', 'pointer-events-auto');
+              dropdown.classList.remove('translate-y-[-8px]');
+              dropdown.classList.add('translate-y-0');
               button.setAttribute('aria-expanded', 'true');
               if (chevron) chevron.classList.add('rotate-180');
               isOpen = true;
@@ -365,26 +366,28 @@
               if (!isOpen) return;
               clearTimeout(closeTimeout);
               closeTimeout = setTimeout(() => {
-                dropdown.classList.add('hidden');
+                dropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
+                dropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', 'translate-y-[-8px]');
                 button.setAttribute('aria-expanded', 'false');
                 if (chevron) chevron.classList.remove('rotate-180');
                 isOpen = false;
-              }, HOVER_DELAY);
+              }, 100);
             }
 
             function closeDropdownImmediate() {
               clearTimeout(closeTimeout);
-              dropdown.classList.add('hidden');
+              dropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
+              dropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', 'translate-y-[-8px]');
               button.setAttribute('aria-expanded', 'false');
               if (chevron) chevron.classList.remove('rotate-180');
               isOpen = false;
             }
 
-            // Desktop: hover behavior
+            // Desktop: hover behavior (immediate show on hover) (immediate show on hover)
             if (!isMobile) {
               wrapper.addEventListener('mouseenter', () => {
                 clearTimeout(closeTimeout);
-                hoverTimeout = setTimeout(openDropdown, HOVER_DELAY);
+                openDropdown();
               });
 
               wrapper.addEventListener('mouseleave', closeDropdown);
@@ -458,7 +461,7 @@
             // Focus management
             button.addEventListener('focus', () => {
               if (!isMobile) {
-                hoverTimeout = setTimeout(openDropdown, HOVER_DELAY);
+                openDropdown();
               }
             });
 

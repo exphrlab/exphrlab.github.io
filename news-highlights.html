@@ -239,28 +239,31 @@
             }
 
           // Click to toggle (works on both desktop and mobile)
-          button.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (isOpen) {
-              closeDropdownImmediate();
-            } else {
-              // Close other dropdowns
-              document.querySelectorAll('[role="menu"]').forEach(menu => {
-                if (menu !== dropdown && !menu.classList.contains('hidden')) {
-                  menu.classList.add('hidden');
-                  const otherButton = document.querySelector(`[aria-controls="${menu.id}"]`) || 
-                                    document.querySelector(`button[aria-expanded="true"]`);
-                  if (otherButton) {
-                    otherButton.setAttribute('aria-expanded', 'false');
-                    const otherChevron = otherButton.querySelector('svg');
-                    if (otherChevron) otherChevron.classList.remove('rotate-180');
+                      button.addEventListener('click', (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              // Force open on click, even if hover already opened it
+              if (isOpen) {
+                closeDropdownImmediate();
+              } else {
+                // Close other dropdowns first
+                document.querySelectorAll('[role="menu"]').forEach(menu => {
+                  if (menu !== dropdown) {
+                    menu.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
+                    menu.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
+                    const otherButton = document.querySelector(`[aria-controls="${menu.id}"]`) || 
+                                      document.querySelector(`button[aria-expanded="true"]`);
+                    if (otherButton && otherButton !== button) {
+                      otherButton.setAttribute('aria-expanded', 'false');
+                      const otherChevron = otherButton.querySelector('svg');
+                      if (otherChevron) otherChevron.classList.remove('rotate-180');
+                    }
                   }
-                }
-              });
-              openDropdown();
-            }
-          });
+                });
+                // Always open on click
+                openDropdown();
+              }
+            }, true); // Use capture phase to ensure it fires
 
           // Keyboard navigation
           button.addEventListener('keydown', (e) => {

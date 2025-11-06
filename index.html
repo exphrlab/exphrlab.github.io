@@ -3,34 +3,78 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="EXPHR Lab - Exercise for Precision Health and Rehabilitation at Emory University. Research on healthy aging, exercise, and brain health." />
     <title>Home · EXPHR Lab</title>
 
-    <!-- 기존 스타일 (필요시 유지). 충돌 나면 이 줄을 잠시 주석 처리해 테스트하세요. -->
+    <!-- Styles -->
     <link rel="stylesheet" href="./assets/style.css?v=17">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Tailwind (CDN) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              serif: ['Merriweather', 'Georgia', 'Cambria', 'serif'],
+              sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            },
+            colors: {
+              'emory-navy': '#0B3D91',
+              'accent-blue': '#2F6BFF',
+            },
+            animation: {
+              'fadeInUp': 'fadeInUp 0.4s ease-out',
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
   </head>
 
-  <body class="text-slate-800 antialiased">
+  <body class="text-slate-800 antialiased font-sans bg-white">
     <!-- ===== Header ===== -->
-    <header role="banner" class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+    <header role="banner" class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16">
         <nav aria-label="Primary" class="flex items-center justify-between h-full">
           <!-- Left: Brand + Tagline -->
           <a href="/index.html" class="flex items-center gap-3 min-w-0 hover:opacity-80 transition-opacity">
-            <span class="font-semibold tracking-tight whitespace-nowrap text-slate-900">EXPHR Lab</span>
+            <span class="font-semibold tracking-tight whitespace-nowrap text-slate-900 text-base sm:text-lg">EXPHR Lab</span>
             <span class="text-slate-500 text-xs sm:text-sm whitespace-nowrap truncate max-w-[40vw] md:max-w-none">Exercise for Precision Health and Rehabilitation</span>
           </a>
 
           <!-- Right: Menu Links -->
-          <div class="flex flex-nowrap items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 whitespace-nowrap overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-2 md:py-0">
-            <a href="/index.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Home</a>
-            <a href="/people.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Our Team</a>
-            <a href="/projects.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Projects</a>
-            <a href="/publications.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Publications</a>
+          <div class="flex flex-nowrap items-center gap-5 sm:gap-6 md:gap-8 whitespace-nowrap overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-2 md:py-0">
+            <a href="/index.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition relative group">
+              <span class="relative">Home</span>
+              <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+            </a>
+            <a href="/people.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition relative group">
+              <span class="relative">Our Team</span>
+              <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+            </a>
+            <a href="/projects.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition relative group">
+              <span class="relative">Projects</span>
+              <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+            </a>
+            <a href="/publications.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition relative group">
+              <span class="relative">Publications</span>
+              <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+            </a>
             <div class="relative group" onmouseleave="setTimeout(() => {document.getElementById('news-dropdown').classList.add('hidden')}, 200)">
-              <a href="/highlights.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('news-dropdown').classList.remove('hidden')" onfocus="document.getElementById('news-dropdown').classList.remove('hidden')">News &amp; Highlights</a>
+              <a href="/highlights.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition relative" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('news-dropdown').classList.remove('hidden')" onfocus="document.getElementById('news-dropdown').classList.remove('hidden')">
+                <span class="relative">News &amp; Highlights</span>
+                <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+              </a>
               <div id="news-dropdown" class="hidden absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-200 z-50 py-2" role="menu" onmouseenter="document.getElementById('news-dropdown').classList.remove('hidden')" onmouseleave="setTimeout(() => {document.getElementById('news-dropdown').classList.add('hidden')}, 200)">
                 <a href="/announcements.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Announcements</a>
                 <div class="border-t border-slate-100 my-1"></div>
@@ -38,7 +82,10 @@
               </div>
             </div>
             <div class="relative group" onmouseleave="setTimeout(() => {document.getElementById('contact-dropdown').classList.add('hidden')}, 200)">
-              <a href="/contact.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('contact-dropdown').classList.remove('hidden')" onfocus="document.getElementById('contact-dropdown').classList.remove('hidden')">Contact</a>
+              <a href="/contact.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition relative" aria-haspopup="true" aria-expanded="false" onmouseenter="document.getElementById('contact-dropdown').classList.remove('hidden')" onfocus="document.getElementById('contact-dropdown').classList.remove('hidden')">
+                <span class="relative">Contact</span>
+                <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+              </a>
               <div id="contact-dropdown" class="hidden absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-200 z-50 py-2 transition-all duration-200" role="menu" onmouseenter="document.getElementById('contact-dropdown').classList.remove('hidden')" onmouseleave="setTimeout(() => {document.getElementById('contact-dropdown').classList.add('hidden')}, 200)">
                 <a href="/join-our-study.html" class="block px-3 py-2 text-slate-700 hover:bg-slate-50 transition-colors" role="menuitem">Join Our Study</a>
                 <div class="border-t border-slate-100 my-1"></div>
@@ -54,63 +101,238 @@
 
     <!-- ===== Main ===== -->
     <main>
-      <!-- 페이지 상단 여백/바 -->
-      <div class="h-3 bg-gradient-to-r from-blue-600/20 to-cyan-500/20"></div>
+      <!-- Hero Section -->
+      <section class="pt-1 md:pt-2 pb-1 md:pb-2 bg-gradient-to-br from-slate-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4">
+            <img
+              src="assets/media/emory-university.jpeg"
+              alt="Emory University"
+              class="max-w-full w-[480px]"
+              loading="eager"
+            />
+            <img
+              src="assets/media/Lab-Logo-Wide-Transparent-Final.png"
+              alt="EXPHR Lab Logo"
+              class="max-w-full w-[420px] drop-shadow-md"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </section>
 
-      <!-- About 섹션 -->
-      <section class="py-12 md:py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-          <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">About EXPHR Lab</h1>
-          <div class="h-[3px] w-40 bg-gradient-to-r from-sky-300 to-emerald-200 rounded-full mt-2"></div>
+      <!-- About Section -->
+      <section class="py-8 md:py-12 lg:py-16 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-8">
+            <h2 class="font-serif font-bold tracking-tight text-[clamp(24px,3.2vw,32px)] text-slate-900 mb-2">About EXPHR Lab</h2>
+            <div class="h-[3px] w-40 bg-gradient-to-r from-sky-300 to-emerald-200 rounded-full mx-auto"></div>
+          </div>
 
-          <div class="mt-8">
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            <!-- 왼쪽 텍스트 -->
-            <div class="prose prose-slate max-w-none">
-              <p>
+          <div class="max-w-4xl mx-auto mt-6">
+            <div class="prose prose-slate max-w-none text-center text-base md:text-lg leading-relaxed">
+              <p class="text-slate-700 mb-4">
                 At ExPHR, we are dedicated to supporting healthy aging through
                 evidence-based lifestyle change. Our mission is to help midlife
                 and older adults — with and without chronic health conditions —
                 adopt sustainable habits in exercise, nutrition, and sleep that
                 protect long-term brain and body health.
               </p>
-              <p>
+              <p class="text-slate-700 mb-4">
                 Our research investigates the neural and psychological mechanisms
                 that drive behavior change and resilience, with a particular focus
                 on how exercise can support brain function as we age. We also
                 develop music-based interventions to support rehabilitation in
                 individuals with neurologic impairments.
               </p>
-              <p>
+              <p class="text-slate-700 mb-6">
                 Ultimately, our goal is to create accessible, enjoyable, and lasting
                 physical activity strategies that empower older adults to maintain
                 independence, enhance quality of life, and promote optimal aging.
               </p>
 
-              <p class="mt-6">
+              <p class="text-slate-700">
                 If you are interested in working with our lab, please
-                <a href="/contact.html" class="text-blue-700 hover:underline">contact us</a>.
+                <a href="/contact.html" class="text-accent-blue hover:text-emory-navy hover:underline underline-offset-4 transition-colors">contact us</a>.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <!-- 오른쪽 로고 -->
-            <div class="justify-self-center md:justify-self-end">
-              <img
-                src="assets/media/Lab-Logo-Wide-Transparent-Final.png"
-                alt="EXPHR Lab Logo"
-                class="max-w-full w-[420px] drop-shadow-md"
-                loading="lazy"
-              />
+      <!-- Highlights Strip -->
+      <section class="pt-4 md:pt-6 pb-8 md:pb-12 lg:pb-16 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- ISTEP Card -->
+            <a href="/projects.html#istep" class="group rounded-2xl border border-slate-200/70 bg-white shadow-sm hover:shadow-md transition-all duration-200 p-6">
+              <div class="flex items-start justify-between mb-4">
+                <img src="assets/media/istep.png" alt="ISTEP" class="h-12 object-contain" loading="lazy" />
+                <svg class="w-5 h-5 text-slate-400 group-hover:text-accent-blue transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+              <h3 class="font-semibold text-slate-900 mb-2">ISTEP</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Music-supported physical activity program for healthy aging and brain health.</p>
+            </a>
+
+            <!-- TRAC Card -->
+            <a href="/projects.html#trac" class="group rounded-2xl border border-slate-200/70 bg-white shadow-sm hover:shadow-md transition-all duration-200 p-6">
+              <div class="flex items-start justify-between mb-4">
+                <img src="assets/media/trac.png" alt="TRAC" class="h-12 object-contain" loading="lazy" />
+                <svg class="w-5 h-5 text-slate-400 group-hover:text-accent-blue transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+              <h3 class="font-semibold text-slate-900 mb-2">TRAC</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Investigating exercise and daily behaviors that support brain–cardio resilience.</p>
+            </a>
+
+            <!-- Lab News Card -->
+            <a href="/highlights.html" class="group rounded-2xl border border-slate-200/70 bg-white shadow-sm hover:shadow-md transition-all duration-200 p-6">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                  </svg>
+                </div>
+                <svg class="w-5 h-5 text-slate-400 group-hover:text-accent-blue transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+              <h3 class="font-semibold text-slate-900 mb-2">Lab News</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Latest updates, announcements, and highlights from our research.</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ongoing Studies -->
+      <section class="py-8 md:py-12 lg:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="font-serif font-bold tracking-tight text-[clamp(24px,3.2vw,32px)] text-slate-900 mb-8">Ongoing Studies</h2>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- ISTEP Study Card -->
+            <div class="rounded-2xl border border-slate-200/70 bg-white shadow-sm hover:shadow-md transition-all duration-200 p-6">
+              <h3 class="font-serif font-bold text-2xl text-slate-900 mb-3">ISTEP</h3>
+              <p class="text-slate-700 leading-relaxed mb-6">
+                Inspiring Seniors Toward Exercise Promotion (ISTEP) is a music-supported, habit-building physical activity program for midlife and older adults designed to improve brain and heart health.
+              </p>
+              <a 
+                href="https://redcap.emory.edu/surveys/?s=8KTKWARLPKDW7EEA"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors shadow-md hover:shadow-lg"
+              >
+                Sign Up
+              </a>
+            </div>
+
+            <!-- TRAC Study Card -->
+            <div class="rounded-2xl border border-slate-200/70 bg-white shadow-sm hover:shadow-md transition-all duration-200 p-6">
+              <h3 class="font-serif font-bold text-2xl text-slate-900 mb-3">TRAC</h3>
+              <p class="text-slate-700 leading-relaxed mb-6">
+                TRAC investigates how exercise and daily behaviors support brain–cardio resilience, tracking cognitive and affective changes to understand mechanisms linking movement, mood, and long-term health.
+              </p>
+              <a 
+                href="https://redcap.emory.edu/surveys/?s=8EHXNANLX3H8FWNC"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors shadow-md hover:shadow-lg"
+              >
+                Sign Up
+              </a>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- Recent Publications Preview -->
+      <section class="py-8 md:py-12 lg:py-16 bg-slate-50/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between mb-8">
+            <h2 class="font-serif font-bold tracking-tight text-[clamp(24px,3.2vw,32px)] text-slate-900">Recent Publications</h2>
+            <a href="/publications.html" class="text-accent-blue hover:text-emory-navy font-medium transition-colors flex items-center gap-2">
+              View all
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+          <div class="space-y-4">
+            <div class="rounded-xl border border-slate-200/70 bg-white p-5 shadow-sm hover:shadow-md transition-shadow">
+              <h3 class="font-semibold text-slate-900 mb-2">[Publication Title Placeholder]</h3>
+              <p class="text-sm text-slate-600">Journal Name · 2024</p>
+            </div>
+            <div class="rounded-xl border border-slate-200/70 bg-white p-5 shadow-sm hover:shadow-md transition-shadow">
+              <h3 class="font-semibold text-slate-900 mb-2">[Publication Title Placeholder]</h3>
+              <p class="text-sm text-slate-600">Journal Name · 2024</p>
+            </div>
+            <div class="rounded-xl border border-slate-200/70 bg-white p-5 shadow-sm hover:shadow-md transition-shadow">
+              <h3 class="font-semibold text-slate-900 mb-2">[Publication Title Placeholder]</h3>
+              <p class="text-sm text-slate-600">Journal Name · 2023</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Our Team Teaser -->
+      <section class="py-8 md:py-12 lg:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col md:flex-row items-center gap-8 rounded-2xl border border-slate-200/70 bg-white shadow-sm p-8">
+            <img 
+              src="assets/media/Park.jpg" 
+              alt="Kyoung Shin Park, Ph.D." 
+              class="w-32 h-32 rounded-full object-cover shadow-md"
+              loading="lazy"
+            />
+            <div class="flex-1 text-center md:text-left">
+              <h2 class="font-serif font-bold text-2xl text-slate-900 mb-2">Meet Our Team</h2>
+              <p class="text-slate-700 mb-4 leading-relaxed">
+                Our diverse team of researchers, postdocs, and students is dedicated to advancing knowledge in exercise science, rehabilitation, and healthy aging.
+              </p>
+              <a href="/people.html" class="inline-flex items-center text-accent-blue hover:text-emory-navy font-medium transition-colors">
+                View all team members
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact & Location -->
+      <section class="py-8 md:py-12 lg:py-16 bg-slate-50/50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h2 class="font-serif font-bold text-2xl text-slate-900 mb-4">Contact</h2>
+              <p class="text-slate-700 mb-4 leading-relaxed">
+                Emory University School of Medicine<br />
+                Department of Rehabilitation Medicine
+              </p>
+              <p class="text-slate-700 mb-4">
+                <a href="mailto:istep@emory.edu" class="text-accent-blue hover:text-emory-navy hover:underline underline-offset-4 transition-colors">istep@emory.edu</a>
+              </p>
+              <p class="text-slate-700">
+                <a href="tel:+14047278919" class="text-accent-blue hover:text-emory-navy hover:underline underline-offset-4 transition-colors">404-727-8919</a>
+              </p>
+            </div>
+            <div>
+              <h2 class="font-serif font-bold text-2xl text-slate-900 mb-4">Location</h2>
+              <p class="text-slate-700 leading-relaxed">
+                Emory University<br />
+                Atlanta, Georgia
+              </p>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
     <!-- ===== Footer ===== -->
-    <footer class="border-t">
+    <footer class="border-t border-slate-200 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-sm text-slate-600">
         © 2025 EXPHR Lab · Emory University
       </div>

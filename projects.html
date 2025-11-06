@@ -20,27 +20,27 @@
 
         <!-- Right: Menu Links -->
         <div class="flex flex-nowrap items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 whitespace-nowrap overflow-x-auto overflow-y-visible [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-2 md:py-0">
-          <a href="/index.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Home</a>
-          <a href="/people.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Our Team</a>
-          <a href="/projects.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Projects</a>
-          <a href="/publications.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Publications</a>
+          <a href="/index.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Home</a>
+          <a href="/people.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Our Team</a>
+          <a href="/projects.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Projects</a>
+          <a href="/publications.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Publications</a>
           <!-- News & Highlights Dropdown -->
-          <div class="relative" id="news-dropdown-wrapper" style="z-index: 50;">
-            <div class="flex items-center gap-1">
+          <div class="relative" id="news-dropdown-wrapper" shrink-0 style="z-index: 50;">
+            <div class="flex items-center gap-0.5">
               <a 
                 href="/news-highlights.html"
-                class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition relative focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded px-1"
+                class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded px-1"
               >
                 <span>News &amp; Highlights</span>
               </a>
               <button 
                 type="button"
                 id="news-dropdown-button"
-                class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition relative flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded px-1"
+                class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded px-1"
                 aria-haspopup="menu"
                 aria-expanded="false"
               >
-                <svg id="news-chevron" class="w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <svg id="news-chevron" class="w-3 h-3 transition-transform shrink-0 duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
@@ -54,16 +54,16 @@
           </div>
 
           <!-- Contact Dropdown -->
-            <div class="relative" id="contact-dropdown-wrapper" style="z-index: 50;">
+            <div class="relative" id="contact-dropdown-wrapper" shrink-0 style="z-index: 50;">
             <button 
               type="button"
               id="contact-dropdown-button"
-              class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition relative flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded px-1"
+              class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded px-1 whitespace-nowrap"
               aria-haspopup="menu"
               aria-expanded="false"
             >
               <span>Contact</span>
-              <svg id="contact-chevron" class="w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <svg id="contact-chevron" class="w-3 h-3 transition-transform shrink-0 duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
@@ -88,45 +88,98 @@
       <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">Projects</h1>
       <div class="h-[3px] w-40 bg-gradient-to-r from-sky-300 to-emerald-200 rounded-full mt-2"></div>
 
-      <div class="mt-8">
-      <!-- ISTEP -->
-      <section class="py-6">
-        <div class="grid grid-cols-1 md:grid-cols-[280px,1fr] gap-6 md:gap-10 items-start">
-          <div class="border rounded-xl overflow-hidden bg-white shadow-sm flex items-center justify-center p-4">
-            <img src="assets/media/istep.png" alt="ISTEP logo" class="w-full h-auto object-contain max-h-56">
-          </div>
-          <div>
-            <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 mb-3">iSTEP</h2>
-            <div class="text-slate-700 leading-relaxed space-y-4">
-              <p>iSTEP (Inspiring Seniors Toward Exercise Promotion) is a research study exploring how to best support older adults in developing regular exercise habits.</p>
-              <p>Designed for adults aged 65 and older who are not currently exercising regularly, the study examines how personalized music playlists may enhance motivation, enjoyment, and psychological responses during exercise — and whether music can help make physical activity more sustainable over time.</p>
-              <p>Participants take part in a 6-month hybrid exercise program. They are randomly assigned to exercise with music or without music, and engage in band-based strength training (such as squats, deadlifts, and bicep curls) to support muscle function and healthy aging. In addition, they complete about 150 minutes of aerobic activity per week, following the national physical activity guidelines for older adults, to promote cardiovascular health and endurance.</p>
-              <p>The program gradually transitions participants toward independent exercise — starting with supervised sessions three days per week, tapering to once per week, and eventually moving into self-directed workouts.</p>
-              <p>Our long-term goal is to help older adults build lasting, enjoyable, and safe exercise routines that enhance both health and quality of life.</p>
+      <!-- Funded Projects Section -->
+      <section class="mt-10 mb-12">
+        <h2 class="text-xl md:text-2xl font-bold tracking-tight text-slate-900 mb-6">Funded Projects</h2>
+        <div class="space-y-4">
+          <!-- Project 1 -->
+          <div class="bg-white border border-slate-200 rounded-lg p-4 md:p-5 shadow-sm hover:shadow transition-shadow">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
+              <h3 class="text-base md:text-lg font-semibold text-slate-900">NIH/NIA (R61/R33 AG084479)</h3>
+              <span class="text-xs text-slate-500 font-medium whitespace-nowrap">PI</span>
             </div>
+            <p class="text-xs text-slate-500 mb-2">
+              <span class="font-medium">9/15/2023 - 8/31/2028</span>
+            </p>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Unraveling the mechanisms of a novel music intervention for physical activity promotion in older adults
+            </p>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="bg-white border border-slate-200 rounded-lg p-4 md:p-5 shadow-sm hover:shadow transition-shadow">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
+              <h3 class="text-base md:text-lg font-semibold text-slate-900">Alzheimer's Association Research Fellowship</h3>
+              <span class="text-xs text-slate-500 font-medium whitespace-nowrap">PI</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-2">
+              <span class="font-medium">11/1/2023 - 10/31/2026</span>
+            </p>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Music stimulation for physical activity of older adults at risk of dementia
+            </p>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="bg-white border border-slate-200 rounded-lg p-4 md:p-5 shadow-sm hover:shadow transition-shadow">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
+              <h3 class="text-base md:text-lg font-semibold text-slate-900">NIH/NIA (R01 AG058919)</h3>
+              <span class="text-xs text-slate-500 font-medium whitespace-nowrap">Co-I</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-2">
+              <span class="font-medium">8/1/2018 - 3/31/2025</span>
+            </p>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              The effect of physical activity on cognition relative to APOE genotype
+            </p>
           </div>
         </div>
       </section>
 
-      <hr class="my-6 border-slate-200">
+      <hr class="my-10 border-slate-200">
 
-      <!-- TRAC -->
-      <section class="py-6">
-        <div class="grid grid-cols-1 md:grid-cols-[280px,1fr] gap-6 md:gap-10 items-start">
-          <div class="border rounded-xl overflow-hidden bg-white shadow-sm flex items-center justify-center p-4">
-            <img src="assets/media/trac.png" alt="TRAC logo" class="w-full h-auto object-contain max-h-56">
+      <!-- Ongoing Projects Section -->
+      <section class="mt-10 mb-12">
+        <h2 class="text-xl md:text-2xl font-bold tracking-tight text-slate-900 mb-6">Ongoing Projects</h2>
+        
+        <!-- ISTEP -->
+        <div class="mb-8">
+          <div class="grid grid-cols-1 md:grid-cols-[280px,1fr] gap-6 md:gap-10 items-start">
+            <div class="border rounded-xl overflow-hidden bg-white shadow-sm flex items-center justify-center p-4">
+              <img src="assets/media/istep.png" alt="ISTEP logo" class="w-full h-auto object-contain max-h-56">
+            </div>
+            <div>
+              <h3 class="text-xl md:text-2xl font-bold tracking-tight text-slate-900 mb-3">iSTEP</h3>
+              <div class="text-slate-700 leading-relaxed space-y-4">
+                <p>iSTEP (Inspiring Seniors Toward Exercise Promotion) is a research study exploring how to best support older adults in developing regular exercise habits.</p>
+                <p>Designed for adults aged 65 and older who are not currently exercising regularly, the study examines how personalized music playlists may enhance motivation, enjoyment, and psychological responses during exercise — and whether music can help make physical activity more sustainable over time.</p>
+                <p>Participants take part in a 6-month hybrid exercise program. They are randomly assigned to exercise with music or without music, and engage in band-based strength training (such as squats, deadlifts, and bicep curls) to support muscle function and healthy aging. In addition, they complete about 150 minutes of aerobic activity per week, following the national physical activity guidelines for older adults, to promote cardiovascular health and endurance.</p>
+                <p>The program gradually transitions participants toward independent exercise — starting with supervised sessions three days per week, tapering to once per week, and eventually moving into self-directed workouts.</p>
+                <p>Our long-term goal is to help older adults build lasting, enjoyable, and safe exercise routines that enhance both health and quality of life.</p>
+              </div>
+            </div>
           </div>
-          <div>
-            <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 mb-3">TRAC</h2>
-            <div class="text-slate-700 leading-relaxed space-y-4">
-              <p>TRAC (Tracking Risk Factors and Activity for Cognitive Health) is a longitudinal research study examining how everyday lifestyle factors influence cognitive health across adulthood and aging. The study focuses on identifying which baseline habits — including diet, physical activity, sleep, and body composition — may contribute to age-related changes in cognition, and how changes in these behaviors over time may shape cognitive decline or resilience. We also investigate the underlying physiological and biomarker mechanisms that help explain how lifestyle factors protect the brain throughout the aging process.</p>
-              <p>Participants complete cognitive and physical assessments, the ASA24 Dietary Intake Tool, and the InBody Body Composition Analysis every six months. Individuals are invited (but not required) to continue participation for up to ten years, allowing us to track longitudinal changes over time. Although this study does not provide treatment, participants receive personalized results from these assessments, including vascular health measures, body composition data, cognitive scores from the NIH Toolbox (standardized to national norms), and physical performance outcomes.</p>
-              <p>TRAC is designed to advance scientific understanding of how lifestyle behaviors contribute to cognitive aging — while also providing participants with meaningful feedback to help them stay informed and proactive about their health as they age.</p>
+        </div>
+
+        <hr class="my-6 border-slate-200">
+
+        <!-- TRAC -->
+        <div>
+          <div class="grid grid-cols-1 md:grid-cols-[280px,1fr] gap-6 md:gap-10 items-start">
+            <div class="border rounded-xl overflow-hidden bg-white shadow-sm flex items-center justify-center p-4">
+              <img src="assets/media/trac.png" alt="TRAC logo" class="w-full h-auto object-contain max-h-56">
+            </div>
+            <div>
+              <h3 class="text-xl md:text-2xl font-bold tracking-tight text-slate-900 mb-3">TRAC</h3>
+              <div class="text-slate-700 leading-relaxed space-y-4">
+                <p>TRAC (Tracking Risk Factors and Activity for Cognitive Health) is a longitudinal research study examining how everyday lifestyle factors influence cognitive health across adulthood and aging. The study focuses on identifying which baseline habits — including diet, physical activity, sleep, and body composition — may contribute to age-related changes in cognition, and how changes in these behaviors over time may shape cognitive decline or resilience. We also investigate the underlying physiological and biomarker mechanisms that help explain how lifestyle factors protect the brain throughout the aging process.</p>
+                <p>Participants complete cognitive and physical assessments, the ASA24 Dietary Intake Tool, and the InBody Body Composition Analysis every six months. Individuals are invited (but not required) to continue participation for up to ten years, allowing us to track longitudinal changes over time. Although this study does not provide treatment, participants receive personalized results from these assessments, including vascular health measures, body composition data, cognitive scores from the NIH Toolbox (standardized to national norms), and physical performance outcomes.</p>
+                <p>TRAC is designed to advance scientific understanding of how lifestyle behaviors contribute to cognitive aging — while also providing participants with meaningful feedback to help them stay informed and proactive about their health as they age.</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
-      </div>
     </div>
   </main>
 

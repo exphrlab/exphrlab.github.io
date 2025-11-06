@@ -45,15 +45,20 @@
     <!-- ===== Header ===== -->
     <header role="banner" class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm overflow-visible">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16 overflow-visible">
-        <nav aria-label="Primary" class="flex items-center justify-between h-full overflow-visible">
-          <!-- Left: Brand + Tagline -->
-          <a href="/index.html" class="flex items-center gap-3 min-w-0 hover:opacity-80 transition-opacity">
+        <nav aria-label="Primary" class="flex items-center justify-between h-full overflow-visible gap-6 md:gap-8">
+          <!-- Left: Brand -->
+          <a href="/index.html" class="flex items-center gap-3 md:gap-4 min-w-0 hover:opacity-80 transition-opacity">
+            <img
+              src="assets/media/lab-logo-2.png"
+              alt="EXPHR Lab"
+              class="h-10 md:h-12 lg:h-14 w-auto object-contain"
+              loading="eager"
+            />
             <span class="font-semibold tracking-tight whitespace-nowrap text-slate-900 text-base sm:text-lg">EXPHR Lab</span>
-            <span class="text-slate-500 text-xs sm:text-sm whitespace-nowrap truncate max-w-[40vw] md:max-w-none">Exercise for Precision Health and Rehabilitation</span>
           </a>
 
         <!-- Right: Menu Links -->
-        <div class="flex flex-nowrap items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 whitespace-nowrap overflow-x-auto overflow-y-visible [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-2 md:py-0">
+        <div class="flex flex-nowrap items-center gap-5 sm:gap-6 md:gap-7 lg:gap-9 whitespace-nowrap overflow-x-auto overflow-y-visible [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-2 md:py-0 ml-6 md:ml-10">
           <a href="/index.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative group shrink-0 shrink-0">
             <span class="relative">Home</span>
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
@@ -146,12 +151,7 @@
               src="assets/media/emory-university.jpeg"
               alt="Emory University"
               class="max-w-full w-[480px]"
-              loading="eager"
-            />
-            <img
-              src="assets/media/Lab-Logo-Wide-Transparent-Final.png"
-              alt="EXPHR Lab Logo"
-              class="max-w-full w-[420px] drop-shadow-md"
+              style="mix-blend-mode: multiply; background: transparent; border: none; outline: none;"
               loading="eager"
             />
           </div>
@@ -169,7 +169,7 @@
           <div class="max-w-4xl mx-auto mt-6">
             <div class="prose prose-slate max-w-none text-center text-base md:text-lg leading-relaxed">
               <p class="text-slate-700 mb-4">
-                At ExPHR (Exercise for Precision Health and Rehabilitation), we are dedicated to supporting healthy aging through evidence-based lifestyle interventions.
+                <strong>At ExPHR (Exercise for Precision Health and Rehabilitation)</strong>, we are dedicated to supporting healthy aging through evidence-based lifestyle interventions.
               </p>
               <p class="text-slate-700 mb-4">
                 Our mission is to help midlife and older adults — with and without chronic health conditions — adopt sustainable habits in exercise, nutrition, and sleep that promote long-term brain and body health.

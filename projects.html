@@ -19,29 +19,28 @@
         </a>
 
         <!-- Right: Menu Links -->
-        <div class="flex flex-nowrap items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 whitespace-nowrap overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-2 md:py-0">
+        <div class="flex flex-nowrap items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 whitespace-nowrap overflow-x-auto overflow-y-visible [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-2 md:py-0">
           <a href="/index.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Home</a>
           <a href="/people.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Our Team</a>
           <a href="/projects.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Projects</a>
           <a href="/publications.html" class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition hover:underline underline-offset-8 decoration-2">Publications</a>
           <!-- News & Highlights Dropdown -->
-          <div class="relative group" id="news-dropdown-wrapper">
+            <div class="relative" id="news-dropdown-wrapper" style="z-index: 50;">
             <button 
               type="button"
               id="news-dropdown-button"
-              class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition relative group flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded"
+              class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition relative flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded px-1"
               aria-haspopup="menu"
               aria-expanded="false"
             >
-              <span class="relative">News &amp; Highlights</span>
-              <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+              <span>News &amp; Highlights</span>
               <svg id="news-chevron" class="w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
             <div 
               id="news-dropdown" 
-              class="hidden absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 z-50 py-2 min-w-max"
+              class="hidden absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2" style="z-index: 1000;""
               role="menu"
             >
               <a href="/announcements.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors" role="menuitem">Announcements</a>
@@ -51,23 +50,22 @@
           </div>
 
           <!-- Contact Dropdown -->
-          <div class="relative group" id="contact-dropdown-wrapper">
+            <div class="relative" id="contact-dropdown-wrapper" style="z-index: 50;">
             <button 
               type="button"
               id="contact-dropdown-button"
-              class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition relative group flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded"
+              class="text-[14px] sm:text-[15px] lg:text-base font-medium text-slate-700 hover:text-slate-900 transition relative flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded px-1"
               aria-haspopup="menu"
               aria-expanded="false"
             >
-              <span class="relative">Contact</span>
-              <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+              <span>Contact</span>
               <svg id="contact-chevron" class="w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
             <div 
               id="contact-dropdown" 
-              class="hidden absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 z-50 py-2 min-w-max"
+              class="hidden absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2" style="z-index: 1000;""
               role="menu"
             >
               <a href="/join-our-study.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors" role="menuitem">Join Our Study</a>
@@ -95,17 +93,13 @@
             <img src="assets/media/istep.png" alt="ISTEP logo" class="w-full h-auto object-contain max-h-56">
           </div>
           <div>
-            <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 mb-3">ISTEP</h2>
-            <p class="text-slate-700 leading-relaxed">Inspiring Seniors Toward Exercise Promotion (ISTEP) is a music-supported, habit-building physical activity program for midlife and older adults. We combine rhythmic auditory stimulation with progressive, enjoyable exercise to improve brain and heart health while building sustainable daily movement.</p>
-            <ul class="mt-3 text-slate-700 list-disc pl-5 space-y-1">
-              <li>Population: midlife to older adults with/without chronic conditions</li>
-              <li>Approach: music-cued walking and strength, goal-setting, coaching</li>
-              <li>Outcomes: adherence, fitness, cognition, and quality of life</li>
-            </ul>
-            <div class="mt-4 flex flex-wrap gap-2 text-sm">
-              <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">ongoing</span>
-              <span class="px-2.5 py-1 rounded-full bg-blue-100 text-blue-700">exercise</span>
-              <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700">aging</span>
+            <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 mb-3">iSTEP</h2>
+            <div class="text-slate-700 leading-relaxed space-y-4">
+              <p>iSTEP (Inspiring Seniors Toward Exercise Promotion) is a research study exploring how to best support older adults in developing regular exercise habits.</p>
+              <p>Designed for adults aged 65 and older who are not currently exercising regularly, the study examines how personalized music playlists may enhance motivation, enjoyment, and psychological responses during exercise — and whether music can help make physical activity more sustainable over time.</p>
+              <p>Participants take part in a 6-month hybrid exercise program. They are randomly assigned to exercise with music or without music, and engage in band-based strength training (such as squats, deadlifts, and bicep curls) to support muscle function and healthy aging. In addition, they complete about 150 minutes of aerobic activity per week, following the national physical activity guidelines for older adults, to promote cardiovascular health and endurance.</p>
+              <p>The program gradually transitions participants toward independent exercise — starting with supervised sessions three days per week, tapering to once per week, and eventually moving into self-directed workouts.</p>
+              <p>Our long-term goal is to help older adults build lasting, enjoyable, and safe exercise routines that enhance both health and quality of life.</p>
             </div>
           </div>
         </div>
@@ -121,16 +115,10 @@
           </div>
           <div>
             <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 mb-3">TRAC</h2>
-            <p class="text-slate-700 leading-relaxed">TRAC investigates how exercise and daily behaviors support brain–cardio resilience. We track cognitive and affective changes alongside physiological markers to understand mechanisms linking movement, mood, and long-term health.</p>
-            <ul class="mt-3 text-slate-700 list-disc pl-5 space-y-1">
-              <li>Focus: neural and psychological mechanisms of behavior change</li>
-              <li>Measures: cognition, mood, activity, and cardiorespiratory indices</li>
-              <li>Goal: personalized, enjoyable strategies for sustained activity</li>
-            </ul>
-            <div class="mt-4 flex flex-wrap gap-2 text-sm">
-              <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">ongoing</span>
-              <span class="px-2.5 py-1 rounded-full bg-purple-100 text-purple-700">neuroscience</span>
-              <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-700">behavior</span>
+            <div class="text-slate-700 leading-relaxed space-y-4">
+              <p>TRAC (Tracking Risk Factors and Activity for Cognitive Health) is a longitudinal research study examining how everyday lifestyle factors influence cognitive health across adulthood and aging. The study focuses on identifying which baseline habits — including diet, physical activity, sleep, and body composition — may contribute to age-related changes in cognition, and how changes in these behaviors over time may shape cognitive decline or resilience. We also investigate the underlying physiological and biomarker mechanisms that help explain how lifestyle factors protect the brain throughout the aging process.</p>
+              <p>Participants complete cognitive and physical assessments, the ASA24 Dietary Intake Tool, and the InBody Body Composition Analysis every six months. Individuals are invited (but not required) to continue participation for up to ten years, allowing us to track longitudinal changes over time. Although this study does not provide treatment, participants receive personalized results from these assessments, including vascular health measures, body composition data, cognitive scores from the NIH Toolbox (standardized to national norms), and physical performance outcomes.</p>
+              <p>TRAC is designed to advance scientific understanding of how lifestyle behaviors contribute to cognitive aging — while also providing participants with meaningful feedback to help them stay informed and proactive about their health as they age.</p>
             </div>
           </div>
         </div>
@@ -149,7 +137,15 @@
   <script>
     // Dropdown management utility
     (function() {
-      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      // Wait for DOM to be ready
+        if (document.readyState === \'loading\') {
+          document.addEventListener(\'DOMContentLoaded\', initDropdowns);
+        } else {
+          initDropdowns();
+        }
+
+        function initDropdowns() {
+          const isMobile = window.matchMedia('(max-width: 768px)').matches;
       let hoverTimeout = null;
       const HOVER_DELAY = 150;
 
@@ -157,9 +153,12 @@
         const dropdown = document.getElementById(dropdownId);
         const button = document.getElementById(buttonId);
         const wrapper = document.getElementById(wrapperId);
-        if (!dropdown || !button || !wrapper) return;
+        if (!dropdown || !button || !wrapper) {
+            console.warn(\'Dropdown elements not found:\', { dropdownId, buttonId, wrapperId });
+            return;
+          }
 
-        let isOpen = false;
+                  let isOpen = false;
         let closeTimeout = null;
 
         const chevron = button.querySelector('svg');
@@ -299,13 +298,11 @@
           });
         }
       }
-
-      // Initialize dropdowns
-      setupDropdown('news-dropdown', 'news-dropdown-button', 'news-dropdown-wrapper');
+          // Initialize dropdowns
+          setupDropdown('news-dropdown', 'news-dropdown-button', 'news-dropdown-wrapper');
       setupDropdown('contact-dropdown', 'contact-dropdown-button', 'contact-dropdown-wrapper');
-
-      // Handle window resize
-      let resizeTimer;
+          // Handle window resize
+          let resizeTimer;
       window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {

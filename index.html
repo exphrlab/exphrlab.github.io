@@ -161,28 +161,20 @@
           <div class="max-w-4xl mx-auto mt-6">
             <div class="prose prose-slate max-w-none text-center text-base md:text-lg leading-relaxed">
               <p class="text-slate-700 mb-4">
-                At ExPHR, we are dedicated to supporting healthy aging through
-                evidence-based lifestyle change. Our mission is to help midlife
-                and older adults — with and without chronic health conditions —
-                adopt sustainable habits in exercise, nutrition, and sleep that
-                protect long-term brain and body health.
+                At ExPHR (Exercise for Precision Health and Rehabilitation), we are dedicated to supporting healthy aging through evidence-based lifestyle interventions.
               </p>
               <p class="text-slate-700 mb-4">
-                Our research investigates the neural and psychological mechanisms
-                that drive behavior change and resilience, with a particular focus
-                on how exercise can support brain function as we age. We also
-                develop music-based interventions to support rehabilitation in
-                individuals with neurologic impairments.
+                Our mission is to help midlife and older adults — with and without chronic health conditions — adopt sustainable habits in exercise, nutrition, and sleep that promote long-term brain and body health.
+              </p>
+              <p class="text-slate-700 mb-4">
+                Our research investigates the neural, physiological, and psychological mechanisms that drive behavior change and resilience, with a particular focus on how exercise supports brain function and cognitive health across the aging process. We also design music-based interventions to enhance rehabilitation and motivation among individuals with neurologic or mobility limitations.
               </p>
               <p class="text-slate-700 mb-6">
-                Ultimately, our goal is to create accessible, enjoyable, and lasting
-                physical activity strategies that empower older adults to maintain
-                independence, enhance quality of life, and promote optimal aging.
+                Ultimately, our goal is to develop accessible, enjoyable, and lasting physical activity strategies that empower older adults to maintain independence, improve quality of life, and promote optimal aging.
               </p>
 
               <p class="text-slate-700">
-                If you are interested in working with our lab, please
-                <a href="/contact.html" class="text-accent-blue hover:text-emory-navy hover:underline underline-offset-4 transition-colors">contact us</a>.
+                If you are interested in learning more or collaborating with our lab, please <a href="/contact.html" class="text-blue-600 hover:text-blue-700 hover:underline underline-offset-4 transition-colors">contact us</a>.
               </p>
             </div>
           </div>
@@ -404,31 +396,29 @@
               dropdown.addEventListener('mouseleave', closeDropdown);
             }
 
-            // Mobile: tap to expand/collapse
-            if (isMobile) {
-              button.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                if (isOpen) {
-                  closeDropdownImmediate();
-                } else {
-                  // Close other dropdowns
-                  document.querySelectorAll('[role="menu"]').forEach(menu => {
-                    if (menu !== dropdown && !menu.classList.contains('hidden')) {
-                      menu.classList.add('hidden');
-                      const otherButton = document.querySelector(`[aria-controls="${menu.id}"]`) || 
-                                        document.querySelector(`button[aria-expanded="true"]`);
-                      if (otherButton) {
-                        otherButton.setAttribute('aria-expanded', 'false');
-                        const otherChevron = otherButton.querySelector('svg');
-                        if (otherChevron) otherChevron.classList.remove('rotate-180');
-                      }
+            // Click to toggle (works on both desktop and mobile)
+            button.addEventListener('click', (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              if (isOpen) {
+                closeDropdownImmediate();
+              } else {
+                // Close other dropdowns
+                document.querySelectorAll('[role="menu"]').forEach(menu => {
+                  if (menu !== dropdown && !menu.classList.contains('hidden')) {
+                    menu.classList.add('hidden');
+                    const otherButton = document.querySelector(`[aria-controls="${menu.id}"]`) || 
+                                      document.querySelector(`button[aria-expanded="true"]`);
+                    if (otherButton) {
+                      otherButton.setAttribute('aria-expanded', 'false');
+                      const otherChevron = otherButton.querySelector('svg');
+                      if (otherChevron) otherChevron.classList.remove('rotate-180');
                     }
-                  });
-                  openDropdown();
-                }
-              });
-            }
+                  }
+                });
+                openDropdown();
+              }
+            });
 
             // Keyboard navigation
             button.addEventListener('keydown', (e) => {

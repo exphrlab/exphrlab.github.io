@@ -251,26 +251,38 @@
     </header>
 
   <main class="bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16">
-      <div class="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
-        <!-- Left: Photo -->
-        <div class="flex-shrink-0 w-full md:w-1/3">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+      <!-- Back link -->
+      <a href="../people.html" class="inline-flex items-center text-sm text-slate-600 hover:text-slate-900 transition-colors mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to Our Team
+      </a>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <!-- Left: Photo and Info -->
+        <div class="md:col-span-4">
           <img 
             src="../assets/media/Joy.jpg" 
             alt="Jiyeong (Joy) Hong" 
             loading="lazy" 
-            class="w-full max-w-[280px] mx-auto md:mx-0 rounded-full object-cover object-center shadow-lg"
-          >
+            class="w-56 h-56 rounded-full object-cover object-center shadow-sm mx-auto md:mx-0 mb-6"
+          />
+          
+          <!-- Name and Title -->
+          <h1 class="font-serif font-semibold tracking-tight text-2xl md:text-3xl text-slate-900 mb-2">Jiyeong (Joy) Hong, MMEd</h1>
+          <h2 class="text-slate-600 text-base md:text-lg mb-6">Research Technician</h2>
         </div>
 
-        <!-- Right: Description -->
-        <div class="flex-1">
-          <h1 class="font-serif font-semibold tracking-tight text-[28px] sm:text-[32px] md:text-[36px] text-slate-900 mb-2">Jiyeong (Joy) Hong, MMEd</h1>
-          <p class="text-slate-600 text-sm md:text-[15px] leading-6 mb-8">Research Technician</p>
-          
-          <!-- Bio Section -->
+        <!-- Right: Content -->
+        <div class="md:col-span-8">
+          <!-- Divider -->
+          <hr class="border-slate-200 my-8" />
+
+          <!-- Bio -->
           <section>
-            <h2 class="text-xl md:text-2xl font-bold text-slate-900 mb-4">Biography</h2>
+            <h3 class="font-serif font-bold text-xl md:text-2xl text-slate-900 mb-4">Bio</h3>
             <div class="prose prose-slate max-w-none">
               <p class="text-slate-700 leading-relaxed mb-4">
                 [Bio placeholder text. This section will contain a brief biography of Jiyeong (Joy) Hong, including their research interests, background, and contributions to the lab.]

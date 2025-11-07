@@ -236,17 +236,6 @@ footer {
 /* =======================================================
    Contact Dropdown Hover Fallback (Universal CSS)
    ======================================================= */
-/* Ensure dropdown is hidden by default */
-#contact-dropdown { 
-  display: none; 
-}
-
-/* Show dropdown on hover or focus-within */
-#contact-dropdown-wrapper:hover #contact-dropdown,
-#contact-dropdown-wrapper:focus-within #contact-dropdown { 
-  display: block; 
-}
-
 /* Ensure overflow is visible for dropdown to show */
 header, 
 nav, 
@@ -255,7 +244,30 @@ nav,
 }
 
 /* Ensure dropdown has proper positioning and z-index */
-#contact-dropdown { 
-  position: absolute; 
-  z-index: 1000; 
+#contact-dropdown-wrapper #contact-dropdown {
+  position: absolute !important;
+  z-index: 1000 !important;
+}
+
+/* CSS Fallback: Force show dropdown on hover (override ALL Tailwind classes) */
+/* This ensures the dropdown works even if Tailwind's group-hover fails */
+/* Must use very high specificity to override Tailwind's utility classes */
+@media (min-width: 768px) {
+  #contact-dropdown-wrapper:hover #contact-dropdown,
+  #contact-dropdown-wrapper.group:hover #contact-dropdown {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+}
+
+/* Focus-within fallback for keyboard navigation */
+#contact-dropdown-wrapper:focus-within #contact-dropdown {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateY(0) !important;
 }

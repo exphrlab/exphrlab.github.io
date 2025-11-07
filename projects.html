@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Projects · EXPHR Lab</title>
   <link rel="stylesheet" href="./assets/style.css?v=17">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -13,8 +16,272 @@
           fontFamily: {
             serif: ['Merriweather', 'Georgia', 'Cambria', 'serif'],
             sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          colors: {
+            'emory-navy': '#0B3D91',
+            'accent-blue': '#2F6BFF',
           }
         }
       }
     }
   </script>
+  <style>
+    /* Contact Dropdown Hover Fallback (Inline - loads after Tailwind) */
+    @media (min-width: 768px) {
+      #contact-dropdown-wrapper:hover #contact-dropdown.hidden,
+      #contact-dropdown-wrapper.group:hover #contact-dropdown.hidden,
+      #contact-dropdown-wrapper:hover #contact-dropdown {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translateY(0) !important;
+      }
+    }
+    #contact-dropdown-wrapper:focus-within #contact-dropdown.hidden,
+    #contact-dropdown-wrapper:focus-within #contact-dropdown {
+      display: block !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+  </style>
+</head>
+<body class="text-slate-800 antialiased font-sans bg-white">
+  <!-- Header -->
+  <header role="banner" class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm overflow-visible">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16 overflow-visible">
+        <nav aria-label="Primary" class="flex items-center justify-between h-full overflow-visible gap-6 md:gap-8">
+          <!-- Left: Brand -->
+          <a href="/index.html" class="flex items-center gap-0.5 md:gap-1 min-w-0 hover:opacity-80 transition-opacity shrink-0">
+            <img
+              src="assets/media/lab-logo-2.png"
+              alt="EXPHR Lab"
+              class="h-10 md:h-12 lg:h-14 w-auto object-contain shrink-0"
+              loading="eager"
+            />
+            <div class="flex items-center gap-2 md:gap-3 min-w-0">
+              <span class="font-semibold tracking-tight whitespace-nowrap text-slate-900 text-base sm:text-lg shrink-0">EXPHR Lab</span>
+              <span class="text-slate-500 text-xs sm:text-sm whitespace-nowrap shrink-0 hidden sm:inline">Exercise for Precision Health and Rehabilitation</span>
+            </div>
+          </a>
+
+        <!-- Right: Menu Links -->
+        <div class="flex flex-nowrap items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 whitespace-nowrap overflow-x-auto overflow-y-visible [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-2 md:py-0 ml-4 md:ml-6 shrink-0">
+          <a href="/index.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative group shrink-0">
+            <span class="relative">Home</span>
+            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+          </a>
+          <a href="/people.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative group shrink-0">
+            <span class="relative">Our Team</span>
+            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+          </a>
+          <a href="/projects.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative group shrink-0">
+            <span class="relative">Projects</span>
+            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+          </a>
+          <a href="/publications.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative group shrink-0">
+            <span class="relative">Publications</span>
+            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+          </a>
+          <!-- News Link -->
+          <a href="/news-highlights.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap">
+            <span class="relative">News</span>
+            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+          </a>
+
+          <a href="/lab-gallery.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap">
+            <span class="relative">Lab Gallery</span>
+            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+          </a>
+
+          <!-- Contact Dropdown -->
+          <div class="relative shrink-0 group pt-2 -mt-2 pb-2 -mb-2" id="contact-dropdown-wrapper" style="z-index: 50;">
+            <a 
+              href="./contact.html"
+              class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative flex items-center gap-1 whitespace-nowrap"
+              id="contact-link"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              aria-controls="contact-dropdown"
+            >
+              <span>Contact</span>
+              <svg id="contact-chevron" class="w-3 h-3 transition-transform shrink-0 duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+            <div 
+              id="contact-dropdown"
+              class="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2
+                     hidden opacity-0 translate-y-1 pointer-events-none
+                     md:group-hover:block md:group-hover:opacity-100 md:group-hover:translate-y-0 md:group-hover:pointer-events-auto
+                     transition-all duration-150 ease-out z-50"
+              role="menu"
+              aria-labelledby="contact-link"
+            >
+              <a href="./contact.html#join-our-study" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Join Our Study</a>
+              <div class="border-t border-slate-100 my-1"></div>
+              <a href="./contact.html#opportunities" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Opportunities</a>
+              <div class="border-t border-slate-100 my-1"></div>
+              <a href="./contact.html#form" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Get In Touch</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+  <!-- Main Content -->
+  <main class="bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16">
+      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">Projects</h1>
+      <div class="h-[3px] w-40 bg-gradient-to-r from-sky-300 to-emerald-200 rounded-full mt-2"></div>
+
+      <!-- Funded Projects Section -->
+      <section class="mt-10 mb-12">
+        <h2 class="text-xl md:text-2xl font-bold tracking-tight text-slate-900 mb-6">Funded Projects</h2>
+        <div class="space-y-4">
+          <!-- Project 1 -->
+          <div class="bg-white border border-slate-200 rounded-lg p-4 md:p-5 shadow-sm hover:shadow transition-shadow">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
+              <h3 class="text-base md:text-lg font-semibold text-slate-900">NIH/NIA (R61/R33 AG084479)</h3>
+              <span class="text-xs text-slate-500 font-medium whitespace-nowrap">PI</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-2">
+              <span class="font-medium">9/15/2023 - 8/31/2028</span>
+            </p>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Unraveling the mechanisms of a novel music intervention for physical activity promotion in older adults
+            </p>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="bg-white border border-slate-200 rounded-lg p-4 md:p-5 shadow-sm hover:shadow transition-shadow">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
+              <h3 class="text-base md:text-lg font-semibold text-slate-900">Alzheimer's Association Research Fellowship</h3>
+              <span class="text-xs text-slate-500 font-medium whitespace-nowrap">PI</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-2">
+              <span class="font-medium">11/1/2023 - 10/31/2026</span>
+            </p>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Music stimulation for physical activity of older adults at risk of dementia
+            </p>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="bg-white border border-slate-200 rounded-lg p-4 md:p-5 shadow-sm hover:shadow transition-shadow">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
+              <h3 class="text-base md:text-lg font-semibold text-slate-900">NIH/NIA (R01 AG058919)</h3>
+              <span class="text-xs text-slate-500 font-medium whitespace-nowrap">Co-I</span>
+            </div>
+            <p class="text-xs text-slate-500 mb-2">
+              <span class="font-medium">8/1/2018 - 3/31/2025</span>
+            </p>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              The effect of physical activity on cognition relative to APOE genotype
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <hr class="my-10 border-slate-200">
+
+      <!-- Ongoing Projects Section -->
+      <section class="mt-10 mb-12">
+        <h2 class="text-xl md:text-2xl font-bold tracking-tight text-slate-900 mb-6">Ongoing Projects</h2>
+        
+        <!-- ISTEP -->
+        <div class="mb-8">
+          <div class="grid grid-cols-1 md:grid-cols-[280px,1fr] gap-6 md:gap-10 items-start">
+            <div class="border rounded-xl overflow-hidden bg-white shadow-sm flex items-center justify-center p-4">
+              <img src="assets/media/istep.png" alt="ISTEP logo" class="w-full h-auto object-contain max-h-56">
+            </div>
+            <div>
+              <h3 class="text-xl md:text-2xl font-bold tracking-tight text-slate-900 mb-3">iSTEP</h3>
+              <div class="text-slate-700 leading-relaxed space-y-4">
+                <p>iSTEP (Inspiring Seniors Toward Exercise Promotion) is a research study exploring how to best support older adults in developing regular exercise habits.</p>
+                <p>Designed for adults aged 65 and older who are not currently exercising regularly, the study examines how personalized music playlists may enhance motivation, enjoyment, and psychological responses during exercise — and whether music can help make physical activity more sustainable over time.</p>
+                <p>Participants take part in a 6-month hybrid exercise program. They are randomly assigned to exercise with music or without music, and engage in band-based strength training (such as squats, deadlifts, and bicep curls) to support muscle function and healthy aging. In addition, they complete about 150 minutes of aerobic activity per week, following the national physical activity guidelines for older adults, to promote cardiovascular health and endurance.</p>
+                <p>The program gradually transitions participants toward independent exercise — starting with supervised sessions three days per week, tapering to once per week, and eventually moving into self-directed workouts.</p>
+                <p>Our long-term goal is to help older adults build lasting, enjoyable, and safe exercise routines that enhance both health and quality of life.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-6 border-slate-200">
+
+        <!-- TRAC -->
+        <div>
+          <div class="grid grid-cols-1 md:grid-cols-[280px,1fr] gap-6 md:gap-10 items-start">
+            <div class="border rounded-xl overflow-hidden bg-white shadow-sm flex items-center justify-center p-4">
+              <img src="assets/media/trac.png" alt="TRAC logo" class="w-full h-auto object-contain max-h-56">
+            </div>
+            <div>
+              <h3 class="text-xl md:text-2xl font-bold tracking-tight text-slate-900 mb-3">TRAC</h3>
+              <div class="text-slate-700 leading-relaxed space-y-4">
+                <p>TRAC (Tracking Risk Factors and Activity for Cognitive Health) is a longitudinal research study examining how everyday lifestyle factors influence cognitive health across adulthood and aging. The study focuses on identifying which baseline habits — including diet, physical activity, sleep, and body composition — may contribute to age-related changes in cognition, and how changes in these behaviors over time may shape cognitive decline or resilience. We also investigate the underlying physiological and biomarker mechanisms that help explain how lifestyle factors protect the brain throughout the aging process.</p>
+                <p>Participants complete cognitive and physical assessments, the ASA24 Dietary Intake Tool, and the InBody Body Composition Analysis every six months. Individuals are invited (but not required) to continue participation for up to ten years, allowing us to track longitudinal changes over time. Although this study does not provide treatment, participants receive personalized results from these assessments, including vascular health measures, body composition data, cognitive scores from the NIH Toolbox (standardized to national norms), and physical performance outcomes.</p>
+                <p>TRAC is designed to advance scientific understanding of how lifestyle behaviors contribute to cognitive aging — while also providing participants with meaningful feedback to help them stay informed and proactive about their health as they age.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 bg-white mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-sm text-slate-600">
+      © 2025 EXPHR Lab · Emory University
+    </div>
+  </footer>
+
+  <script>
+    // Mobile-only toggle for Contact dropdown (desktop uses pure CSS hover)
+    document.addEventListener('DOMContentLoaded', () => {
+      const wrapper = document.getElementById('contact-dropdown-wrapper');
+      const link = document.getElementById('contact-link');
+      const menu = document.getElementById('contact-dropdown');
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      if (!wrapper || !link || !menu || !isMobile) return;
+      
+      link.addEventListener('click', (e) => {
+        // Prevent navigating to contact.html on mobile; we want to open the menu
+        e.preventDefault();
+        const isHidden = menu.classList.contains('hidden');
+        if (isHidden) menu.classList.remove('hidden', 'opacity-0', 'pointer-events-none');
+        else menu.classList.add('hidden', 'opacity-0', 'pointer-events-none');
+      });
+      
+      document.addEventListener('click', (e) => {
+        if (!wrapper.contains(e.target)) {
+          menu.classList.add('hidden', 'opacity-0', 'pointer-events-none');
+        }
+      });
+    });
+
+    // Mobile menu toggle (if exists)
+    document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
+      const menu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
+      const closeIcon = document.getElementById('close-icon');
+      const isHidden = menu.classList.contains('hidden');
+      
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        menuIcon?.classList.add('hidden');
+        closeIcon?.classList.remove('hidden');
+        this.setAttribute('aria-expanded', 'true');
+      } else {
+        menu.classList.add('hidden');
+        menuIcon?.classList.remove('hidden');
+        closeIcon?.classList.add('hidden');
+        this.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+</body>
+</html>

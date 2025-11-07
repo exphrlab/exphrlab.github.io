@@ -9,6 +9,28 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Contact Dropdown Hover Fallback (Inline - loads after Tailwind) */
+    @media (min-width: 768px) {
+      #contact-dropdown-wrapper:hover #contact-dropdown.hidden,
+      #contact-dropdown-wrapper.group:hover #contact-dropdown.hidden,
+      #contact-dropdown-wrapper:hover #contact-dropdown {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translateY(0) !important;
+      }
+    }
+    #contact-dropdown-wrapper:focus-within #contact-dropdown.hidden,
+    #contact-dropdown-wrapper:focus-within #contact-dropdown {
+      display: block !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+  </style>
   <script>
     tailwind.config = {
       theme: {

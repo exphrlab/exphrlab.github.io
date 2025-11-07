@@ -21,6 +21,28 @@
       }
     }
   </script>
+  <style>
+    /* Contact Dropdown Hover Fallback (Inline - loads after Tailwind) */
+    @media (min-width: 768px) {
+      #contact-dropdown-wrapper:hover #contact-dropdown.hidden,
+      #contact-dropdown-wrapper.group:hover #contact-dropdown.hidden,
+      #contact-dropdown-wrapper:hover #contact-dropdown {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translateY(0) !important;
+      }
+    }
+    #contact-dropdown-wrapper:focus-within #contact-dropdown.hidden,
+    #contact-dropdown-wrapper:focus-within #contact-dropdown {
+      display: block !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+  </style>
 </head>
 <body class="text-slate-800 antialiased font-sans">
   <!-- Header -->

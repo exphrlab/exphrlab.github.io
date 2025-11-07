@@ -232,3 +232,30 @@ footer {
   .about-grid { grid-template-columns: 1fr; text-align: center; }
   .about-logo img { margin-top: 24px; max-width: 280px; }
 }
+
+/* =======================================================
+   Contact Dropdown Hover Fallback (Universal CSS)
+   ======================================================= */
+/* Ensure dropdown is hidden by default */
+#contact-dropdown { 
+  display: none; 
+}
+
+/* Show dropdown on hover or focus-within */
+#contact-dropdown-wrapper:hover #contact-dropdown,
+#contact-dropdown-wrapper:focus-within #contact-dropdown { 
+  display: block; 
+}
+
+/* Ensure overflow is visible for dropdown to show */
+header, 
+nav, 
+#contact-dropdown-wrapper { 
+  overflow: visible !important; 
+}
+
+/* Ensure dropdown has proper positioning and z-index */
+#contact-dropdown { 
+  position: absolute; 
+  z-index: 1000; 
+}

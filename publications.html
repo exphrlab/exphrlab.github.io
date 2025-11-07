@@ -24,7 +24,7 @@
 </head>
 <body class="text-slate-800 antialiased font-sans">
   <!-- Header -->
-  <header role="banner" class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm overflow-visible overflow-visible ">
+  <header role="banner" class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm overflow-visible">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16 overflow-visible">
         <nav aria-label="Primary" class="flex items-center justify-between h-full overflow-visible gap-6 md:gap-8">
           <!-- Left: Brand -->
@@ -444,41 +444,29 @@
 
   <script>
     // Mobile-only toggle for Contact dropdown (desktop uses pure CSS hover)
-      document.addEventListener('DOMContentLoaded', () => {
-        const wrapper = document.getElementById('contact-dropdown-wrapper');
-        const link = document.getElementById('contact-link');
-        const menu = document.getElementById('contact-dropdown');
-        const isMobile = window.matchMedia('(max-width: 768px)').matches;
-        if (!wrapper || !link || !menu || !isMobile) return;
-        
-        link.addEventListener('click', (e) => {
-          // Prevent navigating to contact.html on mobile; we want to open the menu
-          e.preventDefault();
-          const isHidden = menu.classList.contains('hidden');
-          if (isHidden) menu.classList.remove('hidden', 'opacity-0', 'pointer-events-none');
-          else menu.classList.add('hidden', 'opacity-0', 'pointer-events-none');
-        });
-
-      // Mobile menu toggle (if exists)
-    document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
-      const menu = document.getElementById('mobile-menu');
-      const menuIcon = document.getElementById('menu-icon');
-      const closeIcon = document.getElementById('close-icon');
-      const isHidden = menu.classList.contains('hidden');
+    document.addEventListener('DOMContentLoaded', () => {
+      const wrapper = document.getElementById('contact-dropdown-wrapper');
+      const link = document.getElementById('contact-link');
+      const menu = document.getElementById('contact-dropdown');
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      if (!wrapper || !link || !menu || !isMobile) return;
       
-      if (isHidden) {
-        menu.classList.remove('hidden');
-        menuIcon?.classList.add('hidden');
-        closeIcon?.classList.remove('hidden');
-        this.setAttribute('aria-expanded', 'true');
-      } else {
-        menu.classList.add('hidden');
-        menuIcon?.classList.remove('hidden');
-        closeIcon?.classList.add('hidden');
-        this.setAttribute('aria-expanded', 'false');
-      }
+      link.addEventListener('click', (e) => {
+        // Prevent navigating to contact.html on mobile; we want to open the menu
+        e.preventDefault();
+        const isHidden = menu.classList.contains('hidden');
+        if (isHidden) menu.classList.remove('hidden', 'opacity-0', 'pointer-events-none');
+        else menu.classList.add('hidden', 'opacity-0', 'pointer-events-none');
+      });
+      
+      document.addEventListener('click', (e) => {
+        if (!wrapper.contains(e.target)) {
+          menu.classList.add('hidden', 'opacity-0', 'pointer-events-none');
+        }
+      });
     });
-   (if exists)
+
+    // Mobile menu toggle (if exists)
     document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
       const menu = document.getElementById('mobile-menu');
       const menuIcon = document.getElementById('menu-icon');

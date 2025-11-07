@@ -251,10 +251,12 @@ nav,
 
 /* CSS Fallback: Force show dropdown on hover (override ALL Tailwind classes) */
 /* This ensures the dropdown works even if Tailwind's group-hover fails */
-/* Must use very high specificity to override Tailwind's utility classes */
+/* Using high specificity + !important to override Tailwind's utility classes */
 @media (min-width: 768px) {
-  #contact-dropdown-wrapper:hover #contact-dropdown,
-  #contact-dropdown-wrapper.group:hover #contact-dropdown {
+  /* Explicitly target elements with .hidden class */
+  #contact-dropdown-wrapper:hover #contact-dropdown.hidden,
+  #contact-dropdown-wrapper.group:hover #contact-dropdown.hidden,
+  #contact-dropdown-wrapper:hover #contact-dropdown {
     display: block !important;
     opacity: 1 !important;
     visibility: visible !important;
@@ -264,6 +266,7 @@ nav,
 }
 
 /* Focus-within fallback for keyboard navigation */
+#contact-dropdown-wrapper:focus-within #contact-dropdown.hidden,
 #contact-dropdown-wrapper:focus-within #contact-dropdown {
   display: block !important;
   opacity: 1 !important;

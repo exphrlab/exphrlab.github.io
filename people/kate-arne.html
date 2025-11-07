@@ -22,63 +22,28 @@
           const hasHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
           const isMobile = window.matchMedia('(max-width: 768px)').matches || !hasHover;
           
-          let closeTimeout = null;
           let isOpen = false;
           
           function showDropdown() {
-            clearTimeout(closeTimeout);
             isOpen = true;
-            contactDropdown.classList.remove('hidden', 'opacity-0', 'invisible', 'pointer-events-none', '-translate-y-1');
-            contactDropdown.classList.add('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
+            contactDropdown.classList.remove('hidden');
             contactLink.setAttribute('aria-expanded', 'true');
             if (contactChevron) contactChevron.classList.add('rotate-180');
           }
           
           function hideDropdown() {
-            if (!isOpen) return;
-            clearTimeout(closeTimeout);
-            closeTimeout = setTimeout(() => {
-              isOpen = false;
-              if (isMobile) {
-                contactDropdown.classList.add('hidden');
-              } else {
-                contactDropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
-                contactDropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-1');
-              }
-              contactLink.setAttribute('aria-expanded', 'false');
-              if (contactChevron) contactChevron.classList.remove('rotate-180');
-            }, 150);
-          }
-          
-          function hideDropdownImmediate() {
-            clearTimeout(closeTimeout);
             isOpen = false;
-            contactDropdown.classList.add('hidden', 'opacity-0', 'invisible', 'pointer-events-none', '-translate-y-1');
-            contactDropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
+            contactDropdown.classList.add('hidden');
             contactLink.setAttribute('aria-expanded', 'false');
             if (contactChevron) contactChevron.classList.remove('rotate-180');
           }
           
-          // Desktop: hover behavior
-          if (hasHover) {
-            contactWrapper.addEventListener('mouseenter', () => {
-              clearTimeout(closeTimeout);
-              showDropdown();
-            });
-            
-            contactWrapper.addEventListener('mouseleave', hideDropdown);
-            contactDropdown.addEventListener('mouseenter', () => {
-              clearTimeout(closeTimeout);
-            });
-            contactDropdown.addEventListener('mouseleave', hideDropdown);
-          }
-          
-          // Mobile/Desktop: click/tap behavior
-          contactLink.addEventListener('click', (e) => {
-            if (isMobile || !hasHover) {
+          // Mobile: tap to toggle
+          if (isMobile) {
+            contactLink.addEventListener('click', (e) => {
               e.preventDefault();
               if (isOpen) {
-                hideDropdownImmediate();
+                hideDropdown();
               } else {
                 // Close other dropdowns
                 document.querySelectorAll('[role="menu"]').forEach(menu => {
@@ -94,17 +59,37 @@
                 });
                 showDropdown();
               }
-            }
-            // On desktop with hover, allow default navigation to contact.html
-          });
+            });
+            
+            // Close on outside click
+            document.addEventListener('click', (e) => {
+              if (!contactWrapper.contains(e.target) && isOpen) {
+                hideDropdown();
+              }
+            });
+          }
+          
+          // Desktop: CSS group-hover handles it, but we sync aria-expanded
+          if (hasHover) {
+            contactWrapper.addEventListener('mouseenter', () => {
+              showDropdown();
+            });
+            
+            contactWrapper.addEventListener('mouseleave', () => {
+              hideDropdown();
+            });
+            
+            // On desktop, clicking Contact should navigate (not toggle)
+            // CSS group-hover already handles the dropdown visibility
+          }
           
           // Keyboard navigation
           contactLink.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
-              if (isMobile || !hasHover) {
+              if (isMobile) {
                 e.preventDefault();
                 if (isOpen) {
-                  hideDropdownImmediate();
+                  hideDropdown();
                 } else {
                   showDropdown();
                 }
@@ -114,7 +99,7 @@
               showDropdown();
             } else if (e.key === 'Escape' && isOpen) {
               e.preventDefault();
-              hideDropdownImmediate();
+              hideDropdown();
               contactLink.focus();
             }
           });
@@ -133,25 +118,16 @@
                 prev?.focus();
               } else if (e.key === 'Escape') {
                 e.preventDefault();
-                hideDropdownImmediate();
+                hideDropdown();
                 contactLink.focus();
               }
             });
           });
           
-          // Close on outside click (mobile)
-          if (isMobile) {
-            document.addEventListener('click', (e) => {
-              if (!contactWrapper.contains(e.target) && isOpen) {
-                hideDropdownImmediate();
-              }
-            });
-          }
-          
           // Close on Escape key
           document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && isOpen) {
-              hideDropdownImmediate();
+              hideDropdown();
               contactLink.focus();
             }
           });
@@ -172,9 +148,9 @@
 </head>
 <body class="text-slate-800 antialiased font-sans">
   <!-- Header -->
-  <header role="banner" class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm overflow-visible">
+  <header role="banner" class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm overflow-visibleoverflow-visible ">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16 overflow-visible">
-        <nav aria-label="Primary" class="flex items-center justify-between h-full overflow-visible gap-6 md:gap-8">
+        <nav aria-label="Primary" class="flex items-center justify-between h-full overflow-visible gap-6 md:gap-8overflow-visible ">
           <!-- Left: Brand -->
           <a href="../index.html" class="flex items-center gap-0.5 md:gap-1 min-w-0 hover:opacity-80 transition-opacity shrink-0">
             <img
@@ -219,7 +195,7 @@
           </a>
 
           <!-- Contact Dropdown -->
-          <div class="relative shrink-0 group" id="contact-dropdown-wrapper" style="z-index: 50;">
+          <div class="relative shrink-0 group pt-2 -mt-2 pb-2 -mb-2" id="contact-dropdown-wrapper" style="z-index: 50;">
             <a 
               href="../contact.html"
               class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative flex items-center gap-1 whitespace-nowrap"
@@ -235,7 +211,7 @@
             </a>
             <div 
               id="contact-dropdown" 
-              class="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2 hidden md:group-hover:block md:focus-within:block opacity-0 md:opacity-100 invisible md:visible pointer-events-none md:pointer-events-auto -translate-y-1 md:translate-y-0 transition-all duration-200 ease-out z-50"
+              class="absolute top-full left-0 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2 hidden md:group-hover:block z-50"
               role="menu"
               aria-labelledby="contact-link"
             >

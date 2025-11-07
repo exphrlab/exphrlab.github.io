@@ -10,35 +10,152 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com">
-      // Contact dropdown hover behavior
+      // Contact dropdown hover/click behavior
         (function() {
           const contactWrapper = document.getElementById('contact-dropdown-wrapper');
           const contactLink = document.getElementById('contact-link');
           const contactDropdown = document.getElementById('contact-dropdown');
+          const contactChevron = document.getElementById('contact-chevron');
           
           if (!contactWrapper || !contactLink || !contactDropdown) return;
           
+          // Detect if device supports hover (desktop with pointer)
+          const hasHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+          const isMobile = window.matchMedia('(max-width: 768px)').matches || !hasHover;
+          
           let closeTimeout = null;
+          let isOpen = false;
           
           function showDropdown() {
             clearTimeout(closeTimeout);
-            contactDropdown.classList.remove('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
+            isOpen = true;
+            contactDropdown.classList.remove('hidden', 'opacity-0', 'invisible', 'pointer-events-none', '-translate-y-1');
             contactDropdown.classList.add('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
+            contactLink.setAttribute('aria-expanded', 'true');
+            if (contactChevron) contactChevron.classList.add('rotate-180');
           }
           
           function hideDropdown() {
+            if (!isOpen) return;
             clearTimeout(closeTimeout);
             closeTimeout = setTimeout(() => {
-              contactDropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
-              contactDropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
+              isOpen = false;
+              if (isMobile) {
+                contactDropdown.classList.add('hidden');
+              } else {
+                contactDropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
+                contactDropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-1');
+              }
+              contactLink.setAttribute('aria-expanded', 'false');
+              if (contactChevron) contactChevron.classList.remove('rotate-180');
             }, 150);
           }
           
-          // Show on hover
-          contactWrapper.addEventListener('mouseenter', showDropdown);
-          contactWrapper.addEventListener('mouseleave', hideDropdown);
-          contactDropdown.addEventListener('mouseenter', showDropdown);
-          contactDropdown.addEventListener('mouseleave', hideDropdown);
+          function hideDropdownImmediate() {
+            clearTimeout(closeTimeout);
+            isOpen = false;
+            contactDropdown.classList.add('hidden', 'opacity-0', 'invisible', 'pointer-events-none', '-translate-y-1');
+            contactDropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
+            contactLink.setAttribute('aria-expanded', 'false');
+            if (contactChevron) contactChevron.classList.remove('rotate-180');
+          }
+          
+          // Desktop: hover behavior
+          if (hasHover) {
+            contactWrapper.addEventListener('mouseenter', () => {
+              clearTimeout(closeTimeout);
+              showDropdown();
+            });
+            
+            contactWrapper.addEventListener('mouseleave', hideDropdown);
+            contactDropdown.addEventListener('mouseenter', () => {
+              clearTimeout(closeTimeout);
+            });
+            contactDropdown.addEventListener('mouseleave', hideDropdown);
+          }
+          
+          // Mobile/Desktop: click/tap behavior
+          contactLink.addEventListener('click', (e) => {
+            if (isMobile || !hasHover) {
+              e.preventDefault();
+              if (isOpen) {
+                hideDropdownImmediate();
+              } else {
+                // Close other dropdowns
+                document.querySelectorAll('[role="menu"]').forEach(menu => {
+                  if (menu !== contactDropdown && !menu.classList.contains('hidden')) {
+                    menu.classList.add('hidden');
+                    const otherLink = document.querySelector(`[aria-controls="${menu.id}"]`);
+                    if (otherLink) {
+                      otherLink.setAttribute('aria-expanded', 'false');
+                      const otherChevron = otherLink.querySelector('svg');
+                      if (otherChevron) otherChevron.classList.remove('rotate-180');
+                    }
+                  }
+                });
+                showDropdown();
+              }
+            }
+            // On desktop with hover, allow default navigation to contact.html
+          });
+          
+          // Keyboard navigation
+          contactLink.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              if (isMobile || !hasHover) {
+                e.preventDefault();
+                if (isOpen) {
+                  hideDropdownImmediate();
+                } else {
+                  showDropdown();
+                }
+              }
+            } else if (e.key === 'ArrowDown' && !isOpen) {
+              e.preventDefault();
+              showDropdown();
+            } else if (e.key === 'Escape' && isOpen) {
+              e.preventDefault();
+              hideDropdownImmediate();
+              contactLink.focus();
+            }
+          });
+          
+          // Keyboard navigation within dropdown
+          const menuItems = contactDropdown.querySelectorAll('[role="menuitem"]');
+          menuItems.forEach((item, index) => {
+            item.addEventListener('keydown', (e) => {
+              if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                const next = menuItems[index + 1] || menuItems[0];
+                next?.focus();
+              } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                const prev = menuItems[index - 1] || menuItems[menuItems.length - 1];
+                prev?.focus();
+              } else if (e.key === 'Escape') {
+                e.preventDefault();
+                hideDropdownImmediate();
+                contactLink.focus();
+              }
+            });
+          });
+          
+          // Close on outside click (mobile)
+          if (isMobile) {
+            document.addEventListener('click', (e) => {
+              if (!contactWrapper.contains(e.target) && isOpen) {
+                hideDropdownImmediate();
+              }
+            });
+          }
+          
+          // Close on Escape key
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && isOpen) {
+              hideDropdownImmediate();
+              contactLink.focus();
+            }
+          });
         })();
     </script>
   <script>
@@ -103,21 +220,25 @@
           </a>
 
           <!-- Contact Dropdown -->
-          <div class="relative shrink-0" id="contact-dropdown-wrapper" style="z-index: 50;">
+          <div class="relative shrink-0 group" id="contact-dropdown-wrapper" style="z-index: 50;">
             <a 
               href="../contact.html"
               class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative flex items-center gap-1 whitespace-nowrap"
               id="contact-link"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              aria-controls="contact-dropdown"
             >
               <span>Contact</span>
-              <svg class="w-3 h-3 transition-transform shrink-0 duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <svg id="contact-chevron" class="w-3 h-3 transition-transform shrink-0 duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </a>
             <div 
               id="contact-dropdown" 
-              class="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2 opacity-0 invisible pointer-events-none -translate-y-2 transition-all duration-200 ease-out z-50"
+              class="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2 hidden md:group-hover:block md:focus-within:block opacity-0 md:opacity-100 invisible md:visible pointer-events-none md:pointer-events-auto -translate-y-1 md:translate-y-0 transition-all duration-200 ease-out z-50"
               role="menu"
+              aria-labelledby="contact-link"
             >
               <a href="../join-our-study.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors" role="menuitem">Join Our Study</a>
               <div class="border-t border-slate-100 my-1"></div>

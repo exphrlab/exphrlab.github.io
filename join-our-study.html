@@ -9,9 +9,9 @@
 </head>
 <body class="text-slate-800 antialiased">
   <!-- Header -->
-  <header role="banner" class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm overflow-visible ">
+  <header role="banner" class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm overflow-visible overflow-visible ">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16 overflow-visible">
-        <nav aria-label="Primary" class="flex items-center justify-between h-full overflow-visible gap-6 md:gap-8 ">
+        <nav aria-label="Primary" class="flex items-center justify-between h-full overflow-visible gap-6 md:gap-8">
           <!-- Left: Brand -->
           <a href="/index.html" class="flex items-center gap-0.5 md:gap-1 min-w-0 hover:opacity-80 transition-opacity shrink-0">
             <img
@@ -71,16 +71,19 @@
               </svg>
             </a>
             <div 
-              id="contact-dropdown" 
-              class="absolute top-full left-0 pt-1 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2 hidden md:group-hover:block z-50"
+              id="contact-dropdown"
+              class="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2
+                     hidden opacity-0 translate-y-1 pointer-events-none
+                     md:group-hover:block md:group-hover:opacity-100 md:group-hover:translate-y-0 md:group-hover:pointer-events-auto
+                     transition-all duration-150 ease-out z-50"
               role="menu"
               aria-labelledby="contact-link"
             >
-              <a href="./join-our-study.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors" role="menuitem">Join Our Study</a>
+              <a href="./join-our-study.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Join Our Study</a>
               <div class="border-t border-slate-100 my-1"></div>
-              <a href="./opportunities.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors" role="menuitem">Opportunities</a>
+              <a href="./opportunities.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Opportunities</a>
               <div class="border-t border-slate-100 my-1"></div>
-              <a href="./contact.html#form" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors" role="menuitem">Get In Touch</a>
+              <a href="./contact.html#form" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Get In Touch</a>
             </div>
           </div>
         </nav>
@@ -295,353 +298,42 @@
       document.body.style.overflow = '';
     }
 
-    // Dropdown management utility
-    (function() {
-      const isMobile = window.matchMedia('(max-width: 768px)').matches && 'ontouchstart' in window && !window.matchMedia('(hover: hover)').matches;
-      let hoverTimeout = null;
-      const HOVER_DELAY = 150;
-
-      function setupDropdown(dropdownId, buttonId, wrapperId) {
-        const dropdown = document.getElementById(dropdownId);
-        const button = document.getElementById(buttonId);
-        const wrapper = document.getElementById(wrapperId);
-        if (!dropdown || !button || !wrapper) {
-            console.warn(\'Dropdown elements not found:\', { dropdownId, buttonId, wrapperId });
-            return;
-          }
-
-                  let isOpen = false;
-        let closeTimeout = null;
-
-        const chevron = button.querySelector('svg');
+    // Mobile-only toggle for Contact dropdown (desktop uses pure CSS hover)
+      document.addEventListener('DOMContentLoaded', () => {
+        const wrapper = document.getElementById('contact-dropdown-wrapper');
+        const link = document.getElementById('contact-link');
+        const menu = document.getElementById('contact-dropdown');
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
+        if (!wrapper || !link || !menu || !isMobile) return;
         
-        function openDropdown() {
-          if (isOpen) return;
-          clearTimeout(closeTimeout);
-          dropdown.classList.remove('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
-            dropdown.classList.add('opacity-100', 'visible', 'pointer-events-auto');
-            dropdown.classList.remove('-translate-y-2');
-            dropdown.classList.add('translate-y-0');
-          button.setAttribute('aria-expanded', 'true');
-          if (chevron) chevron.classList.add('rotate-180');
-          isOpen = true;
-          
-          // Focus first item on keyboard open
-          const firstItem = dropdown.querySelector('[role="menuitem"]');
-          if (firstItem && document.activeElement === button) {
-            setTimeout(() => firstItem.focus(), 0);
-          }
-        }
-
-        function closeDropdown() {
-          if (!isOpen) return;
-          clearTimeout(closeTimeout);
-          closeTimeout = setTimeout(() => {
-            dropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
-              dropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
-            button.setAttribute('aria-expanded', 'false');
-            if (chevron) chevron.classList.remove('rotate-180');
-            isOpen = false;
-          }, 200);
-        }
-
-        function closeDropdownImmediate() {
-          clearTimeout(closeTimeout);
-          dropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
-              dropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
-          button.setAttribute('aria-expanded', 'false');
-          if (chevron) chevron.classList.remove('rotate-180');
-          isOpen = false;
-        }
-
-        // Desktop: hover behavior (immediate show on hover)
-            // Always enable hover on desktop, only disable on true mobile devices
-            if (!isMobile || window.matchMedia('(hover: hover)').matches) {
-              // Add hover to wrapper - this is the main trigger
-              const handleWrapperEnter = () => {
-                clearTimeout(closeTimeout);
-                openDropdown();
-              };
-              wrapper.addEventListener('mouseenter', handleWrapperEnter);
-              wrapper.addEventListener('mouseleave', closeDropdown);
-
-              // Add hover to button as backup
-              button.addEventListener('mouseenter', () => {
-                clearTimeout(closeTimeout);
-                openDropdown();
-              });
-
-              );
-              }
-
-              // Keep dropdown open when hovering over it
-              dropdown.addEventListener('mouseenter', () => {
-                clearTimeout(closeTimeout);
-                // Ensure dropdown stays open
-                if (!isOpen) {
-                  openDropdown();
-                }
-              });
-
-              dropdown.addEventListener('mouseleave', closeDropdown);
-            }
-
-        // Click to toggle (works on both desktop and mobile)
-                        button.addEventListener('click', (e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              // Force open on click, even if hover already opened it
-              if (isOpen) {
-                closeDropdownImmediate();
-              } else {
-                // Close other dropdowns first
-                document.querySelectorAll('[role="menu"]').forEach(menu => {
-                  if (menu !== dropdown) {
-                    menu.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
-                    menu.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
-                    const otherButton = document.querySelector(`[aria-controls="${menu.id}"]`) || 
-                                      document.querySelector(`button[aria-expanded="true"]`);
-                    if (otherButton && otherButton !== button) {
-                      otherButton.setAttribute('aria-expanded', 'false');
-                      const otherChevron = otherButton.querySelector('svg');
-                      if (otherChevron) otherChevron.classList.remove('rotate-180');
-                    }
-                  }
-                });
-                // Always open on click
-                openDropdown();
-              }
-            }, true); // Use capture phase to ensure it fires"]`) || 
-                                    document.querySelector(`button[aria-expanded="true"]`);
-                  if (otherButton) {
-                    otherButton.setAttribute('aria-expanded', 'false');
-                    const otherChevron = otherButton.querySelector('svg');
-                    if (otherChevron) otherChevron.classList.remove('rotate-180');
-                  }
-                }
-              });
-              openDropdown();
-            }
-          });
-        }
-
-        // Keyboard navigation
-        button.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            if (isOpen) {
-              closeDropdownImmediate();
-            } else {
-              openDropdown();
-            }
-          } else if (e.key === 'ArrowDown' && !isOpen) {
-            e.preventDefault();
-            openDropdown();
-          }
+        link.addEventListener('click', (e) => {
+          // Prevent navigating to contact.html on mobile; we want to open the menu
+          e.preventDefault();
+          const isHidden = menu.classList.contains('hidden');
+          if (isHidden) menu.classList.remove('hidden', 'opacity-0', 'pointer-events-none');
+          else menu.classList.add('hidden', 'opacity-0', 'pointer-events-none');
         });
-
-        // Keyboard navigation within dropdown
-        const menuItems = dropdown.querySelectorAll('[role="menuitem"]');
-        menuItems.forEach((item, index) => {
-          item.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowDown') {
-              e.preventDefault();
-              const next = menuItems[index + 1] || menuItems[0];
-              next?.focus();
-            } else if (e.key === 'ArrowUp') {
-              e.preventDefault();
-              const prev = menuItems[index - 1] || menuItems[menuItems.length - 1];
-              prev?.focus();
-            } else if (e.key === 'Escape') {
-              e.preventDefault();
-              closeDropdownImmediate();
-              button.focus();
-            }
-          });
-        });
-
-        // Focus management
-        button.addEventListener('focus', () => {
-          if (!isMobile) {
-            openDropdown();
-          }
-        });
-
-        button.addEventListener('blur', (e) => {
-          clearTimeout(hoverTimeout);
-          // Don't close if focus is moving to dropdown
-          if (!dropdown.contains(e.relatedTarget)) {
-            closeDropdown();
-          }
-        });
-
-        // Close on outside click (mobile)
-        if (isMobile) {
-          document.addEventListener('click', (e) => {
-            if (!wrapper.contains(e.target) && isOpen) {
-              closeDropdownImmediate();
-            }
-          });
-        }
-      }
-          // Initialize dropdowns
-          // News dropdown removed - now a simple link
-        // Handle window resize
-          let resizeTimer;
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-          const newIsMobile = window.matchMedia('(max-width: 768px)').matches;
-          if (newIsMobile !== isMobile) {
-            location.reload(); // Simple approach: reload on breakpoint change
-          }
-        }, 250);
-      });
-
-      // ESC key to close all dropdowns
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          const lightbox = document.getElementById('lightbox');
-          if (lightbox && !lightbox.classList.contains('hidden')) {
-            closeLightbox();
-          }
-          document.querySelectorAll('[role="menu"]').forEach(menu => {
-            menu.classList.add('hidden');
-          });
-          document.querySelectorAll('button[aria-expanded="true"]').forEach(btn => {
-            btn.setAttribute('aria-expanded', 'false');
-            const chev = btn.querySelector('svg');
-            if (chev) chev.classList.remove('rotate-180');
-          });
-        }
-      });
-    })();
-
-    // Contact dropdown hover/click behavior
-        (function() {
-          const contactWrapper = document.getElementById('contact-dropdown-wrapper');
-          const contactLink = document.getElementById('contact-link');
-          const contactDropdown = document.getElementById('contact-dropdown');
-          const contactChevron = document.getElementById('contact-chevron');
-          
-          if (!contactWrapper || !contactLink || !contactDropdown) return;
-          
-          // Detect if device supports hover (desktop with pointer)
-          const hasHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-          const isMobile = window.matchMedia('(max-width: 768px)').matches || !hasHover;
-          
-          let isOpen = false;
-          
-          function showDropdown() {
-            isOpen = true;
-            contactDropdown.classList.remove('hidden');
-            contactLink.setAttribute('aria-expanded', 'true');
-            if (contactChevron) contactChevron.classList.add('rotate-180');
-          }
-          
-          function hideDropdown() {
-            isOpen = false;
-            contactDropdown.classList.add('hidden');
-            contactLink.setAttribute('aria-expanded', 'false');
-            if (contactChevron) contactChevron.classList.remove('rotate-180');
-          }
-          
-          // Mobile: tap to toggle
-          if (isMobile) {
-            contactLink.addEventListener('click', (e) => {
-              e.preventDefault();
-              if (isOpen) {
-                hideDropdown();
-              } else {
-                // Close other dropdowns
-                document.querySelectorAll('[role="menu"]').forEach(menu => {
-                  if (menu !== contactDropdown && !menu.classList.contains('hidden')) {
-                    menu.classList.add('hidden');
-                    const otherLink = document.querySelector(`[aria-controls="${menu.id}"]`);
-                    if (otherLink) {
-                      otherLink.setAttribute('aria-expanded', 'false');
-                      const otherChevron = otherLink.querySelector('svg');
-                      if (otherChevron) otherChevron.classList.remove('rotate-180');
-                    }
-                  }
-                });
-                showDropdown();
-              }
-            });
-            
-            // Close on outside click
-            document.addEventListener('click', (e) => {
-              if (!contactWrapper.contains(e.target) && isOpen) {
-                hideDropdown();
-              }
-            });
-          }
-          
-          // Desktop: CSS group-hover handles it, but we sync aria-expanded
-          if (hasHover) {
-            contactWrapper.addEventListener('mouseenter', () => {
-              showDropdown();
-            });
-            
-            contactWrapper.addEventListener('mouseleave', () => {
-              hideDropdown();
-            });
-            
-            // On desktop, clicking Contact should navigate (not toggle)
-            // CSS group-hover already handles the dropdown visibility
-          }
-          
-          // Keyboard navigation
-          contactLink.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              if (isMobile) {
-                e.preventDefault();
-                if (isOpen) {
-                  hideDropdown();
-                } else {
-                  showDropdown();
-                }
-              }
-            } else if (e.key === 'ArrowDown' && !isOpen) {
-              e.preventDefault();
-              showDropdown();
-            } else if (e.key === 'Escape' && isOpen) {
-              e.preventDefault();
-              hideDropdown();
-              contactLink.focus();
-            }
-          });
-          
-          // Keyboard navigation within dropdown
-          const menuItems = contactDropdown.querySelectorAll('[role="menuitem"]');
-          menuItems.forEach((item, index) => {
-            item.addEventListener('keydown', (e) => {
-              if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                const next = menuItems[index + 1] || menuItems[0];
-                next?.focus();
-              } else if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                const prev = menuItems[index - 1] || menuItems[menuItems.length - 1];
-                prev?.focus();
-              } else if (e.key === 'Escape') {
-                e.preventDefault();
-                hideDropdown();
-                contactLink.focus();
-              }
-            });
-          });
-          
-          // Close on Escape key
-          document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && isOpen) {
-              hideDropdown();
-              contactLink.focus();
-            }
-          });
-        })();
 
       // Mobile menu toggle (if exists)
+    document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
+      const menu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
+      const closeIcon = document.getElementById('close-icon');
+      const isHidden = menu.classList.contains('hidden');
+      
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        menuIcon?.classList.add('hidden');
+        closeIcon?.classList.remove('hidden');
+        this.setAttribute('aria-expanded', 'true');
+      } else {
+        menu.classList.add('hidden');
+        menuIcon?.classList.remove('hidden');
+        closeIcon?.classList.add('hidden');
+        this.setAttribute('aria-expanded', 'false');
+      }
+    });
+   (if exists)
     document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
       const menu = document.getElementById('mobile-menu');
       const menuIcon = document.getElementById('menu-icon');

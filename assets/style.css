@@ -234,50 +234,61 @@ footer {
 }
 
 /* =======================================================
-   Contact Dropdown Hover Fallback (Universal CSS)
+   Contact Dropdown - CSS-only Hover Solution (Universal)
    ======================================================= */
-/* Ensure overflow is visible for dropdown to show */
+/* Ensure wrapper and header allow overflow for dropdown */
 header, 
 nav, 
 #contact-dropdown-wrapper { 
   overflow: visible !important; 
 }
 
-/* Ensure dropdown has proper positioning and z-index */
+/* Hide dropdown by default */
 #contact-dropdown-wrapper #contact-dropdown {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateY(-8px) !important;
+  transition: opacity 0.2s ease, transform 0.2s ease !important;
   position: absolute !important;
-  z-index: 1000 !important;
+  z-index: 9999 !important;
 }
 
-/* CSS Fallback: Force show dropdown on hover (override ALL Tailwind classes) */
-/* This ensures the dropdown works even if Tailwind's group-hover fails */
-/* Using high specificity + !important to override Tailwind's utility classes */
-@media (min-width: 768px) {
-  /* Explicitly target elements with .hidden class */
-  #contact-dropdown-wrapper:hover #contact-dropdown.hidden,
-  #contact-dropdown-wrapper.group:hover #contact-dropdown.hidden,
-  #contact-dropdown-wrapper:hover #contact-dropdown {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-    transform: translateY(0) !important;
-  }
-  
-  /* Also target when wrapper or link is hovered */
-  #contact-dropdown-wrapper:hover #contact-dropdown,
-  #contact-link:hover ~ #contact-dropdown,
-  #contact-dropdown-wrapper:has(#contact-link:hover) #contact-dropdown {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-    transform: translateY(0) !important;
-  }
+/* Show dropdown on wrapper hover */
+#contact-dropdown-wrapper:hover #contact-dropdown {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateY(0) !important;
 }
 
-/* Focus-within fallback for keyboard navigation */
-#contact-dropdown-wrapper:focus-within #contact-dropdown.hidden,
+/* Show dropdown on link hover (fallback) */
+#contact-link:hover ~ #contact-dropdown,
+#contact-dropdown-wrapper:has(#contact-link:hover) #contact-dropdown {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateY(0) !important;
+}
+
+/* Keep dropdown visible when hovering over it */
+#contact-dropdown:hover {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateY(0) !important;
+}
+
+/* Rotate chevron on hover */
+#contact-dropdown-wrapper:hover #contact-chevron {
+  transform: rotate(180deg) !important;
+}
+
+/* Keyboard navigation support */
 #contact-dropdown-wrapper:focus-within #contact-dropdown {
   display: block !important;
   opacity: 1 !important;

@@ -14,31 +14,57 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-    /* Contact Dropdown Hover Fallback (Inline - loads after Tailwind) */
-    @media (min-width: 768px) {
-      #contact-dropdown-wrapper:hover #contact-dropdown.hidden,
-      #contact-dropdown-wrapper.group:hover #contact-dropdown.hidden,
-      #contact-dropdown-wrapper:hover #contact-dropdown {
-        display: block !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        pointer-events: auto !important;
-        transform: translateY(0) !important;
-      }
-      
-      /* Also target when wrapper or link is hovered */
-      #contact-dropdown-wrapper:hover #contact-dropdown,
-      #contact-link:hover ~ #contact-dropdown,
-      #contact-dropdown-wrapper:has(#contact-link:hover) #contact-dropdown {
-        display: block !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        pointer-events: auto !important;
-        transform: translateY(0) !important;
-      }
+  <style>
+    /* Contact Dropdown - CSS-only hover solution */
+    /* Ensure wrapper and header allow overflow for dropdown */
+    header, nav, #contact-dropdown-wrapper {
+      overflow: visible !important;
     }
-    #contact-dropdown-wrapper:focus-within #contact-dropdown.hidden,
+    
+    /* Hide dropdown by default */
+    #contact-dropdown-wrapper #contact-dropdown {
+      display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      transform: translateY(-8px) !important;
+      transition: opacity 0.2s ease, transform 0.2s ease !important;
+    }
+    
+    /* Show dropdown on wrapper hover */
+    #contact-dropdown-wrapper:hover #contact-dropdown {
+      display: block !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+    
+    /* Show dropdown on link hover (fallback) */
+    #contact-link:hover ~ #contact-dropdown,
+    #contact-dropdown-wrapper:has(#contact-link:hover) #contact-dropdown {
+      display: block !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+    
+    /* Keep dropdown visible when hovering over it */
+    #contact-dropdown:hover {
+      display: block !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+    
+    /* Rotate chevron on hover */
+    #contact-dropdown-wrapper:hover #contact-chevron {
+      transform: rotate(180deg) !important;
+    }
+    
+    /* Keyboard navigation support */
     #contact-dropdown-wrapper:focus-within #contact-dropdown {
       display: block !important;
       opacity: 1 !important;
@@ -47,6 +73,11 @@
       transform: translateY(0) !important;
     }
   </style>
+
+
+
+
+
     <script>
       tailwind.config = {
         theme: {
@@ -76,7 +107,7 @@
 
   <body class="text-slate-800 antialiased font-sans bg-white">
     <!-- ===== Header ===== -->
-    <header role="banner" class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm overflow-visible">
+    <header role="banner" class="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-sm overflow-visible">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16 overflow-visible">
         <nav aria-label="Primary" class="flex items-center justify-between h-full overflow-visible gap-6 md:gap-8">
           <!-- Left: Brand -->
@@ -123,12 +154,12 @@
           </a>
 
           <!-- Contact Dropdown -->
-          <div class="relative shrink-0 group pt-2 -mt-2 pb-2 -mb-2" id="contact-dropdown-wrapper" style="z-index: 50;">
+          <div class="relative shrink-0" id="contact-dropdown-wrapper" style="z-index: 9999;">
             <a 
               href="./contact.html"
               class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative flex items-center gap-1 whitespace-nowrap"
               id="contact-link"
-              aria-haspopup="menu"
+              aria-haspopup="true"
               aria-expanded="false"
               aria-controls="contact-dropdown"
             >
@@ -139,17 +170,15 @@
             </a>
             <div 
               id="contact-dropdown"
-              class="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2
-                     hidden opacity-0 -translate-y-2 pointer-events-none
-                     transition-all duration-200 ease-out z-50"
+              class="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-2xl border border-slate-200 py-2"
+              style="z-index: 9999;"
               role="menu"
-              aria-labelledby="contact-link"
-            >
-              <a href="./join-our-study.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Join Our Study</a>
+              aria-labelledby="contact-link">
+              <a href="./join-our-study.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors" role="menuitem">Join Our Study</a>
               <div class="border-t border-slate-100 my-1"></div>
-              <a href="./opportunities.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Research Opportunities</a>
+              <a href="./opportunities.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors" role="menuitem">Research Opportunities</a>
               <div class="border-t border-slate-100 my-1"></div>
-              <a href="./contact.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Get In Touch</a>
+              <a href="./contact.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors" role="menuitem">Get In Touch</a>
             </div>
           </div>
         </nav>
@@ -241,61 +270,6 @@
     </footer>
 
     <script>
-            // Contact dropdown hover/click behavior
-      document.addEventListener('DOMContentLoaded', () => {
-      const wrapper = document.getElementById('contact-dropdown-wrapper');
-      const link = document.getElementById('contact-link');
-      const menu = document.getElementById('contact-dropdown');
-      const chevron = document.getElementById('contact-chevron');
-      
-      if (!wrapper || !link || !menu) return;
-      
-      const hasHover = window.matchMedia('(hover: hover)').matches;
-      const isMobile = window.matchMedia('(max-width: 768px)').matches && !hasHover;
-      
-      function showDropdown() {
-      menu.classList.remove('hidden', 'opacity-0', '-translate-y-2', 'pointer-events-none');
-      menu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
-      link.setAttribute('aria-expanded', 'true');
-      if (chevron) chevron.classList.add('rotate-180');
-      }
-      
-      function hideDropdown() {
-      menu.classList.add('hidden', 'opacity-0', '-translate-y-2', 'pointer-events-none');
-      menu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
-      link.setAttribute('aria-expanded', 'false');
-      if (chevron) chevron.classList.remove('rotate-180');
-      }
-      
-      // Desktop: Show on hover
-      if (!isMobile) {
-      wrapper.addEventListener('mouseenter', showDropdown);
-      wrapper.addEventListener('mouseleave', hideDropdown);
-      menu.addEventListener('mouseenter', showDropdown);
-      menu.addEventListener('mouseleave', hideDropdown);
-      }
-      
-      // Mobile: Toggle on click
-      if (isMobile) {
-      link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const isHidden = menu.classList.contains('hidden');
-      if (isHidden) {
-      showDropdown();
-      } else {
-      hideDropdown();
-      }
-      });
-      
-          
-          document.addEventListener('click', (e) => {
-            if (!wrapper.contains(e.target)) {
-              hideDropdown();
-            }
-          });
-        }
-      });
-
       // Mobile menu toggle (if exists)
       document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
         const menu = document.getElementById('mobile-menu');
@@ -304,15 +278,48 @@
         const isHidden = menu.classList.contains('hidden');
         
         if (isHidden) {
-          menu.classList.remove('hidden');
           menuIcon?.classList.add('hidden');
           closeIcon?.classList.remove('hidden');
           this.setAttribute('aria-expanded', 'true');
         } else {
-          menu.classList.add('hidden');
           menuIcon?.classList.remove('hidden');
           closeIcon?.classList.add('hidden');
           this.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Update ARIA attributes for Contact dropdown on hover (for accessibility)
+      document.addEventListener('DOMContentLoaded', () => {
+        const wrapper = document.getElementById('contact-dropdown-wrapper');
+        const link = document.getElementById('contact-link');
+        const menu = document.getElementById('contact-dropdown');
+        const chevron = document.getElementById('contact-chevron');
+        
+        if (!wrapper || !link || !menu) return;
+        
+        // Sync ARIA attributes with hover state (CSS handles the display)
+        wrapper.addEventListener('mouseenter', () => {
+          link.setAttribute('aria-expanded', 'true');
+        });
+        
+        wrapper.addEventListener('mouseleave', () => {
+          link.setAttribute('aria-expanded', 'false');
+        });
+        
+        // Mobile: Toggle on tap/click
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
+        if (isMobile) {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const isExpanded = link.getAttribute('aria-expanded') === 'true';
+            if (isExpanded) {
+              menu.style.display = 'none';
+              link.setAttribute('aria-expanded', 'false');
+            } else {
+              menu.style.display = 'block';
+              link.setAttribute('aria-expanded', 'true');
+            }
+          });
         }
       });
     </script>

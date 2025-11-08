@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Research positions, internships, and collaboration opportunities at EXPHR Lab" />
+  <meta name="description" content="Opportunities for undergraduate and graduate students, Ph.D. students, postdoctoral researchers, and volunteers at EXPHR Lab" />
   <title>Opportunities · EXPHR Lab</title>
   <link rel="stylesheet" href="./assets/style.css?v=17">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -168,6 +168,15 @@
       pointer-events: auto !important;
       transform: translateY(0) !important;
     }
+    /* Opportunities page - override h2 font for category titles to use sans-serif */
+    section#undergraduate-graduate > div > h2,
+    section#phd > div > h2,
+    section#postdoc > div > h2,
+    section#volunteer > div > h2 {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+      font-weight: 600 !important;
+      letter-spacing: 0 !important;
+    }
   </style></head>
 <body class="text-slate-800 antialiased font-sans">
   <!-- Header -->
@@ -254,38 +263,76 @@
 
   <main class="bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">Opportunities</h1>
+      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900">Opportunities</h1>
       <div class="h-[3px] w-40 bg-gradient-to-r from-sky-300 to-emerald-200 rounded-full mt-2"></div>
 
-      <div class="mt-12 space-y-8">
-        <!-- Research Positions -->
-        <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 md:p-8">
-          <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-4">Research Positions</h2>
-          <p class="text-slate-700 leading-relaxed mb-4">
-            We welcome motivated individuals interested in contributing to our research on exercise, brain health, and healthy aging. 
-            Research positions may include data collection, participant recruitment, and analysis support.
-          </p>
-          <p class="text-slate-600 text-sm">More information coming soon.</p>
+      <div class="mt-8 space-y-3">
+        <!-- Undergraduate & Graduate Students -->
+        <section id="undergraduate-graduate" class="bg-white rounded-lg border border-slate-200 shadow-sm p-4 md:p-5 hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-between">
+            <h2 class="text-base md:text-lg font-semibold text-slate-900" style="font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;">Undergraduate & Graduate Students</h2>
+            <a 
+              href="https://forms.office.com/pages/responsepage.aspx?id=nPsE4KSwT0K80DImBtXfOO_8G41EFmxJgLJrk-ey1TJUNDZaWllXWERETUdHUVJKVTJMMjEzM0NNUi4u&route=shorturl" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors text-sm font-medium shadow-sm hover:shadow-md"
+            >
+              Apply Now
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
         </section>
 
-        <!-- Internships -->
-        <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 md:p-8">
-          <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-4">Internships</h2>
-          <p class="text-slate-700 leading-relaxed mb-4">
-            Undergraduate and graduate students interested in gaining hands-on research experience are encouraged to apply. 
-            Internships provide opportunities to work closely with our team on ongoing studies and develop research skills.
-          </p>
-          <p class="text-slate-600 text-sm">More information coming soon.</p>
+        <!-- Ph.D. Students -->
+        <section id="phd" class="bg-white rounded-lg border border-slate-200 shadow-sm p-4 md:p-5 hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-between">
+            <h2 class="text-base md:text-lg font-semibold text-slate-900" style="font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;">Ph.D. Students</h2>
+            <a 
+              href="mailto:ks.park@emory.edu?subject=Ph.D. Student Application - EXPHR Lab" 
+              class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors text-sm font-medium shadow-sm hover:shadow-md"
+            >
+              Apply Now
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </a>
+          </div>
         </section>
 
-        <!-- Collaboration Opportunities -->
-        <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 md:p-8">
-          <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-4">Collaboration Opportunities</h2>
-          <p class="text-slate-700 leading-relaxed mb-4">
-            We are open to collaborating with researchers, clinicians, and institutions interested in exercise, rehabilitation, 
-            cognitive health, and precision medicine approaches to healthy aging.
-          </p>
-          <p class="text-slate-600 text-sm">More information coming soon.</p>
+        <!-- PostDoc -->
+        <section id="postdoc" class="bg-white rounded-lg border border-slate-200 shadow-sm p-4 md:p-5 hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-between">
+            <h2 class="text-base md:text-lg font-semibold text-slate-900" style="font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;">PostDoc</h2>
+            <a 
+              href="mailto:ks.park@emory.edu?subject=PostDoc Application - EXPHR Lab" 
+              class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors text-sm font-medium shadow-sm hover:shadow-md"
+            >
+              Apply Now
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </a>
+          </div>
+        </section>
+
+        <!-- Volunteer -->
+        <section id="volunteer" class="bg-white rounded-lg border border-slate-200 shadow-sm p-4 md:p-5 hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-between">
+            <h2 class="text-base md:text-lg font-semibold text-slate-900" style="font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;">Volunteer</h2>
+            <a 
+              href="https://forms.office.com/pages/responsepage.aspx?id=nPsE4KSwT0K80DImBtXfOO_8G41EFmxJgLJrk-ey1TJUNDZaWllXWERETUdHUVJKVTJMMjEzM0NNUi4u&route=shorturl" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors text-sm font-medium shadow-sm hover:shadow-md"
+            >
+              Apply Now
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
         </section>
       </div>
     </div>

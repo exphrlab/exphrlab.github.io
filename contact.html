@@ -46,6 +46,12 @@
       pointer-events: auto !important;
       transform: translateY(0) !important;
     }
+    /* Contact page - override h3 font for opportunity category titles to use sans-serif */
+    section > div > div.border-slate-200 > div > h3 {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+      font-weight: 600 !important;
+      letter-spacing: 0 !important;
+    }
   </style>
 </head>
 <body class="text-slate-800 antialiased font-sans bg-white">
@@ -134,7 +140,7 @@
   <!-- Main Content -->
   <main class="bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">Contact</h1>
+      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900">Contact</h1>
       <div class="h-[3px] w-40 bg-gradient-to-r from-sky-300 to-emerald-200 rounded-full mt-2"></div>
 
       <div class="mt-8">
@@ -149,12 +155,77 @@
           </section>
 
           <!-- Opportunities -->
-          <section class="border rounded-xl p-6 bg-white shadow-sm">
-            <h2 class="text-xl font-bold text-slate-900 mb-3">Opportunities</h2>
-            <p class="text-slate-700 mb-4">Research positions, internships, and collaboration opportunities.</p>
-            <a href="/opportunities.html" class="inline-block px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors">
-              Learn More
-            </a>
+          <section class="border rounded-xl p-4 bg-white shadow-sm">
+            <h2 class="text-lg font-bold text-slate-900 mb-3">Opportunities</h2>
+            <div class="space-y-2">
+              <!-- Undergraduate & Graduate Students -->
+              <div class="border border-slate-200 rounded-lg p-3 bg-slate-50 hover:bg-slate-100 transition-colors">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-base font-semibold text-slate-900" style="font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;">Undergraduate & Graduate Students</h3>
+                  <a 
+                    href="https://forms.office.com/pages/responsepage.aspx?id=nPsE4KSwT0K80DImBtXfOO_8G41EFmxJgLJrk-ey1TJUNDZaWllXWERETUdHUVJKVTJMMjEzM0NNUi4u&route=shorturl" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors text-xs font-medium"
+                  >
+                    Apply Now
+                    <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Ph.D. Students -->
+              <div class="border border-slate-200 rounded-lg p-3 bg-slate-50 hover:bg-slate-100 transition-colors">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-base font-semibold text-slate-900" style="font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;">Ph.D. Students</h3>
+                  <a 
+                    href="mailto:ks.park@emory.edu?subject=Ph.D. Student Application - EXPHR Lab" 
+                    class="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors text-xs font-medium"
+                  >
+                    Apply Now
+                    <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              <!-- PostDoc -->
+              <div class="border border-slate-200 rounded-lg p-3 bg-slate-50 hover:bg-slate-100 transition-colors">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-base font-semibold text-slate-900" style="font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;">PostDoc</h3>
+                  <a 
+                    href="mailto:ks.park@emory.edu?subject=PostDoc Application - EXPHR Lab" 
+                    class="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors text-xs font-medium"
+                  >
+                    Apply Now
+                    <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Volunteer -->
+              <div class="border border-slate-200 rounded-lg p-3 bg-slate-50 hover:bg-slate-100 transition-colors">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-base font-semibold text-slate-900" style="font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;">Volunteer</h3>
+                  <a 
+                    href="https://forms.office.com/pages/responsepage.aspx?id=nPsE4KSwT0K80DImBtXfOO_8G41EFmxJgLJrk-ey1TJUNDZaWllXWERETUdHUVJKVTJMMjEzM0NNUi4u&route=shorturl" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors text-xs font-medium"
+                  >
+                    Apply Now
+                    <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
           </section>
 
           <!-- Get In Touch -->

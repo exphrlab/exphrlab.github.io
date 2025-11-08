@@ -3,61 +3,67 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Opportunities for undergraduate and graduate students, Ph.D. students, postdoctoral researchers, and volunteers at EXPHR Lab" />
-  <title>Opportunities · EXPHR Lab</title>
+  <meta name="description" content="Research opportunities for undergraduate and graduate students, Ph.D. students, and postdoctoral researchers at EXPHR Lab" />
+  <title>Research Opportunities · EXPHR Lab</title>
   <link rel="stylesheet" href="./assets/style.css?v=17">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com">
-      // Contact dropdown hover/click behavior
-        (function() {
-          const contactWrapper = document.getElementById('contact-dropdown-wrapper');
-          const contactLink = document.getElementById('contact-link');
-          const contactDropdown = document.getElementById('contact-dropdown');
-          const contactChevron = document.getElementById('contact-chevron');
-          
-          if (!contactWrapper || !contactLink || !contactDropdown) return;
-          
-          // Detect if device supports hover (desktop with pointer)
-          const hasHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-          const isMobile = window.matchMedia('(max-width: 768px)').matches || !hasHover;
-          
-          let isOpen = false;
-          
-          function showDropdown() {
-            isOpen = true;
-            contactDropdown.classList.remove('hidden');
-            contactLink.setAttribute('aria-expanded', 'true');
-            if (contactChevron) contactChevron.classList.add('rotate-180');
+                // Contact dropdown hover/click behavior
+      document.addEventListener('DOMContentLoaded', () => {
+      const wrapper = document.getElementById('contact-dropdown-wrapper');
+      const link = document.getElementById('contact-link');
+      const menu = document.getElementById('contact-dropdown');
+      const chevron = document.getElementById('contact-chevron');
+      
+      if (!wrapper || !link || !menu) return;
+      
+      const hasHover = window.matchMedia('(hover: hover)').matches;
+      const isMobile = window.matchMedia('(max-width: 768px)').matches && !hasHover;
+      
+      function showDropdown() {
+      menu.classList.remove('hidden', 'opacity-0', '-translate-y-2', 'pointer-events-none');
+      menu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      link.setAttribute('aria-expanded', 'true');
+      if (chevron) chevron.classList.add('rotate-180');
+      }
+      
+      function hideDropdown() {
+      menu.classList.add('hidden', 'opacity-0', '-translate-y-2', 'pointer-events-none');
+      menu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      link.setAttribute('aria-expanded', 'false');
+      if (chevron) chevron.classList.remove('rotate-180');
+      }
+      
+      // Desktop: Show on hover
+      if (!isMobile) {
+      wrapper.addEventListener('mouseenter', showDropdown);
+      wrapper.addEventListener('mouseleave', hideDropdown);
+      menu.addEventListener('mouseenter', showDropdown);
+      menu.addEventListener('mouseleave', hideDropdown);
+      }
+      
+      // Mobile: Toggle on click
+      if (isMobile) {
+      link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+      showDropdown();
+      } else {
+      hideDropdown();
+      }
+      });
+      
+        
+        document.addEventListener('click', (e) => {
+          if (!wrapper.contains(e.target)) {
+            hideDropdown();
           }
-          
-          function hideDropdown() {
-            isOpen = false;
-            contactDropdown.classList.add('hidden');
-            contactLink.setAttribute('aria-expanded', 'false');
-            if (contactChevron) contactChevron.classList.remove('rotate-180');
-          }
-          
-          // Mobile: tap to toggle
-          if (isMobile) {
-            contactLink.addEventListener('click', (e) => {
-              e.preventDefault();
-              if (isOpen) {
-                hideDropdown();
-              } else {
-                // Close other dropdowns
-                document.querySelectorAll('[role="menu"]').forEach(menu => {
-                  if (menu !== contactDropdown && !menu.classList.contains('hidden')) {
-                    menu.classList.add('hidden');
-                    const otherLink = document.querySelector(`[aria-controls="${menu.id}"]`);
-                    if (otherLink) {
-                      otherLink.setAttribute('aria-expanded', 'false');
-                      const otherChevron = otherLink.querySelector('svg');
-                      if (otherChevron) otherChevron.classList.remove('rotate-180');
-                    }
-                  }
-                });
+        });
+      }
+    });
                 showDropdown();
               }
             });
@@ -147,12 +153,23 @@
     }
   </script>
 
-  <style>
+    <style>
     /* Contact Dropdown Hover Fallback (Inline - loads after Tailwind) */
     @media (min-width: 768px) {
       #contact-dropdown-wrapper:hover #contact-dropdown.hidden,
       #contact-dropdown-wrapper.group:hover #contact-dropdown.hidden,
       #contact-dropdown-wrapper:hover #contact-dropdown {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translateY(0) !important;
+      }
+      
+      /* Also target when wrapper or link is hovered */
+      #contact-dropdown-wrapper:hover #contact-dropdown,
+      #contact-link:hover ~ #contact-dropdown,
+      #contact-dropdown-wrapper:has(#contact-link:hover) #contact-dropdown {
         display: block !important;
         opacity: 1 !important;
         visibility: visible !important;
@@ -167,15 +184,6 @@
       visibility: visible !important;
       pointer-events: auto !important;
       transform: translateY(0) !important;
-    }
-    /* Opportunities page - override h2 font for category titles to use sans-serif */
-    section#undergraduate-graduate > div > h2,
-    section#phd > div > h2,
-    section#postdoc > div > h2,
-    section#volunteer > div > h2 {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
-      font-weight: 600 !important;
-      letter-spacing: 0 !important;
     }
   </style></head>
 <body class="text-slate-800 antialiased font-sans">
@@ -244,15 +252,14 @@
             <div 
               id="contact-dropdown"
               class="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2
-                     hidden opacity-0 translate-y-1 pointer-events-none
-                     md:group-hover:block md:group-hover:opacity-100 md:group-hover:translate-y-0 md:group-hover:pointer-events-auto
-                     transition-all duration-150 ease-out z-50"
+                     hidden opacity-0 -translate-y-2 pointer-events-none
+                     transition-all duration-200 ease-out z-50"
               role="menu"
               aria-labelledby="contact-link"
             >
               <a href="./join-our-study.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Join Our Study</a>
               <div class="border-t border-slate-100 my-1"></div>
-              <a href="./opportunities.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Opportunities</a>
+              <a href="./opportunities.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Research Opportunities</a>
               <div class="border-t border-slate-100 my-1"></div>
               <a href="./contact.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Get In Touch</a>
             </div>
@@ -263,7 +270,7 @@
 
   <main class="bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900">Opportunities</h1>
+      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900">Research Opportunities</h1>
 
       <div class="mt-8 space-y-3">
         <!-- Undergraduate & Graduate Students -->
@@ -292,7 +299,7 @@
               href="mailto:ks.park@emory.edu?subject=Ph.D. Student Application - EXPHR Lab" 
               class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors text-sm font-medium shadow-sm hover:shadow-md"
             >
-              Apply Now
+              Contact the PI
               <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
@@ -308,7 +315,7 @@
               href="mailto:ks.park@emory.edu?subject=PostDoc Application - EXPHR Lab" 
               class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors text-sm font-medium shadow-sm hover:shadow-md"
             >
-              Apply Now
+              Contact the PI
               <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
@@ -316,23 +323,6 @@
           </div>
         </section>
 
-        <!-- Volunteer -->
-        <section id="volunteer" class="bg-white rounded-lg border border-slate-200 shadow-sm p-4 md:p-5 hover:shadow-md transition-shadow">
-          <div class="flex items-center justify-between">
-            <h2 class="text-base md:text-lg font-semibold text-slate-900" style="font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;">Volunteer</h2>
-            <a 
-              href="https://forms.office.com/pages/responsepage.aspx?id=nPsE4KSwT0K80DImBtXfOO_8G41EFmxJgLJrk-ey1TJUNDZaWllXWERETUdHUVJKVTJMMjEzM0NNUi4u&route=shorturl" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors text-sm font-medium shadow-sm hover:shadow-md"
-            >
-              Apply Now
-              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </a>
-          </div>
-        </section>
       </div>
     </div>
   </main>

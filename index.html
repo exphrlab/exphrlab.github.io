@@ -14,12 +14,23 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-  <style>
+    <style>
     /* Contact Dropdown Hover Fallback (Inline - loads after Tailwind) */
     @media (min-width: 768px) {
       #contact-dropdown-wrapper:hover #contact-dropdown.hidden,
       #contact-dropdown-wrapper.group:hover #contact-dropdown.hidden,
       #contact-dropdown-wrapper:hover #contact-dropdown {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translateY(0) !important;
+      }
+      
+      /* Also target when wrapper or link is hovered */
+      #contact-dropdown-wrapper:hover #contact-dropdown,
+      #contact-link:hover ~ #contact-dropdown,
+      #contact-dropdown-wrapper:has(#contact-link:hover) #contact-dropdown {
         display: block !important;
         opacity: 1 !important;
         visibility: visible !important;
@@ -129,15 +140,14 @@
             <div 
               id="contact-dropdown"
               class="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2
-                     hidden opacity-0 translate-y-1 pointer-events-none
-                     md:group-hover:block md:group-hover:opacity-100 md:group-hover:translate-y-0 md:group-hover:pointer-events-auto
-                     transition-all duration-150 ease-out z-50"
+                     hidden opacity-0 -translate-y-2 pointer-events-none
+                     transition-all duration-200 ease-out z-50"
               role="menu"
               aria-labelledby="contact-link"
             >
               <a href="./join-our-study.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Join Our Study</a>
               <div class="border-t border-slate-100 my-1"></div>
-              <a href="./opportunities.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Opportunities</a>
+              <a href="./opportunities.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Research Opportunities</a>
               <div class="border-t border-slate-100 my-1"></div>
               <a href="./contact.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Get In Touch</a>
             </div>
@@ -167,7 +177,7 @@
       <section class="py-8 md:py-12 lg:py-16 border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-8">
-            <h2 class="font-serif font-bold tracking-tight text-[clamp(24px,3.2vw,32px)] text-slate-900 mb-2">About EXPHR Lab</h2>
+            <h2 class="font-serif font-bold tracking-tight text-[clamp(24px,3.2vw,32px)] text-slate-900 mb-2" style="border-bottom: none !important;">About EXPHR Lab</h2>
           </div>
 
           <div class="max-w-4xl mx-auto mt-6">
@@ -205,7 +215,7 @@
                 Division of Geriatrics and Gerontology
               </p>
               <p class="text-slate-700 mb-4">
-                <a href="mailto:istep@emory.edu" class="text-accent-blue hover:text-emory-navy hover:underline underline-offset-4 transition-colors">istep@emory.edu</a>
+                <a href="mailto:exphr@emory.edu" class="text-accent-blue hover:text-emory-navy hover:underline underline-offset-4 transition-colors">exphr@emory.edu</a>
               </p>
               <p class="text-slate-700">
                 <a href="tel:+14047278919" class="text-accent-blue hover:text-emory-navy hover:underline underline-offset-4 transition-colors">404-727-8919</a>
@@ -231,27 +241,59 @@
     </footer>
 
     <script>
-      // Mobile-only toggle for Contact dropdown (desktop uses pure CSS hover)
+            // Contact dropdown hover/click behavior
       document.addEventListener('DOMContentLoaded', () => {
-        const wrapper = document.getElementById('contact-dropdown-wrapper');
-        const link = document.getElementById('contact-link');
-        const menu = document.getElementById('contact-dropdown');
-        const isMobile = window.matchMedia('(max-width: 768px)').matches;
-        if (!wrapper || !link || !menu || !isMobile) return;
-        
-        link.addEventListener('click', (e) => {
-          // Prevent navigating to contact.html on mobile; we want to open the menu
-          e.preventDefault();
-          const isHidden = menu.classList.contains('hidden');
-          if (isHidden) menu.classList.remove('hidden', 'opacity-0', 'pointer-events-none');
-          else menu.classList.add('hidden', 'opacity-0', 'pointer-events-none');
-        });
-        
-        document.addEventListener('click', (e) => {
-          if (!wrapper.contains(e.target)) {
-            menu.classList.add('hidden', 'opacity-0', 'pointer-events-none');
-          }
-        });
+      const wrapper = document.getElementById('contact-dropdown-wrapper');
+      const link = document.getElementById('contact-link');
+      const menu = document.getElementById('contact-dropdown');
+      const chevron = document.getElementById('contact-chevron');
+      
+      if (!wrapper || !link || !menu) return;
+      
+      const hasHover = window.matchMedia('(hover: hover)').matches;
+      const isMobile = window.matchMedia('(max-width: 768px)').matches && !hasHover;
+      
+      function showDropdown() {
+      menu.classList.remove('hidden', 'opacity-0', '-translate-y-2', 'pointer-events-none');
+      menu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      link.setAttribute('aria-expanded', 'true');
+      if (chevron) chevron.classList.add('rotate-180');
+      }
+      
+      function hideDropdown() {
+      menu.classList.add('hidden', 'opacity-0', '-translate-y-2', 'pointer-events-none');
+      menu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      link.setAttribute('aria-expanded', 'false');
+      if (chevron) chevron.classList.remove('rotate-180');
+      }
+      
+      // Desktop: Show on hover
+      if (!isMobile) {
+      wrapper.addEventListener('mouseenter', showDropdown);
+      wrapper.addEventListener('mouseleave', hideDropdown);
+      menu.addEventListener('mouseenter', showDropdown);
+      menu.addEventListener('mouseleave', hideDropdown);
+      }
+      
+      // Mobile: Toggle on click
+      if (isMobile) {
+      link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+      showDropdown();
+      } else {
+      hideDropdown();
+      }
+      });
+      
+          
+          document.addEventListener('click', (e) => {
+            if (!wrapper.contains(e.target)) {
+              hideDropdown();
+            }
+          });
+        }
       });
 
       // Mobile menu toggle (if exists)

@@ -10,54 +10,60 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com">
-      // Contact dropdown hover/click behavior
-        (function() {
-          const contactWrapper = document.getElementById('contact-dropdown-wrapper');
-          const contactLink = document.getElementById('contact-link');
-          const contactDropdown = document.getElementById('contact-dropdown');
-          const contactChevron = document.getElementById('contact-chevron');
-          
-          if (!contactWrapper || !contactLink || !contactDropdown) return;
-          
-          // Detect if device supports hover (desktop with pointer)
-          const hasHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-          const isMobile = window.matchMedia('(max-width: 768px)').matches || !hasHover;
-          
-          let isOpen = false;
-          
-          function showDropdown() {
-            isOpen = true;
-            contactDropdown.classList.remove('hidden');
-            contactLink.setAttribute('aria-expanded', 'true');
-            if (contactChevron) contactChevron.classList.add('rotate-180');
+                // Contact dropdown hover/click behavior
+      document.addEventListener('DOMContentLoaded', () => {
+      const wrapper = document.getElementById('contact-dropdown-wrapper');
+      const link = document.getElementById('contact-link');
+      const menu = document.getElementById('contact-dropdown');
+      const chevron = document.getElementById('contact-chevron');
+      
+      if (!wrapper || !link || !menu) return;
+      
+      const hasHover = window.matchMedia('(hover: hover)').matches;
+      const isMobile = window.matchMedia('(max-width: 768px)').matches && !hasHover;
+      
+      function showDropdown() {
+      menu.classList.remove('hidden', 'opacity-0', '-translate-y-2', 'pointer-events-none');
+      menu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      link.setAttribute('aria-expanded', 'true');
+      if (chevron) chevron.classList.add('rotate-180');
+      }
+      
+      function hideDropdown() {
+      menu.classList.add('hidden', 'opacity-0', '-translate-y-2', 'pointer-events-none');
+      menu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      link.setAttribute('aria-expanded', 'false');
+      if (chevron) chevron.classList.remove('rotate-180');
+      }
+      
+      // Desktop: Show on hover
+      if (!isMobile) {
+      wrapper.addEventListener('mouseenter', showDropdown);
+      wrapper.addEventListener('mouseleave', hideDropdown);
+      menu.addEventListener('mouseenter', showDropdown);
+      menu.addEventListener('mouseleave', hideDropdown);
+      }
+      
+      // Mobile: Toggle on click
+      if (isMobile) {
+      link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+      showDropdown();
+      } else {
+      hideDropdown();
+      }
+      });
+      
+        
+        document.addEventListener('click', (e) => {
+          if (!wrapper.contains(e.target)) {
+            hideDropdown();
           }
-          
-          function hideDropdown() {
-            isOpen = false;
-            contactDropdown.classList.add('hidden');
-            contactLink.setAttribute('aria-expanded', 'false');
-            if (contactChevron) contactChevron.classList.remove('rotate-180');
-          }
-          
-          // Mobile: tap to toggle
-          if (isMobile) {
-            contactLink.addEventListener('click', (e) => {
-              e.preventDefault();
-              if (isOpen) {
-                hideDropdown();
-              } else {
-                // Close other dropdowns
-                document.querySelectorAll('[role="menu"]').forEach(menu => {
-                  if (menu !== contactDropdown && !menu.classList.contains('hidden')) {
-                    menu.classList.add('hidden');
-                    const otherLink = document.querySelector(`[aria-controls="${menu.id}"]`);
-                    if (otherLink) {
-                      otherLink.setAttribute('aria-expanded', 'false');
-                      const otherChevron = otherLink.querySelector('svg');
-                      if (otherChevron) otherChevron.classList.remove('rotate-180');
-                    }
-                  }
-                });
+        });
+      }
+    });
                 showDropdown();
               }
             });
@@ -147,12 +153,23 @@
     }
   </script>
 
-  <style>
+    <style>
     /* Contact Dropdown Hover Fallback (Inline - loads after Tailwind) */
     @media (min-width: 768px) {
       #contact-dropdown-wrapper:hover #contact-dropdown.hidden,
       #contact-dropdown-wrapper.group:hover #contact-dropdown.hidden,
       #contact-dropdown-wrapper:hover #contact-dropdown {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translateY(0) !important;
+      }
+      
+      /* Also target when wrapper or link is hovered */
+      #contact-dropdown-wrapper:hover #contact-dropdown,
+      #contact-link:hover ~ #contact-dropdown,
+      #contact-dropdown-wrapper:has(#contact-link:hover) #contact-dropdown {
         display: block !important;
         opacity: 1 !important;
         visibility: visible !important;
@@ -235,9 +252,8 @@
             <div 
               id="contact-dropdown"
               class="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-slate-200 py-2
-                     hidden opacity-0 translate-y-1 pointer-events-none
-                     md:group-hover:block md:group-hover:opacity-100 md:group-hover:translate-y-0 md:group-hover:pointer-events-auto
-                     transition-all duration-150 ease-out z-50"
+                     hidden opacity-0 -translate-y-2 pointer-events-none
+                     transition-all duration-200 ease-out z-50"
               role="menu"
               aria-labelledby="contact-link"
             >

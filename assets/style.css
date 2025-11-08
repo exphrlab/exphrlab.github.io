@@ -263,6 +263,17 @@ nav,
     pointer-events: auto !important;
     transform: translateY(0) !important;
   }
+  
+  /* Also target when wrapper or link is hovered */
+  #contact-dropdown-wrapper:hover #contact-dropdown,
+  #contact-link:hover ~ #contact-dropdown,
+  #contact-dropdown-wrapper:has(#contact-link:hover) #contact-dropdown {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
 }
 
 /* Focus-within fallback for keyboard navigation */

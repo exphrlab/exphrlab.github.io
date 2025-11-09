@@ -296,3 +296,17 @@ nav,
   pointer-events: auto !important;
   transform: translateY(0) !important;
 }
+#contact-dropdown-wrapper { position: relative; }
+#contact-dropdown {
+  position: absolute; top: 100%; left: 0;
+  z-index: 1000; background: white;
+}
+header, nav, .site-header, .navbar, .menu, .menu > ul { overflow: visible !important; }
+
+@media (any-hover: hover) {
+  #contact-dropdown-wrapper:hover #contact-dropdown {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}

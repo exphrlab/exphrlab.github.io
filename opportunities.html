@@ -176,14 +176,29 @@
       position: absolute !important;
       top: 100% !important;
       left: 0 !important;
-      margin-top: 0.5rem !important;
+      margin-top: 0 !important;
+      padding-top: 0.25rem !important;
       z-index: 10002 !important;
       min-width: 14rem !important;
       display: block !important;
     }
     
+    /* Bridge gap between wrapper and dropdown for smooth hover */
+    #contact-dropdown-wrapper::after {
+      content: \'\';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      height: 0.5rem;
+      background: transparent;
+      pointer-events: auto;
+      z-index: 10001;
+    }
+    
     /* Show on hover - highest priority */
     #contact-dropdown-wrapper:hover #contact-dropdown,
+    #contact-dropdown-wrapper:hover::after + #contact-dropdown,
     #contact-dropdown-wrapper:focus-within #contact-dropdown {
       opacity: 1 !important;
       visibility: visible !important;
@@ -193,7 +208,8 @@
     }
     
     /* Keep dropdown visible when hovering over it */
-    #contact-dropdown:hover {
+    #contact-dropdown:hover,
+    #contact-dropdown-wrapper::after:hover ~ #contact-dropdown {
       opacity: 1 !important;
       visibility: visible !important;
       pointer-events: auto !important;
@@ -279,6 +295,14 @@
       transform: translateY(0) !important;
     }
     
+    /* Ensure dropdown stays visible when hovering over wrapper or dropdown */
+    #contact-dropdown-wrapper:has(:hover) #contact-dropdown {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+    
   </style>
 
 </style>  <script src="https://cdn.tailwindcss.com"></script>
@@ -347,7 +371,7 @@
               </svg>
             </a>
             <div 
-              id="contact-dropdown" class="absolute left-0 top-full mt-1 w-56 bg-white rounded-xl shadow-2xl border border-slate-200 py-2 transition-all duration-200 ease-out" style="z-index: 10002 !important;"
+              id="contact-dropdown" class="absolute left-0 top-full  w-56 bg-white rounded-xl shadow-2xl border border-slate-200 py-2 transition-all duration-200 ease-out" style="z-index: 10002 !important;margin-top: 0 !important; padding-top: 0.25rem !important;"
               role="menu"
               aria-labelledby="contact-link"
             >
@@ -483,107 +507,41 @@
 
           if (!isMobile) {
             wrapper.addEventListener('mouseenter', () => {
-              clearTimeout(closeTimeout);
-              openDropdown();
-            });
-            wrapper.addEventListener('mouseleave', closeDropdown);
-            dropdown.addEventListener('mouseenter', () => clearTimeout(closeTimeout));
-            dropdown.addEventListener('mouseleave', closeDropdown);
-          }
-
-          button.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (isOpen) {
-              closeDropdownImmediate();
-            } else {
-              document.querySelectorAll('[role="menu"]').forEach(menu => {
-                if (menu !== dropdown) {
-                  menu.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
-                  menu.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
-                }
-              });
-              openDropdown();
-            }
-          });
-
-          button.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              if (isOpen) closeDropdownImmediate();
-              else openDropdown();
-            }
-          });
-        }
-
-        // News dropdown removed - now a simple link
-        }
-    })();
-  </script>
-
-  <script>
-    // Contact Dropdown Functionality
-    document.addEventListener('DOMContentLoaded', () => {
-      const wrapper = document.getElementById('contact-dropdown-wrapper');
-      const link = document.getElementById('contact-link');
-      const menu = document.getElementById('contact-dropdown');
-      const chevron = document.getElementById('contact-chevron');
-      
-      if (!wrapper || !link || !menu) return;
-      
-      // Detect if device supports hover
-      const hasHover = window.matchMedia('(hover: hover)').matches;
-      let isOpen = false;
-      let hoverTimeout = null;
-      let clickedOpen = false; // Track if opened by click
-      let isHovered = false; // Track if hovering over wrapper or menu
-      
-      function showDropdown() {
-        wrapper.classList.add('show-dropdown');
-        link.setAttribute('aria-expanded', 'true');
-        isOpen = true;
-        // Clear any pending hide timeout
-        if (hoverTimeout) {
-          clearTimeout(hoverTimeout);
-          hoverTimeout = null;
-        }
-      }
-      
-      function hideDropdown() {
-        // Only hide if not clicked open and not hovered
-        if (!clickedOpen && !isHovered) {
-          wrapper.classList.remove('show-dropdown');
-          link.setAttribute('aria-expanded', 'false');
-          isOpen = false;
-        }
-      }
-      
-      function checkAndHide() {
-        // Check if we should hide after a delay
-        hoverTimeout = setTimeout(() => {
-          // Only hide if not clicked open and not hovering over wrapper or menu
-          if (!clickedOpen && !isHovered) {
-            hideDropdown();
-          }
-        }, 150);
-      }
-      
-      if (hasHover) {
-        // Desktop: Hover support - keep open while hovering
-        wrapper.addEventListener('mouseenter', () => {
           isHovered = true;
           clearTimeout(hoverTimeout);
           showDropdown();
         });
         
         wrapper.addEventListener('mouseleave', (e) => {
-          // Check if mouse is moving to dropdown
+          // Check if mouse is moving to dropdown or bridge area
           const relatedTarget = e.relatedTarget;
-          const isMovingToDropdown = menu.contains(relatedTarget);
+          const isMovingToDropdown = menu && menu.contains(relatedTarget);
+          const isMovingToWrapper = wrapper && wrapper.contains(relatedTarget);
           
-          if (!isMovingToDropdown) {
-            isHovered = false;
-            checkAndHide();
+          // Also check if moving to any child of wrapper (including dropdown)
+          const isMovingWithinWrapper = relatedTarget && (
+            wrapper.contains(relatedTarget) || 
+            menu.contains(relatedTarget)
+          );
+          
+          if (!isMovingWithinWrapper && !isMovingToDropdown && !isMovingToWrapper) {
+            // Only set isHovered to false after a delay
+            hoverTimeout = setTimeout(() => {
+              // Double check - make sure mouse is really not over wrapper or menu
+              try {
+                if (!wrapper.matches(':hover') && !menu.matches(':hover')) {
+                  isHovered = false;
+                  hideDropdown();
+                } else {
+                  // Mouse is still over, keep it open
+                  isHovered = true;
+                }
+              } catch (e) {
+                // Fallback if matches() is not supported
+                isHovered = false;
+                hideDropdown();
+              }
+            }, HOVER_DELAY);
           }
         });
         
@@ -597,18 +555,53 @@
         menu.addEventListener('mouseleave', (e) => {
           // Check if mouse is moving back to wrapper
           const relatedTarget = e.relatedTarget;
-          const isMovingToWrapper = wrapper.contains(relatedTarget);
+          const isMovingToWrapper = wrapper && wrapper.contains(relatedTarget);
           
-          if (!isMovingToWrapper) {
-            isHovered = false;
-            checkAndHide();
+          // Also check if still hovering over wrapper
+          if (!isMovingToWrapper && !wrapper.matches(':hover')) {
+            // Only hide after delay
+            hoverTimeout = setTimeout(() => {
+              // Double check - make sure mouse is really not over wrapper or menu
+              try {
+                if (!wrapper.matches(':hover') && !menu.matches(':hover')) {
+                  isHovered = false;
+                  hideDropdown();
+                } else {
+                  // Mouse is still over, keep it open
+                  isHovered = true;
+                }
+              } catch (e) {
+                // Fallback if matches() is not supported
+                isHovered = false;
+                hideDropdown();
+              }
+            }, HOVER_DELAY);
           }
         });
         
+        // Also handle mouseover on the link itself for extra reliability
+        link.addEventListener('mouseenter', () => {
+          isHovered = true;
+          clearTimeout(hoverTimeout);
+          showDropdown();
+        });
+        
+        // Handle mouse movement within the entire wrapper area
+        wrapper.addEventListener('mousemove', () => {
+          isHovered = true;
+          clearTimeout(hoverTimeout);
+          showDropdown();
+        });
+        
         // Click: Toggle show-dropdown class to keep it open
-        link.addEventListener('click', (e) => {
+        // Unified click handler - prevents navigation AND toggles dropdown
+        function handleContactClick(e) {
+          // Always prevent navigation
           e.preventDefault();
           e.stopPropagation();
+          e.stopImmediatePropagation();
+          
+          // Toggle dropdown state
           clickedOpen = !clickedOpen;
           if (clickedOpen) {
             showDropdown();
@@ -617,12 +610,21 @@
             link.setAttribute('aria-expanded', 'false');
             isOpen = false;
           }
-        });
+          
+          return false;
+        }
+        
+        link.addEventListener('click', handleContactClick, true); // Capture phase
       } else {
         // Mobile: Click only
-        link.addEventListener('click', (e) => {
+        // Unified click handler - prevents navigation AND toggles dropdown
+        function handleContactClick(e) {
+          // Always prevent navigation
           e.preventDefault();
           e.stopPropagation();
+          e.stopImmediatePropagation();
+          
+          // Toggle dropdown state
           clickedOpen = !clickedOpen;
           if (clickedOpen) {
             showDropdown();
@@ -631,7 +633,34 @@
             link.setAttribute('aria-expanded', 'false');
             isOpen = false;
           }
-        });
+          
+          return false;
+        }
+        
+        link.addEventListener('click', handleContactClick, true); // Capture phase
+      // Close on outside click (only if clicked open)
+      document.addEventListener('click', (e) => {
+        if (clickedOpen && !wrapper.contains(e.target)) {
+          clickedOpen = false;
+          wrapper.classList.remove('show-dropdown');
+          link.setAttribute('aria-expanded', 'false');
+          isOpen = false;
+        }
+      });
+      
+      // Close on ESC key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && (isOpen || clickedOpen)) {
+          clickedOpen = false;
+          wrapper.classList.remove('show-dropdown');
+          link.setAttribute('aria-expanded', 'false');
+          isOpen = false;
+          link.focus();
+        }
+      });
+      });
+        // Mobile: Click only
+        link.addEventListener('click', handleContactClick, true); // Capture phase
       }
       
       // Close on outside click (only if clicked open)

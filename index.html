@@ -58,10 +58,24 @@
       position: absolute !important;
       top: 100% !important;
       left: 0 !important;
-      margin-top: 0.5rem !important;
+      margin-top: 0 !important;
+      padding-top: 0.25rem !important;
       z-index: 10002 !important;
       min-width: 14rem !important;
       display: block !important;
+    }
+    
+    /* Bridge gap between wrapper and dropdown for smooth hover */
+    #contact-dropdown-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      height: 0.5rem;
+      background: transparent;
+      pointer-events: auto;
+      z-index: 10001;
     }
     
     /* Rotate chevron on hover */
@@ -99,7 +113,8 @@
     }
     
     /* Override: show when wrapper is hovered */
-    #contact-dropdown-wrapper:hover #contact-dropdown {
+    #contact-dropdown-wrapper:hover #contact-dropdown,
+    #contact-dropdown-wrapper:hover::after + #contact-dropdown {
       opacity: 1 !important;
       visibility: visible !important;
       pointer-events: auto !important;
@@ -107,7 +122,21 @@
     }
     
     /* Override: show when dropdown itself is hovered (keep it open when moving mouse to dropdown) */
-    #contact-dropdown:hover {
+    #contact-dropdown:hover,
+    #contact-dropdown-wrapper::after:hover ~ #contact-dropdown {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+    
+    /* Keep dropdown visible when hovering over the bridge area */
+    #contact-dropdown-wrapper::after:hover {
+      opacity: 1 !important;
+    }
+    
+    /* Ensure dropdown stays visible when hovering over wrapper or dropdown */
+    #contact-dropdown-wrapper:has(:hover) #contact-dropdown {
       opacity: 1 !important;
       visibility: visible !important;
       pointer-events: auto !important;
@@ -135,7 +164,7 @@
           <div id="contact-dropdown-wrapper" class="relative group shrink-0" style="z-index: 9999;">
             <a 
               id="contact-link"
-              href="#"
+              href="javascript:void(0);"
               class="inline-flex items-center gap-1 text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition cursor-pointer whitespace-nowrap"
               aria-haspopup="true"
               aria-expanded="false"
@@ -148,8 +177,8 @@
             </a>
             <div 
               id="contact-dropdown"
-              class="absolute left-0 top-full mt-1 w-56 bg-warm-cream rounded-xl shadow-2xl border border-warm-sand/50 py-2 transition-all duration-200 ease-out"
-              style="z-index: 10002 !important;"
+              class="absolute left-0 top-full w-56 bg-warm-cream rounded-xl shadow-2xl border border-warm-sand/50 py-2 transition-all duration-200 ease-out"
+              style="z-index: 10002 !important; margin-top: 0 !important; padding-top: 0.25rem !important;"
               role="menu"
               aria-labelledby="contact-link"
             >
@@ -161,14 +190,49 @@
             </div>
           </div> </nav> </div> </header> <!-- ===== Main ===== --> <main> <!-- Hero Section --> <section class="pt-1 md:pt-2 pb-1 md:pb-2 bg-gradient-to-br from-warm-cream via-warm-beige to-warm-sand"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4"> <img src="assets/media/emory-university.jpeg" alt="Emory University" class="max-w-full w-[480px]" style="mix-blend-mode: multiply; background: transparent; border: none; outline: none;" loading="eager" /> </div> </div> </section> <!-- About Section --> <section class="py-8 md:py-12 lg:py-16 bg-warm-cream/50 border-t border-warm-sand/40"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="text-center mb-8"> <h2 class="font-serif font-bold tracking-tight text-[clamp(24px,3.2vw,32px)] text-slate-900 mb-2" style="border-bottom: none !important;">About EXPHR Lab</h2> </div> <div class="max-w-4xl mx-auto mt-6"> <div class="prose prose-slate max-w-none text-center text-base md:text-lg leading-relaxed"> <p class="text-slate-700 mb-4"> At ExPHR (Exercise for Precision Health and Rehabilitation),<br> we are dedicated to supporting healthy aging through evidence-based lifestyle interventions. </p> <p class="text-slate-700 mb-4"> Our mission is to help midlife and older adults — with and without chronic health conditions — adopt sustainable habits in exercise, nutrition, and sleep that promote long-term brain and body health. </p> <p class="text-slate-700 mb-4"> Our research investigates the neural, physiological, and psychological mechanisms that drive behavior change and resilience, with a particular focus on how exercise supports brain function and cognitive health across the aging process. We also design music-based interventions to enhance rehabilitation and motivation among individuals with neurologic or mobility limitations. </p> <p class="text-slate-700 mb-6"> Ultimately, our goal is to develop accessible, enjoyable, and lasting physical activity strategies that empower older adults to maintain independence, improve quality of life, and promote optimal aging. </p> <p class="text-slate-700"> If you are interested in learning more or collaborating with our lab, please <a href="/contact.html" class="text-blue-600 hover:text-blue-700 hover:underline underline-offset-4 transition-colors">contact us</a>. </p> </div> </div> </div> </section> <!-- Contact & Location --> <section class="py-8 md:py-12 lg:py-16 bg-warm-beige/60 border-t border-warm-sand/40"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="grid grid-cols-1 md:grid-cols-2 gap-8"> <div class="text-center"> <h2 class="font-serif font-bold text-2xl text-slate-900 mb-4">Contact</h2> <p class="text-slate-700 mb-4 leading-relaxed"> Emory University School of Medicine<br /> Division of Geriatrics and Gerontology </p> <p class="text-slate-700 mb-4"> <a href="mailto:exphr@emory.edu" class="text-accent-blue hover:text-emory-navy hover:underline underline-offset-4 transition-colors">exphr@emory.edu</a> </p> <p class="text-slate-700"> <a href="tel:+14047278919" class="text-accent-blue hover:text-emory-navy hover:underline underline-offset-4 transition-colors">404-727-8919</a> </p> </div> <div class="text-center"> <h2 class="font-serif font-bold text-2xl text-slate-900 mb-4">Location</h2> <p class="text-slate-700 leading-relaxed"> 57 Executive Park S<br /> Atlanta, GA 30324 </p> </div> </div> </div> </section> </main> <!-- ===== Footer ===== --> <footer class="border-t border-warm-sand/40 bg-warm-cream/80"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-sm text-slate-600"> © 2025 EXPHR Lab · Emory University </div> </footer> <script> // Mobile menu toggle (if exists) document.getElementById('mobile-menu-button')?.addEventListener('click', function() { const menu = document.getElementById('mobile-menu'); const menuIcon = document.getElementById('menu-icon'); const closeIcon = document.getElementById('close-icon'); const isHidden = menu.classList.contains('hidden'); if (isHidden) { menuIcon?.classList.add('hidden'); closeIcon?.classList.remove('hidden'); this.setAttribute('aria-expanded', 'true'); } else { menuIcon?.classList.remove('hidden'); closeIcon?.classList.add('hidden'); this.setAttribute('aria-expanded', 'false'); }    
   <script>
-    // Contact Dropdown Functionality
+// Contact Dropdown Functionality - Prevent navigation immediately
+    // Prevent navigation as early as possible, even before DOM is ready
+    (function() {
+      function preventContactNavigation(e) {
+        // Check if click is on contact-link or inside it
+        const target = e.target;
+        const contactLink = document.getElementById('contact-link');
+        
+        if (contactLink && (target === contactLink || contactLink.contains(target))) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+          return false;
+        }
+      }
+      
+      // Add listener in capture phase (runs first)
+      document.addEventListener('click', preventContactNavigation, true);
+      
+      // Also prevent on mousedown (before click)
+      document.addEventListener('mousedown', function(e) {
+        const target = e.target;
+        const contactLink = document.getElementById('contact-link');
+        if (contactLink && (target === contactLink || contactLink.contains(target))) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, true);
+    })();
+    
     document.addEventListener('DOMContentLoaded', () => {
       const wrapper = document.getElementById('contact-dropdown-wrapper');
       const link = document.getElementById('contact-link');
       const menu = document.getElementById('contact-dropdown');
       const chevron = document.getElementById('contact-chevron');
       
-      if (!wrapper || !link || !menu) return;
+      if (!wrapper || !link || !menu) {
+        console.error('Contact dropdown elements not found');
+        return;
+      }
+      
+      // Ensure link never navigates - set href to non-navigating value
+      link.setAttribute('href', 'javascript:void(0);');
       
       // Detect if device supports hover
       const hasHover = window.matchMedia('(hover: hover)').matches;
@@ -199,16 +263,32 @@
       
       function checkAndHide() {
         // Check if we should hide after a delay
+        // Increased delay for smoother hover transitions
         hoverTimeout = setTimeout(() => {
           // Only hide if not clicked open and not hovering over wrapper or menu
+          // Also check CSS :hover state as a fallback
           if (!clickedOpen && !isHovered) {
-            hideDropdown();
+            // Final check - verify mouse is really not over the area
+            try {
+              if (!wrapper.matches(':hover') && !menu.matches(':hover')) {
+                hideDropdown();
+              } else {
+                // Mouse is still over, keep it open
+                isHovered = true;
+              }
+            } catch (e) {
+              // Fallback if matches() is not supported
+              hideDropdown();
+            }
           }
-        }, 150);
+        }, 200); // Increased from 150ms to 200ms for smoother transitions
       }
       
       if (hasHover) {
         // Desktop: Hover support - keep open while hovering
+        // Use longer delay to account for mouse movement between elements
+        const HOVER_DELAY = 200; // Increased delay for smoother transitions
+        
         wrapper.addEventListener('mouseenter', () => {
           isHovered = true;
           clearTimeout(hoverTimeout);
@@ -216,13 +296,35 @@
         });
         
         wrapper.addEventListener('mouseleave', (e) => {
-          // Check if mouse is moving to dropdown
+          // Check if mouse is moving to dropdown or bridge area
           const relatedTarget = e.relatedTarget;
-          const isMovingToDropdown = menu.contains(relatedTarget);
+          const isMovingToDropdown = menu && menu.contains(relatedTarget);
+          const isMovingToWrapper = wrapper && wrapper.contains(relatedTarget);
           
-          if (!isMovingToDropdown) {
-            isHovered = false;
-            checkAndHide();
+          // Also check if moving to any child of wrapper (including dropdown)
+          const isMovingWithinWrapper = relatedTarget && (
+            wrapper.contains(relatedTarget) || 
+            menu.contains(relatedTarget)
+          );
+          
+          if (!isMovingWithinWrapper && !isMovingToDropdown && !isMovingToWrapper) {
+            // Only set isHovered to false after a delay
+            hoverTimeout = setTimeout(() => {
+              // Double check - make sure mouse is really not over wrapper or menu
+              try {
+                if (!wrapper.matches(':hover') && !menu.matches(':hover')) {
+                  isHovered = false;
+                  hideDropdown();
+                } else {
+                  // Mouse is still over, keep it open
+                  isHovered = true;
+                }
+              } catch (e) {
+                // Fallback if matches() is not supported
+                isHovered = false;
+                hideDropdown();
+              }
+            }, HOVER_DELAY);
           }
         });
         
@@ -236,18 +338,53 @@
         menu.addEventListener('mouseleave', (e) => {
           // Check if mouse is moving back to wrapper
           const relatedTarget = e.relatedTarget;
-          const isMovingToWrapper = wrapper.contains(relatedTarget);
+          const isMovingToWrapper = wrapper && wrapper.contains(relatedTarget);
           
-          if (!isMovingToWrapper) {
-            isHovered = false;
-            checkAndHide();
+          // Also check if still hovering over wrapper
+          if (!isMovingToWrapper && !wrapper.matches(':hover')) {
+            // Only hide after delay
+            hoverTimeout = setTimeout(() => {
+              // Double check - make sure mouse is really not over wrapper or menu
+              try {
+                if (!wrapper.matches(':hover') && !menu.matches(':hover')) {
+                  isHovered = false;
+                  hideDropdown();
+                } else {
+                  // Mouse is still over, keep it open
+                  isHovered = true;
+                }
+              } catch (e) {
+                // Fallback if matches() is not supported
+                isHovered = false;
+                hideDropdown();
+              }
+            }, HOVER_DELAY);
           }
         });
         
+        // Also handle mouseover on the link itself for extra reliability
+        link.addEventListener('mouseenter', () => {
+          isHovered = true;
+          clearTimeout(hoverTimeout);
+          showDropdown();
+        });
+        
+        // Handle mouse movement within the entire wrapper area
+        wrapper.addEventListener('mousemove', () => {
+          isHovered = true;
+          clearTimeout(hoverTimeout);
+          showDropdown();
+        });
+        
         // Click: Toggle show-dropdown class to keep it open
-        link.addEventListener('click', (e) => {
+        // Unified click handler - prevents navigation AND toggles dropdown
+        function handleContactClick(e) {
+          // Always prevent navigation
           e.preventDefault();
           e.stopPropagation();
+          e.stopImmediatePropagation();
+          
+          // Toggle dropdown state
           clickedOpen = !clickedOpen;
           if (clickedOpen) {
             showDropdown();
@@ -256,12 +393,21 @@
             link.setAttribute('aria-expanded', 'false');
             isOpen = false;
           }
-        });
+          
+          return false;
+        }
+        
+        link.addEventListener('click', handleContactClick, true); // Capture phase
       } else {
         // Mobile: Click only
-        link.addEventListener('click', (e) => {
+        // Unified click handler - prevents navigation AND toggles dropdown
+        function handleContactClick(e) {
+          // Always prevent navigation
           e.preventDefault();
           e.stopPropagation();
+          e.stopImmediatePropagation();
+          
+          // Toggle dropdown state
           clickedOpen = !clickedOpen;
           if (clickedOpen) {
             showDropdown();
@@ -270,7 +416,11 @@
             link.setAttribute('aria-expanded', 'false');
             isOpen = false;
           }
-        });
+          
+          return false;
+        }
+        
+        link.addEventListener('click', handleContactClick, true); // Capture phase
       }
       
       // Close on outside click (only if clicked open)

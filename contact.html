@@ -207,7 +207,7 @@
           <div id="contact-dropdown-wrapper" class="relative group shrink-0" style="z-index: 9999;">
             <a 
               id="contact-link"
-              href="#"
+              href="javascript:void(0);"
               class="inline-flex items-center gap-1 text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition cursor-pointer whitespace-nowrap"
               aria-haspopup="true"
               aria-expanded="false"
@@ -303,14 +303,49 @@
   </footer>
 
   <script>
-// Contact Dropdown Functionality
+// Contact Dropdown Functionality - Prevent navigation immediately
+    // Prevent navigation as early as possible, even before DOM is ready
+    (function() {
+      function preventContactNavigation(e) {
+        // Check if click is on contact-link or inside it
+        const target = e.target;
+        const contactLink = document.getElementById('contact-link');
+        
+        if (contactLink && (target === contactLink || contactLink.contains(target))) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+          return false;
+        }
+      }
+      
+      // Add listener in capture phase (runs first)
+      document.addEventListener('click', preventContactNavigation, true);
+      
+      // Also prevent on mousedown (before click)
+      document.addEventListener('mousedown', function(e) {
+        const target = e.target;
+        const contactLink = document.getElementById('contact-link');
+        if (contactLink && (target === contactLink || contactLink.contains(target))) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, true);
+    })();
+    
     document.addEventListener('DOMContentLoaded', () => {
       const wrapper = document.getElementById('contact-dropdown-wrapper');
       const link = document.getElementById('contact-link');
       const menu = document.getElementById('contact-dropdown');
       const chevron = document.getElementById('contact-chevron');
       
-      if (!wrapper || !link || !menu) return;
+      if (!wrapper || !link || !menu) {
+        console.error('Contact dropdown elements not found');
+        return;
+      }
+      
+      // Ensure link never navigates - set href to non-navigating value
+      link.setAttribute('href', 'javascript:void(0);');
       
       // Detect if device supports hover
       const hasHover = window.matchMedia('(hover: hover)').matches;
@@ -347,6 +382,26 @@
             hideDropdown();
           }
         }, 150);
+      }
+      
+      // Unified click handler - prevents navigation AND toggles dropdown
+      function handleContactClick(e) {
+        // Always prevent navigation
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        
+        // Toggle dropdown state
+        clickedOpen = !clickedOpen;
+        if (clickedOpen) {
+          showDropdown();
+        } else {
+          wrapper.classList.remove('show-dropdown');
+          link.setAttribute('aria-expanded', 'false');
+          isOpen = false;
+        }
+        
+        return false;
       }
       
       if (hasHover) {
@@ -387,32 +442,10 @@
         });
         
         // Click: Toggle show-dropdown class to keep it open
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          clickedOpen = !clickedOpen;
-          if (clickedOpen) {
-            showDropdown();
-          } else {
-            wrapper.classList.remove('show-dropdown');
-            link.setAttribute('aria-expanded', 'false');
-            isOpen = false;
-          }
-        });
+        link.addEventListener('click', handleContactClick, true); // Capture phase
       } else {
         // Mobile: Click only
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          clickedOpen = !clickedOpen;
-          if (clickedOpen) {
-            showDropdown();
-          } else {
-            wrapper.classList.remove('show-dropdown');
-            link.setAttribute('aria-expanded', 'false');
-            isOpen = false;
-          }
-        });
+        link.addEventListener('click', handleContactClick, true); // Capture phase
       }
       
       // Close on outside click (only if clicked open)

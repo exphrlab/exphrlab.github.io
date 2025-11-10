@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact · EXPHR Lab</title>
+  <title>Get In Touch · EXPHR Lab</title>
   <link rel="stylesheet" href="./assets/style.css?v=17">
+  <!-- Contact dropdown CSS must come after external CSS to override it -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -25,6 +26,134 @@
       }
     }
   </script>
+  <style>
+    
+    
+    /* Contact Dropdown Styles - Enhanced for visibility */
+    html body header,
+    html body nav,
+    html body #contact-dropdown-wrapper,
+    html body header > div,
+    html body nav > div,
+    html body header > div > div {
+      overflow: visible !important;
+    }
+    
+    /* Dropdown container */
+    #contact-dropdown-wrapper {
+      position: relative !important;
+      z-index: 10001 !important;
+    }
+    
+    /* Dropdown menu - positioned correctly */
+    #contact-dropdown {
+      position: absolute !important;
+      top: 100% !important;
+      left: 0 !important;
+      margin-top: 0.5rem !important;
+      z-index: 10002 !important;
+      min-width: 14rem !important;
+      display: block !important;
+    }
+    
+    /* Show on hover - highest priority */
+    #contact-dropdown-wrapper:hover #contact-dropdown,
+    #contact-dropdown-wrapper:focus-within #contact-dropdown {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+      display: block !important;
+    }
+    
+    /* Keep dropdown visible when hovering over it */
+    #contact-dropdown:hover {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+      display: block !important;
+    }
+    
+    /* Rotate chevron on hover */
+    #contact-dropdown-wrapper:hover #contact-chevron,
+    #contact-dropdown-wrapper:focus-within #contact-chevron {
+      transform: rotate(180deg) !important;
+    }
+    
+    /* Show when .show-dropdown class is added (for click) */
+    #contact-dropdown-wrapper.show-dropdown #contact-dropdown {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+      display: block !important;
+    }
+    
+    #contact-dropdown-wrapper.show-dropdown #contact-chevron {
+      transform: rotate(180deg) !important;
+    }
+    
+    /* Ensure header doesn't clip dropdown */
+    header {
+      overflow: visible !important;
+      z-index: 50 !important;
+      position: relative !important;
+    }
+    
+    header > div {
+      overflow: visible !important;
+      position: relative !important;
+    }
+    
+    nav {
+      overflow: visible !important;
+      position: relative !important;
+    }
+    
+  
+    /* Dropdown initial hidden state - controlled by CSS only */
+    /* Default: hidden when wrapper AND dropdown are not hovered and no show-dropdown class */
+    #contact-dropdown-wrapper:not(:hover):not(.show-dropdown) #contact-dropdown:not(:hover) {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      transform: translateY(-8px) !important;
+    }
+    
+    /* Override: show when wrapper is hovered */
+    #contact-dropdown-wrapper:hover #contact-dropdown {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+    
+    /* Override: show when dropdown itself is hovered (keep it open when moving mouse to dropdown) */
+    #contact-dropdown:hover {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+    
+    /* Override: show when show-dropdown class is added (for click) */
+    #contact-dropdown-wrapper.show-dropdown #contact-dropdown {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+    
+    /* Focus-within for keyboard navigation */
+    #contact-dropdown-wrapper:focus-within #contact-dropdown {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+    
+  </style>
 </head>
 <body class="text-slate-800 antialiased font-sans bg-white">
   <!-- Header -->
@@ -75,31 +204,30 @@
           </a>
 
           <!-- Contact Dropdown -->
-          <div class="relative shrink-0 group pt-2 -mt-2 pb-2 -mb-2" id="contact-dropdown-wrapper" style="z-index: 9999;">
+          <div id="contact-dropdown-wrapper" class="relative group shrink-0" style="z-index: 9999;">
             <a 
-              href="./contact.html"
-              class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative flex items-center gap-1 whitespace-nowrap"
               id="contact-link"
-              aria-haspopup="menu"
+              href="#"
+              class="inline-flex items-center gap-1 text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition cursor-pointer whitespace-nowrap"
+              aria-haspopup="true"
               aria-expanded="false"
               aria-controls="contact-dropdown"
             >
               <span>Contact</span>
-              <svg id="contact-chevron" class="w-3 h-3 transition-transform shrink-0 duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <svg id="contact-chevron" class="w-3 h-3 shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </a>
             <div 
-              id="contact-dropdown"
-              class="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-2xl border border-slate-200 py-2 transition-all duration-200 ease-out hidden" style="z-index: 9999;"
+              id="contact-dropdown" class="absolute left-0 top-full mt-1 w-56 bg-white rounded-xl shadow-2xl border border-slate-200 py-2 transition-all duration-200 ease-out" style="z-index: 10002 !important;"
               role="menu"
               aria-labelledby="contact-link"
             >
-              <a href="./join-our-study.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Join Our Study</a>
+              <a href="./join-our-study.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors" role="menuitem">Join Our Study</a>
               <div class="border-t border-slate-100 my-1"></div>
-              <a href="./opportunities.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Research Opportunities</a>
+              <a href="./opportunities.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors" role="menuitem">Research Opportunities</a>
               <div class="border-t border-slate-100 my-1"></div>
-              <a href="./contact.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Get In Touch</a>
+              <a href="./contact.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors" role="menuitem">Get In Touch</a>
             </div>
           </div>
         </nav>
@@ -108,101 +236,62 @@
 
   <!-- Main Content -->
   <main class="bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900">Contact</h1>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12">
+      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900 mb-8">Get In Touch</h1>
 
-      <div class="mt-8">
-        <div class="space-y-6">
-          <!-- Research Participants -->
-          <section class="border rounded-xl p-4 bg-white shadow-sm">
-            <h2 class="text-lg font-bold text-slate-900 mb-3">Join Our Study</h2>
-            <div class="border border-slate-200 rounded-lg p-3 bg-slate-50 hover:bg-slate-100 transition-colors">
-              <div class="flex items-center justify-between">
-                <h3 class="text-base font-semibold text-slate-900" style="font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;">Research Participants</h3>
-                <a 
-                  href="/join-our-study.html" 
-                  class="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors text-xs font-medium"
-                >
-                  Learn More
-                  <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </section>
-
-          <!-- Research Opportunities -->
-          <section class="border rounded-xl p-4 bg-white shadow-sm">
-            <h2 class="text-lg font-bold text-slate-900 mb-3">Research Opportunities</h2>
-            <div class="space-y-2">
-              <!-- Undergraduate & Graduate Students -->
-              <div class="border border-slate-200 rounded-lg p-3 bg-slate-50 hover:bg-slate-100 transition-colors">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-base font-semibold text-slate-900" style="font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;">Undergraduate & Graduate Students</h3>
-                  <a 
-                    href="https://forms.office.com/pages/responsepage.aspx?id=nPsE4KSwT0K80DImBtXfOO_8G41EFmxJgLJrk-ey1TJUNDZaWllXWERETUdHUVJKVTJMMjEzM0NNUi4u&route=shorturl" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors text-xs font-medium"
-                  >
-                    Apply Now
-                    <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-
-              <!-- Ph.D. Students -->
-              <div class="border border-slate-200 rounded-lg p-3 bg-slate-50 hover:bg-slate-100 transition-colors">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-base font-semibold text-slate-900" style="font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;">Ph.D. Students</h3>
-                  <a 
-                    href="mailto:ks.park@emory.edu?subject=Ph.D. Student Application - EXPHR Lab" 
-                    class="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors text-xs font-medium"
-                  >
-                    Contact the PI
-                    <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-
-              <!-- PostDoc -->
-              <div class="border border-slate-200 rounded-lg p-3 bg-slate-50 hover:bg-slate-100 transition-colors">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-base font-semibold text-slate-900" style="font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;">PostDoc</h3>
-                  <a 
-                    href="mailto:ks.park@emory.edu?subject=PostDoc Application - EXPHR Lab" 
-                    class="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors text-xs font-medium"
-                  >
-                    Contact the PI
-                    <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-
-            </div>
-          </section>
-
-          <!-- Get In Touch -->
-          <section class="border rounded-xl p-6 bg-white shadow-sm">
-            <h2 class="text-xl font-bold text-slate-900 mb-3">Get In Touch</h2>
-            <div class="space-y-2 text-slate-700 mb-4">
-              <p><strong>Email:</strong> <a href="mailto:exphr@emory.edu" class="text-accent-blue hover:text-emory-navy hover:underline">exphr@emory.edu</a></p>
-              <p><strong>Phone:</strong> <a href="tel:+14047278919" class="text-accent-blue hover:text-emory-navy hover:underline">404-727-8919</a></p>
-              <p><strong>Address:</strong> Emory University School of Medicine<br />
-              Division of Geriatrics and Gerontology<br />
-              57 Executive Park S<br />
-              Atlanta, GA 30324</p>
-            </div>
-          </section>
+      <!-- Emory Building Images Grid -->
+      <div class="mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          <div class="group relative overflow-hidden rounded-xl bg-white shadow-md hover:shadow-lg transition-all duration-300 aspect-[4/3]">
+            <img 
+              src="assets/media/emory building-1.jpg" 
+              alt="Emory University Building 1" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </div>
+          <div class="group relative overflow-hidden rounded-xl bg-white shadow-md hover:shadow-lg transition-all duration-300 aspect-[4/3]">
+            <img 
+              src="assets/media/emory building-2.jpg" 
+              alt="Emory University Building 2" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </div>
+          <div class="group relative overflow-hidden rounded-xl bg-white shadow-md hover:shadow-lg transition-all duration-300 aspect-[4/3]">
+            <img 
+              src="assets/media/emory building-3.jpg" 
+              alt="Emory University Building 3" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
+
+      <!-- Get In Touch Section -->
+      <section class="border rounded-xl p-6 md:p-8 bg-white shadow-sm">
+        <h2 class="text-xl md:text-2xl font-bold text-slate-900 mb-4">Contact Information</h2>
+        <div class="space-y-3 text-slate-700">
+          <p class="text-base md:text-lg">
+            <strong class="text-slate-900">Email:</strong> 
+            <a href="mailto:exphr@emory.edu" class="text-accent-blue hover:text-emory-navy hover:underline underline-offset-2">exphr@emory.edu</a>
+          </p>
+          <p class="text-base md:text-lg">
+            <strong class="text-slate-900">Phone:</strong> 
+            <a href="tel:+14047278919" class="text-accent-blue hover:text-emory-navy hover:underline underline-offset-2">404-727-8919</a>
+          </p>
+          <div class="text-base md:text-lg">
+            <strong class="text-slate-900">Address:</strong>
+            <p class="mt-1 text-slate-700">
+              Emory University School of Medicine<br />
+              Division of Geriatrics and Gerontology<br />
+              57 Executive Park S<br />
+              Atlanta, GA 30324
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 
@@ -214,54 +303,139 @@
   </footer>
 
   <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const wrapper  = document.getElementById('contact-dropdown-wrapper');
-  const link     = document.getElementById('contact-link');
-  const menu     = document.getElementById('contact-dropdown');
-  const chevron  = document.getElementById('contact-chevron');
-  if (!wrapper || !link || !menu) return;
-
-  const hasHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-  if (hasHover) {
-    wrapper.addEventListener('mouseenter', () => {
-      menu.classList.remove('hidden');
-      link.setAttribute('aria-expanded', 'true');
-      chevron?.classList.add('rotate-180');
-    });
-    wrapper.addEventListener('mouseleave', () => {
-      menu.classList.add('hidden');
-      link.setAttribute('aria-expanded', 'false');
-      chevron?.classList.remove('rotate-180');
-    });
-  }
-
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const willOpen = menu.classList.contains('hidden');
-    menu.classList.toggle('hidden', !willOpen);
-    link.setAttribute('aria-expanded', String(willOpen));
-    chevron?.classList.toggle('rotate-180', willOpen);
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!wrapper.contains(e.target)) {
-      if (!menu.classList.contains('hidden')) {
-        menu.classList.add('hidden');
-        link.setAttribute('aria-expanded', 'false');
-        chevron?.classList.remove('rotate-180');
+// Contact Dropdown Functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const wrapper = document.getElementById('contact-dropdown-wrapper');
+      const link = document.getElementById('contact-link');
+      const menu = document.getElementById('contact-dropdown');
+      const chevron = document.getElementById('contact-chevron');
+      
+      if (!wrapper || !link || !menu) return;
+      
+      // Detect if device supports hover
+      const hasHover = window.matchMedia('(hover: hover)').matches;
+      let isOpen = false;
+      let hoverTimeout = null;
+      let clickedOpen = false; // Track if opened by click
+      let isHovered = false; // Track if hovering over wrapper or menu
+      
+      function showDropdown() {
+        wrapper.classList.add('show-dropdown');
+        link.setAttribute('aria-expanded', 'true');
+        isOpen = true;
+        // Clear any pending hide timeout
+        if (hoverTimeout) {
+          clearTimeout(hoverTimeout);
+          hoverTimeout = null;
+        }
       }
-    }
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      menu.classList.add('hidden');
-      link.setAttribute('aria-expanded', 'false');
-      chevron?.classList.remove('rotate-180');
-    }
-  });
-});
+      
+      function hideDropdown() {
+        // Only hide if not clicked open and not hovered
+        if (!clickedOpen && !isHovered) {
+          wrapper.classList.remove('show-dropdown');
+          link.setAttribute('aria-expanded', 'false');
+          isOpen = false;
+        }
+      }
+      
+      function checkAndHide() {
+        // Check if we should hide after a delay
+        hoverTimeout = setTimeout(() => {
+          // Only hide if not clicked open and not hovering over wrapper or menu
+          if (!clickedOpen && !isHovered) {
+            hideDropdown();
+          }
+        }, 150);
+      }
+      
+      if (hasHover) {
+        // Desktop: Hover support - keep open while hovering
+        wrapper.addEventListener('mouseenter', () => {
+          isHovered = true;
+          clearTimeout(hoverTimeout);
+          showDropdown();
+        });
+        
+        wrapper.addEventListener('mouseleave', (e) => {
+          // Check if mouse is moving to dropdown
+          const relatedTarget = e.relatedTarget;
+          const isMovingToDropdown = menu.contains(relatedTarget);
+          
+          if (!isMovingToDropdown) {
+            isHovered = false;
+            checkAndHide();
+          }
+        });
+        
+        // Keep dropdown open when hovering over it
+        menu.addEventListener('mouseenter', () => {
+          isHovered = true;
+          clearTimeout(hoverTimeout);
+          showDropdown();
+        });
+        
+        menu.addEventListener('mouseleave', (e) => {
+          // Check if mouse is moving back to wrapper
+          const relatedTarget = e.relatedTarget;
+          const isMovingToWrapper = wrapper.contains(relatedTarget);
+          
+          if (!isMovingToWrapper) {
+            isHovered = false;
+            checkAndHide();
+          }
+        });
+        
+        // Click: Toggle show-dropdown class to keep it open
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          clickedOpen = !clickedOpen;
+          if (clickedOpen) {
+            showDropdown();
+          } else {
+            wrapper.classList.remove('show-dropdown');
+            link.setAttribute('aria-expanded', 'false');
+            isOpen = false;
+          }
+        });
+      } else {
+        // Mobile: Click only
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          clickedOpen = !clickedOpen;
+          if (clickedOpen) {
+            showDropdown();
+          } else {
+            wrapper.classList.remove('show-dropdown');
+            link.setAttribute('aria-expanded', 'false');
+            isOpen = false;
+          }
+        });
+      }
+      
+      // Close on outside click (only if clicked open)
+      document.addEventListener('click', (e) => {
+        if (clickedOpen && !wrapper.contains(e.target)) {
+          clickedOpen = false;
+          wrapper.classList.remove('show-dropdown');
+          link.setAttribute('aria-expanded', 'false');
+          isOpen = false;
+        }
+      });
+      
+      // Close on ESC key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && (isOpen || clickedOpen)) {
+          clickedOpen = false;
+          wrapper.classList.remove('show-dropdown');
+          link.setAttribute('aria-expanded', 'false');
+          isOpen = false;
+          link.focus();
+        }
+      });
+    });
   </script>
 </body>
 </html>

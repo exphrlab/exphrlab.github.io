@@ -9,70 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* Contact Dropdown - CSS-only hover solution */
-    /* Ensure wrapper and header allow overflow for dropdown */
-    header, nav, #contact-dropdown-wrapper {
-      overflow: visible !important;
-    }
-    
-    /* Hide dropdown by default */
-    #contact-dropdown-wrapper #contact-dropdown {
-      display: none !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-      pointer-events: none !important;
-      transform: translateY(-8px) !important;
-      transition: opacity 0.2s ease, transform 0.2s ease !important;
-    }
-    
-    /* Show dropdown on wrapper hover */
-    #contact-dropdown-wrapper:hover #contact-dropdown {
-      display: block !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-      transform: translateY(0) !important;
-    }
-    
-    /* Show dropdown on link hover (fallback) */
-    #contact-link:hover ~ #contact-dropdown,
-    #contact-dropdown-wrapper:has(#contact-link:hover) #contact-dropdown {
-      display: block !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-      transform: translateY(0) !important;
-    }
-    
-    /* Keep dropdown visible when hovering over it */
-    #contact-dropdown:hover {
-      display: block !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-      transform: translateY(0) !important;
-    }
-    
-    /* Rotate chevron on hover */
-    #contact-dropdown-wrapper:hover #contact-chevron {
-      transform: rotate(180deg) !important;
-    }
-    
-    /* Keyboard navigation support */
-    #contact-dropdown-wrapper:focus-within #contact-dropdown {
-      display: block !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-      transform: translateY(0) !important;
-    }
-  </style>
-
-
-
-
-</style>
   <script>
     tailwind.config = {
       theme: {
@@ -85,7 +21,135 @@
       }
     }
   </script>
-  </head>
+    <style>
+    
+    
+    /* Contact Dropdown Styles - Enhanced for visibility */
+    html body header,
+    html body nav,
+    html body #contact-dropdown-wrapper,
+    html body header > div,
+    html body nav > div,
+    html body header > div > div {
+      overflow: visible !important;
+    }
+    
+    /* Dropdown container */
+    #contact-dropdown-wrapper {
+      position: relative !important;
+      z-index: 10001 !important;
+    }
+    
+    /* Dropdown menu - positioned correctly */
+    #contact-dropdown {
+      position: absolute !important;
+      top: 100% !important;
+      left: 0 !important;
+      margin-top: 0.5rem !important;
+      z-index: 10002 !important;
+      min-width: 14rem !important;
+      display: block !important;
+    }
+    
+    /* Show on hover - highest priority */
+    #contact-dropdown-wrapper:hover #contact-dropdown,
+    #contact-dropdown-wrapper:focus-within #contact-dropdown {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+      display: block !important;
+    }
+    
+    /* Keep dropdown visible when hovering over it */
+    #contact-dropdown:hover {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+      display: block !important;
+    }
+    
+    /* Rotate chevron on hover */
+    #contact-dropdown-wrapper:hover #contact-chevron,
+    #contact-dropdown-wrapper:focus-within #contact-chevron {
+      transform: rotate(180deg) !important;
+    }
+    
+    /* Show when .show-dropdown class is added (for click) */
+    #contact-dropdown-wrapper.show-dropdown #contact-dropdown {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+      display: block !important;
+    }
+    
+    #contact-dropdown-wrapper.show-dropdown #contact-chevron {
+      transform: rotate(180deg) !important;
+    }
+    
+    /* Ensure header doesn't clip dropdown */
+    header {
+      overflow: visible !important;
+      z-index: 50 !important;
+      position: relative !important;
+    }
+    
+    header > div {
+      overflow: visible !important;
+      position: relative !important;
+    }
+    
+    nav {
+      overflow: visible !important;
+      position: relative !important;
+    }
+    
+  
+    /* Dropdown initial hidden state - controlled by CSS only */
+    /* Default: hidden when wrapper AND dropdown are not hovered and no show-dropdown class */
+    #contact-dropdown-wrapper:not(:hover):not(.show-dropdown) #contact-dropdown:not(:hover) {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      transform: translateY(-8px) !important;
+    }
+    
+    /* Override: show when wrapper is hovered */
+    #contact-dropdown-wrapper:hover #contact-dropdown {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+    
+    /* Override: show when dropdown itself is hovered (keep it open when moving mouse to dropdown) */
+    #contact-dropdown:hover {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+    
+    /* Override: show when show-dropdown class is added (for click) */
+    #contact-dropdown-wrapper.show-dropdown #contact-dropdown {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+    
+    /* Focus-within for keyboard navigation */
+    #contact-dropdown-wrapper:focus-within #contact-dropdown {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+    
+  </style>
+</head>
 <body class="text-slate-800 antialiased font-sans">
     <!-- Header -->
   <header role="banner" class="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-sm overflow-visible ">
@@ -135,24 +199,22 @@
           </a>
 
           <!-- Contact Dropdown -->
-          <div class="relative shrink-0" id="contact-dropdown-wrapper" style="z-index: 9999;">
+          <div id="contact-dropdown-wrapper" class="relative group shrink-0" style="z-index: 9999;">
             <a 
-              href="./contact.html"
-              class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative flex items-center gap-1 whitespace-nowrap"
               id="contact-link"
+              href="#"
+              class="inline-flex items-center gap-1 text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition cursor-pointer whitespace-nowrap"
               aria-haspopup="true"
               aria-expanded="false"
               aria-controls="contact-dropdown"
             >
               <span>Contact</span>
-              <svg id="contact-chevron" class="w-3 h-3 transition-transform shrink-0 duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <svg id="contact-chevron" class="w-3 h-3 shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </a>
             <div 
-              id="contact-dropdown"
-              class="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-2xl border border-slate-200 py-2"
-              style="z-index: 9999;"
+              id="contact-dropdown" class="absolute left-0 top-full mt-1 w-56 bg-white rounded-xl shadow-2xl border border-slate-200 py-2 transition-all duration-200 ease-out" style="z-index: 10002 !important;"
               role="menu"
               aria-labelledby="contact-link"
             >
@@ -326,40 +388,75 @@
         }
       });
 
-      // Update ARIA attributes for Contact dropdown on hover (for accessibility)
-      document.addEventListener('DOMContentLoaded', () => {
-        const wrapper = document.getElementById('contact-dropdown-wrapper');
-        const link = document.getElementById('contact-link');
-        const menu = document.getElementById('contact-dropdown');
-        const chevron = document.getElementById('contact-chevron');
+    </script>
+  
+  <script>
+    // Contact Dropdown Functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const wrapper = document.getElementById('contact-dropdown-wrapper');
+      const link = document.getElementById('contact-link');
+      const menu = document.getElementById('contact-dropdown');
+      const chevron = document.getElementById('contact-chevron');
+      
+      if (!wrapper || !link || !menu) return;
+      
+      // Detect if device supports hover
+      const hasHover = window.matchMedia('(hover: hover)').matches;
+      let isOpen = false;
+      
+      function showDropdown() {
+        wrapper.classList.add('show-dropdown');
+        link.setAttribute('aria-expanded', 'true');
+        isOpen = true;
+      }
+      
+      function hideDropdown() {
+        wrapper.classList.remove('show-dropdown');
+        link.setAttribute('aria-expanded', 'false');
+        isOpen = false;
+      }
+      
+      if (hasHover) {
+        // Desktop: Hover support
+        wrapper.addEventListener('mouseenter', showDropdown);
+        wrapper.addEventListener('mouseleave', hideDropdown);
         
-        if (!wrapper || !link || !menu) return;
-        
-        // Sync ARIA attributes with hover state (CSS handles the display)
-        wrapper.addEventListener('mouseenter', () => {
-          link.setAttribute('aria-expanded', 'true');
+        // Also support click
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (isOpen) {
+            hideDropdown();
+          } else {
+            showDropdown();
+          }
         });
-        
-        wrapper.addEventListener('mouseleave', () => {
-          link.setAttribute('aria-expanded', 'false');
+      } else {
+        // Mobile: Click only
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (isOpen) {
+            hideDropdown();
+          } else {
+            showDropdown();
+          }
         });
-        
-        // Mobile: Toggle on tap/click
-        const isMobile = window.matchMedia('(max-width: 768px)').matches;
-        if (isMobile) {
-          link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const isExpanded = link.getAttribute('aria-expanded') === 'true';
-            if (isExpanded) {
-              menu.style.display = 'none';
-              link.setAttribute('aria-expanded', 'false');
-            } else {
-              menu.style.display = 'block';
-              link.setAttribute('aria-expanded', 'true');
-            }
-          });
+      }
+      
+      // Close on outside click
+      document.addEventListener('click', (e) => {
+        if (isOpen && !wrapper.contains(e.target)) {
+          hideDropdown();
         }
       });
-    </script>
-  </body>
+      
+      // Close on ESC key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isOpen) {
+          hideDropdown();
+          link.focus();
+        }
+      });
+    });
+  </script>
+</body>
 </html>

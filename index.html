@@ -1,20 +1,33 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="EXPHR Lab - Exercise for Precision Health and Rehabilitation at Emory University. Research on healthy aging, exercise, and brain health." />
-    <title>Home · EXPHR Lab</title>
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="./assets/style.css?v=17">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-  <style>
+<html lang="en"> <head> <meta charset="utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <meta name="description" content="EXPHR Lab - Exercise for Precision Health and Rehabilitation at Emory University. Research on healthy aging, exercise, and brain health." /> <title>Home · EXPHR Lab</title> <!-- Styles --> <link rel="stylesheet" href="./assets/style.css?v=17"> <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"> <!-- Tailwind CSS --> <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Merriweather', 'Georgia', 'Cambria', 'serif'],
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          colors: {
+            'emory-navy': '#0B3D91',
+            'accent-blue': '#2F6BFF',
+            'warm-cream': '#FAF8F3',
+            'warm-beige': '#F5F1EB',
+            'warm-sand': '#F0EBE4',
+          },
+          animation: {
+            'fadeInUp': 'fadeInUp 0.4s ease-out',
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>    <style>
     /* Logo background removal */
     header img[alt="EXPHR Lab"] {
       background: transparent !important;
@@ -23,315 +36,264 @@
       filter: drop-shadow(0 0 0 transparent);
     }
     
-    /* Contact Dropdown - CSS-only hover solution */
-    /* Ensure wrapper and header allow overflow for dropdown */
-    header, nav, #contact-dropdown-wrapper {
+    
+    /* Contact Dropdown Styles - Enhanced for visibility */
+    html body header,
+    html body nav,
+    html body #contact-dropdown-wrapper,
+    html body header > div,
+    html body nav > div,
+    html body header > div > div {
       overflow: visible !important;
     }
     
-    /* Hide dropdown by default */
-    #contact-dropdown-wrapper #contact-dropdown {
-      display: none !important;
+    /* Dropdown container */
+    #contact-dropdown-wrapper {
+      position: relative !important;
+      z-index: 10001 !important;
+    }
+    
+    /* Dropdown menu - positioned correctly */
+    #contact-dropdown {
+      position: absolute !important;
+      top: 100% !important;
+      left: 0 !important;
+      margin-top: 0.5rem !important;
+      z-index: 10002 !important;
+      min-width: 14rem !important;
+      display: block !important;
+    }
+    
+    /* Rotate chevron on hover */
+    #contact-dropdown-wrapper:hover #contact-chevron,
+    #contact-dropdown-wrapper:focus-within #contact-chevron,
+    #contact-dropdown-wrapper.show-dropdown #contact-chevron {
+      transform: rotate(180deg) !important;
+    }
+    
+    /* Ensure header doesn't clip dropdown */
+    header {
+      overflow: visible !important;
+      z-index: 50 !important;
+      position: relative !important;
+    }
+    
+    header > div {
+      overflow: visible !important;
+      position: relative !important;
+    }
+    
+    nav {
+      overflow: visible !important;
+      position: relative !important;
+    }
+    
+  
+    /* Dropdown initial hidden state - controlled by CSS only */
+    /* Default: hidden when wrapper AND dropdown are not hovered and no show-dropdown class */
+    #contact-dropdown-wrapper:not(:hover):not(.show-dropdown) #contact-dropdown:not(:hover) {
       opacity: 0 !important;
       visibility: hidden !important;
       pointer-events: none !important;
       transform: translateY(-8px) !important;
-      transition: opacity 0.2s ease, transform 0.2s ease !important;
     }
     
-    /* Show dropdown on wrapper hover */
+    /* Override: show when wrapper is hovered */
     #contact-dropdown-wrapper:hover #contact-dropdown {
-      display: block !important;
       opacity: 1 !important;
       visibility: visible !important;
       pointer-events: auto !important;
       transform: translateY(0) !important;
     }
     
-    /* Show dropdown on link hover (fallback) */
-    #contact-link:hover ~ #contact-dropdown,
-    #contact-dropdown-wrapper:has(#contact-link:hover) #contact-dropdown {
-      display: block !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-      transform: translateY(0) !important;
-    }
-    
-    /* Keep dropdown visible when hovering over it */
+    /* Override: show when dropdown itself is hovered (keep it open when moving mouse to dropdown) */
     #contact-dropdown:hover {
-      display: block !important;
       opacity: 1 !important;
       visibility: visible !important;
       pointer-events: auto !important;
       transform: translateY(0) !important;
     }
     
-    /* Rotate chevron on hover */
-    #contact-dropdown-wrapper:hover #contact-chevron {
-      transform: rotate(180deg) !important;
+    /* Override: show when show-dropdown class is added (for click) */
+    #contact-dropdown-wrapper.show-dropdown #contact-dropdown {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
     }
     
-    /* Keyboard navigation support */
+    /* Focus-within for keyboard navigation */
     #contact-dropdown-wrapper:focus-within #contact-dropdown {
-      display: block !important;
       opacity: 1 !important;
       visibility: visible !important;
       pointer-events: auto !important;
       transform: translateY(0) !important;
     }
+    
   </style>
-
-
-
-
-
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              serif: ['Merriweather', 'Georgia', 'Cambria', 'serif'],
-              sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
-            },
-            colors: {
-              'emory-navy': '#0B3D91',
-              'accent-blue': '#2F6BFF',
-              'warm-cream': '#FAF8F3',
-              'warm-beige': '#F5F1EB',
-              'warm-sand': '#F0EBE4',
-            },
-            animation: {
-              'fadeInUp': 'fadeInUp 0.4s ease-out',
-            },
-            keyframes: {
-              fadeInUp: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              }
-            }
-          }
+</head> <body class="text-slate-800 antialiased font-sans" style="background: linear-gradient(to bottom, #FAF8F3 0%, #F5F1EB 100%); min-height: 100vh;"> <!-- ===== Header ===== --> <header role="banner" class="sticky top-0 z-50 bg-warm-cream/95 backdrop-blur shadow-sm overflow-visible "> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16 overflow-visible"> <nav aria-label="Primary" class="flex items-center justify-between h-full overflow-visible gap-6 md:gap-8"> <!-- Left: Brand --> <a href="/index.html" class="flex items-center gap-0.5 md:gap-1 min-w-0 hover:opacity-80 transition-opacity shrink-0"> <img src="assets/media/lab-logo-2.png" alt="EXPHR Lab" class="h-10 md:h-12 lg:h-14 w-auto object-contain shrink-0" style="background: transparent; mix-blend-mode: multiply;" loading="eager" /> <div class="flex items-center gap-2 md:gap-3 min-w-0"> <span class="font-semibold tracking-tight whitespace-nowrap text-slate-900 text-base sm:text-lg shrink-0">EXPHR Lab</span> <span class="text-slate-500 text-xs sm:text-sm whitespace-nowrap shrink-0 hidden sm:inline">Exercise for Precision Health and Rehabilitation</span> </div> </a> <!-- Right: Menu Links --> <div class="flex flex-nowrap items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 whitespace-nowrap overflow-x-auto overflow-y-visible [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-2 md:py-0 ml-4 md:ml-6 shrink-0"> <a href="/index.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0"> <span class="relative">Home</span> <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span> </a> <a href="/people.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0"> <span class="relative">Our Team</span> <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span> </a> <a href="/projects.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0"> <span class="relative">Projects</span> <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span> </a> <a href="/publications.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0"> <span class="relative">Publications</span> <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span> </a> <!-- News Link --> <a href="/news-highlights.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap"> <span class="relative">News</span> <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span> </a> <a href="/lab-gallery.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap"> <span class="relative">Lab Gallery</span> <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span> </a> <!-- Contact Dropdown -->
+          <div id="contact-dropdown-wrapper" class="relative group shrink-0" style="z-index: 9999;">
+            <a 
+              id="contact-link"
+              href="#"
+              class="inline-flex items-center gap-1 text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition cursor-pointer whitespace-nowrap"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="contact-dropdown"
+            >
+              <span>Contact</span>
+              <svg id="contact-chevron" class="w-3 h-3 shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+            <div 
+              id="contact-dropdown"
+              class="absolute left-0 top-full mt-1 w-56 bg-warm-cream rounded-xl shadow-2xl border border-warm-sand/50 py-2 transition-all duration-200 ease-out"
+              style="z-index: 10002 !important;"
+              role="menu"
+              aria-labelledby="contact-link"
+            >
+              <a href="./join-our-study.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-warm-beige/60 hover:text-slate-900 transition-colors" role="menuitem">Join Our Study</a>
+              <div class="border-t border-warm-sand/30 my-1"></div>
+              <a href="./opportunities.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-warm-beige/60 hover:text-slate-900 transition-colors" role="menuitem">Research Opportunities</a>
+              <div class="border-t border-warm-sand/30 my-1"></div>
+              <a href="./contact.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-warm-beige/60 hover:text-slate-900 transition-colors" role="menuitem">Get In Touch</a>
+            </div>
+          </div> </nav> </div> </header> <!-- ===== Main ===== --> <main> <!-- Hero Section --> <section class="pt-1 md:pt-2 pb-1 md:pb-2 bg-gradient-to-br from-warm-cream via-warm-beige to-warm-sand"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4"> <img src="assets/media/emory-university.jpeg" alt="Emory University" class="max-w-full w-[480px]" style="mix-blend-mode: multiply; background: transparent; border: none; outline: none;" loading="eager" /> </div> </div> </section> <!-- About Section --> <section class="py-8 md:py-12 lg:py-16 bg-warm-cream/50 border-t border-warm-sand/40"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="text-center mb-8"> <h2 class="font-serif font-bold tracking-tight text-[clamp(24px,3.2vw,32px)] text-slate-900 mb-2" style="border-bottom: none !important;">About EXPHR Lab</h2> </div> <div class="max-w-4xl mx-auto mt-6"> <div class="prose prose-slate max-w-none text-center text-base md:text-lg leading-relaxed"> <p class="text-slate-700 mb-4"> At ExPHR (Exercise for Precision Health and Rehabilitation),<br> we are dedicated to supporting healthy aging through evidence-based lifestyle interventions. </p> <p class="text-slate-700 mb-4"> Our mission is to help midlife and older adults — with and without chronic health conditions — adopt sustainable habits in exercise, nutrition, and sleep that promote long-term brain and body health. </p> <p class="text-slate-700 mb-4"> Our research investigates the neural, physiological, and psychological mechanisms that drive behavior change and resilience, with a particular focus on how exercise supports brain function and cognitive health across the aging process. We also design music-based interventions to enhance rehabilitation and motivation among individuals with neurologic or mobility limitations. </p> <p class="text-slate-700 mb-6"> Ultimately, our goal is to develop accessible, enjoyable, and lasting physical activity strategies that empower older adults to maintain independence, improve quality of life, and promote optimal aging. </p> <p class="text-slate-700"> If you are interested in learning more or collaborating with our lab, please <a href="/contact.html" class="text-blue-600 hover:text-blue-700 hover:underline underline-offset-4 transition-colors">contact us</a>. </p> </div> </div> </div> </section> <!-- Contact & Location --> <section class="py-8 md:py-12 lg:py-16 bg-warm-beige/60 border-t border-warm-sand/40"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="grid grid-cols-1 md:grid-cols-2 gap-8"> <div class="text-center"> <h2 class="font-serif font-bold text-2xl text-slate-900 mb-4">Contact</h2> <p class="text-slate-700 mb-4 leading-relaxed"> Emory University School of Medicine<br /> Division of Geriatrics and Gerontology </p> <p class="text-slate-700 mb-4"> <a href="mailto:exphr@emory.edu" class="text-accent-blue hover:text-emory-navy hover:underline underline-offset-4 transition-colors">exphr@emory.edu</a> </p> <p class="text-slate-700"> <a href="tel:+14047278919" class="text-accent-blue hover:text-emory-navy hover:underline underline-offset-4 transition-colors">404-727-8919</a> </p> </div> <div class="text-center"> <h2 class="font-serif font-bold text-2xl text-slate-900 mb-4">Location</h2> <p class="text-slate-700 leading-relaxed"> 57 Executive Park S<br /> Atlanta, GA 30324 </p> </div> </div> </div> </section> </main> <!-- ===== Footer ===== --> <footer class="border-t border-warm-sand/40 bg-warm-cream/80"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-sm text-slate-600"> © 2025 EXPHR Lab · Emory University </div> </footer> <script> // Mobile menu toggle (if exists) document.getElementById('mobile-menu-button')?.addEventListener('click', function() { const menu = document.getElementById('mobile-menu'); const menuIcon = document.getElementById('menu-icon'); const closeIcon = document.getElementById('close-icon'); const isHidden = menu.classList.contains('hidden'); if (isHidden) { menuIcon?.classList.add('hidden'); closeIcon?.classList.remove('hidden'); this.setAttribute('aria-expanded', 'true'); } else { menuIcon?.classList.remove('hidden'); closeIcon?.classList.add('hidden'); this.setAttribute('aria-expanded', 'false'); }    
+  <script>
+    // Contact Dropdown Functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const wrapper = document.getElementById('contact-dropdown-wrapper');
+      const link = document.getElementById('contact-link');
+      const menu = document.getElementById('contact-dropdown');
+      const chevron = document.getElementById('contact-chevron');
+      
+      if (!wrapper || !link || !menu) return;
+      
+      // Detect if device supports hover
+      const hasHover = window.matchMedia('(hover: hover)').matches;
+      let isOpen = false;
+      let hoverTimeout = null;
+      let clickedOpen = false; // Track if opened by click
+      let isHovered = false; // Track if hovering over wrapper or menu
+      
+      function showDropdown() {
+        wrapper.classList.add('show-dropdown');
+        link.setAttribute('aria-expanded', 'true');
+        isOpen = true;
+        // Clear any pending hide timeout
+        if (hoverTimeout) {
+          clearTimeout(hoverTimeout);
+          hoverTimeout = null;
         }
       }
-    </script>
-  </head>
-
-  <body class="text-slate-800 antialiased font-sans" style="background: linear-gradient(to bottom, #FAF8F3 0%, #F5F1EB 100%); min-height: 100vh;">
-    <!-- ===== Header ===== -->
-    <header role="banner" class="sticky top-0 z-50 bg-warm-cream/95 backdrop-blur shadow-sm overflow-visible border-b border-warm-sand/40">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16 overflow-visible">
-        <nav aria-label="Primary" class="flex items-center justify-between h-full overflow-visible gap-6 md:gap-8">
-          <!-- Left: Brand -->
-          <a href="/index.html" class="flex items-center gap-0.5 md:gap-1 min-w-0 hover:opacity-80 transition-opacity shrink-0">
-            <img
-              src="assets/media/lab-logo-2.png"
-              alt="EXPHR Lab"
-              class="h-10 md:h-12 lg:h-14 w-auto object-contain shrink-0"
-              style="background: transparent; mix-blend-mode: multiply;"
-              loading="eager"
-            />
-            <div class="flex items-center gap-2 md:gap-3 min-w-0">
-              <span class="font-semibold tracking-tight whitespace-nowrap text-slate-900 text-base sm:text-lg shrink-0">EXPHR Lab</span>
-              <span class="text-slate-500 text-xs sm:text-sm whitespace-nowrap shrink-0 hidden sm:inline">Exercise for Precision Health and Rehabilitation</span>
-            </div>
-          </a>
-
-        <!-- Right: Menu Links -->
-        <div class="flex flex-nowrap items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 whitespace-nowrap overflow-x-auto overflow-y-visible [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-2 md:py-0 ml-4 md:ml-6 shrink-0">
-          <a href="/index.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
-            <span class="relative">Home</span>
-            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
-          </a>
-          <a href="/people.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
-            <span class="relative">Our Team</span>
-            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
-          </a>
-          <a href="/projects.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
-            <span class="relative">Projects</span>
-            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
-          </a>
-          <a href="/publications.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
-            <span class="relative">Publications</span>
-            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
-          </a>
-          <!-- News Link -->
-          <a href="/news-highlights.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap">
-            <span class="relative">News</span>
-            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
-          </a>
-
-          <a href="/lab-gallery.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap">
-            <span class="relative">Lab Gallery</span>
-            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
-          </a>
-
-          <!-- Contact Dropdown -->
-         <div id="contact-dropdown-wrapper" class="relative group shrink-0" style="z-index: 9999;">
-  <a 
-    id="contact-link"
-    class="inline-flex items-center gap-1 text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition cursor-pointer"
-  >
-    <span>Contact</span>
-    <svg id="contact-chevron" class="w-3 h-3 shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-    </svg>
-  </a>
-
-  <!-- dropdown -->
-  <div 
-    id="contact-dropdown"
-    class="hidden group-hover:block absolute left-0 top-full mt-1 w-56 bg-warm-cream rounded-xl shadow-2xl border border-warm-sand/50 py-2 z-50"
-    role="menu"
-    aria-labelledby="contact-link">
-    <a href="./join-our-study.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-warm-beige/60 hover:text-slate-900 transition-colors">Join Our Study</a>
-    <div class="border-t border-warm-sand/30 my-1"></div>
-    <a href="./opportunities.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-warm-beige/60 hover:text-slate-900 transition-colors">Research Opportunities</a>
-    <div class="border-t border-warm-sand/30 my-1"></div>
-    <a href="./contact.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-warm-beige/60 hover:text-slate-900 transition-colors">Get In Touch</a>
-  </div>
-</div>
-
-        </nav>
-      </div>
-    </header>
-
-    <!-- ===== Main ===== -->
-    <main>
-      <!-- Hero Section -->
-      <section class="pt-1 md:pt-2 pb-1 md:pb-2 bg-gradient-to-br from-warm-cream via-warm-beige to-warm-sand">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4">
-            <img
-              src="assets/media/emory-university.jpeg"
-              alt="Emory University"
-              class="max-w-full w-[480px]"
-              style="mix-blend-mode: multiply; background: transparent; border: none; outline: none;"
-              loading="eager"
-            />
-          </div>
-        </div>
-      </section>
-
-      <!-- About Section -->
-      <section class="py-8 md:py-12 lg:py-16 bg-warm-cream/50 border-t border-warm-sand/40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-8">
-            <h2 class="font-serif font-bold tracking-tight text-[clamp(24px,3.2vw,32px)] text-slate-900 mb-2" style="border-bottom: none !important;">About EXPHR Lab</h2>
-          </div>
-
-          <div class="max-w-4xl mx-auto mt-6">
-            <div class="prose prose-slate max-w-none text-center text-base md:text-lg leading-relaxed">
-              <p class="text-slate-700 mb-4">
-                At ExPHR (Exercise for Precision Health and Rehabilitation),<br>
-                we are dedicated to supporting healthy aging through evidence-based lifestyle interventions.
-              </p>
-              <p class="text-slate-700 mb-4">
-                Our mission is to help midlife and older adults — with and without chronic health conditions — adopt sustainable habits in exercise, nutrition, and sleep that promote long-term brain and body health.
-              </p>
-              <p class="text-slate-700 mb-4">
-                Our research investigates the neural, physiological, and psychological mechanisms that drive behavior change and resilience, with a particular focus on how exercise supports brain function and cognitive health across the aging process. We also design music-based interventions to enhance rehabilitation and motivation among individuals with neurologic or mobility limitations.
-              </p>
-              <p class="text-slate-700 mb-6">
-                Ultimately, our goal is to develop accessible, enjoyable, and lasting physical activity strategies that empower older adults to maintain independence, improve quality of life, and promote optimal aging.
-              </p>
-
-              <p class="text-slate-700">
-                If you are interested in learning more or collaborating with our lab, please <a href="/contact.html" class="text-blue-600 hover:text-blue-700 hover:underline underline-offset-4 transition-colors">contact us</a>.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Contact & Location -->
-      <section class="py-8 md:py-12 lg:py-16 bg-warm-beige/60 border-t border-warm-sand/40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="text-center">
-              <h2 class="font-serif font-bold text-2xl text-slate-900 mb-4">Contact</h2>
-              <p class="text-slate-700 mb-4 leading-relaxed">
-                Emory University School of Medicine<br />
-                Division of Geriatrics and Gerontology
-              </p>
-              <p class="text-slate-700 mb-4">
-                <a href="mailto:exphr@emory.edu" class="text-accent-blue hover:text-emory-navy hover:underline underline-offset-4 transition-colors">exphr@emory.edu</a>
-              </p>
-              <p class="text-slate-700">
-                <a href="tel:+14047278919" class="text-accent-blue hover:text-emory-navy hover:underline underline-offset-4 transition-colors">404-727-8919</a>
-              </p>
-            </div>
-            <div class="text-center">
-              <h2 class="font-serif font-bold text-2xl text-slate-900 mb-4">Location</h2>
-              <p class="text-slate-700 leading-relaxed">
-                57 Executive Park S<br />
-                Atlanta, GA 30324
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- ===== Footer ===== -->
-    <footer class="border-t border-warm-sand/40 bg-warm-cream/80">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-sm text-slate-600">
-        © 2025 EXPHR Lab · Emory University
-      </div>
-    </footer>
-
-    <script>
-      // Mobile menu toggle (if exists)
-      document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
-        const menu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-        const closeIcon = document.getElementById('close-icon');
-        const isHidden = menu.classList.contains('hidden');
-        
-        if (isHidden) {
-          menuIcon?.classList.add('hidden');
-          closeIcon?.classList.remove('hidden');
-          this.setAttribute('aria-expanded', 'true');
-        } else {
-          menuIcon?.classList.remove('hidden');
-          closeIcon?.classList.add('hidden');
-          this.setAttribute('aria-expanded', 'false');
-        }
-      });
-
-      // Update ARIA attributes for Contact dropdown on hover (for accessibility)
-      document.addEventListener('DOMContentLoaded', () => {
-        const wrapper = document.getElementById('contact-dropdown-wrapper');
-        const link = document.getElementById('contact-link');
-        const menu = document.getElementById('contact-dropdown');
-        const chevron = document.getElementById('contact-chevron');
-        
-        if (!wrapper || !link || !menu) return;
-        
-        // Sync ARIA attributes with hover state (CSS handles the display)
-        wrapper.addEventListener('mouseenter', () => {
-          link.setAttribute('aria-expanded', 'true');
-        });
-        
-        wrapper.addEventListener('mouseleave', () => {
+      
+      function hideDropdown() {
+        // Only hide if not clicked open and not hovered
+        if (!clickedOpen && !isHovered) {
+          wrapper.classList.remove('show-dropdown');
           link.setAttribute('aria-expanded', 'false');
+          isOpen = false;
+        }
+      }
+      
+      function checkAndHide() {
+        // Check if we should hide after a delay
+        hoverTimeout = setTimeout(() => {
+          // Only hide if not clicked open and not hovering over wrapper or menu
+          if (!clickedOpen && !isHovered) {
+            hideDropdown();
+          }
+        }, 150);
+      }
+      
+      if (hasHover) {
+        // Desktop: Hover support - keep open while hovering
+        wrapper.addEventListener('mouseenter', () => {
+          isHovered = true;
+          clearTimeout(hoverTimeout);
+          showDropdown();
         });
         
-        // Mobile: Toggle on tap/click
-        const isMobile = window.matchMedia('(max-width: 768px)').matches;
-        if (isMobile) {
-          link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const isExpanded = link.getAttribute('aria-expanded') === 'true';
-            if (isExpanded) {
-              menu.style.display = 'none';
-              link.setAttribute('aria-expanded', 'false');
-            } else {
-              menu.style.display = 'block';
-              link.setAttribute('aria-expanded', 'true');
-            }
-          });
+        wrapper.addEventListener('mouseleave', (e) => {
+          // Check if mouse is moving to dropdown
+          const relatedTarget = e.relatedTarget;
+          const isMovingToDropdown = menu.contains(relatedTarget);
+          
+          if (!isMovingToDropdown) {
+            isHovered = false;
+            checkAndHide();
+          }
+        });
+        
+        // Keep dropdown open when hovering over it
+        menu.addEventListener('mouseenter', () => {
+          isHovered = true;
+          clearTimeout(hoverTimeout);
+          showDropdown();
+        });
+        
+        menu.addEventListener('mouseleave', (e) => {
+          // Check if mouse is moving back to wrapper
+          const relatedTarget = e.relatedTarget;
+          const isMovingToWrapper = wrapper.contains(relatedTarget);
+          
+          if (!isMovingToWrapper) {
+            isHovered = false;
+            checkAndHide();
+          }
+        });
+        
+        // Click: Toggle show-dropdown class to keep it open
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          clickedOpen = !clickedOpen;
+          if (clickedOpen) {
+            showDropdown();
+          } else {
+            wrapper.classList.remove('show-dropdown');
+            link.setAttribute('aria-expanded', 'false');
+            isOpen = false;
+          }
+        });
+      } else {
+        // Mobile: Click only
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          clickedOpen = !clickedOpen;
+          if (clickedOpen) {
+            showDropdown();
+          } else {
+            wrapper.classList.remove('show-dropdown');
+            link.setAttribute('aria-expanded', 'false');
+            isOpen = false;
+          }
+        });
+      }
+      
+      // Close on outside click (only if clicked open)
+      document.addEventListener('click', (e) => {
+        if (clickedOpen && !wrapper.contains(e.target)) {
+          clickedOpen = false;
+          wrapper.classList.remove('show-dropdown');
+          link.setAttribute('aria-expanded', 'false');
+          isOpen = false;
         }
       });
-    </script>
-  </body>
+      
+      // Close on ESC key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && (isOpen || clickedOpen)) {
+          clickedOpen = false;
+          wrapper.classList.remove('show-dropdown');
+          link.setAttribute('aria-expanded', 'false');
+          isOpen = false;
+          link.focus();
+        }
+      });
+    });
+  </script>
+</script> </body>
 </html>

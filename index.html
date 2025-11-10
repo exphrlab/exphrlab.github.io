@@ -15,6 +15,14 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    /* Logo background removal */
+    header img[alt="EXPHR Lab"] {
+      background: transparent !important;
+      mix-blend-mode: multiply;
+      -webkit-filter: drop-shadow(0 0 0 transparent);
+      filter: drop-shadow(0 0 0 transparent);
+    }
+    
     /* Contact Dropdown - CSS-only hover solution */
     /* Ensure wrapper and header allow overflow for dropdown */
     header, nav, #contact-dropdown-wrapper {
@@ -89,6 +97,9 @@
             colors: {
               'emory-navy': '#0B3D91',
               'accent-blue': '#2F6BFF',
+              'warm-cream': '#FAF8F3',
+              'warm-beige': '#F5F1EB',
+              'warm-sand': '#F0EBE4',
             },
             animation: {
               'fadeInUp': 'fadeInUp 0.4s ease-out',
@@ -105,9 +116,9 @@
     </script>
   </head>
 
-  <body class="text-slate-800 antialiased font-sans bg-white">
+  <body class="text-slate-800 antialiased font-sans" style="background: linear-gradient(to bottom, #FAF8F3 0%, #F5F1EB 100%); min-height: 100vh;">
     <!-- ===== Header ===== -->
-    <header role="banner" class="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-sm overflow-visible">
+    <header role="banner" class="sticky top-0 z-50 bg-warm-cream/95 backdrop-blur shadow-sm overflow-visible border-b border-warm-sand/40">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16 overflow-visible">
         <nav aria-label="Primary" class="flex items-center justify-between h-full overflow-visible gap-6 md:gap-8">
           <!-- Left: Brand -->
@@ -116,6 +127,7 @@
               src="assets/media/lab-logo-2.png"
               alt="EXPHR Lab"
               class="h-10 md:h-12 lg:h-14 w-auto object-contain shrink-0"
+              style="background: transparent; mix-blend-mode: multiply;"
               loading="eager"
             />
             <div class="flex items-center gap-2 md:gap-3 min-w-0">
@@ -126,29 +138,29 @@
 
         <!-- Right: Menu Links -->
         <div class="flex flex-nowrap items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 whitespace-nowrap overflow-x-auto overflow-y-visible [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-2 md:py-0 ml-4 md:ml-6 shrink-0">
-          <a href="/index.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative group shrink-0">
+          <a href="/index.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
             <span class="relative">Home</span>
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
           </a>
-          <a href="/people.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative group shrink-0">
+          <a href="/people.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
             <span class="relative">Our Team</span>
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
           </a>
-          <a href="/projects.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative group shrink-0">
+          <a href="/projects.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
             <span class="relative">Projects</span>
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
           </a>
-          <a href="/publications.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative group shrink-0">
+          <a href="/publications.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
             <span class="relative">Publications</span>
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
           </a>
           <!-- News Link -->
-          <a href="/news-highlights.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap">
+          <a href="/news-highlights.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap">
             <span class="relative">News</span>
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
           </a>
 
-          <a href="/lab-gallery.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap">
+          <a href="/lab-gallery.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap">
             <span class="relative">Lab Gallery</span>
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
           </a>
@@ -157,7 +169,7 @@
          <div id="contact-dropdown-wrapper" class="relative group shrink-0" style="z-index: 9999;">
   <a 
     id="contact-link"
-    class="inline-flex items-center gap-1 text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition cursor-pointer"
+    class="inline-flex items-center gap-1 text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition cursor-pointer"
   >
     <span>Contact</span>
     <svg id="contact-chevron" class="w-3 h-3 shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -168,14 +180,14 @@
   <!-- dropdown -->
   <div 
     id="contact-dropdown"
-    class="hidden group-hover:block absolute left-0 top-full mt-1 w-56 bg-white rounded-xl shadow-2xl border border-slate-200 py-2 z-50"
+    class="hidden group-hover:block absolute left-0 top-full mt-1 w-56 bg-warm-cream rounded-xl shadow-2xl border border-warm-sand/50 py-2 z-50"
     role="menu"
     aria-labelledby="contact-link">
-    <a href="./join-our-study.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors">Join Our Study</a>
-    <div class="border-t border-slate-100 my-1"></div>
-    <a href="./opportunities.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors">Research Opportunities</a>
-    <div class="border-t border-slate-100 my-1"></div>
-    <a href="./contact.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors">Get In Touch</a>
+    <a href="./join-our-study.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-warm-beige/60 hover:text-slate-900 transition-colors">Join Our Study</a>
+    <div class="border-t border-warm-sand/30 my-1"></div>
+    <a href="./opportunities.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-warm-beige/60 hover:text-slate-900 transition-colors">Research Opportunities</a>
+    <div class="border-t border-warm-sand/30 my-1"></div>
+    <a href="./contact.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-warm-beige/60 hover:text-slate-900 transition-colors">Get In Touch</a>
   </div>
 </div>
 
@@ -186,7 +198,7 @@
     <!-- ===== Main ===== -->
     <main>
       <!-- Hero Section -->
-      <section class="pt-1 md:pt-2 pb-1 md:pb-2 bg-gradient-to-br from-slate-50 to-white">
+      <section class="pt-1 md:pt-2 pb-1 md:pb-2 bg-gradient-to-br from-warm-cream via-warm-beige to-warm-sand">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4">
             <img
@@ -201,7 +213,7 @@
       </section>
 
       <!-- About Section -->
-      <section class="py-8 md:py-12 lg:py-16 border-t border-slate-200">
+      <section class="py-8 md:py-12 lg:py-16 bg-warm-cream/50 border-t border-warm-sand/40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-8">
             <h2 class="font-serif font-bold tracking-tight text-[clamp(24px,3.2vw,32px)] text-slate-900 mb-2" style="border-bottom: none !important;">About EXPHR Lab</h2>
@@ -232,10 +244,10 @@
       </section>
 
       <!-- Contact & Location -->
-      <section class="py-8 md:py-12 lg:py-16 bg-slate-50/50 border-t border-slate-200">
+      <section class="py-8 md:py-12 lg:py-16 bg-warm-beige/60 border-t border-warm-sand/40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
+            <div class="text-center">
               <h2 class="font-serif font-bold text-2xl text-slate-900 mb-4">Contact</h2>
               <p class="text-slate-700 mb-4 leading-relaxed">
                 Emory University School of Medicine<br />
@@ -248,7 +260,7 @@
                 <a href="tel:+14047278919" class="text-accent-blue hover:text-emory-navy hover:underline underline-offset-4 transition-colors">404-727-8919</a>
               </p>
             </div>
-            <div>
+            <div class="text-center">
               <h2 class="font-serif font-bold text-2xl text-slate-900 mb-4">Location</h2>
               <p class="text-slate-700 leading-relaxed">
                 57 Executive Park S<br />
@@ -261,7 +273,7 @@
     </main>
 
     <!-- ===== Footer ===== -->
-    <footer class="border-t border-slate-200 bg-white">
+    <footer class="border-t border-warm-sand/40 bg-warm-cream/80">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-sm text-slate-600">
         © 2025 EXPHR Lab · Emory University
       </div>

@@ -39,23 +39,6 @@
       filter: drop-shadow(0 0 0 transparent);
     }
     
-    /* Emory logo background removal - Enhanced with multiple techniques */
-    img[alt="Emory University"],
-    img[src*="emory-university"] {
-      background: transparent !important;
-      mix-blend-mode: multiply !important;
-      -webkit-filter: brightness(1.3) contrast(1.3) saturate(1.2);
-      filter: brightness(1.3) contrast(1.3) saturate(1.2);
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
-      isolation: isolate;
-    }
-    
-    /* Force white background removal using CSS blend modes */
-    img[src*="emory-university"] {
-      background-blend-mode: multiply;
-      -webkit-background-blend-mode: multiply;
-    }
     
     
     /* Contact Dropdown Styles - Enhanced for visibility */

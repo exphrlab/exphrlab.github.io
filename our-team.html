@@ -1,135 +1,14 @@
 <!doctype html>
 <html lang="en">
-<head>
+  <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Research opportunities for undergraduate and graduate students, Ph.D. students, and postdoctoral researchers at EXPHR Lab" />
-  <title>Research Opportunities · EXPHR Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Our Team · EXPHR Lab</title>
   <link rel="stylesheet" href="./assets/style.css?v=17">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com">
-
-          // Close on outside click
-          document.addEventListener('click', (e) => {
-            if (!wrapper.contains(e.target)) {
-              hideDropdown();
-            }
-          });
-        }
-        
-        // Mobile: Toggle on tap
-        if (isMobile) {
-          link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const isExpanded = link.getAttribute('aria-expanded') === 'true';
-            if (isExpanded) {
-              hideDropdown();
-            } else {
-              showDropdown();
-            }
-          });
-          
-          // Close on outside tap
-          document.addEventListener('click', (e) => {
-            if (!wrapper.contains(e.target)) {
-              hideDropdown();
-            }
-          });
-          
-          // Close on ESC key
-          document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && link.getAttribute('aria-expanded') === 'true') {
-              hideDropdown();
-            }
-          });
-        }
-      });
-
-        document.addEventListener('click', (e) => {
-          if (!wrapper.contains(e.target)) {
-            hideDropdown();
-          }
-        });
-      }
-    });
-                showDropdown();
-              }
-            });
-            
-            // Close on outside click
-            document.addEventListener('click', (e) => {
-              if (!contactWrapper.contains(e.target) && isOpen) {
-                hideDropdown();
-              }
-            });
-          }
-          
-          // Desktop: CSS group-hover handles it, but we sync aria-expanded
-          if (hasHover) {
-            contactWrapper.addEventListener('mouseenter', () => {
-              showDropdown();
-            });
-            
-            contactWrapper.addEventListener('mouseleave', () => {
-              hideDropdown();
-            });
-            
-            // On desktop, clicking Contact should navigate (not toggle)
-            // CSS group-hover already handles the dropdown visibility
-          }
-          
-          // Keyboard navigation
-          contactLink.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              if (isMobile) {
-                e.preventDefault();
-                if (isOpen) {
-                  hideDropdown();
-                } else {
-                  showDropdown();
-                }
-              }
-            } else if (e.key === 'ArrowDown' && !isOpen) {
-              e.preventDefault();
-              showDropdown();
-            } else if (e.key === 'Escape' && isOpen) {
-              e.preventDefault();
-              hideDropdown();
-              contactLink.focus();
-            }
-          });
-          
-          // Keyboard navigation within dropdown
-          const menuItems = contactDropdown.querySelectorAll('[role="menuitem"]');
-          menuItems.forEach((item, index) => {
-            item.addEventListener('keydown', (e) => {
-              if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                const next = menuItems[index + 1] || menuItems[0];
-                next?.focus();
-              } else if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                const prev = menuItems[index - 1] || menuItems[menuItems.length - 1];
-                prev?.focus();
-              } else if (e.key === 'Escape') {
-                e.preventDefault();
-                hideDropdown();
-                contactLink.focus();
-              }
-            });
-          });
-          
-          // Close on Escape key
-          document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && isOpen) {
-              hideDropdown();
-              contactLink.focus();
-            }
-          });
-        })();
-    </script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -142,17 +21,7 @@
       }
     }
   </script>
-  <style>
-    
-    /* This MUST work - highest specificity possible */
-    
-    /* Hide by default - override everything */
-
-    /* Show on hover - override everything including inline styles */
-
-    /* Show on link hover */
-
-    /* Keyboard navigation */
+    <style>
     
     
     /* Contact Dropdown Styles - Enhanced for visibility */
@@ -304,11 +173,9 @@
     }
     
   </style>
-
-</style>  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="text-slate-800 antialiased font-sans">
-  <!-- Header -->
+    <!-- Header -->
   <header role="banner" class="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-sm overflow-visible ">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16 overflow-visible">
         <nav aria-label="Primary" class="flex items-center justify-between h-full overflow-visible gap-6 md:gap-8">
@@ -332,7 +199,7 @@
             <span class="relative">Home</span>
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
           </a>
-          <a href="/our-team.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
+          <a href="/people.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
             <span class="relative">Our Team</span>
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
           </a>
@@ -345,7 +212,7 @@
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
           </a>
           <!-- News Link -->
-          <a href="/news.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap">
+          <a href="/news-highlights.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap">
             <span class="relative">News</span>
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
           </a>
@@ -388,125 +255,266 @@
 
   <main class="bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900">Research Opportunities</h1>
+      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900">Our Team</h1>
 
-      <div class="mt-8 space-y-3">
-        <!-- Undergraduate & Graduate Students -->
-        <section id="undergraduate-graduate" class="bg-white rounded-lg border border-slate-200 shadow-sm p-4 md:p-5 hover:shadow-md transition-shadow">
-          <div class="flex items-center justify-between">
-            <h2 class="text-base md:text-lg font-semibold text-slate-900" style="font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;">Undergraduate & Graduate Students</h2>
-            <a 
-              href="https://forms.office.com/pages/responsepage.aspx?id=nPsE4KSwT0K80DImBtXfOO_8G41EFmxJgLJrk-ey1TJUNDZaWllXWERETUdHUVJKVTJMMjEzM0NNUi4u&route=shorturl" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors text-sm font-medium shadow-sm hover:shadow-md"
+      <!-- Principal Investigator Section -->
+      <section class="py-12">
+        <a href="/people/kyoung-shin-park.html" class="flex flex-col items-center text-center group cursor-pointer transition-transform duration-200 hover:-translate-y-0.5">
+          <img 
+            src="./assets/media/Park.jpg" 
+            alt="Kyoung Shin Park, Ph.D." 
+            loading="lazy" 
+            class="w-48 h-48 md:w-52 md:h-52 rounded-full object-cover shadow-lg mb-6"
+          >
+          <h2 class="text-2xl font-bold text-slate-900 mb-2">Kyoung Shin Park, Ph.D.</h2>
+          <p class="text-gray-500 text-sm">Principal Investigator · Director</p>
+        </a>
+      </section>
+
+      <!-- Team Section -->
+      <section class="py-12">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+          <!-- Jeongwoon (John) Kim -->
+          <a href="/people/jeongwoon-kim.html" class="flex flex-col items-center text-center group cursor-pointer transition-transform duration-200 hover:-translate-y-0.5">
+            <img 
+              src="./assets/media/John.png" 
+              alt="Jeongwoon (John) Kim" 
+              loading="lazy" 
+              class="w-48 h-48 md:w-52 md:h-52 rounded-full object-cover object-center object-[50%_40%] shadow-lg mb-6"
             >
-              Apply Now
-              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </a>
-          </div>
-        </section>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Jeongwoon (John) Kim</h2>
+            <p class="text-gray-500 text-sm">Postdoctoral Fellow, Ph.D.</p>
+          </a>
 
-        <!-- Ph.D. Students -->
-        <section id="phd" class="bg-white rounded-lg border border-slate-200 shadow-sm p-4 md:p-5 hover:shadow-md transition-shadow">
-          <div class="flex items-center justify-between">
-            <h2 class="text-base md:text-lg font-semibold text-slate-900" style="font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;">Ph.D. Students</h2>
-            <a 
-              href="mailto:ks.park@emory.edu?subject=Ph.D. Student Application - EXPHR Lab" 
-              class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors text-sm font-medium shadow-sm hover:shadow-md"
+          <!-- Jiyeong (Joy) Hong -->
+          <a href="/people/jiyeong-hong.html" class="flex flex-col items-center text-center group cursor-pointer transition-transform duration-200 hover:-translate-y-0.5">
+            <img 
+              src="./assets/media/Joy.jpg" 
+              alt="Jiyeong (Joy) Hong" 
+              loading="lazy" 
+              class="w-48 h-48 md:w-52 md:h-52 rounded-full object-cover object-center shadow-lg mb-6"
             >
-              Contact the PI
-              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </a>
-          </div>
-        </section>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Jiyeong (Joy) Hong</h2>
+            <p class="text-gray-500 text-sm">Research Technician, MMEd</p>
+          </a>
 
-        <!-- PostDoc -->
-        <section id="postdoc" class="bg-white rounded-lg border border-slate-200 shadow-sm p-4 md:p-5 hover:shadow-md transition-shadow">
-          <div class="flex items-center justify-between">
-            <h2 class="text-base md:text-lg font-semibold text-slate-900" style="font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;">PostDoc</h2>
-            <a 
-              href="mailto:ks.park@emory.edu?subject=PostDoc Application - EXPHR Lab" 
-              class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors text-sm font-medium shadow-sm hover:shadow-md"
+          <!-- Aisha Jalal -->
+          <a href="/people/aisha-jalal.html" class="flex flex-col items-center text-center group cursor-pointer transition-transform duration-200 hover:-translate-y-0.5">
+            <img 
+              src="./assets/media/Aisha.jpg" 
+              alt="Aisha Jalal" 
+              loading="lazy" 
+              class="w-48 h-48 md:w-52 md:h-52 rounded-full object-cover object-center object-[50%_38%] shadow-lg mb-6"
             >
-              Contact the PI
-              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </a>
-          </div>
-        </section>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Aisha Jalal</h2>
+            <p class="text-gray-500 text-sm">Graduate Research Assistant</p>
+          </a>
 
+          <!-- Kaetlin Marsh -->
+          <a href="/people/kaetlin-marsh.html" class="flex flex-col items-center text-center group cursor-pointer transition-transform duration-200 hover:-translate-y-0.5">
+            <img 
+              src="./assets/media/Kaetlin.png" 
+              alt="Kaetlin Marsh" 
+              loading="lazy" 
+              class="w-48 h-48 md:w-52 md:h-52 rounded-full object-cover object-center shadow-lg mb-6"
+            >
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Kaetlin Marsh</h2>
+            <p class="text-gray-500 text-sm">Graduate Research Assistant</p>
+          </a>
+
+          <!-- Rubi Gomez -->
+          <a href="/people/rubi-gomez.html" class="flex flex-col items-center text-center group cursor-pointer transition-transform duration-200 hover:-translate-y-0.5">
+            <img 
+              src="./assets/media/Rubi.jpg" 
+              alt="Rubi Gomez" 
+              loading="lazy" 
+              class="w-48 h-48 md:w-52 md:h-52 rounded-full object-cover object-center shadow-lg mb-6"
+            >
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Rubi Gomez</h2>
+            <p class="text-gray-500 text-sm">Graduate Research Assistant</p>
+          </a>
+
+          <!-- Angela Qian -->
+          <a href="/people/angela-qian.html" class="flex flex-col items-center text-center group cursor-pointer transition-transform duration-200 hover:-translate-y-0.5">
+            <img 
+              src="./assets/media/Angela.jpg" 
+              alt="Angela Qian" 
+              loading="lazy" 
+              class="w-48 h-48 md:w-52 md:h-52 rounded-full object-cover object-center object-[50%_42%] shadow-lg mb-6"
+            >
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Angela Qian</h2>
+            <p class="text-gray-500 text-sm">Undergraduate Research Assistant</p>
+          </a>
+
+          <!-- Audrey Chun -->
+          <a href="/people/audrey-chun.html" class="flex flex-col items-center text-center group cursor-pointer transition-transform duration-200 hover:-translate-y-0.5">
+            <img 
+              src="./assets/media/Audrey.jpg" 
+              alt="Audrey Chun" 
+              loading="lazy" 
+              class="w-48 h-48 md:w-52 md:h-52 rounded-full object-cover object-center shadow-lg mb-6"
+            >
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Audrey Chun</h2>
+            <p class="text-gray-500 text-sm">Undergraduate Research Assistant</p>
+          </a>
+
+          <!-- Ioanna Copulos -->
+          <a href="/people/ioanna-copulos.html" class="flex flex-col items-center text-center group cursor-pointer transition-transform duration-200 hover:-translate-y-0.5">
+            <img 
+              src="./assets/media/Ioanna.jpg" 
+              alt="Ioanna Copulos" 
+              loading="lazy" 
+              class="w-48 h-48 md:w-52 md:h-52 rounded-full object-cover object-center shadow-lg mb-6"
+            >
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Ioanna Copulos</h2>
+            <p class="text-gray-500 text-sm">Undergraduate Research Assistant</p>
+          </a>
+
+          <!-- Kate Arne -->
+          <a href="/people/kate-arne.html" class="flex flex-col items-center text-center group cursor-pointer transition-transform duration-200 hover:-translate-y-0.5">
+            <img 
+              src="./assets/media/Kate.jpeg" 
+              alt="Kate Arne" 
+              loading="lazy" 
+              class="w-48 h-48 md:w-52 md:h-52 rounded-full object-cover object-center shadow-lg mb-6"
+            >
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Kate Arne</h2>
+            <p class="text-gray-500 text-sm">Undergraduate Research Assistant</p>
+          </a>
+        </div>
+      </section>
       </div>
-    </div>
-  </main>
+    </main>
 
-  <!-- Footer -->
-  <footer class="border-t mt-12">
+    <!-- Footer -->
+    <footer class="border-t mt-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-sm text-slate-600">
-      © 2025 EXPHR Lab · Emory University
-    </div>
-  </footer>
+        © 2025 EXPHR Lab · Emory University
+      </div>
+    </footer>
 
-  <script>
-    // Dropdown management utility
+    <script>
+      // Mobile menu toggle (if exists)
+      document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const isHidden = menu.classList.contains('hidden');
+        
+        if (isHidden) {
+          menuIcon?.classList.add('hidden');
+          closeIcon?.classList.remove('hidden');
+          this.setAttribute('aria-expanded', 'true');
+        } else {
+          menuIcon?.classList.remove('hidden');
+          closeIcon?.classList.add('hidden');
+          this.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+    </script>
+  
+    <script>
+// Contact Dropdown Functionality - Prevent navigation immediately
+    // Prevent navigation as early as possible, even before DOM is ready
     (function() {
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initDropdowns);
-      } else {
-        initDropdowns();
+      function preventContactNavigation(e) {
+        // Check if click is on contact-link or inside it
+        const target = e.target;
+        const contactLink = document.getElementById('contact-link');
+        
+        if (contactLink && (target === contactLink || contactLink.contains(target))) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+          return false;
+        }
       }
-
-      function initDropdowns() {
-        const isMobile = window.matchMedia('(max-width: 768px)').matches && 'ontouchstart' in window && !window.matchMedia('(hover: hover)').matches;
-
-        function setupDropdown(dropdownId, buttonId, wrapperId) {
-          const dropdown = document.getElementById(dropdownId);
-          const button = document.getElementById(buttonId);
-          const wrapper = document.getElementById(wrapperId);
-          if (!dropdown || !button || !wrapper) return;
-
-          let isOpen = false;
-          let closeTimeout = null;
-          const chevron = button.querySelector('svg');
-            
-          function openDropdown() {
-            if (isOpen) return;
-            clearTimeout(closeTimeout);
-            dropdown.classList.remove('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
-            dropdown.classList.add('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
-            button.setAttribute('aria-expanded', 'true');
-            if (chevron) chevron.classList.add('rotate-180');
-            isOpen = true;
+      
+      // Add listener in capture phase (runs first)
+      document.addEventListener('click', preventContactNavigation, true);
+      
+      // Also prevent on mousedown (before click)
+      document.addEventListener('mousedown', function(e) {
+        const target = e.target;
+        const contactLink = document.getElementById('contact-link');
+        if (contactLink && (target === contactLink || contactLink.contains(target))) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, true);
+    })();
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      const wrapper = document.getElementById('contact-dropdown-wrapper');
+      const link = document.getElementById('contact-link');
+      const menu = document.getElementById('contact-dropdown');
+      const chevron = document.getElementById('contact-chevron');
+      
+      if (!wrapper || !link || !menu) {
+        console.error('Contact dropdown elements not found');
+        return;
+      }
+      
+      // Ensure link never navigates - set href to non-navigating value
+      link.setAttribute('href', 'javascript:void(0);');
+      
+      // Detect if device supports hover
+      const hasHover = window.matchMedia('(hover: hover)').matches;
+      let isOpen = false;
+      let hoverTimeout = null;
+      let clickedOpen = false; // Track if opened by click
+      let isHovered = false; // Track if hovering over wrapper or menu
+      
+      function showDropdown() {
+        wrapper.classList.add('show-dropdown');
+        link.setAttribute('aria-expanded', 'true');
+        isOpen = true;
+        // Clear any pending hide timeout
+        if (hoverTimeout) {
+          clearTimeout(hoverTimeout);
+          hoverTimeout = null;
+        }
+      }
+      
+      function hideDropdown() {
+        // Only hide if not clicked open and not hovered
+        if (!clickedOpen && !isHovered) {
+          wrapper.classList.remove('show-dropdown');
+          link.setAttribute('aria-expanded', 'false');
+          isOpen = false;
+        }
+      }
+      
+      function checkAndHide() {
+        // Check if we should hide after a delay
+        // Increased delay for smoother hover transitions
+        hoverTimeout = setTimeout(() => {
+          // Only hide if not clicked open and not hovering over wrapper or menu
+          // Also check CSS :hover state as a fallback
+          if (!clickedOpen && !isHovered) {
+            // Final check - verify mouse is really not over the area
+            try {
+              if (!wrapper.matches(':hover') && !menu.matches(':hover')) {
+                hideDropdown();
+              } else {
+                // Mouse is still over, keep it open
+                isHovered = true;
+              }
+            } catch (e) {
+              // Fallback if matches() is not supported
+              hideDropdown();
+            }
           }
-
-          function closeDropdown() {
-            if (!isOpen) return;
-            clearTimeout(closeTimeout);
-            closeTimeout = setTimeout(() => {
-              dropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
-              dropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
-              button.setAttribute('aria-expanded', 'false');
-              if (chevron) chevron.classList.remove('rotate-180');
-              isOpen = false;
-            }, 200);
-          }
-
-          function closeDropdownImmediate() {
-            clearTimeout(closeTimeout);
-            dropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
-            dropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
-            button.setAttribute('aria-expanded', 'false');
-            if (chevron) chevron.classList.remove('rotate-180');
-            isOpen = false;
-          }
-
-          if (!isMobile) {
-            wrapper.addEventListener('mouseenter', () => {
+        }, 200); // Increased from 150ms to 200ms for smoother transitions
+      }
+      
+      if (hasHover) {
+        // Desktop: Hover support - keep open while hovering
+        // Use longer delay to account for mouse movement between elements
+        const HOVER_DELAY = 200; // Increased delay for smoother transitions
+        
+        wrapper.addEventListener('mouseenter', () => {
           isHovered = true;
           clearTimeout(hoverTimeout);
           showDropdown();
@@ -638,29 +646,6 @@
         }
         
         link.addEventListener('click', handleContactClick, true); // Capture phase
-      // Close on outside click (only if clicked open)
-      document.addEventListener('click', (e) => {
-        if (clickedOpen && !wrapper.contains(e.target)) {
-          clickedOpen = false;
-          wrapper.classList.remove('show-dropdown');
-          link.setAttribute('aria-expanded', 'false');
-          isOpen = false;
-        }
-      });
-      
-      // Close on ESC key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && (isOpen || clickedOpen)) {
-          clickedOpen = false;
-          wrapper.classList.remove('show-dropdown');
-          link.setAttribute('aria-expanded', 'false');
-          isOpen = false;
-          link.focus();
-        }
-      });
-      });
-        // Mobile: Click only
-        link.addEventListener('click', handleContactClick, true); // Capture phase
       }
       
       // Close on outside click (only if clicked open)
@@ -687,4 +672,3 @@
   </script>
 </body>
 </html>
-

@@ -3,12 +3,145 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="News from EXPHR Lab - Announcements" />
   <title>News · EXPHR Lab</title>
   <link rel="stylesheet" href="./assets/style.css?v=17">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com">
+
+          // Close on outside click
+          document.addEventListener('click', (e) => {
+            if (!wrapper.contains(e.target)) {
+              hideDropdown();
+            }
+          });
+        }
+        
+        // Mobile: Toggle on tap
+        if (isMobile) {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const isExpanded = link.getAttribute('aria-expanded') === 'true';
+            if (isExpanded) {
+              hideDropdown();
+            } else {
+              showDropdown();
+            }
+          });
+          
+          // Close on outside tap
+          document.addEventListener('click', (e) => {
+            if (!wrapper.contains(e.target)) {
+              hideDropdown();
+            }
+          });
+          
+          // Close on ESC key
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && link.getAttribute('aria-expanded') === 'true') {
+              hideDropdown();
+            }
+          });
+        }
+      });
+
+        document.addEventListener('click', (e) => {
+          if (!wrapper.contains(e.target)) {
+            hideDropdown();
+          }
+        });
+      }
+    });
+                showDropdown();
+              }
+            });
+            
+            // Close on outside click
+            document.addEventListener('click', (e) => {
+              if (!contactWrapper.contains(e.target) && isOpen) {
+                hideDropdown();
+              }
+            });
+          }
+          
+          // Desktop: CSS group-hover handles it, but we sync aria-expanded
+          if (hasHover) {
+            contactWrapper.addEventListener('mouseenter', () => {
+              showDropdown();
+            });
+            
+            contactWrapper.addEventListener('mouseleave', () => {
+              hideDropdown();
+            });
+            
+            // On desktop, clicking Contact should navigate (not toggle)
+            // CSS group-hover already handles the dropdown visibility
+          }
+          
+          // Keyboard navigation
+          contactLink.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              if (isMobile) {
+                e.preventDefault();
+                if (isOpen) {
+                  hideDropdown();
+                } else {
+                  showDropdown();
+                }
+              }
+            } else if (e.key === 'ArrowDown' && !isOpen) {
+              e.preventDefault();
+              showDropdown();
+            } else if (e.key === 'Escape' && isOpen) {
+              e.preventDefault();
+              hideDropdown();
+              contactLink.focus();
+            }
+          });
+          
+          // Keyboard navigation within dropdown
+          const menuItems = contactDropdown.querySelectorAll('[role="menuitem"]');
+          menuItems.forEach((item, index) => {
+            item.addEventListener('keydown', (e) => {
+              if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                const next = menuItems[index + 1] || menuItems[0];
+                next?.focus();
+              } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                const prev = menuItems[index - 1] || menuItems[menuItems.length - 1];
+                prev?.focus();
+              } else if (e.key === 'Escape') {
+                e.preventDefault();
+                hideDropdown();
+                contactLink.focus();
+              }
+            });
+          });
+          
+          // Close on Escape key
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && isOpen) {
+              hideDropdown();
+              contactLink.focus();
+            }
+          });
+        })();
+    </script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Merriweather', 'Georgia', 'Cambria', 'serif'],
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
   <style>
     
     /* This MUST work - highest specificity possible */
@@ -172,21 +305,9 @@
     
   </style>
 
-</style>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            serif: ['Merriweather', 'Georgia', 'Cambria', 'serif'],
-            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
+</style>  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="text-slate-800 antialiased">
+<body class="text-slate-800 antialiased font-sans bg-white">
   <!-- Header -->
   <header role="banner" class="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-sm overflow-visible ">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16 overflow-visible">
@@ -211,7 +332,7 @@
             <span class="relative">Home</span>
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
           </a>
-          <a href="/people.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
+          <a href="/our-team.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
             <span class="relative">Our Team</span>
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
           </a>
@@ -224,7 +345,7 @@
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
           </a>
           <!-- News Link -->
-          <a href="/news-highlights.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap">
+          <a href="/news.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap">
             <span class="relative">News</span>
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
           </a>
@@ -265,199 +386,107 @@
       </div>
     </header>
 
-  <main>
-    <div class="h-3 bg-gradient-to-r from-blue-600/20 to-cyan-500/20"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 mb-8">News</h1>
+  <main class="bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900">News</h1>
 
-      <!-- Announcements -->
-      <section class="mb-12">
-        <h2 class="text-2xl font-bold text-slate-900 mb-6">Announcements</h2>
-        <div class="space-y-4">
-          <div class="border rounded-xl p-6 bg-white shadow-sm">
-            <div class="text-sm text-slate-500 mb-2"><strong>2025-11-03</strong></div>
-            <p class="text-slate-700">iSTEP recruitment ongoing for adults 65+ in Atlanta.</p>
+      <div class="mt-12 max-w-2xl">
+        <!-- Announcements Card -->
+        <a href="/announcements.html" class="group block bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-200 p-6 md:p-8 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+          <div class="flex items-start justify-between mb-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors">Announcements</h2>
+            <svg class="w-6 h-6 text-slate-400 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
           </div>
-        </div>
-      </section>
-
-      <!-- Gallery -->
-      <section>
-        <h2 class="text-2xl font-bold text-slate-900 mb-6">Gallery</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <p class="text-slate-600">Gallery content coming soon.</p>
-        </div>
-      </section>
+          <p class="text-slate-600 leading-relaxed">Stay updated with the latest news, events, and announcements from EXPHR Lab.</p>
+        </a>
+      </div>
     </div>
   </main>
 
   <!-- Footer -->
-  <footer class="border-t">
+  <footer class="border-t mt-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-sm text-slate-600">
       © 2025 EXPHR Lab · Emory University
     </div>
   </footer>
 
   <script>
-
-          // Close on outside click
-          document.addEventListener('click', (e) => {
-            if (!wrapper.contains(e.target)) {
-              hideDropdown();
-            }
-          });
-        }
-        
-        // Mobile: Toggle on tap
-        if (isMobile) {
-          link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const isExpanded = link.getAttribute('aria-expanded') === 'true';
-            if (isExpanded) {
-              hideDropdown();
-            } else {
-              showDropdown();
-            }
-          });
-          
-          // Close on outside tap
-          document.addEventListener('click', (e) => {
-            if (!wrapper.contains(e.target)) {
-              hideDropdown();
-            }
-          });
-          
-          // Close on ESC key
-          document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && link.getAttribute('aria-expanded') === 'true') {
-              hideDropdown();
-            }
-          });
-        }
-      });
-
-      // Mobile menu toggle (if exists)
-    document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
-      const menu = document.getElementById('mobile-menu');
-      const menuIcon = document.getElementById('menu-icon');
-      const closeIcon = document.getElementById('close-icon');
-      const isHidden = menu.classList.contains('hidden');
-      
-      if (isHidden) {
-        
-        menuIcon?.classList.add('hidden');
-        closeIcon?.classList.remove('hidden');
-        this.setAttribute('aria-expanded', 'true');
-      } else {
-        
-        menuIcon?.classList.remove('hidden');
-        closeIcon?.classList.add('hidden');
-        this.setAttribute('aria-expanded', 'false');
-      }
-    });
-  </script>
-
-    <script>
-// Contact Dropdown Functionality - Prevent navigation immediately
-    // Prevent navigation as early as possible, even before DOM is ready
+    // Dropdown management utility
     (function() {
-      function preventContactNavigation(e) {
-        // Check if click is on contact-link or inside it
-        const target = e.target;
-        const contactLink = document.getElementById('contact-link');
-        
-        if (contactLink && (target === contactLink || contactLink.contains(target))) {
-          e.preventDefault();
-          e.stopPropagation();
-          e.stopImmediatePropagation();
-          return false;
-        }
+      // Wait for DOM to be ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initDropdowns);
+      } else {
+        initDropdowns();
       }
-      
-      // Add listener in capture phase (runs first)
-      document.addEventListener('click', preventContactNavigation, true);
-      
-      // Also prevent on mousedown (before click)
-      document.addEventListener('mousedown', function(e) {
-        const target = e.target;
-        const contactLink = document.getElementById('contact-link');
-        if (contactLink && (target === contactLink || contactLink.contains(target))) {
-          e.preventDefault();
-          e.stopPropagation();
-        }
-      }, true);
-    })();
-    
-    document.addEventListener('DOMContentLoaded', () => {
-      const wrapper = document.getElementById('contact-dropdown-wrapper');
-      const link = document.getElementById('contact-link');
-      const menu = document.getElementById('contact-dropdown');
-      const chevron = document.getElementById('contact-chevron');
-      
-      if (!wrapper || !link || !menu) {
-        console.error('Contact dropdown elements not found');
-        return;
-      }
-      
-      // Ensure link never navigates - set href to non-navigating value
-      link.setAttribute('href', 'javascript:void(0);');
-      
-      // Detect if device supports hover
-      const hasHover = window.matchMedia('(hover: hover)').matches;
-      let isOpen = false;
-      let hoverTimeout = null;
-      let clickedOpen = false; // Track if opened by click
-      let isHovered = false; // Track if hovering over wrapper or menu
-      
-      function showDropdown() {
-        wrapper.classList.add('show-dropdown');
-        link.setAttribute('aria-expanded', 'true');
-        isOpen = true;
-        // Clear any pending hide timeout
-        if (hoverTimeout) {
-          clearTimeout(hoverTimeout);
-          hoverTimeout = null;
-        }
-      }
-      
-      function hideDropdown() {
-        // Only hide if not clicked open and not hovered
-        if (!clickedOpen && !isHovered) {
-          wrapper.classList.remove('show-dropdown');
-          link.setAttribute('aria-expanded', 'false');
-          isOpen = false;
-        }
-      }
-      
-      function checkAndHide() {
-        // Check if we should hide after a delay
-        // Increased delay for smoother hover transitions
-        hoverTimeout = setTimeout(() => {
-          // Only hide if not clicked open and not hovering over wrapper or menu
-          // Also check CSS :hover state as a fallback
-          if (!clickedOpen && !isHovered) {
-            // Final check - verify mouse is really not over the area
-            try {
-              if (!wrapper.matches(':hover') && !menu.matches(':hover')) {
-                hideDropdown();
-              } else {
-                // Mouse is still over, keep it open
-                isHovered = true;
-              }
-            } catch (e) {
-              // Fallback if matches() is not supported
-              hideDropdown();
+
+      function initDropdowns() {
+        const isMobile = window.matchMedia('(max-width: 768px)').matches && 'ontouchstart' in window && !window.matchMedia('(hover: hover)').matches;
+        let hoverTimeout = null;
+        const HOVER_DELAY = 200; // Increased delay for smoother transitions
+
+        function setupDropdown(dropdownId, buttonId, wrapperId) {
+          const dropdown = document.getElementById(dropdownId);
+          const button = document.getElementById(buttonId);
+          const wrapper = document.getElementById(wrapperId);
+          if (!dropdown || !button || !wrapper) {
+            console.warn('Dropdown elements not found:', { dropdownId, buttonId, wrapperId });
+            return;
+          }
+
+          let isOpen = false;
+          let closeTimeout = null;
+
+          const chevron = button.querySelector('svg');
+            
+          function openDropdown() {
+            if (isOpen) return;
+            clearTimeout(closeTimeout);
+            dropdown.classList.remove('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
+            dropdown.classList.add('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
+            button.setAttribute('aria-expanded', 'true');
+            if (chevron) chevron.classList.add('rotate-180');
+            isOpen = true;
+            
+            // Focus first item on keyboard open
+            const firstItem = dropdown.querySelector('[role="menuitem"]');
+            if (firstItem && document.activeElement === button) {
+              setTimeout(() => firstItem.focus(), 0);
             }
           }
-        }, 200); // Increased from 150ms to 200ms for smoother transitions
-      }
-      
-      if (hasHover) {
-        // Desktop: Hover support - keep open while hovering
-        // Use longer delay to account for mouse movement between elements
-        const HOVER_DELAY = 200; // Increased delay for smoother transitions
-        
-        wrapper.addEventListener('mouseenter', () => {
+
+          function closeDropdown() {
+            if (!isOpen) return;
+            clearTimeout(closeTimeout);
+            closeTimeout = setTimeout(() => {
+              dropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
+              dropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
+              button.setAttribute('aria-expanded', 'false');
+              if (chevron) chevron.classList.remove('rotate-180');
+              isOpen = false;
+            }, 200);
+          }
+
+          function closeDropdownImmediate() {
+            clearTimeout(closeTimeout);
+            dropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
+            dropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
+            button.setAttribute('aria-expanded', 'false');
+            if (chevron) chevron.classList.remove('rotate-180');
+            isOpen = false;
+          }
+
+          // Desktop: hover behavior (immediate show on hover)
+            // Always enable hover on desktop, only disable on true mobile devices
+            if (!isMobile || window.matchMedia('(hover: hover)').matches) {
+              // Add hover to wrapper - this is the main trigger
+              const handleWrapperEnter = () => {
+                clearTimeout(closeTimeout);
+                openDropdown();
+              };
+              wrapper.addEventListener('mouseenter', () => {
           isHovered = true;
           clearTimeout(hoverTimeout);
           showDropdown();
@@ -568,46 +597,20 @@
         link.addEventListener('click', handleContactClick, true); // Capture phase
       } else {
         // Mobile: Click only
-        // Unified click handler - prevents navigation AND toggles dropdown
-        function handleContactClick(e) {
-          // Always prevent navigation
-          e.preventDefault();
-          e.stopPropagation();
-          e.stopImmediatePropagation();
-          
-          // Toggle dropdown state
-          clickedOpen = !clickedOpen;
-          if (clickedOpen) {
-            showDropdown();
-          } else {
-            wrapper.classList.remove('show-dropdown');
-            link.setAttribute('aria-expanded', 'false');
-            isOpen = false;
-          }
-          
-          return false;
-        }
-        
         link.addEventListener('click', handleContactClick, true); // Capture phase
       }
       
-      // Close on outside click (only if clicked open)
+      // Close on outside click
       document.addEventListener('click', (e) => {
-        if (clickedOpen && !wrapper.contains(e.target)) {
-          clickedOpen = false;
-          wrapper.classList.remove('show-dropdown');
-          link.setAttribute('aria-expanded', 'false');
-          isOpen = false;
+        if (isOpen && !wrapper.contains(e.target)) {
+          hideDropdown();
         }
       });
       
       // Close on ESC key
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && (isOpen || clickedOpen)) {
-          clickedOpen = false;
-          wrapper.classList.remove('show-dropdown');
-          link.setAttribute('aria-expanded', 'false');
-          isOpen = false;
+        if (e.key === 'Escape' && isOpen) {
+          hideDropdown();
           link.focus();
         }
       });
@@ -615,3 +618,4 @@
   </script>
 </body>
 </html>
+

@@ -1,1 +1,486 @@
-<!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1" /> <title>Jiyeong (Joy) Hong · EXPHR Lab</title> <link rel="stylesheet" href="../assets/style.css?v=17"> <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"> <script src="https://cdn.tailwindcss.com">  // Close on outside click document.addEventListener('click', (e) => { if (!wrapper.contains(e.target)) { hideDropdown(); } }); } // Mobile: Toggle on tap if (isMobile) { link.addEventListener('click', (e) => { e.preventDefault(); const isExpanded = link.getAttribute('aria-expanded') === 'true'; if (isExpanded) { hideDropdown(); } else { showDropdown(); } }); // Close on outside tap document.addEventListener('click', (e) => { if (!wrapper.contains(e.target)) { hideDropdown(); } }); // Close on ESC key document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && link.getAttribute('aria-expanded') === 'true') { hideDropdown(); } }); } }); document.addEventListener('click', (e) => { if (!wrapper.contains(e.target)) { hideDropdown(); } }); } }); showDropdown(); } }); // Close on outside click document.addEventListener('click', (e) => { if (!contactWrapper.contains(e.target) && isOpen) { hideDropdown(); } }); } // Desktop: CSS group-hover handles it, but we sync aria-expanded if (hasHover) { contactWrapper.addEventListener('mouseenter', () => { showDropdown(); }); contactWrapper.addEventListener('mouseleave', () => { hideDropdown(); }); // On desktop, clicking Contact should navigate (not toggle) // CSS group-hover already handles the dropdown visibility } // Keyboard navigation contactLink.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { if (isMobile) { e.preventDefault(); if (isOpen) { hideDropdown(); } else { showDropdown(); } } } else if (e.key === 'ArrowDown' && !isOpen) { e.preventDefault(); showDropdown(); } else if (e.key === 'Escape' && isOpen) { e.preventDefault(); hideDropdown(); contactLink.focus(); } }); // Keyboard navigation within dropdown const menuItems = contactDropdown.querySelectorAll('[role="menuitem"]'); menuItems.forEach((item, index) => { item.addEventListener('keydown', (e) => { if (e.key === 'ArrowDown') { e.preventDefault(); const next = menuItems[index + 1] || menuItems[0]; next?.focus(); } else if (e.key === 'ArrowUp') { e.preventDefault(); const prev = menuItems[index - 1] || menuItems[menuItems.length - 1]; prev?.focus(); } else if (e.key === 'Escape') { e.preventDefault(); hideDropdown(); contactLink.focus(); } }); }); // Close on Escape key document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && isOpen) { hideDropdown(); contactLink.focus(); } }); })(); </script> <script> tailwind.config = { theme: { extend: { fontFamily: { serif: ['Merriweather', 'Georgia', 'Cambria', 'serif'], sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'], } } } } </script> <style>  /* This MUST work - highest specificity possible */ /* Hide by default - override everything */  /* Show on hover - override everything including inline styles */  /* Show on link hover */  /* Keyboard navigation */  </style> <style>  /* Ensure wrapper and header allow overflow for dropdown */ header, nav,  /* Hide dropdown by default */  /* Show dropdown on wrapper hover */  /* Show dropdown on link hover (fallback) */  else { initDropdowns(); } function initDropdowns() { const isMobile = window.matchMedia('(max-width: 768px)').matches && 'ontouchstart' in window && !window.matchMedia('(hover: hover)').matches; let hoverTimeout = null; const HOVER_DELAY = 150; function setupDropdown(dropdownId, buttonId, wrapperId) { const dropdown = document.getElementById(dropdownId); const button = document.getElementById(buttonId); const wrapper = document.getElementById(wrapperId); if (!dropdown || !button || !wrapper) { console.warn(\'Dropdown elements not found:\', { dropdownId, buttonId, wrapperId }); return; } let isOpen = false; let closeTimeout = null; const chevron = button.querySelector('svg'); function openDropdown() { if (isOpen) return; clearTimeout(closeTimeout); dropdown.classList.remove('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2'); dropdown.classList.add('opacity-100', 'visible', 'pointer-events-auto'); dropdown.classList.remove('-translate-y-2'); dropdown.classList.add('translate-y-0'); button.setAttribute('aria-expanded', 'true'); if (chevron) chevron.classList.add('rotate-180'); isOpen = true; // Focus first item on keyboard open const firstItem = dropdown.querySelector('[role="menuitem"]'); if (firstItem && document.activeElement === button) { setTimeout(() => firstItem.focus(), 0); } } function closeDropdown() { if (!isOpen) return; clearTimeout(closeTimeout); closeTimeout = setTimeout(() => { dropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0'); dropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2'); button.setAttribute('aria-expanded', 'false'); if (chevron) chevron.classList.remove('rotate-180'); isOpen = false; }, 200); } function closeDropdownImmediate() { clearTimeout(closeTimeout); dropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0'); dropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2'); button.setAttribute('aria-expanded', 'false'); if (chevron) chevron.classList.remove('rotate-180'); isOpen = false; } // Desktop: hover behavior (immediate show on hover) // Always enable hover on desktop, only disable on true mobile devices if (!isMobile || window.matchMedia('(hover: hover)').matches) { // Add hover to wrapper - this is the main trigger const handleWrapperEnter = () => { clearTimeout(closeTimeout); openDropdown(); };  ); } // Keep dropdown open when hovering over it dropdown.addEventListener('mouseenter', () => { clearTimeout(closeTimeout); // Ensure dropdown stays open if (!isOpen) { openDropdown(); } }); dropdown.addEventListener('mouseleave', closeDropdown); } // Click to toggle (works on both desktop and mobile) button.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); // Force open on click, even if hover already opened it if (isOpen) { closeDropdownImmediate(); } else { // Close other dropdowns first document.querySelectorAll('[role="menu"]').forEach(menu => { if (menu !== dropdown) { menu.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0'); menu.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2'); const otherButton = document.querySelector(`[aria-controls="${menu.id}"]`) || document.querySelector(`button[aria-expanded="true"]`); if (otherButton && otherButton !== button) { otherButton.setAttribute('aria-expanded', 'false'); const otherChevron = otherButton.querySelector('svg'); if (otherChevron) otherChevron.classList.remove('rotate-180'); } } }); // Always open on click openDropdown(); } }, true); // Use capture phase to ensure it fires"]`) || document.querySelector(`button[aria-expanded="true"]`); if (otherButton) { otherButton.setAttribute('aria-expanded', 'false'); const otherChevron = otherButton.querySelector('svg'); if (otherChevron) otherChevron.classList.remove('rotate-180'); } } }); openDropdown(); } }); } // Keyboard navigation button.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (isOpen) { closeDropdownImmediate(); } else { openDropdown(); } } else if (e.key === 'ArrowDown' && !isOpen) { e.preventDefault(); openDropdown(); } }); // Keyboard navigation within dropdown const menuItems = dropdown.querySelectorAll('[role="menuitem"]'); menuItems.forEach((item, index) => { item.addEventListener('keydown', (e) => { if (e.key === 'ArrowDown') { e.preventDefault(); const next = menuItems[index + 1] || menuItems[0]; next?.focus(); } else if (e.key === 'ArrowUp') { e.preventDefault(); const prev = menuItems[index - 1] || menuItems[menuItems.length - 1]; prev?.focus(); } else if (e.key === 'Escape') { e.preventDefault(); closeDropdownImmediate(); button.focus(); } }); }); // Focus management button.addEventListener('focus', () => { if (!isMobile) { openDropdown(); } }); button.addEventListener('blur', (e) => { clearTimeout(hoverTimeout); // Don't close if focus is moving to dropdown if (!dropdown.contains(e.relatedTarget)) { closeDropdown(); } }); // Close on outside click (mobile) if (isMobile) { document.addEventListener('click', (e) => { if (!wrapper.contains(e.target) && isOpen) { closeDropdownImmediate(); } }); } } // Initialize dropdowns // News dropdown removed - now a simple link // Handle window resize let resizeTimer; window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { const newIsMobile = window.matchMedia('(max-width: 768px)').matches; if (newIsMobile !== isMobile) { location.reload(); // Simple approach: reload on breakpoint change } }, 250); }); // ESC key to close all dropdowns document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { document.querySelectorAll('[role="menu"]').forEach(menu => { }); document.querySelectorAll('button[aria-expanded="true"]').forEach(btn => { btn.setAttribute('aria-expanded', 'false'); const chev = btn.querySelector('svg'); if (chev) chev.classList.remove('rotate-180'); }); } }); })(); </script> </body> </html> 
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jiyeong (Joy) Hong · EXPHR Lab</title>
+  <link rel="stylesheet" href="../assets/style.css?v=17">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Merriweather', 'Georgia', 'Cambria', 'serif'],
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          colors: {
+            'emory-navy': '#0B3D91',
+            'accent-blue': '#2F6BFF',
+            'warm-cream': '#FAF8F3',
+            'warm-beige': '#F5F1EB',
+            'warm-sand': '#F0EBE4',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Contact Dropdown Styles */
+    html body header,
+    html body nav,
+    html body #contact-dropdown-wrapper,
+    html body header > div,
+    html body nav > div,
+    html body header > div > div {
+      overflow: visible !important;
+    }
+    
+    #contact-dropdown-wrapper {
+      position: relative !important;
+      z-index: 10001 !important;
+    }
+    
+    #contact-dropdown {
+      position: absolute !important;
+      top: 100% !important;
+      left: 0 !important;
+      margin-top: 0 !important;
+      padding-top: 0.25rem !important;
+      z-index: 10002 !important;
+      min-width: 14rem !important;
+      display: block !important;
+    }
+    
+    #contact-dropdown-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      height: 0.5rem;
+      background: transparent;
+      pointer-events: auto;
+      z-index: 10001;
+    }
+    
+    #contact-dropdown-wrapper:hover #contact-chevron,
+    #contact-dropdown-wrapper:focus-within #contact-chevron,
+    #contact-dropdown-wrapper.show-dropdown #contact-chevron {
+      transform: rotate(180deg) !important;
+    }
+    
+    header {
+      overflow: visible !important;
+      z-index: 50 !important;
+      position: relative !important;
+    }
+    
+    header > div {
+      overflow: visible !important;
+      position: relative !important;
+    }
+    
+    nav {
+      overflow: visible !important;
+      position: relative !important;
+    }
+    
+    #contact-dropdown-wrapper:not(:hover):not(.show-dropdown) #contact-dropdown:not(:hover) {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      transform: translateY(-8px) !important;
+    }
+    
+    #contact-dropdown-wrapper:hover #contact-dropdown,
+    #contact-dropdown-wrapper:focus-within #contact-dropdown {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+    
+    #contact-dropdown:hover {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+    
+    #contact-dropdown-wrapper.show-dropdown #contact-dropdown {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+    
+    #contact-dropdown-wrapper:has(:hover) #contact-dropdown {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+    
+    header img[alt="EXPHR Lab"] {
+      background: transparent !important;
+      mix-blend-mode: multiply;
+    }
+  </style>
+</head>
+<body class="text-slate-800 antialiased font-sans" style="background: linear-gradient(to bottom, #FAF8F3 0%, #F5F1EB 100%); min-height: 100vh;">
+  <!-- Header -->
+  <header role="banner" class="sticky top-0 z-50 bg-warm-cream/95 backdrop-blur shadow-sm overflow-visible">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16 overflow-visible">
+      <nav aria-label="Primary" class="flex items-center justify-between h-full overflow-visible gap-6 md:gap-8">
+        <!-- Left: Brand -->
+        <a href="../index.html" class="flex items-center gap-0.5 md:gap-1 min-w-0 hover:opacity-80 transition-opacity shrink-0">
+          <img src="../assets/media/lab-logo-2.png" alt="EXPHR Lab" class="h-10 md:h-12 lg:h-14 w-auto object-contain shrink-0" style="background: transparent; mix-blend-mode: multiply;" loading="eager" />
+          <div class="flex items-center gap-2 md:gap-3 min-w-0">
+            <span class="font-semibold tracking-tight whitespace-nowrap text-slate-900 text-base sm:text-lg shrink-0">EXPHR Lab</span>
+            <span class="text-slate-500 text-xs sm:text-sm whitespace-nowrap shrink-0 hidden sm:inline">Exercise for Precision Health and Rehabilitation</span>
+          </div>
+        </a>
+        <!-- Right: Menu Links -->
+        <div id="desktop-nav-menu" class="hidden lg:flex flex-nowrap items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 whitespace-nowrap overflow-x-auto overflow-y-visible [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-2 md:py-0 ml-4 md:ml-6 shrink-0">
+          <a href="../index.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
+            <span class="relative">Home</span>
+            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+          </a>
+          <a href="../our-team.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
+            <span class="relative">Our Team</span>
+            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+          </a>
+          <a href="../projects.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
+            <span class="relative">Projects</span>
+            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+          </a>
+          <a href="../publications.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
+            <span class="relative">Publications</span>
+            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+          </a>
+          <a href="../news.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap">
+            <span class="relative">News</span>
+            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+          </a>
+          <a href="../gallery.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap">
+            <span class="relative">Lab Gallery</span>
+            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+          </a>
+          <!-- Contact Dropdown -->
+          <div id="contact-dropdown-wrapper" class="relative group shrink-0" style="z-index: 9999;">
+            <a 
+              id="contact-link"
+              href="javascript:void(0);"
+              class="inline-flex items-center gap-1 text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition cursor-pointer whitespace-nowrap"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="contact-dropdown"
+            >
+              <span>Contact</span>
+              <svg id="contact-chevron" class="w-3 h-3 shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+            <div 
+              id="contact-dropdown"
+              class="absolute left-0 top-full w-56 bg-warm-cream rounded-xl shadow-2xl border border-warm-sand/50 py-2 transition-all duration-200 ease-out"
+              style="z-index: 10002 !important; margin-top: 0 !important; padding-top: 0.25rem !important;"
+              role="menu"
+              aria-labelledby="contact-link"
+            >
+              <a href="../join-our-study.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-warm-beige/60 hover:text-slate-900 transition-colors" role="menuitem">Join Our Study</a>
+              <div class="border-t border-warm-sand/30 my-1"></div>
+              <a href="../opportunities.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-warm-beige/60 hover:text-slate-900 transition-colors" role="menuitem">Research Opportunities</a>
+              <div class="border-t border-warm-sand/30 my-1"></div>
+              <a href="../contact.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-warm-beige/60 hover:text-slate-900 transition-colors" role="menuitem">Get In Touch</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- Back to Our Team Link -->
+      <a href="../our-team.html" class="inline-flex items-center gap-2 text-accent-blue hover:text-emory-navy mb-8 font-semibold">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to Our Team
+      </a>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <!-- Left: Photo and Basic Info -->
+        <div class="md:col-span-4">
+          <div class="mb-6">
+            <img 
+              src="../assets/media/Joy.jpg" 
+              alt="Jiyeong (Joy) Hong" 
+              loading="lazy" 
+              class="w-64 h-64 rounded-full object-cover object-center shadow-md mx-auto md:mx-0"
+            />
+          </div>
+          
+          <!-- Name and Title -->
+          <h1 class="font-serif font-bold text-2xl md:text-3xl text-slate-900 mb-2">Jiyeong (Joy) Hong</h1>
+          <h2 class="text-slate-600 text-lg md:text-xl mb-6">Team Member</h2>
+          
+          <!-- Social Links - Horizontal Layout -->
+          <div class="flex flex-wrap gap-3 items-center">
+            <!-- LinkedIn -->
+            <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-10 h-10 text-blue-600 hover:text-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded">
+              <div class="w-9 h-9 bg-blue-600 rounded flex items-center justify-center shadow-sm">
+                <span class="text-white font-bold text-sm leading-none">in</span>
+              </div>
+            </a>
+            
+            <!-- Google Scholar -->
+            <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-10 h-10 text-blue-600 hover:text-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded">
+              <div class="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center shadow-sm">
+                <span class="text-white font-bold text-base leading-none">G</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Contact and Bio -->
+        <div class="md:col-span-8">
+          <!-- Current Position -->
+          <p class="text-slate-700 mb-6 text-base md:text-lg">Team Member, EXPHR Lab, Emory University</p>
+          
+          <!-- Bio Section -->
+          <div class="mt-8">
+            <h3 class="font-serif font-bold text-xl md:text-2xl text-slate-900 mb-4">Bio</h3>
+            <div class="prose prose-slate max-w-none">
+              <p class="text-slate-700 text-base md:text-lg leading-relaxed">
+                Jiyeong (Joy) Hong is a member of the EXPHR Lab at Emory University.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <footer class="border-t border-warm-sand/40 bg-warm-cream/80 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-sm text-slate-600 text-center">
+      © 2025 EXPHR Lab · Emory University
+    </div>
+  </footer>
+
+  <script>
+    // Contact Dropdown Functionality
+    (function() {
+      function preventContactNavigation(e) {
+        const target = e.target;
+        const contactLink = document.getElementById('contact-link');
+        
+        if (contactLink && (target === contactLink || contactLink.contains(target))) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+          return false;
+        }
+      }
+      
+      document.addEventListener('click', preventContactNavigation, true);
+      document.addEventListener('mousedown', function(e) {
+        const target = e.target;
+        const contactLink = document.getElementById('contact-link');
+        if (contactLink && (target === contactLink || contactLink.contains(target))) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, true);
+    })();
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      const wrapper = document.getElementById('contact-dropdown-wrapper');
+      const link = document.getElementById('contact-link');
+      const menu = document.getElementById('contact-dropdown');
+      const chevron = document.getElementById('contact-chevron');
+      
+      if (!wrapper || !link || !menu) {
+        console.error('Contact dropdown elements not found');
+        return;
+      }
+      
+      link.setAttribute('href', 'javascript:void(0);');
+      
+      const hasHover = window.matchMedia('(hover: hover)').matches;
+      let isOpen = false;
+      let hoverTimeout = null;
+      let clickedOpen = false;
+      let isHovered = false;
+      
+      function showDropdown() {
+        wrapper.classList.add('show-dropdown');
+        link.setAttribute('aria-expanded', 'true');
+        isOpen = true;
+        if (hoverTimeout) {
+          clearTimeout(hoverTimeout);
+          hoverTimeout = null;
+        }
+      }
+      
+      function hideDropdown() {
+        if (!clickedOpen && !isHovered) {
+          wrapper.classList.remove('show-dropdown');
+          link.setAttribute('aria-expanded', 'false');
+          isOpen = false;
+        }
+      }
+      
+      function checkAndHide() {
+        hoverTimeout = setTimeout(() => {
+          if (!clickedOpen && !isHovered) {
+            try {
+              if (!wrapper.matches(':hover') && !menu.matches(':hover')) {
+                hideDropdown();
+              } else {
+                isHovered = true;
+              }
+            } catch (e) {
+              hideDropdown();
+            }
+          }
+        }, 200);
+      }
+      
+      if (hasHover) {
+        const HOVER_DELAY = 200;
+        
+        wrapper.addEventListener('mouseenter', () => {
+          isHovered = true;
+          clearTimeout(hoverTimeout);
+          showDropdown();
+        });
+        
+        wrapper.addEventListener('mouseleave', (e) => {
+          const relatedTarget = e.relatedTarget;
+          const isMovingWithinWrapper = relatedTarget && (
+            wrapper.contains(relatedTarget) || 
+            menu.contains(relatedTarget)
+          );
+          
+          if (!isMovingWithinWrapper) {
+            hoverTimeout = setTimeout(() => {
+              try {
+                if (!wrapper.matches(':hover') && !menu.matches(':hover')) {
+                  isHovered = false;
+                  hideDropdown();
+                } else {
+                  isHovered = true;
+                }
+              } catch (e) {
+                isHovered = false;
+                hideDropdown();
+              }
+            }, HOVER_DELAY);
+          }
+        });
+        
+        menu.addEventListener('mouseenter', () => {
+          isHovered = true;
+          clearTimeout(hoverTimeout);
+          showDropdown();
+        });
+        
+        menu.addEventListener('mouseleave', (e) => {
+          const relatedTarget = e.relatedTarget;
+          const isMovingToWrapper = wrapper && wrapper.contains(relatedTarget);
+          
+          if (!isMovingToWrapper && !wrapper.matches(':hover')) {
+            hoverTimeout = setTimeout(() => {
+              try {
+                if (!wrapper.matches(':hover') && !menu.matches(':hover')) {
+                  isHovered = false;
+                  hideDropdown();
+                } else {
+                  isHovered = true;
+                }
+              } catch (e) {
+                isHovered = false;
+                hideDropdown();
+              }
+            }, HOVER_DELAY);
+          }
+        });
+        
+        link.addEventListener('mouseenter', () => {
+          isHovered = true;
+          clearTimeout(hoverTimeout);
+          showDropdown();
+        });
+        
+        wrapper.addEventListener('mousemove', () => {
+          isHovered = true;
+          clearTimeout(hoverTimeout);
+          showDropdown();
+        });
+        
+        function handleContactClick(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+          
+          clickedOpen = !clickedOpen;
+          if (clickedOpen) {
+            showDropdown();
+          } else {
+            wrapper.classList.remove('show-dropdown');
+            link.setAttribute('aria-expanded', 'false');
+            isOpen = false;
+          }
+          
+          return false;
+        }
+        
+        link.addEventListener('click', handleContactClick, true);
+      } else {
+        function handleContactClick(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+          
+          clickedOpen = !clickedOpen;
+          if (clickedOpen) {
+            showDropdown();
+          } else {
+            wrapper.classList.remove('show-dropdown');
+            link.setAttribute('aria-expanded', 'false');
+            isOpen = false;
+          }
+          
+          return false;
+        }
+        
+        link.addEventListener('click', handleContactClick, true);
+      }
+      
+      document.addEventListener('click', (e) => {
+        if (clickedOpen && !wrapper.contains(e.target)) {
+          clickedOpen = false;
+          wrapper.classList.remove('show-dropdown');
+          link.setAttribute('aria-expanded', 'false');
+          isOpen = false;
+        }
+      });
+      
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && (isOpen || clickedOpen)) {
+          clickedOpen = false;
+          wrapper.classList.remove('show-dropdown');
+          link.setAttribute('aria-expanded', 'false');
+          isOpen = false;
+          link.focus();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

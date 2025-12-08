@@ -8,7 +8,207 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com">
+                                  // Contact dropdown hover/click behavior
+      document.addEventListener('DOMContentLoaded', () => {
+        const wrapper = document.getElementById('contact-dropdown-wrapper');
+        const link = document.getElementById('contact-link');
+        const menu = document.getElementById('contact-dropdown');
+        const chevron = document.getElementById('contact-chevron');
+        
+        if (!wrapper || !link || !menu) return;
+        
+        // Detect device type
+        const hasHover = window.matchMedia('(hover: hover)').matches;
+        const isMobile = window.matchMedia('(max-width: 768px)').matches && !hasHover;
+        
+        function showDropdown() {
+          console.log('showDropdown called');
+          // Remove all hiding classes
+          menu.classList.remove('hidden');
+          menu.classList.remove('opacity-0');
+          menu.classList.remove('invisible');
+          menu.classList.remove('-translate-y-2');
+          menu.classList.remove('-translate-y-2');
+          menu.classList.remove('pointer-events-none');
+          // Add showing classes
+          menu.classList.add('opacity-100');
+          menu.classList.add('translate-y-0');
+          menu.classList.add('pointer-events-auto');
+          // Force display (override any inline styles or Tailwind)
+          menu.style.setProperty('display', 'block', 'important');
+          menu.style.visibility = 'visible';
+          menu.style.opacity = '1';
+          menu.style.transform = 'translateY(0)';
+          menu.style.pointerEvents = 'auto';
+          // Update ARIA
+          link.setAttribute('aria-expanded', 'true');
+          if (chevron) chevron.classList.add('rotate-180');
+        }
+        
+        function hideDropdown() {
+          console.log('hideDropdown called');
+          // Add hiding classes
+          menu.classList.add('opacity-0');
+          menu.classList.add('-translate-y-2');
+          menu.classList.add('pointer-events-none');
+          // Remove showing classes
+          menu.classList.remove('opacity-100');
+          menu.classList.remove('translate-y-0');
+          menu.classList.remove('pointer-events-auto');
+          // Force hide after transition
+          setTimeout(() => {
+            menu.classList.add('hidden');
+            menu.style.setProperty('display', 'none', 'important');
+            menu.style.visibility = 'hidden';
+          }, 200);
+          // Update ARIA
+          link.setAttribute('aria-expanded', 'false');
+          if (chevron) chevron.classList.remove('rotate-180');
+        }
+        
+        // Desktop: Show on hover AND click
+        if (!isMobile) {
+          // Hover events
+          wrapper.addEventListener('mouseenter', showDropdown);
+          wrapper.addEventListener('mouseleave', hideDropdown);
+          menu.addEventListener('mouseenter', showDropdown);
+          menu.addEventListener('mouseleave', hideDropdown);
+          
+          // Click events (for desktop users who prefer clicking)
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const isExpanded = link.getAttribute('aria-expanded') === 'true';
+            if (isExpanded) {
+              hideDropdown();
+            } else {
+              showDropdown();
+            }
+          });
+          
+          // Close on outside click
+          document.addEventListener('click', (e) => {
+            if (!wrapper.contains(e.target)) {
+              hideDropdown();
+            }
+          });
+        }
+        
+        // Mobile: Toggle on tap
+        if (isMobile) {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const isExpanded = link.getAttribute('aria-expanded') === 'true';
+            if (isExpanded) {
+              hideDropdown();
+            } else {
+              showDropdown();
+            }
+          });
+          
+          // Close on outside tap
+          document.addEventListener('click', (e) => {
+            if (!wrapper.contains(e.target)) {
+              hideDropdown();
+            }
+          });
+          
+          // Close on ESC key
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && link.getAttribute('aria-expanded') === 'true') {
+              hideDropdown();
+            }
+          });
+        }
+      });
+
+      
+      
+      
+        
+        document.addEventListener('click', (e) => {
+          if (!wrapper.contains(e.target)) {
+            hideDropdown();
+          }
+        });
+      }
+    });
+                showDropdown();
+              }
+            });
+            
+            // Close on outside click
+            document.addEventListener('click', (e) => {
+              if (!contactWrapper.contains(e.target) && isOpen) {
+                hideDropdown();
+              }
+            });
+          }
+          
+          // Desktop: CSS group-hover handles it, but we sync aria-expanded
+          if (hasHover) {
+            contactWrapper.addEventListener('mouseenter', () => {
+              showDropdown();
+            });
+            
+            contactWrapper.addEventListener('mouseleave', () => {
+              hideDropdown();
+            });
+            
+            // On desktop, clicking Contact should navigate (not toggle)
+            // CSS group-hover already handles the dropdown visibility
+          }
+          
+          // Keyboard navigation
+          contactLink.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              if (isMobile) {
+                e.preventDefault();
+                if (isOpen) {
+                  hideDropdown();
+                } else {
+                  showDropdown();
+                }
+              }
+            } else if (e.key === 'ArrowDown' && !isOpen) {
+              e.preventDefault();
+              showDropdown();
+            } else if (e.key === 'Escape' && isOpen) {
+              e.preventDefault();
+              hideDropdown();
+              contactLink.focus();
+            }
+          });
+          
+          // Keyboard navigation within dropdown
+          const menuItems = contactDropdown.querySelectorAll('[role="menuitem"]');
+          menuItems.forEach((item, index) => {
+            item.addEventListener('keydown', (e) => {
+              if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                const next = menuItems[index + 1] || menuItems[0];
+                next?.focus();
+              } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                const prev = menuItems[index - 1] || menuItems[menuItems.length - 1];
+                prev?.focus();
+              } else if (e.key === 'Escape') {
+                e.preventDefault();
+                hideDropdown();
+                contactLink.focus();
+              }
+            });
+          });
+          
+          // Close on Escape key
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && isOpen) {
+              hideDropdown();
+              contactLink.focus();
+            }
+          });
+        })();
+    </script>
   <script>
     tailwind.config = {
       theme: {
@@ -16,167 +216,77 @@
           fontFamily: {
             serif: ['Merriweather', 'Georgia', 'Cambria', 'serif'],
             sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
-          },
-          colors: {
-            'emory-navy': '#0B3D91',
-            'accent-blue': '#2F6BFF',
           }
         }
       }
     }
   </script>
   <style>
+    /* Contact Dropdown - Maximum Priority CSS */
+    /* This MUST work - highest specificity possible */
     
-    
-    /* Contact Dropdown Styles - Enhanced for visibility */
-    html body header,
-    html body nav,
-    html body #contact-dropdown-wrapper,
-    html body header > div,
-    html body nav > div,
-    html body header > div > div {
-      overflow: visible !important;
-    }
-    
-    /* Dropdown container */
-    #contact-dropdown-wrapper {
-      position: relative !important;
-      z-index: 10001 !important;
-    }
-    
-    /* Dropdown menu - positioned correctly */
-    #contact-dropdown {
-      position: absolute !important;
-      top: 100% !important;
-      left: 0 !important;
-      margin-top: 0 !important;
-      padding-top: 0.25rem !important;
-      z-index: 10002 !important;
-      min-width: 14rem !important;
-      display: block !important;
-    }
-    
-    /* Bridge gap between wrapper and dropdown for smooth hover */
-    #contact-dropdown-wrapper::after {
-      content: \'\';
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      height: 0.5rem;
-      background: transparent;
-      pointer-events: auto;
-      z-index: 10001;
-    }
-    
-    /* Show on hover - highest priority */
-    #contact-dropdown-wrapper:hover #contact-dropdown,
-    #contact-dropdown-wrapper:hover::after + #contact-dropdown,
-    #contact-dropdown-wrapper:focus-within #contact-dropdown {
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-      transform: translateY(0) !important;
-      display: block !important;
-    }
-    
-    /* Keep dropdown visible when hovering over it */
-    #contact-dropdown:hover,
-    #contact-dropdown-wrapper::after:hover ~ #contact-dropdown {
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-      transform: translateY(0) !important;
-      display: block !important;
-    }
-    
-    /* Rotate chevron on hover */
-    #contact-dropdown-wrapper:hover #contact-chevron,
-    #contact-dropdown-wrapper:focus-within #contact-chevron {
-      transform: rotate(180deg) !important;
-    }
-    
-    /* Show when .show-dropdown class is added (for click) */
-    #contact-dropdown-wrapper.show-dropdown #contact-dropdown {
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-      transform: translateY(0) !important;
-      display: block !important;
-    }
-    
-    #contact-dropdown-wrapper.show-dropdown #contact-chevron {
-      transform: rotate(180deg) !important;
-    }
-    
-    /* Ensure header doesn't clip dropdown */
-    header {
-      overflow: visible !important;
-      z-index: 50 !important;
-      position: relative !important;
-    }
-    
-    header > div {
-      overflow: visible !important;
-      position: relative !important;
-    }
-    
-    nav {
-      overflow: visible !important;
-      position: relative !important;
-    }
-    
-  
-    /* Dropdown initial hidden state - controlled by CSS only */
-    /* Default: hidden when wrapper AND dropdown are not hovered and no show-dropdown class */
-    #contact-dropdown-wrapper:not(:hover):not(.show-dropdown) #contact-dropdown:not(:hover) {
+    /* Hide by default - override everything */
+    #contact-dropdown-wrapper #contact-dropdown {
+      display: none !important;
       opacity: 0 !important;
       visibility: hidden !important;
       pointer-events: none !important;
       transform: translateY(-8px) !important;
     }
     
-    /* Override: show when wrapper is hovered */
+    /* Show on hover - override everything including inline styles */
     #contact-dropdown-wrapper:hover #contact-dropdown {
+      display: block !important;
       opacity: 1 !important;
       visibility: visible !important;
       pointer-events: auto !important;
       transform: translateY(0) !important;
     }
     
-    /* Override: show when dropdown itself is hovered (keep it open when moving mouse to dropdown) */
+    /* Show on link hover */
+    #contact-link:hover ~ #contact-dropdown,
+    #contact-dropdown-wrapper:has(#contact-link:hover) #contact-dropdown {
+      display: block !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateY(0) !important;
+    }
+    
+    /* Keep visible when hovering over dropdown */
     #contact-dropdown:hover {
+      display: block !important;
       opacity: 1 !important;
       visibility: visible !important;
       pointer-events: auto !important;
       transform: translateY(0) !important;
     }
     
-    /* Override: show when show-dropdown class is added (for click) */
-    #contact-dropdown-wrapper.show-dropdown #contact-dropdown {
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-      transform: translateY(0) !important;
+    /* Desktop fallback */
+    @media (min-width: 768px) {
+      #contact-dropdown-wrapper:hover #contact-dropdown {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translateY(0) !important;
+      }
     }
     
-    /* Focus-within for keyboard navigation */
+    /* Keyboard navigation */
     #contact-dropdown-wrapper:focus-within #contact-dropdown {
+      display: block !important;
       opacity: 1 !important;
       visibility: visible !important;
       pointer-events: auto !important;
       transform: translateY(0) !important;
     }
-    
-    /* Ensure dropdown stays visible when hovering over wrapper or dropdown */
-    #contact-dropdown-wrapper:has(:hover) #contact-dropdown {
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-      transform: translateY(0) !important;
-    }
-    
   </style>
+
+
+
+
+</style>  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="text-slate-800 antialiased font-sans bg-white">
   <!-- Header -->
@@ -199,58 +309,59 @@
 
         <!-- Right: Menu Links -->
         <div class="flex flex-nowrap items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 whitespace-nowrap overflow-x-auto overflow-y-visible [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-2 md:py-0 ml-4 md:ml-6 shrink-0">
-          <a href="/index.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
+          <a href="/index.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative group shrink-0">
             <span class="relative">Home</span>
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
           </a>
-          <a href="/people.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
+          <a href="/people.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative group shrink-0">
             <span class="relative">Our Team</span>
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
           </a>
-          <a href="/projects.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
+          <a href="/projects.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative group shrink-0">
             <span class="relative">Projects</span>
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
           </a>
-          <a href="/publications.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
+          <a href="/publications.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative group shrink-0">
             <span class="relative">Publications</span>
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
           </a>
           <!-- News Link -->
-          <a href="/news-highlights.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap">
+          <a href="/news-highlights.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap">
             <span class="relative">News</span>
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
           </a>
 
-          <a href="/lab-gallery.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap">
+          <a href="/lab-gallery.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap">
             <span class="relative">Lab Gallery</span>
             <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
           </a>
 
           <!-- Contact Dropdown -->
-          <div id="contact-dropdown-wrapper" class="relative group shrink-0" style="z-index: 9999;">
+          <div class="relative shrink-0 group pt-2 -mt-2 pb-2 -mb-2" id="contact-dropdown-wrapper" style="z-index: 9999;">
             <a 
+              href="./contact.html"
+              class="text-[13px] sm:text-[14px] md:text-[15px] font-medium text-slate-700 hover:text-slate-900 transition relative flex items-center gap-1 whitespace-nowrap"
               id="contact-link"
-              href="#"
-              class="inline-flex items-center gap-1 text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition cursor-pointer whitespace-nowrap"
-              aria-haspopup="true"
+              aria-haspopup="menu"
               aria-expanded="false"
               aria-controls="contact-dropdown"
             >
               <span>Contact</span>
-              <svg id="contact-chevron" class="w-3 h-3 shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <svg id="contact-chevron" class="w-3 h-3 transition-transform shrink-0 duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </a>
             <div 
-              id="contact-dropdown" class="absolute left-0 top-full  w-56 bg-white rounded-xl shadow-2xl border border-slate-200 py-2 transition-all duration-200 ease-out" style="z-index: 10002 !important;margin-top: 0 !important; padding-top: 0.25rem !important;"
+              id="contact-dropdown"
+              class="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-2xl border border-slate-200 py-2 transition-all duration-200 ease-out" style="z-index: 9999;"
               role="menu"
               aria-labelledby="contact-link"
             >
-              <a href="./join-our-study.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors" role="menuitem">Join Our Study</a>
+              <a href="./join-our-study.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Join Our Study</a>
               <div class="border-t border-slate-100 my-1"></div>
-              <a href="./opportunities.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors" role="menuitem">Research Opportunities</a>
+              <a href="./opportunities.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Research Opportunities</a>
               <div class="border-t border-slate-100 my-1"></div>
-              <a href="./contact.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors" role="menuitem">Get In Touch</a>
+              <a href="./contact.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-gray-50 hover:underline" role="menuitem">Get In Touch</a>
             </div>
           </div>
         </nav>
@@ -259,115 +370,102 @@
 
   <main class="bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900 mb-8">Lab Gallery</h1>
+      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900 mb-4">Lab Gallery</h1>
       
-      <!-- 2025 Year Section -->
-      <section class="mb-16">
-        <h2 class="text-xl md:text-2xl font-bold font-serif text-slate-900 mb-6 pb-3 border-b border-slate-200">
-          2025
-        </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          <!-- ISTEP Exercise -->
-          <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 aspect-[4/3]">
-            <img 
-              src="assets/media/istep-exercise.jpeg" 
-              alt="ISTEP Exercise Activity" 
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              loading="lazy"
-            />
-          </div>
-
-          <!-- Homecoming 1 -->
-          <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 aspect-[4/3]">
-            <img 
-              src="assets/media/homecoming-1.jpg" 
-              alt="Homecoming Event 1" 
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              loading="lazy"
-            />
-          </div>
-
-          <!-- Homecoming 2 -->
-          <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 aspect-[4/3]">
-            <img 
-              src="assets/media/homecoming-2.jpg" 
-              alt="Homecoming Event 2" 
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              loading="lazy"
-            />
-          </div>
-
-          <!-- Top Golf -->
-          <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 aspect-[4/3]">
-            <img 
-              src="assets/media/topgolf.jpeg" 
-              alt="Top Golf Event" 
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              loading="lazy"
-            />
-          </div>
-
-          <!-- Joy Birthday -->
-          <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 aspect-[4/3]">
-            <img 
-              src="assets/media/joy-birthday.jpg" 
-              alt="Joy Birthday Celebration" 
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              loading="lazy"
-            />
-          </div>
-
-          <!-- Lunch -->
-          <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 aspect-[4/3]">
-            <img 
-              src="assets/media/lunch.jpg" 
-              alt="Lab Lunch" 
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              loading="lazy"
-            />
-          </div>
-
-          <!-- Poster 1 -->
-          <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 aspect-[2/3] bg-slate-50">
-            <img 
-              src="assets/media/poster-1.jpeg" 
-              alt="Research Poster 1" 
-              class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
-              loading="lazy"
-            />
-          </div>
-
-          <!-- Poster 2 -->
-          <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 aspect-[2/3] bg-slate-50">
-            <img 
-              src="assets/media/poster-2.jpeg" 
-              alt="Research Poster 2" 
-              class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
-              loading="lazy"
-            />
-          </div>
-
-          <!-- Poster 3 -->
-          <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 aspect-[2/3] bg-slate-50">
-            <img 
-              src="assets/media/poster-3.jpeg" 
-              alt="Research Poster 3" 
-              class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
-              loading="lazy"
-            />
-          </div>
+      <!-- Image Gallery -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <!-- Landscape/Event Photos Group (similar aspect ratios) -->
+        <!-- ISTEP Exercise -->
+        <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 aspect-[4/3]">
+          <img 
+            src="assets/media/istep-exercise.jpeg" 
+            alt="ISTEP Exercise Activity" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
         </div>
-      </section>
 
-      <!-- 2026 Year Section (준비됨) -->
-      <section class="mb-16">
-        <h2 class="text-xl md:text-2xl font-bold font-serif text-slate-900 mb-6 pb-3 border-b border-slate-200">
-          2026
-        </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          <!-- 2026년 사진을 여기에 추가할 수 있습니다 -->
+        <!-- Homecoming 1 -->
+        <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 aspect-[4/3]">
+          <img 
+            src="assets/media/homecoming-1.jpg" 
+            alt="Homecoming Event 1" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
         </div>
-      </section>
+
+        <!-- Homecoming 2 -->
+        <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 aspect-[4/3]">
+          <img 
+            src="assets/media/homecoming-2.jpg" 
+            alt="Homecoming Event 2" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Top Golf -->
+        <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 aspect-[4/3]">
+          <img 
+            src="assets/media/topgolf.jpeg" 
+            alt="Top Golf Event" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Joy Birthday -->
+        <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 aspect-[4/3]">
+          <img 
+            src="assets/media/joy-birthday.jpg" 
+            alt="Joy Birthday Celebration" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Lunch -->
+        <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 aspect-[4/3]">
+          <img 
+            src="assets/media/lunch.jpg" 
+            alt="Lab Lunch" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Portrait/Poster Photos Group (similar aspect ratios - typically taller) -->
+        <!-- Poster 1 -->
+        <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 aspect-[2/3] bg-slate-50">
+          <img 
+            src="assets/media/poster-1.jpeg" 
+            alt="Research Poster 1" 
+            class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Poster 2 -->
+        <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 aspect-[2/3] bg-slate-50">
+          <img 
+            src="assets/media/poster-2.jpeg" 
+            alt="Research Poster 2" 
+            class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Poster 3 -->
+        <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 aspect-[2/3] bg-slate-50">
+          <img 
+            src="assets/media/poster-3.jpeg" 
+            alt="Research Poster 3" 
+            class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+        </div>
+      </div>
     </div>
   </main>
 
@@ -379,279 +477,116 @@
   </footer>
 
   <script>
-    // Mobile menu toggle (if exists)
-    document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
-      const menu = document.getElementById('mobile-menu');
-      const menuIcon = document.getElementById('menu-icon');
-      const closeIcon = document.getElementById('close-icon');
-      const isHidden = menu.classList.contains('hidden');
-      if (isHidden) {
-        menuIcon?.classList.add('hidden');
-        closeIcon?.classList.remove('hidden');
-        this.setAttribute('aria-expanded', 'true');
-      } else {
-        menuIcon?.classList.remove('hidden');
-        closeIcon?.classList.add('hidden');
-        this.setAttribute('aria-expanded', 'false');
-      }
-    });
-  </script>
-
-    <script>
-// Contact Dropdown Functionality - Prevent navigation immediately
-    // Prevent navigation as early as possible, even before DOM is ready
+    // Dropdown management utility
     (function() {
-      function preventContactNavigation(e) {
-        // Check if click is on contact-link or inside it
-        const target = e.target;
-        const contactLink = document.getElementById('contact-link');
-        
-        if (contactLink && (target === contactLink || contactLink.contains(target))) {
-          e.preventDefault();
-          e.stopPropagation();
-          e.stopImmediatePropagation();
-          return false;
-        }
-      }
-      
-      // Add listener in capture phase (runs first)
-      document.addEventListener('click', preventContactNavigation, true);
-      
-      // Also prevent on mousedown (before click)
-      document.addEventListener('mousedown', function(e) {
-        const target = e.target;
-        const contactLink = document.getElementById('contact-link');
-        if (contactLink && (target === contactLink || contactLink.contains(target))) {
-          e.preventDefault();
-          e.stopPropagation();
-        }
-      }, true);
-    })();
-    
-    document.addEventListener('DOMContentLoaded', () => {
-      const wrapper = document.getElementById('contact-dropdown-wrapper');
-      const link = document.getElementById('contact-link');
-      const menu = document.getElementById('contact-dropdown');
-      const chevron = document.getElementById('contact-chevron');
-      
-      if (!wrapper || !link || !menu) {
-        console.error('Contact dropdown elements not found');
-        return;
-      }
-      
-      // Ensure link never navigates - set href to non-navigating value
-      link.setAttribute('href', 'javascript:void(0);');
-      
-      // Detect if device supports hover
-      const hasHover = window.matchMedia('(hover: hover)').matches;
-      let isOpen = false;
-      let hoverTimeout = null;
-      let clickedOpen = false; // Track if opened by click
-      let isHovered = false; // Track if hovering over wrapper or menu
-      
-      function showDropdown() {
-        wrapper.classList.add('show-dropdown');
-        link.setAttribute('aria-expanded', 'true');
-        isOpen = true;
-        // Clear any pending hide timeout
-        if (hoverTimeout) {
-          clearTimeout(hoverTimeout);
-          hoverTimeout = null;
-        }
-      }
-      
-      function hideDropdown() {
-        // Only hide if not clicked open and not hovered
-        if (!clickedOpen && !isHovered) {
-          wrapper.classList.remove('show-dropdown');
-          link.setAttribute('aria-expanded', 'false');
-          isOpen = false;
-        }
-      }
-      
-      function checkAndHide() {
-        // Check if we should hide after a delay
-        // Increased delay for smoother hover transitions
-        hoverTimeout = setTimeout(() => {
-          // Only hide if not clicked open and not hovering over wrapper or menu
-          // Also check CSS :hover state as a fallback
-          if (!clickedOpen && !isHovered) {
-            // Final check - verify mouse is really not over the area
-            try {
-              if (!wrapper.matches(':hover') && !menu.matches(':hover')) {
-                hideDropdown();
-              } else {
-                // Mouse is still over, keep it open
-                isHovered = true;
-              }
-            } catch (e) {
-              // Fallback if matches() is not supported
-              hideDropdown();
-            }
-          }
-        }, 200); // Increased from 150ms to 200ms for smoother transitions
-      }
-      
-      if (hasHover) {
-        // Desktop: Hover support - keep open while hovering
-        // Use longer delay to account for mouse movement between elements
-        const HOVER_DELAY = 200; // Increased delay for smoother transitions
-        
-        wrapper.addEventListener('mouseenter', () => {
-          isHovered = true;
-          clearTimeout(hoverTimeout);
-          showDropdown();
-        });
-        
-        wrapper.addEventListener('mouseleave', (e) => {
-          // Check if mouse is moving to dropdown or bridge area
-          const relatedTarget = e.relatedTarget;
-          const isMovingToDropdown = menu && menu.contains(relatedTarget);
-          const isMovingToWrapper = wrapper && wrapper.contains(relatedTarget);
-          
-          // Also check if moving to any child of wrapper (including dropdown)
-          const isMovingWithinWrapper = relatedTarget && (
-            wrapper.contains(relatedTarget) || 
-            menu.contains(relatedTarget)
-          );
-          
-          if (!isMovingWithinWrapper && !isMovingToDropdown && !isMovingToWrapper) {
-            // Only set isHovered to false after a delay
-            hoverTimeout = setTimeout(() => {
-              // Double check - make sure mouse is really not over wrapper or menu
-              try {
-                if (!wrapper.matches(':hover') && !menu.matches(':hover')) {
-                  isHovered = false;
-                  hideDropdown();
-                } else {
-                  // Mouse is still over, keep it open
-                  isHovered = true;
-                }
-              } catch (e) {
-                // Fallback if matches() is not supported
-                isHovered = false;
-                hideDropdown();
-              }
-            }, HOVER_DELAY);
-          }
-        });
-        
-        // Keep dropdown open when hovering over it
-        menu.addEventListener('mouseenter', () => {
-          isHovered = true;
-          clearTimeout(hoverTimeout);
-          showDropdown();
-        });
-        
-        menu.addEventListener('mouseleave', (e) => {
-          // Check if mouse is moving back to wrapper
-          const relatedTarget = e.relatedTarget;
-          const isMovingToWrapper = wrapper && wrapper.contains(relatedTarget);
-          
-          // Also check if still hovering over wrapper
-          if (!isMovingToWrapper && !wrapper.matches(':hover')) {
-            // Only hide after delay
-            hoverTimeout = setTimeout(() => {
-              // Double check - make sure mouse is really not over wrapper or menu
-              try {
-                if (!wrapper.matches(':hover') && !menu.matches(':hover')) {
-                  isHovered = false;
-                  hideDropdown();
-                } else {
-                  // Mouse is still over, keep it open
-                  isHovered = true;
-                }
-              } catch (e) {
-                // Fallback if matches() is not supported
-                isHovered = false;
-                hideDropdown();
-              }
-            }, HOVER_DELAY);
-          }
-        });
-        
-        // Also handle mouseover on the link itself for extra reliability
-        link.addEventListener('mouseenter', () => {
-          isHovered = true;
-          clearTimeout(hoverTimeout);
-          showDropdown();
-        });
-        
-        // Handle mouse movement within the entire wrapper area
-        wrapper.addEventListener('mousemove', () => {
-          isHovered = true;
-          clearTimeout(hoverTimeout);
-          showDropdown();
-        });
-        
-        // Click: Toggle show-dropdown class to keep it open
-        // Unified click handler - prevents navigation AND toggles dropdown
-        function handleContactClick(e) {
-          // Always prevent navigation
-          e.preventDefault();
-          e.stopPropagation();
-          e.stopImmediatePropagation();
-          
-          // Toggle dropdown state
-          clickedOpen = !clickedOpen;
-          if (clickedOpen) {
-            showDropdown();
-          } else {
-            wrapper.classList.remove('show-dropdown');
-            link.setAttribute('aria-expanded', 'false');
-            isOpen = false;
-          }
-          
-          return false;
-        }
-        
-        link.addEventListener('click', handleContactClick, true); // Capture phase
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initDropdowns);
       } else {
-        // Mobile: Click only
-        // Unified click handler - prevents navigation AND toggles dropdown
-        function handleContactClick(e) {
-          // Always prevent navigation
-          e.preventDefault();
-          e.stopPropagation();
-          e.stopImmediatePropagation();
-          
-          // Toggle dropdown state
-          clickedOpen = !clickedOpen;
-          if (clickedOpen) {
-            showDropdown();
-          } else {
-            wrapper.classList.remove('show-dropdown');
-            link.setAttribute('aria-expanded', 'false');
+        initDropdowns();
+      }
+
+      function initDropdowns() {
+        const isMobile = window.matchMedia('(max-width: 768px)').matches && 'ontouchstart' in window && !window.matchMedia('(hover: hover)').matches;
+
+        function setupDropdown(dropdownId, buttonId, wrapperId) {
+          const dropdown = document.getElementById(dropdownId);
+          const button = document.getElementById(buttonId);
+          const wrapper = document.getElementById(wrapperId);
+          if (!dropdown || !button || !wrapper) return;
+
+          let isOpen = false;
+          let closeTimeout = null;
+          const chevron = button.querySelector('svg');
+            
+          function openDropdown() {
+            if (isOpen) return;
+            clearTimeout(closeTimeout);
+            dropdown.classList.remove('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
+            dropdown.classList.add('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
+            button.setAttribute('aria-expanded', 'true');
+            if (chevron) chevron.classList.add('rotate-180');
+            isOpen = true;
+          }
+
+          function closeDropdown() {
+            if (!isOpen) return;
+            clearTimeout(closeTimeout);
+            closeTimeout = setTimeout(() => {
+              dropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
+              dropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
+              button.setAttribute('aria-expanded', 'false');
+              if (chevron) chevron.classList.remove('rotate-180');
+              isOpen = false;
+            }, 200);
+          }
+
+          function closeDropdownImmediate() {
+            clearTimeout(closeTimeout);
+            dropdown.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
+            dropdown.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
+            button.setAttribute('aria-expanded', 'false');
+            if (chevron) chevron.classList.remove('rotate-180');
             isOpen = false;
           }
-          
-          return false;
+
+          if (!isMobile || window.matchMedia('(hover: hover)').matches) {
+            const handleWrapperEnter = () => {
+              clearTimeout(closeTimeout);
+              openDropdown();
+            };
+            wrapper.addEventListener('mouseenter', handleWrapperEnter);
+            wrapper.addEventListener('mouseleave', closeDropdown);
+
+            button.addEventListener('mouseenter', () => {
+              clearTimeout(closeTimeout);
+              openDropdown();
+            });
+
+            const link = wrapper.querySelector('a[href="/news-highlights.html"]');
+            if (link) {
+              link.addEventListener('mouseenter', () => {
+                clearTimeout(closeTimeout);
+                openDropdown();
+              });
+            }
+
+            dropdown.addEventListener('mouseenter', () => {
+              clearTimeout(closeTimeout);
+              if (!isOpen) {
+                openDropdown();
+              }
+            });
+
+            dropdown.addEventListener('mouseleave', closeDropdown);
+          }
+
+          button.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (isOpen) {
+              closeDropdownImmediate();
+            } else {
+              document.querySelectorAll('[role="menu"]').forEach(menu => {
+                if (menu !== dropdown) {
+                  menu.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
+                  menu.classList.add('opacity-0', 'invisible', 'pointer-events-none', '-translate-y-2');
+                  const otherButton = document.querySelector(`[aria-controls="${menu.id}"]`) || 
+                                    document.querySelector(`button[aria-expanded="true"]`);
+                  if (otherButton && otherButton !== button) {
+                    otherButton.setAttribute('aria-expanded', 'false');
+                    const otherChevron = otherButton.querySelector('svg');
+                    if (otherChevron) otherChevron.classList.remove('rotate-180');
+                  }
+                }
+              });
+              openDropdown();
+            }
+          }, true);
         }
-        
-        link.addEventListener('click', handleContactClick, true); // Capture phase
-      }
-      
-      // Close on outside click (only if clicked open)
-      document.addEventListener('click', (e) => {
-        if (clickedOpen && !wrapper.contains(e.target)) {
-          clickedOpen = false;
-          wrapper.classList.remove('show-dropdown');
-          link.setAttribute('aria-expanded', 'false');
-          isOpen = false;
+
+        // News dropdown removed - now a simple link
         }
-      });
-      
-      // Close on ESC key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && (isOpen || clickedOpen)) {
-          clickedOpen = false;
-          wrapper.classList.remove('show-dropdown');
-          link.setAttribute('aria-expanded', 'false');
-          isOpen = false;
-          link.focus();
-        }
-      });
-    });
+    })();
   </script>
 </body>
 </html>

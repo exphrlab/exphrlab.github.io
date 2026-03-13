@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jade Lasanajak · EXPHR Lab</title>
+  <link rel="stylesheet" href="../assets/style.css?v=17">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Merriweather', 'Georgia', 'Cambria', 'serif'],
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          colors: {
+            'emory-navy': '#0B3D91',
+            'accent-blue': '#2F6BFF',
+            'warm-cream': '#FAF8F3',
+            'warm-beige': '#F5F1EB',
+            'warm-sand': '#F0EBE4',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="text-slate-800 antialiased font-sans" style="background: white; min-height: 100vh;">
+  <header role="banner" class="sticky top-0 z-50 bg-white backdrop-blur shadow-sm overflow-visible">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-16 overflow-visible">
+      <nav aria-label="Primary" class="flex items-center justify-between h-full overflow-visible gap-6 md:gap-8">
+        <a href="../index.html" class="flex items-center gap-0.5 md:gap-1 min-w-0 hover:opacity-80 transition-opacity shrink-0">
+          <img src="../assets/media/lab-logo-2.png" alt="EXPHR Lab" class="h-10 md:h-12 lg:h-14 w-auto object-contain shrink-0" loading="eager" />
+          <div class="flex items-center gap-2 md:gap-3 min-w-0">
+            <span class="font-semibold tracking-tight whitespace-nowrap text-slate-900 text-base sm:text-lg shrink-0">EXPHR Lab</span>
+            <span class="text-slate-500 text-xs sm:text-sm whitespace-nowrap shrink-0 hidden sm:inline">Exercise for Precision Health and Rehabilitation</span>
+          </div>
+        </a>
+        <div id="desktop-nav-menu" class="hidden lg:flex flex-nowrap items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 whitespace-nowrap overflow-x-auto overflow-y-visible [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-2 md:py-0 ml-4 md:ml-6 shrink-0">
+          <a href="../index.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
+            <span class="relative">Home</span>
+            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+          </a>
+          <a href="../our-team.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
+            <span class="relative">Our Team</span>
+            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+          </a>
+          <a href="../projects.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
+            <span class="relative">Projects</span>
+            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+          </a>
+          <a href="../publications.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0">
+            <span class="relative">Publications</span>
+            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+          </a>
+          <a href="../news.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap">
+            <span class="relative">News</span>
+            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+          </a>
+          <a href="../gallery.html" class="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-slate-800 hover:text-slate-900 transition relative group shrink-0 whitespace-nowrap">
+            <span class="relative">Lab Gallery</span>
+            <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-blue transition-all group-hover:w-full"></span>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <a href="../our-team.html" class="inline-flex items-center gap-2 text-accent-blue hover:text-emory-navy mb-8 font-sans font-semibold text-sm leading-normal">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to Our Team
+      </a>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <div class="md:col-span-4">
+          <div class="mb-6">
+            <img 
+              src="../assets/media/Jade.jpg" 
+              alt="Jade Lasanajak" 
+              loading="lazy" 
+              class="w-64 h-64 rounded-full object-cover object-center shadow-md mx-auto md:mx-0"
+            />
+          </div>
+          
+          <h1 class="font-serif font-bold text-3xl text-slate-900 mb-3 leading-tight border-b-0" style="border-bottom: none !important;">Jade Lasanajak</h1>
+          <h2 class="font-sans font-medium text-lg text-slate-600 mb-6 leading-normal">Undergraduate Research Assistant</h2>
+        </div>
+
+        <div class="md:col-span-8">
+          <p class="font-sans font-normal text-sm text-slate-600 mb-6 leading-relaxed">Undergraduate Research Assistant, EXPHR Lab, Emory University</p>
+          
+          <div class="mt-8">
+            <h3 class="font-serif font-bold text-xl text-slate-900 mb-4 leading-tight">Bio</h3>
+            <div class="prose prose-slate max-w-none">
+              <p class="font-sans font-normal text-base text-slate-700 leading-relaxed">
+                Jade Lasanajak, sophomore at Emory University pursuing a major in Neuroscience and Behavioral Biology with a minor in Global Health, Culture, and Society. My hobbies include playing pickleball, ballroom dancing, and listening to music. I have prior experience in emergency medicine through my work in EMS, where I have developed a strong commitment to patient care and community service. I hope to bridge scientific research and clinical practice to become a compassionate healthcare provider and to better serve marginalized communities and improve the lives of others.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <footer class="border-t border-slate-200 bg-white mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-sm text-slate-600 text-center">
+      © 2025 EXPHR Lab · Emory University
+    </div>
+  </footer>
+</body>
+</html>
+

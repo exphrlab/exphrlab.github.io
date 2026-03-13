@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jiyeong (Joy) Hong · EXPHR Lab</title>
+  <title>Gabija Staniskis · EXPHR Lab</title>
   <link rel="stylesheet" href="../assets/style.css?v=17">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +29,6 @@
     }
   </script>
   <style>
-    /* Contact Dropdown Styles */
     html body header,
     html body nav,
     html body #contact-dropdown-wrapper,
@@ -206,8 +205,6 @@
 
   <main class="bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <!-- Back to Our Team Link -->
-      <!-- Typography: Navigation Link - sans, semibold, text-sm, line-height-normal, accent-blue -->
       <a href="../our-team.html" class="inline-flex items-center gap-2 text-accent-blue hover:text-emory-navy mb-8 font-sans font-semibold text-sm leading-normal">
         <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -220,51 +217,25 @@
         <div class="md:col-span-4">
           <div class="mb-6">
             <img 
-              src="../assets/media/Joy.jpg" 
-              alt="Jiyeong (Joy) Hong" 
+              src="../assets/media/Gabija.jpg" 
+              alt="Gabija Staniskis" 
               loading="lazy" 
               class="w-64 h-64 rounded-full object-cover object-center shadow-md mx-auto md:mx-0"
             />
           </div>
           
-          <!-- Name and Title -->
-          <!-- Typography: H1 (Name) - serif, bold, text-3xl (30px), line-height-tight, text-slate-900 -->
-          <h1 class="font-serif font-bold text-3xl text-slate-900 mb-3 leading-tight border-b-0" style="border-bottom: none !important;">Jiyeong (Joy) Hong</h1>
-          <!-- Typography: H2 (Title/Subtitle) - sans, medium, text-lg (18px), line-height-normal, text-slate-600 -->
-          <h2 class="font-sans font-medium text-lg text-slate-600 mb-6 leading-normal">Music Technician, MMEd</h2>
-          
-          <!-- Social Links - Horizontal Layout -->
-          <div class="flex flex-wrap gap-3 items-center">
-            <!-- LinkedIn -->
-            <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-10 h-10 text-blue-600 hover:text-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded">
-              <div class="w-9 h-9 bg-blue-600 rounded flex items-center justify-center shadow-sm">
-                <span class="text-white font-bold text-sm leading-none">in</span>
-              </div>
-            </a>
-            
-            <!-- Google Scholar -->
-            <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-10 h-10 text-blue-600 hover:text-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded">
-              <div class="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center shadow-sm">
-                <span class="text-white font-bold text-base leading-none">G</span>
-              </div>
-            </a>
-          </div>
+          <h1 class="font-serif font-bold text-3xl text-slate-900 mb-3 leading-tight border-b-0" style="border-bottom: none !important;">Gabija Staniskis</h1>
+          <h2 class="font-sans font-medium text-lg text-slate-600 mb-6 leading-normal">Undergraduate Research Assistant</h2>
         </div>
 
         <!-- Right: Contact and Bio -->
         <div class="md:col-span-8">
-          <!-- Current Position -->
-          <!-- Typography: Affiliation - sans, normal, text-sm (14px), line-height-relaxed, text-slate-600 -->
-          <p class="font-sans font-normal text-sm text-slate-600 mb-6 leading-relaxed">Music Technician, MMEd, EXPHR Lab, Emory University</p>
+          <p class="font-sans font-normal text-sm text-slate-600 mb-6 leading-relaxed">Undergraduate Research Assistant, EXPHR Lab, Emory University</p>
           
-          <!-- Bio Section -->
           <div class="mt-8">
-            <!-- Typography: H3 (Section Title) - serif, bold, text-xl (20px), line-height-tight, text-slate-900 -->
             <h3 class="font-serif font-bold text-xl text-slate-900 mb-4 leading-tight">Bio</h3>
             <div class="prose prose-slate max-w-none">
-              <!-- Typography: Body Text - sans, normal, text-base (16px), line-height-relaxed, text-slate-700 -->
-              <p class="font-sans font-normal text-base text-slate-700 leading-relaxed">
-                Jiyeong (Joy) Hong is a member of the EXPHR Lab at Emory University.</p>
+              <!-- Intentionally left blank -->
             </div>
           </div>
         </div>
@@ -279,7 +250,6 @@
   </footer>
 
   <script>
-    // Contact Dropdown Functionality
     (function() {
       function preventContactNavigation(e) {
         const target = e.target;
@@ -303,190 +273,7 @@
         }
       }, true);
     })();
-    
-    document.addEventListener('DOMContentLoaded', () => {
-      const wrapper = document.getElementById('contact-dropdown-wrapper');
-      const link = document.getElementById('contact-link');
-      const menu = document.getElementById('contact-dropdown');
-      const chevron = document.getElementById('contact-chevron');
-      
-      if (!wrapper || !link || !menu) {
-        console.error('Contact dropdown elements not found');
-        return;
-      }
-      
-      link.setAttribute('href', 'javascript:void(0);');
-      
-      const hasHover = window.matchMedia('(hover: hover)').matches;
-      let isOpen = false;
-      let hoverTimeout = null;
-      let clickedOpen = false;
-      let isHovered = false;
-      
-      function showDropdown() {
-        wrapper.classList.add('show-dropdown');
-        link.setAttribute('aria-expanded', 'true');
-        isOpen = true;
-        if (hoverTimeout) {
-          clearTimeout(hoverTimeout);
-          hoverTimeout = null;
-        }
-      }
-      
-      function hideDropdown() {
-        if (!clickedOpen && !isHovered) {
-          wrapper.classList.remove('show-dropdown');
-          link.setAttribute('aria-expanded', 'false');
-          isOpen = false;
-        }
-      }
-      
-      function checkAndHide() {
-        hoverTimeout = setTimeout(() => {
-          if (!clickedOpen && !isHovered) {
-            try {
-              if (!wrapper.matches(':hover') && !menu.matches(':hover')) {
-                hideDropdown();
-              } else {
-                isHovered = true;
-              }
-            } catch (e) {
-              hideDropdown();
-            }
-          }
-        }, 200);
-      }
-      
-      if (hasHover) {
-        const HOVER_DELAY = 200;
-        
-        wrapper.addEventListener('mouseenter', () => {
-          isHovered = true;
-          clearTimeout(hoverTimeout);
-          showDropdown();
-        });
-        
-        wrapper.addEventListener('mouseleave', (e) => {
-          const relatedTarget = e.relatedTarget;
-          const isMovingWithinWrapper = relatedTarget && (
-            wrapper.contains(relatedTarget) || 
-            menu.contains(relatedTarget)
-          );
-          
-          if (!isMovingWithinWrapper) {
-            hoverTimeout = setTimeout(() => {
-              try {
-                if (!wrapper.matches(':hover') && !menu.matches(':hover')) {
-                  isHovered = false;
-                  hideDropdown();
-                } else {
-                  isHovered = true;
-                }
-              } catch (e) {
-                isHovered = false;
-                hideDropdown();
-              }
-            }, HOVER_DELAY);
-          }
-        });
-        
-        menu.addEventListener('mouseenter', () => {
-          isHovered = true;
-          clearTimeout(hoverTimeout);
-          showDropdown();
-        });
-        
-        menu.addEventListener('mouseleave', (e) => {
-          const relatedTarget = e.relatedTarget;
-          const isMovingToWrapper = wrapper && wrapper.contains(relatedTarget);
-          
-          if (!isMovingToWrapper && !wrapper.matches(':hover')) {
-            hoverTimeout = setTimeout(() => {
-              try {
-                if (!wrapper.matches(':hover') && !menu.matches(':hover')) {
-                  isHovered = false;
-                  hideDropdown();
-                } else {
-                  isHovered = true;
-                }
-              } catch (e) {
-                isHovered = false;
-                hideDropdown();
-              }
-            }, HOVER_DELAY);
-          }
-        });
-        
-        link.addEventListener('mouseenter', () => {
-          isHovered = true;
-          clearTimeout(hoverTimeout);
-          showDropdown();
-        });
-        
-        wrapper.addEventListener('mousemove', () => {
-          isHovered = true;
-          clearTimeout(hoverTimeout);
-          showDropdown();
-        });
-        
-        function handleContactClick(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          e.stopImmediatePropagation();
-          
-          clickedOpen = !clickedOpen;
-          if (clickedOpen) {
-            showDropdown();
-          } else {
-            wrapper.classList.remove('show-dropdown');
-            link.setAttribute('aria-expanded', 'false');
-            isOpen = false;
-          }
-          
-          return false;
-        }
-        
-        link.addEventListener('click', handleContactClick, true);
-      } else {
-        function handleContactClick(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          e.stopImmediatePropagation();
-          
-          clickedOpen = !clickedOpen;
-          if (clickedOpen) {
-            showDropdown();
-          } else {
-            wrapper.classList.remove('show-dropdown');
-            link.setAttribute('aria-expanded', 'false');
-            isOpen = false;
-          }
-          
-          return false;
-        }
-        
-        link.addEventListener('click', handleContactClick, true);
-      }
-      
-      document.addEventListener('click', (e) => {
-        if (clickedOpen && !wrapper.contains(e.target)) {
-          clickedOpen = false;
-          wrapper.classList.remove('show-dropdown');
-          link.setAttribute('aria-expanded', 'false');
-          isOpen = false;
-        }
-      });
-      
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && (isOpen || clickedOpen)) {
-          clickedOpen = false;
-          wrapper.classList.remove('show-dropdown');
-          link.setAttribute('aria-expanded', 'false');
-          isOpen = false;
-          link.focus();
-        }
-      });
-    });
   </script>
 </body>
 </html>
+

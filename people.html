@@ -36,247 +36,80 @@
       --serif:     'Merriweather', Georgia, 'Times New Roman', serif;
       --sans:      'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
-
     header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: sticky; top: 0; z-index: 100;
       background: var(--navy-deep);
       border-bottom: 2px solid var(--gold);
       box-shadow: 0 1px 8px rgba(0,0,0,0.07);
       overflow: visible;
     }
-
     .nav-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.25rem;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      overflow: visible;
-      position: relative;
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+      height: 60px; display: flex; align-items: center;
+      justify-content: space-between; overflow: visible; position: relative;
     }
-
-    /* ── Brand (always far-left) ── */
     .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
-      color: var(--text);
-      text-decoration: none;
-      flex-shrink: 0;
+      display: flex; align-items: center; gap: 0.6rem;
+      color: var(--text); text-decoration: none; flex-shrink: 0;
     }
-    .nav-brand img {
-      height: 36px;
-      width: auto;
-      mix-blend-mode: multiply;
-      filter: none;
-    }
-    .nav-brand-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.2;
-    }
+    .nav-brand img { height: 38px; width: auto; mix-blend-mode: multiply; filter: none; }
+    .nav-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
     .nav-brand-name {
-      font-family: var(--serif);
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: var(--text);
-      letter-spacing: 0.02em;
+      font-family: var(--serif); font-weight: 700; font-size: 1rem;
+      color: var(--text); letter-spacing: 0.02em;
     }
-    .nav-brand-sub {
-      font-size: 0.65rem;
-      color: #6b7280;
-      letter-spacing: 0.01em;
-      display: none;
-    }
-    @media (min-width: 900px) { .nav-brand-sub { display: block; } }
-
-    /* ── Hamburger toggle (mobile only) ── */
-    .nav-toggle {
-      display: none;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      border-radius: 4px;
-      color: #374151;
-      transition: background 0.15s, color 0.15s;
-      flex-shrink: 0;
-      padding: 0;
-    }
-    .nav-toggle:hover { background: rgba(45,106,79,0.08); color: var(--navy); }
-    .nav-toggle svg { display: block; }
-
-    /* ── Nav links (always far-right on desktop) ── */
+    .nav-brand-sub { font-size: 0.68rem; color: #6b7280; letter-spacing: 0.01em; display: none; }
+    @media (min-width: 700px) { .nav-brand-sub { display: block; } }
     .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 0.1rem;
-      overflow-x: clip;
-      overflow-y: visible;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      flex-shrink: 0;
-      position: relative;
+      display: flex; align-items: center; gap: 0.1rem;
+      overflow-x: clip; overflow-y: visible;
+      scrollbar-width: none; -ms-overflow-style: none;
+      flex-shrink: 0; position: relative;
     }
     .nav-links::-webkit-scrollbar { display: none; }
-
-    .nav-links a,
-    .nav-drop-trigger {
-      color: #374151;
-      font-size: 0.77rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 0.38rem 0.6rem;
-      border-radius: 3px;
-      transition: color 0.15s, background 0.15s;
-      white-space: nowrap;
-      cursor: pointer;
+    .nav-links a, .nav-drop-trigger {
+      color: #374151; font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.4rem 0.65rem; border-radius: 3px;
+      transition: color 0.15s, background 0.15s; white-space: nowrap; cursor: pointer;
     }
-    .nav-links a:hover,
-    .nav-drop-trigger:hover {
-      color: var(--navy);
-      background: rgba(45,106,79,0.08);
+    .nav-links a:hover, .nav-drop-trigger:hover {
+      color: var(--navy); background: rgba(45,106,79,0.08);
     }
-
-    /* ── Contact dropdown ── */
     .nav-drop { position: relative; overflow: visible; }
     .nav-drop-trigger {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      background: none;
-      border: none;
-      font-family: var(--sans);
-      cursor: pointer;
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      background: none; border: none; font-family: var(--sans); cursor: pointer;
     }
-    .nav-drop-trigger svg {
-      width: 10px;
-      height: 10px;
-      transition: transform 0.2s;
-      flex-shrink: 0;
-    }
+    .nav-drop-trigger svg { width: 10px; height: 10px; transition: transform 0.2s; flex-shrink: 0; }
     #contact-dropdown-wrapper:hover .nav-drop-trigger svg,
     #contact-dropdown-wrapper.show-dropdown .nav-drop-trigger svg { transform: rotate(180deg); }
-
     #contact-dropdown {
-      position: absolute;
-      top: calc(100% + 4px);
-      right: 0;
-      min-width: 13rem;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-top: 2px solid var(--gold);
-      border-radius: 5px;
-      box-shadow: 0 8px 28px rgba(0,0,0,0.16);
-      z-index: 9999;
-      overflow: hidden;
+      position: absolute; top: calc(100% + 4px); right: 0; min-width: 13rem;
+      background: var(--white); border: 1px solid var(--border);
+      border-top: 2px solid var(--gold); border-radius: 5px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.16); z-index: 9999; overflow: hidden;
     }
     #contact-dropdown a {
-      display: block;
-      padding: 0.65rem 1rem;
-      font-size: 0.83rem;
-      color: var(--text);
-      font-weight: 500;
-      border-bottom: 1px solid var(--border);
-      transition: background 0.12s, color 0.12s;
-      text-transform: none;
-      letter-spacing: 0;
+      display: block; padding: 0.65rem 1rem; font-size: 0.83rem;
+      color: var(--text); font-weight: 500; border-bottom: 1px solid var(--border);
+      transition: background 0.12s, color 0.12s; text-transform: none; letter-spacing: 0;
     }
     #contact-dropdown a:last-child { border-bottom: none; }
     #contact-dropdown a:hover { background: var(--off-white); color: var(--navy); }
-
     #contact-dropdown-wrapper:not(:hover):not(.show-dropdown) #contact-dropdown:not(:hover) {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
+      opacity: 0; visibility: hidden; pointer-events: none;
       transform: translateY(-6px);
       transition: opacity 0.15s, visibility 0.15s, transform 0.15s;
     }
     #contact-dropdown-wrapper:hover #contact-dropdown,
     #contact-dropdown-wrapper.show-dropdown #contact-dropdown,
     #contact-dropdown:hover {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-      transform: translateY(0);
+      opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0);
       transition: opacity 0.15s, visibility 0.15s, transform 0.15s;
     }
     #contact-dropdown-wrapper:has(:hover) #contact-dropdown {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-      transform: translateY(0);
-    }
-
-    /* ── Mobile responsive ── */
-    @media (max-width: 767px) {
-      .nav-toggle { display: flex; }
-
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        right: 0;
-        background: var(--white);
-        border-top: 1px solid var(--border);
-        border-bottom: 2px solid var(--gold);
-        box-shadow: 0 6px 18px rgba(0,0,0,0.09);
-        padding: 0.4rem 0;
-        gap: 0;
-        overflow-x: visible;
-        overflow-y: auto;
-        z-index: 98;
-      }
-      .nav-links.nav-open { display: flex; }
-
-      .nav-links a,
-      .nav-drop-trigger {
-        padding: 0.75rem 1.25rem;
-        border-radius: 0;
-        font-size: 0.82rem;
-        justify-content: flex-start;
-        width: 100%;
-        border-bottom: 1px solid rgba(0,0,0,0.04);
-      }
-      .nav-links a:last-child { border-bottom: none; }
-
-      /* Contact dropdown becomes inline on mobile */
-      .nav-drop { overflow: visible; }
-      #contact-dropdown {
-        position: static;
-        box-shadow: none;
-        border: none;
-        border-top: none;
-        border-radius: 0;
-        background: #f3f8f5;
-        opacity: 1 !important;
-        visibility: visible !important;
-        pointer-events: auto !important;
-        transform: none !important;
-        transition: none !important;
-        display: none;
-      }
-      #contact-dropdown-wrapper.show-dropdown #contact-dropdown,
-      #contact-dropdown-wrapper.mob-open #contact-dropdown { display: block; }
-      #contact-dropdown a {
-        padding: 0.65rem 2rem;
-        font-size: 0.8rem;
-        border-bottom: 1px solid rgba(0,0,0,0.05);
-      }
-      #contact-dropdown a:last-child { border-bottom: none; }
-      .nav-drop-trigger svg { margin-left: auto; }
+      opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0);
     }
   </style>
 </head>
@@ -284,8 +117,6 @@
 <!-- ===== Sticky Navbar ===== -->
 <header role="banner">
   <div class="nav-inner">
-
-    <!-- Brand: far left -->
     <a href="/index.html" class="nav-brand" aria-label="EXPHR Lab Home">
       <img src="assets/media/lab-logo-2.png" alt="EXPHR Lab logo" loading="eager" />
       <div class="nav-brand-text">
@@ -293,35 +124,16 @@
         <span class="nav-brand-sub">Exercise for Precision Health &amp; Rehabilitation</span>
       </div>
     </a>
-
-    <!-- Hamburger: visible on mobile only -->
-    <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
-      <svg id="nav-icon-open" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-      <svg id="nav-icon-close" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true" style="display:none">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-
-    <!-- Nav links: far right on desktop, full-width panel on mobile -->
-    <nav id="nav-menu" aria-label="Primary" class="nav-links">
+    <nav aria-label="Primary" class="nav-links">
       <a href="/index.html">Home</a>
       <a href="/our-team.html">Our Team</a>
       <a href="/projects.html">Projects</a>
       <a href="/publications.html">Publications</a>
       <a href="/news.html">News</a>
       <a href="/gallery.html">Lab Gallery</a>
-
       <div id="contact-dropdown-wrapper" class="nav-drop" style="position:relative; overflow:visible;">
-        <a
-          id="contact-link"
-          href="javascript:void(0);"
-          class="nav-drop-trigger"
-          aria-haspopup="true"
-          aria-expanded="false"
-          aria-controls="contact-dropdown"
-        >
+        <a id="contact-link" href="javascript:void(0);" class="nav-drop-trigger"
+           aria-haspopup="true" aria-expanded="false" aria-controls="contact-dropdown">
           Contact
           <svg id="contact-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
@@ -334,7 +146,6 @@
         </div>
       </div>
     </nav>
-
   </div>
 </header>
 
@@ -515,55 +326,14 @@
     }
   }, true);
 })();
-
 document.addEventListener('DOMContentLoaded', function() {
-  // ── Hamburger menu ──
-  var navToggle = document.getElementById('nav-toggle');
-  var navMenu   = document.getElementById('nav-menu');
-  var iconOpen  = document.getElementById('nav-icon-open');
-  var iconClose = document.getElementById('nav-icon-close');
-
-  if (navToggle && navMenu) {
-    navToggle.addEventListener('click', function() {
-      var open = navMenu.classList.toggle('nav-open');
-      navToggle.setAttribute('aria-expanded', String(open));
-      if (iconOpen)  iconOpen.style.display  = open ? 'none' : '';
-      if (iconClose) iconClose.style.display = open ? ''     : 'none';
-    });
-    // Close mobile menu when a nav link (not contact toggle) is clicked
-    navMenu.addEventListener('click', function(e) {
-      var isMobile = window.innerWidth < 768;
-      if (!isMobile) return;
-      var target = e.target.closest('a');
-      if (target && target.id !== 'contact-link') {
-        navMenu.classList.remove('nav-open');
-        navToggle.setAttribute('aria-expanded', 'false');
-        if (iconOpen)  iconOpen.style.display  = '';
-        if (iconClose) iconClose.style.display = 'none';
-      }
-    });
-    // Close on outside click
-    document.addEventListener('click', function(e) {
-      if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
-        navMenu.classList.remove('nav-open');
-        navToggle.setAttribute('aria-expanded', 'false');
-        if (iconOpen)  iconOpen.style.display  = '';
-        if (iconClose) iconClose.style.display = 'none';
-      }
-    });
-  }
-
-  // ── Contact dropdown (desktop hover + click; mobile click) ──
   var wrapper = document.getElementById('contact-dropdown-wrapper');
   var link    = document.getElementById('contact-link');
   var menu    = document.getElementById('contact-dropdown');
   if (!wrapper || !link || !menu) return;
-
   link.setAttribute('href', 'javascript:void(0);');
-
   var hasHover = window.matchMedia('(hover: hover)').matches;
   var clickedOpen = false, isHovered = false, hideTimer = null;
-
   function show() {
     clearTimeout(hideTimer);
     wrapper.classList.add('show-dropdown');
@@ -582,7 +352,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }, 200);
   }
-
   if (hasHover) {
     wrapper.addEventListener('mouseenter', function() { isHovered = true; show(); });
     wrapper.addEventListener('mouseleave', function(e) {
@@ -593,35 +362,17 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!wrapper.contains(e.relatedTarget)) { isHovered = false; scheduleHide(); }
     });
   }
-
   link.addEventListener('click', function(e) {
     e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
-    // On mobile, use mob-open class so CSS always-visible rule applies
-    if (window.innerWidth < 768) {
-      var open = wrapper.classList.toggle('mob-open');
-      wrapper.classList.toggle('show-dropdown', open);
-      link.setAttribute('aria-expanded', String(open));
-    } else {
-      clickedOpen = !clickedOpen;
-      clickedOpen ? show() : hide();
-    }
+    clickedOpen = !clickedOpen;
+    clickedOpen ? show() : hide();
     return false;
   }, true);
-
   document.addEventListener('click', function(e) {
-    if ((clickedOpen || wrapper.classList.contains('mob-open')) && !wrapper.contains(e.target)) {
-      clickedOpen = false;
-      wrapper.classList.remove('show-dropdown', 'mob-open');
-      link.setAttribute('aria-expanded', 'false');
-    }
+    if (clickedOpen && !wrapper.contains(e.target)) { clickedOpen = false; hide(); }
   });
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      clickedOpen = false;
-      wrapper.classList.remove('show-dropdown', 'mob-open');
-      link.setAttribute('aria-expanded', 'false');
-      link.focus();
-    }
+    if (e.key === 'Escape') { clickedOpen = false; hide(); link.focus(); }
   });
 });
 </script>

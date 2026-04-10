@@ -56,11 +56,12 @@
     .nav-inner {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 1.25rem;
       height: 60px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 1rem;
       overflow: visible;
       position: relative;
     }
@@ -216,6 +217,84 @@
       visibility: visible;
       pointer-events: auto;
       transform: translateY(0);
+    }
+
+    /* ── Hamburger toggle (hidden on desktop) ── */
+    .nav-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+      color: #374151;
+      transition: background 0.15s, color 0.15s;
+      flex-shrink: 0;
+      padding: 0;
+    }
+    .nav-toggle:hover { background: rgba(45,106,79,0.08); color: var(--navy); }
+    .nav-toggle svg { display: block; }
+
+    /* ── Mobile: collapse nav into full-width panel ── */
+    @media (max-width: 767px) {
+      .nav-toggle { display: flex; }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        border-top: 1px solid var(--border);
+        border-bottom: 2px solid var(--gold);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.09);
+        padding: 0.4rem 0;
+        gap: 0;
+        overflow-x: visible;
+        overflow-y: auto;
+        z-index: 98;
+      }
+      .nav-links.nav-open { display: flex; }
+
+      .nav-links a,
+      .nav-drop-trigger {
+        padding: 0.75rem 1.25rem;
+        border-radius: 0;
+        font-size: 0.82rem;
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid rgba(0,0,0,0.04);
+      }
+
+      /* Contact sub-menu: static inline panel on mobile */
+      .nav-drop { overflow: visible; }
+      #contact-dropdown {
+        position: static;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        background: #f3f8f5;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: none !important;
+        transition: none !important;
+        display: none;
+      }
+      #contact-dropdown-wrapper.mob-open #contact-dropdown { display: block; }
+      #contact-dropdown a {
+        padding: 0.65rem 2rem;
+        font-size: 0.8rem;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+      }
+      #contact-dropdown a:last-child { border-bottom: none; }
+      .nav-drop-trigger svg { margin-left: auto; }
     }
 
     /* ── Hero ── */
@@ -637,7 +716,17 @@
       </div>
     </a>
 
-    <nav aria-label="Primary" class="nav-links">
+    <!-- Hamburger: visible on mobile only -->
+    <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+      <svg id="nav-icon-open" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg id="nav-icon-close" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true" style="display:none">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <nav id="nav-menu" aria-label="Primary" class="nav-links">
       <a href="/index.html">Home</a>
       <a href="/our-team.html">Our Team</a>
       <a href="/projects.html">Projects</a>
@@ -848,6 +937,43 @@
 
 
 <script>
+// ── Hamburger menu ──
+document.addEventListener('DOMContentLoaded', function() {
+  var navToggle = document.getElementById('nav-toggle');
+  var navMenu   = document.getElementById('nav-menu');
+  var iconOpen  = document.getElementById('nav-icon-open');
+  var iconClose = document.getElementById('nav-icon-close');
+
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', function() {
+      var open = navMenu.classList.toggle('nav-open');
+      navToggle.setAttribute('aria-expanded', String(open));
+      if (iconOpen)  iconOpen.style.display  = open ? 'none' : '';
+      if (iconClose) iconClose.style.display = open ? ''     : 'none';
+    });
+    // Close when any nav link (except contact toggle) is clicked on mobile
+    navMenu.addEventListener('click', function(e) {
+      if (window.innerWidth >= 768) return;
+      var a = e.target.closest('a');
+      if (a && a.id !== 'contact-link') {
+        navMenu.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        if (iconOpen)  iconOpen.style.display  = '';
+        if (iconClose) iconClose.style.display = 'none';
+      }
+    });
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+      if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+        navMenu.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        if (iconOpen)  iconOpen.style.display  = '';
+        if (iconClose) iconClose.style.display = 'none';
+      }
+    });
+  }
+});
+
 // ── Contact dropdown ──
 (function() {
   document.addEventListener('click', function(e) {
@@ -919,8 +1045,14 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     e.stopPropagation();
     e.stopImmediatePropagation();
-    clickedOpen = !clickedOpen;
-    clickedOpen ? show() : hide();
+    if (window.innerWidth < 768) {
+      // Mobile: toggle inline sub-menu via mob-open class
+      var open = wrapper.classList.toggle('mob-open');
+      link.setAttribute('aria-expanded', String(open));
+    } else {
+      clickedOpen = !clickedOpen;
+      clickedOpen ? show() : hide();
+    }
     return false;
   }, true);
 

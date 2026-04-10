@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Announcements · EXPHR Lab</title>
   <link rel="stylesheet" href="./assets/style.css?v=17">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -18,3 +21,144 @@
       }
     }
   </script>
+  <style>
+    /* ── Navbar ── */
+    :root {
+      --navy:      #2d6a4f;
+      --navy-deep: #ffffff;
+      --gold:      #2d6a4f;
+      --gold-light:#52b788;
+      --white:     #ffffff;
+      --off-white: #f8f9fa;
+      --text:      #2d2d2d;
+      --muted:     #4b5563;
+      --border:    #e5e7eb;
+      --serif:     'Merriweather', Georgia, 'Times New Roman', serif;
+      --sans:      'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navy-deep);
+      border-bottom: 2px solid var(--gold);
+      box-shadow: 0 1px 8px rgba(0,0,0,0.07);
+      overflow: visible;
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+      height: 60px; display: flex; align-items: center;
+      justify-content: space-between; overflow: visible; position: relative;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.6rem; color: var(--text); text-decoration: none; flex-shrink: 0; }
+    .nav-brand img { height: 38px; width: auto; mix-blend-mode: multiply; filter: none; }
+    .nav-brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+    .nav-brand-name { font-family: var(--serif); font-weight: 700; font-size: 1rem; color: var(--text); letter-spacing: 0.02em; }
+    .nav-brand-sub { font-size: 0.68rem; color: #6b7280; letter-spacing: 0.01em; display: none; }
+    @media (min-width: 700px) { .nav-brand-sub { display: block; } }
+    .nav-links { display: flex; align-items: center; gap: 0.1rem; overflow-x: clip; overflow-y: visible; scrollbar-width: none; -ms-overflow-style: none; flex-shrink: 0; position: relative; }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a, .nav-drop-trigger { color: #374151; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.4rem 0.65rem; border-radius: 3px; transition: color 0.15s, background 0.15s; white-space: nowrap; cursor: pointer; }
+    .nav-links a:hover, .nav-drop-trigger:hover { color: var(--navy); background: rgba(45,106,79,0.08); }
+    .nav-drop { position: relative; overflow: visible; }
+    .nav-drop-trigger { display: inline-flex; align-items: center; gap: 0.3rem; background: none; border: none; font-family: var(--sans); cursor: pointer; }
+    .nav-drop-trigger svg { width: 10px; height: 10px; transition: transform 0.2s; flex-shrink: 0; }
+    #contact-dropdown-wrapper:hover .nav-drop-trigger svg, #contact-dropdown-wrapper.show-dropdown .nav-drop-trigger svg { transform: rotate(180deg); }
+    #contact-dropdown { position: absolute; top: calc(100% + 4px); right: 0; min-width: 13rem; background: var(--white); border: 1px solid var(--border); border-top: 2px solid var(--gold); border-radius: 5px; box-shadow: 0 8px 28px rgba(0,0,0,0.16); z-index: 9999; overflow: hidden; }
+    #contact-dropdown a { display: block; padding: 0.65rem 1rem; font-size: 0.83rem; color: var(--text); font-weight: 500; border-bottom: 1px solid var(--border); transition: background 0.12s, color 0.12s; text-transform: none; letter-spacing: 0; }
+    #contact-dropdown a:last-child { border-bottom: none; }
+    #contact-dropdown a:hover { background: var(--off-white); color: var(--navy); }
+    #contact-dropdown-wrapper:not(:hover):not(.show-dropdown) #contact-dropdown:not(:hover) { opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-6px); transition: opacity 0.15s, visibility 0.15s, transform 0.15s; }
+    #contact-dropdown-wrapper:hover #contact-dropdown, #contact-dropdown-wrapper.show-dropdown #contact-dropdown, #contact-dropdown:hover { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); transition: opacity 0.15s, visibility 0.15s, transform 0.15s; }
+    #contact-dropdown-wrapper:has(:hover) #contact-dropdown { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- ===== Sticky Navbar ===== -->
+<header role="banner">
+  <div class="nav-inner">
+    <a href="/index.html" class="nav-brand" aria-label="EXPHR Lab Home">
+      <img src="assets/media/lab-logo-2.png" alt="EXPHR Lab logo" loading="eager" />
+      <div class="nav-brand-text">
+        <span class="nav-brand-name">EXPHR Lab</span>
+        <span class="nav-brand-sub">Exercise for Precision Health &amp; Rehabilitation</span>
+      </div>
+    </a>
+    <nav aria-label="Primary" class="nav-links">
+      <a href="/index.html">Home</a>
+      <a href="/our-team.html">Our Team</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/publications.html">Publications</a>
+      <a href="/news.html">News</a>
+      <a href="/gallery.html">Lab Gallery</a>
+      <div id="contact-dropdown-wrapper" class="nav-drop" style="position:relative; overflow:visible;">
+        <a id="contact-link" href="javascript:void(0);" class="nav-drop-trigger"
+           aria-haspopup="true" aria-expanded="false" aria-controls="contact-dropdown">
+          Contact
+          <svg id="contact-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+        <div id="contact-dropdown" role="menu" aria-labelledby="contact-link">
+          <a href="./join-our-study.html" role="menuitem">Join Our Study</a>
+          <a href="./opportunities.html" role="menuitem">Research Opportunities</a>
+          <a href="./contact.html" role="menuitem">Get In Touch</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <h1 class="text-2xl font-bold text-slate-900">Announcements</h1>
+</main>
+
+<script>
+// ── Contact dropdown ──
+(function() {
+  document.addEventListener('click', function(e) {
+    var link = document.getElementById('contact-link');
+    if (link && (e.target === link || link.contains(e.target))) {
+      e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
+    }
+  }, true);
+  document.addEventListener('mousedown', function(e) {
+    var link = document.getElementById('contact-link');
+    if (link && (e.target === link || link.contains(e.target))) {
+      e.preventDefault(); e.stopPropagation();
+    }
+  }, true);
+})();
+document.addEventListener('DOMContentLoaded', function() {
+  var wrapper = document.getElementById('contact-dropdown-wrapper');
+  var link    = document.getElementById('contact-link');
+  var menu    = document.getElementById('contact-dropdown');
+  if (!wrapper || !link || !menu) return;
+  link.setAttribute('href', 'javascript:void(0);');
+  var hasHover = window.matchMedia('(hover: hover)').matches;
+  var clickedOpen = false, isHovered = false, hideTimer = null;
+  function show() { clearTimeout(hideTimer); wrapper.classList.add('show-dropdown'); link.setAttribute('aria-expanded', 'true'); }
+  function hide() { wrapper.classList.remove('show-dropdown'); link.setAttribute('aria-expanded', 'false'); }
+  function scheduleHide() {
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(function() {
+      if (!clickedOpen && !isHovered) {
+        try { if (!wrapper.matches(':hover') && !menu.matches(':hover')) hide(); else isHovered = true; } catch(e) { hide(); }
+      }
+    }, 200);
+  }
+  if (hasHover) {
+    wrapper.addEventListener('mouseenter', function() { isHovered = true; show(); });
+    wrapper.addEventListener('mouseleave', function(e) { if (!menu.contains(e.relatedTarget)) { isHovered = false; scheduleHide(); } });
+    menu.addEventListener('mouseenter', function() { isHovered = true; clearTimeout(hideTimer); });
+    menu.addEventListener('mouseleave', function(e) { if (!wrapper.contains(e.relatedTarget)) { isHovered = false; scheduleHide(); } });
+  }
+  link.addEventListener('click', function(e) {
+    e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
+    clickedOpen = !clickedOpen; clickedOpen ? show() : hide(); return false;
+  }, true);
+  document.addEventListener('click', function(e) { if (clickedOpen && !wrapper.contains(e.target)) { clickedOpen = false; hide(); } });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { clickedOpen = false; hide(); link.focus(); } });
+});
+</script>
+</body>
+</html>

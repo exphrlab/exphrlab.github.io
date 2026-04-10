@@ -16,13 +16,13 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:      #1a2e44;
-      --navy-deep: #112036;
-      --gold:      #c9a84c;
-      --gold-light:#e8c96e;
+      --navy:      #2d6a4f;
+      --navy-deep: #ffffff;
+      --gold:      #2d6a4f;
+      --gold-light:#52b788;
       --white:     #ffffff;
-      --off-white: #f8f7f4;
-      --text:      #1f2937;
+      --off-white: #f8f9fa;
+      --text:      #2d2d2d;
       --muted:     #4b5563;
       --border:    #e5e7eb;
       --serif:     'Merriweather', Georgia, 'Times New Roman', serif;
@@ -49,6 +49,7 @@
       z-index: 100;
       background: var(--navy-deep);
       border-bottom: 2px solid var(--gold);
+      box-shadow: 0 1px 8px rgba(0,0,0,0.07);
       overflow: visible;
     }
 
@@ -68,7 +69,7 @@
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      color: var(--white);
+      color: var(--text);
       text-decoration: none;
       flex-shrink: 0;
     }
@@ -76,8 +77,8 @@
     .nav-brand img {
       height: 38px;
       width: auto;
-      mix-blend-mode: screen;
-      filter: brightness(2);
+      mix-blend-mode: multiply;
+      filter: none;
     }
 
     .nav-brand-text {
@@ -90,13 +91,13 @@
       font-family: var(--serif);
       font-weight: 700;
       font-size: 1rem;
-      color: var(--white);
+      color: var(--text);
       letter-spacing: 0.02em;
     }
 
     .nav-brand-sub {
       font-size: 0.68rem;
-      color: rgba(255,255,255,0.5);
+      color: #6b7280;
       letter-spacing: 0.01em;
       display: none;
     }
@@ -117,7 +118,7 @@
 
     .nav-links a,
     .nav-drop-trigger {
-      color: rgba(255,255,255,0.78);
+      color: #374151;
       font-size: 0.78rem;
       font-weight: 500;
       letter-spacing: 0.06em;
@@ -131,8 +132,8 @@
 
     .nav-links a:hover,
     .nav-drop-trigger:hover {
-      color: var(--gold-light);
-      background: rgba(255,255,255,0.07);
+      color: var(--navy);
+      background: rgba(45,106,79,0.08);
     }
 
     /* Contact Dropdown */
@@ -232,7 +233,7 @@
       background-image: url('assets/media/emory campus-wide view.jpg');
       background-size: cover;
       background-position: center 35%;
-      filter: brightness(0.35) saturate(0.65);
+      filter: brightness(0.72) saturate(0.85);
     }
 
     .hero-overlay {
@@ -240,9 +241,9 @@
       inset: 0;
       background: linear-gradient(
         135deg,
-        rgba(17,32,54,0.72) 0%,
-        rgba(26,46,68,0.5) 55%,
-        rgba(201,168,76,0.1) 100%
+        rgba(240,247,244,0.55) 0%,
+        rgba(255,255,255,0.18) 60%,
+        rgba(45,106,79,0.08) 100%
       );
     }
 
@@ -273,9 +274,9 @@
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--gold-light);
       margin-bottom: 1.4rem;
-      border-bottom: 1px solid rgba(201,168,76,0.35);
+      border-bottom: 1px solid rgba(82,183,136,0.5);
       padding-bottom: 0.4rem;
     }
 
@@ -292,7 +293,7 @@
 
     .hero-sub {
       font-size: 1.05rem;
-      color: rgba(255,255,255,0.68);
+      color: rgba(255,255,255,0.88);
       max-width: 540px;
       line-height: 1.7;
       margin-bottom: 2.5rem;
@@ -308,7 +309,7 @@
     .btn-primary {
       display: inline-block;
       background: var(--gold);
-      color: var(--navy-deep);
+      color: #ffffff;
       font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: 0.07em;
@@ -322,19 +323,20 @@
     .btn-outline {
       display: inline-block;
       background: transparent;
-      color: rgba(255,255,255,0.82);
+      color: rgba(255,255,255,0.92);
       font-size: 0.8rem;
       font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       padding: 0.72rem 1.6rem;
       border-radius: 3px;
-      border: 1px solid rgba(255,255,255,0.3);
-      transition: border-color 0.15s, color 0.15s, transform 0.1s;
+      border: 1px solid rgba(255,255,255,0.6);
+      transition: border-color 0.15s, color 0.15s, background 0.15s, transform 0.1s;
     }
     .btn-outline:hover {
-      border-color: var(--gold);
-      color: var(--gold-light);
+      border-color: var(--gold-light);
+      background: rgba(82,183,136,0.15);
+      color: #ffffff;
       transform: translateY(-1px);
     }
 
@@ -422,7 +424,7 @@
 
     /* ── Research Pillars ── */
     .pillars-section {
-      background: var(--navy);
+      background: #f0f7f4;
       border-top: 3px solid var(--gold);
     }
 
@@ -456,13 +458,13 @@
       font-family: var(--serif);
       font-weight: 700;
       font-size: 0.98rem;
-      color: var(--white);
+      color: var(--text);
       margin-bottom: 0.5rem;
     }
 
     .pillar-body {
       font-size: 0.83rem;
-      color: rgba(255,255,255,0.55);
+      color: var(--muted);
       line-height: 1.6;
     }
 
@@ -526,7 +528,7 @@
 
     /* ── Footer ── */
     footer {
-      background: var(--navy-deep);
+      background: #f2f2f2;
       border-top: 3px solid var(--gold);
     }
 
@@ -541,7 +543,7 @@
       grid-template-columns: 2fr 1fr 1fr;
       gap: 3.5rem;
       padding-bottom: 3rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(0,0,0,0.1);
     }
 
     @media (max-width: 760px) {
@@ -552,20 +554,20 @@
       font-family: var(--serif);
       font-weight: 900;
       font-size: 1.15rem;
-      color: var(--white);
+      color: var(--text);
       margin-bottom: 0.35rem;
     }
 
     .footer-brand-full {
       font-size: 0.76rem;
-      color: rgba(255,255,255,0.4);
+      color: #6b7280;
       letter-spacing: 0.02em;
       margin-bottom: 1.2rem;
     }
 
     .footer-brand-desc {
       font-size: 0.83rem;
-      color: rgba(255,255,255,0.48);
+      color: var(--muted);
       line-height: 1.65;
       max-width: 340px;
     }
@@ -582,13 +584,13 @@
     .footer-col address {
       font-style: normal;
       font-size: 0.85rem;
-      color: rgba(255,255,255,0.55);
+      color: var(--muted);
       line-height: 1.8;
     }
 
     .footer-col a {
-      color: rgba(255,255,255,0.7);
-      border-bottom: 1px solid rgba(201,168,76,0.28);
+      color: var(--navy);
+      border-bottom: 1px solid rgba(45,106,79,0.3);
       padding-bottom: 1px;
       transition: color 0.15s, border-color 0.15s;
     }
@@ -605,17 +607,17 @@
 
     .footer-copy {
       font-size: 0.74rem;
-      color: rgba(255,255,255,0.32);
+      color: #9ca3af;
     }
 
     .footer-emory img {
       height: 24px;
       width: auto;
-      opacity: 0.45;
-      filter: brightness(10);
+      opacity: 0.55;
+      filter: none;
       transition: opacity 0.15s;
     }
-    .footer-emory img:hover { opacity: 0.75; }
+    .footer-emory img:hover { opacity: 0.85; }
 
   </style>
 </head>
